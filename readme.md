@@ -172,6 +172,7 @@ app/
 
 Source : [https://scotch.io/tutorials/angularjs-best-practices-directory-structure](https://scotch.io/tutorials/angularjs-best-practices-directory-structure)
 
+
 ##Futur
 ###Technologies possibles
 * [Immutable par Facebook](http://facebook.github.io/immutable-js/) : Si vous voulez des éléments qui ne changent pas; y compris des `Object`(Cf. `Record`).
