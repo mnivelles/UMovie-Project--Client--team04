@@ -40,11 +40,23 @@ bower cache clean
 
 ##Installation
 
-Clonner le dépôt Git suivant en effectuant une ou l'autre des commandes. Un nom peut être optionnellement ajouté à la fin.
+Clonner le dépôt Git suivant en effectuant la commande suivante. Un nom optionnel peut être optionnellement ajouté à la fin.
 
->...
+```bat
+git clone https://github.com/GLO3102/team04.git umi-project
+```
 
-Aller dans le dossier du projet.
+Aller dans le dossier du projet
+
+```bat
+cd umi-project
+```
+
+Changer et suivre la branche `develop`
+
+```bat
+git checkout -b develop remotes/origin/develop
+```
 
 Effectuer les commandes suivantes afin d'installer toutes les extensions nécessaires.
 
