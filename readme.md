@@ -1,4 +1,6 @@
-#UMI - ULaval Movie Ima (v0.0.0α)
+#UMI - ULaval Movie Ima (v0.0.0α) par 300 Umi
+
+![/icon-notification-umi-project-logo.png](Logo de UMI - ULaval Movie Ima)
 
 >N.B. : Si certaines commandes ne semblent pas fonctionner ou que la documentation ne semble pas à jour, consulter la version du readme.md de la branche `develop`.
 

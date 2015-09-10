@@ -1,7 +1,7 @@
 {
   "name": "umi-ulaval-movie-ima",
   "version": "0.0.0",
-  "author": "umi-team",
+  "author": "300-umi",
   "license": "MIT",
   "scripts": {
     "postinstall": "bower install",

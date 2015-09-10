@@ -2,7 +2,7 @@
   "name": "umi-ulaval-movie-ima",
   "version": "0.0.0",
   "authors": [
-    "umi-team"
+    "300-umi"
   ],
   "description": "Super-cool mini Netflix",
   "main": "gulpfile.js",
