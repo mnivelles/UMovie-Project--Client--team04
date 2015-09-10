@@ -143,7 +143,7 @@ Essayer dans un fichier HTML : ```#page>div.logo+ul#navigation>li*5>a{Item }``` 
 Voir [Emmet](http://docs.emmet.io/abbreviations/).
 
 ##Organisation des fichiers
-Le dossier de travail est le dossier `pp`. Il se présente comme suit :
+Le dossier de travail est le dossier `app`. Il se présente comme suit :
 
 ```bash
 app/
