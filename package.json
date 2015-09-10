@@ -1,0 +1,31 @@
+{
+  "name": "umi-ulaval-movie-ima",
+  "version": "0.0.0",
+  "author": "umi-team",
+  "license": "MIT",
+  "scripts": {
+    "postinstall": "bower install",
+    "start": "npm install && gulp watch",
+    "test": "npm install && gulp"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "del": "^2.0.1",
+    "gulp": "^3.9.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-flatten": "^0.2.0",
+    "gulp-jshint": "^1.11.2",
+    "gulp-notify": "^2.2.0",
+    "gulp-plumber": "^1.0.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^2.0.4",
+    "gulp-sourcemaps": "^1.5.2",
+    "gulp-uglify": "^1.4.0",
+    "gulp-util": "^3.0.6",
+    "jshint-stylish": "^2.0.1",
+    "laravel-elixir": "^3.2.6",
+    "require-dir": "^0.3.0",
+    "run-sequence": "^1.1.2"
+  },
+  "private": true
+}

@@ -1,0 +1,15 @@
+.pageMenu {
+
+}
+
+.pageMenu--item {
+    @include stack($align: center);
+
+    @include breakpoint(phablet) {
+        @include col(6/12);
+    }
+
+    @include breakpoint(tablet) {
+        @include col(4/12);
+    }
+}

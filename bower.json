@@ -1,0 +1,33 @@
+{
+  "name": "umi-ulaval-movie-ima",
+  "version": "0.0.0",
+  "authors": [
+    "umi-team"
+  ],
+  "description": "Super-cool mini Netflix",
+  "main": "gulpfile.js",
+  "keywords": [
+    "backbone",
+    "web",
+    "apps",
+    "movie"
+  ],
+  "license": "MIT",
+  "homepage": "http://www.ulaval.ca",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "app/tests"
+  ],
+  "dependencies": {
+    "backbone": "~1.2.3",
+    "jeet": "~6.1.2",
+    "jquery": "~2.1.4",
+    "materialize": "~0.97.0",
+    "nunjucks": "~2.0.0",
+    "underscore": "~1.8.3"
+  },
+  "devDependencies": {}
+}

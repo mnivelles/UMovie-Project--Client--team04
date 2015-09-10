@@ -1,0 +1,19 @@
+@import 'jeet/index';
+@import "materialize";
+
+@import "breakpoint";
+
+@include edit(); // /!\ Créée un fond gris utile pour les tests
+
+@import "pageHeader";
+@import "pageContent";
+@import "pageMenu";
+
+a {
+    cursor: pointer;
+}
+
+body {
+    //@extend .blue-grey, .darken-3;
+    //@extend .white-text;
+}

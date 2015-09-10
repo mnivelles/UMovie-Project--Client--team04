@@ -1,0 +1,58 @@
+.pageHeader {
+    @include cf();
+
+    //@extend .indigo, .darken-3;
+    //@extend .white-text;
+}
+
+.pageHeader--logo {
+    @include col(4/12);
+
+    @include breakpoint(tablet) {
+        @include col(3/12);
+    }
+
+    @include breakpoint(laptop) {
+        @include col(2/12);
+    }
+
+    img {
+        width: 100%;
+    }
+
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.pageHeader--title {
+    @include col(8/12);
+    @include shift(4/12);
+
+    @include breakpoint(tablet) {
+        @include col(9/12);
+        @include shift(3/12);
+    }
+
+    @include breakpoint(laptop) {
+        @include col(10/12);
+        @include shift(2/12);
+    }
+
+    font-family: "Varela Round", sans-serif;
+}
+
+.pageHeader--menu {
+    @include col(8/12);
+    @include shift(4/12);
+
+    @include breakpoint(tablet) {
+        @include col(9/12);
+        @include shift(3/12);
+    }
+
+    @include breakpoint(laptop) {
+        @include col(10/12);
+        @include shift(2/12);
+    }
+}
