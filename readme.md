@@ -1,5 +1,5 @@
 <p align="center">
-  <img height="300" width="300" src="icon-notification-umi-project-logo.png" alt="Logo de UMI - ULaval Movie Ima" />
+  <img height="300" width="300" src="logo-umi-project-github.png" alt="Logo de UMI - ULaval Movie Ima" />
 </p>
 
 #UMI - ULaval Movie Ima (v0.0.0α) par 300 Umi
