@@ -1,0 +1,49 @@
+
+.movie {
+}
+
+.movie--centered {
+    @include center(960px);
+    color: white;
+
+}
+
+.movie--img {
+    max-height: 600px;
+    @include col(1/2);
+
+}
+
+.movie--title {
+    @include col(.45);
+}
+
+.movie--video {
+
+}
+
+.movie--synopsis {
+
+    @include col(13/30);
+}
+
+.movie--rating {
+    @include col(1/10);
+}
+
+.movie--video-container {
+    @include center(960px);
+}
+
+.movie--actors {
+    @include stack();
+}
+
+.movie--genre {
+    @include col(1/3);
+}
+
+.movie--release {
+    @include col(1/3);
+
+}
