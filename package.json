@@ -24,7 +24,8 @@
     "gulp-util": "^3.0.6",
     "jshint-stylish": "^2.0.1",
     "require-dir": "^0.3.0",
-    "run-sequence": "^1.1.2"
+    "run-sequence": "^1.1.2",
+    "jeet": "~6.1.2"
   },
   "private": true
 }
