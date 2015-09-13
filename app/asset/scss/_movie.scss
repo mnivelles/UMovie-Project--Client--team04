@@ -75,3 +75,60 @@
     height:50px;
     width:50px;
 }
+
+@media #{$medium-and-down}
+{
+
+    .movie--img {
+        max-height: 600px;
+        @include column(.9,$offset: .05);
+
+    }
+
+    .movie--title {
+        @include stack();
+        @include center(300px);
+    }
+
+    .movie--video {
+        width:100%;
+        height:100%;
+    }
+
+    .movie--synopsis {
+        @include stack();
+        @include column(.9,$offset: .05);
+    }
+
+    .movie--rating {
+        @include stack();
+        @include column(.9,$offset: .05);
+    }
+
+    .movie--video-container {
+        height:450px;
+    }
+
+    .movie--actors {
+        @include stack();
+        @include column(.7,$offset: .05);
+    }
+
+    .movie--genre {
+        @include column(.9,$offset: .05);
+    }
+
+    .movie--release {
+        @include column(.9,$offset: .05);
+
+    }
+
+}
+
+@media #{$small-and-down}
+{
+    .movie--video-container {
+        height:300px;
+    }
+
+}
