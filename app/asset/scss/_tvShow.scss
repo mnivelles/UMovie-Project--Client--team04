@@ -84,3 +84,15 @@ p {
     display: block;
     max-width: 100%;
 }
+
+.media--subTitle > * {
+    display: inline-block;
+
+    .media--subTitle--title {
+
+    }
+
+    .media--subTitle--collapseButton {
+
+    }
+}
