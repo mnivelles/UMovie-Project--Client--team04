@@ -42,7 +42,10 @@
                 <section class="media--quickActions"></section>
                 <section class="media--remaining">
                     <div class="media--remaining--element">
-                        <h3 class="media--subTitle">Synopsis</h3>
+                        <div class="media--subTitle">
+                            <h3 class="media--subTitle--title">Synopsis</h3>
+                            <button class="media--subTitle--hideShowButton waves-effect waves-red btn-flat"><i class="mdi-hardware-keyboard-arrow-up"></i></button>
+                        </div>
 
                         <div class="media--subContent">
                             Nullam quis risus eget urna mollis ornare vel eu leo. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Curabitur blandit tempus porttitor. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas faucibus mollis interdum.
@@ -53,7 +56,7 @@
                     <div class="media--remaining--element">
                         <div class="media--subTitle">
                             <h3 class="media--subTitle--title">Starring</h3>
-                            <button class="media--subTitle--collapseButton btn-flat"><i class="material-icons">search</i></button>
+                            <button class="media--subTitle--hideShowButton waves-effect waves-red btn-flat"><i class="mdi-hardware-keyboard-arrow-up"></i></button>
                         </div>
 
                         <div class="media--subContent">
@@ -67,7 +70,10 @@
                         </div>
                     </div>
                     <div class="media--remaining--element">
-                        <h3 class="media--subTitle">Episodes</h3>
+                        <div class="media--subTitle">
+                            <h3 class="media--subTitle--title">Episodes</h3>
+                            <button class="media--subTitle--hideShowButton waves-effect waves-red btn-flat"><i class="mdi-hardware-keyboard-arrow-up"></i></button>
+                        </div>
 
                         <div class="media--subContent">
                             <ul class="media--episodesList">
@@ -157,5 +163,32 @@
     </footer>
 </div>
 <script src="js/vendor.min.js"></script>
+<script>
+    $( document ).ready(function() {
+        var hideShowButtons = document.getElementsByClassName('media--subTitle--hideShowButton');
+
+        [].forEach.call(hideShowButtons, function(button, index, array) {
+            var subContent = button.parentElement.parentElement.getElementsByClassName('media--subContent')[0];
+            var buttonIcon = button.getElementsByTagName('i')[0];
+            var showIconClass = 'mdi-hardware-keyboard-arrow-down';
+            var hideIconClass = 'mdi-hardware-keyboard-arrow-up';
+            var isHiddenClass = 'is-hidden';
+            button.onclick = function () {
+                if (subContent.classList.contains(isHiddenClass)) {
+                    subContent.classList.remove(isHiddenClass);
+                    buttonIcon.classList.remove(showIconClass);
+                    buttonIcon.classList.add(hideIconClass);
+                } else {
+                    subContent.classList.add(isHiddenClass);
+                    buttonIcon.classList.remove(hideIconClass);
+                    buttonIcon.classList.add(showIconClass);
+                }
+            };
+            subContent.classList.add(isHiddenClass);
+            buttonIcon.classList.remove(hideIconClass);
+            buttonIcon.classList.add(showIconClass);
+        });
+    });
+</script>
 </body>
 </html>

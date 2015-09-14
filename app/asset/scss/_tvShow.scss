@@ -85,14 +85,61 @@ p {
     max-width: 100%;
 }
 
-.media--subTitle > * {
-    display: inline-block;
+.media--subTitle {
+
+    & > * {
+        display: inline-block;
+    }
 
     .media--subTitle--title {
 
     }
 
-    .media--subTitle--collapseButton {
+    .media--subTitle--hideShowButton {
 
+    }
+}
+
+.media--subContent {
+    &.is-hidden {
+        display: none;
+    }
+}
+
+.media--episodesList {
+
+}
+
+.media--episodesList--item {
+    & > * {
+        display: inline-block;
+    }
+
+    .episode--thumbnail img {
+        max-width: 100%;
+    }
+
+    .episode--thumbnail {
+        @include col(5/12);
+
+        @include breakpoint(tablet) {
+            @include col(4/12);
+        }
+
+        @include breakpoint(laptop) {
+            @include col(3/12);
+        }
+    }
+
+    .episode--title {
+        @include col(7/12);
+
+        @include breakpoint(tablet) {
+            @include col(8/12);
+        }
+
+        @include breakpoint(laptop) {
+            @include col(9/12);
+        }
     }
 }
