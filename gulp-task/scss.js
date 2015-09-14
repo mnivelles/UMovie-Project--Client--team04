@@ -18,7 +18,8 @@ gulp.task('scss:materialize-config:copy', function() {
 
     return gulp.src(scssFolder + '_materialize.scss',
         {base: scssFolder})
-        .pipe(gulp.dest(cte.basePaths.bower + 'materialize/sass/materialize.scss'));
+        .pipe(rename('materialize.scss'))
+        .pipe(gulp.dest(cte.basePaths.bower + 'materialize/sass/'));
 });
 
 var paths = {
