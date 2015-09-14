@@ -1,0 +1,86 @@
+/*
+    à déplacer
+*/
+
+html {
+    font-size: 17px;
+}
+
+body {
+    background-color: #f7f7f7;
+}
+
+#page {
+
+}
+
+@media (max-width: 900px) {
+    html { font-size: 15px; }
+}
+
+@media (max-width: 400px) {
+    html { font-size: 13px; }
+}
+
+h1 {
+    font-size: 3em;
+}
+
+h2 {
+    font-size: 2.6em;
+}
+
+h3 {
+    font-size: 2.2em;
+}
+
+h4 {
+    font-size: 2em;
+}
+
+p {
+    font-size: 1.4em;
+}
+
+
+
+/*
+    Media
+*/
+
+.media {
+
+}
+
+.media--poster, .media--mainInformations {
+    display: inline-block;
+}
+
+.media--poster {
+    @include col(5/12);
+
+    @include breakpoint(tablet) {
+        @include col(4/12);
+    }
+
+    @include breakpoint(laptop) {
+        @include col(3/12);
+    }
+}
+
+.media--mainInformations {
+    @include col(7/12);
+
+    @include breakpoint(tablet) {
+        @include col(8/12);
+    }
+
+    @include breakpoint(laptop) {
+        @include col(9/12);
+    }
+}
+
+.media--poster img {
+    display: block;
+    max-width: 100%;
+}
