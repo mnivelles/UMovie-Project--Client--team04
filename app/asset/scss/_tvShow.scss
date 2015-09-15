@@ -74,6 +74,11 @@ $mediaNormalPadding: 3%;
 .media {
     font-size: 1.1rem;
 
+    h2, h3 {
+        font-weight: 100;
+        color: hsla(0,100%,100%,1);
+    }
+
     .media--season,
     .media--date,
     .media--genre,
@@ -83,15 +88,15 @@ $mediaNormalPadding: 3%;
         font-size: 1.25em;
         font-weight: 300;
     }
+
+    .media--actorsList {
+        font-size: 1.25em;
+        font-weight: 300;
+    }
 }
 
 .media {
-    @extend .blue-grey, .darken-4;
 
-    h2, h3 {
-        font-weight: 100;
-        color: hsla(0,100%,100%,1);
-    }
 }
 
 .media--header, .media--quickActions, .media--remaining {
@@ -193,7 +198,6 @@ $mediaNormalPadding: 3%;
 
 .media--remaining--element {
     .media--subTitle--hideShowButton {
-        @extend .waves-effect, .waves-red, .btn-flat;
         color: hsla(0,100%,100%,.8);
 
         i {
@@ -203,6 +207,28 @@ $mediaNormalPadding: 3%;
     }
     .media--subContent {
 
+    }
+
+    .media--actorsList {
+        @include cf();
+
+        .media--actorsList--item {
+            border-bottom-width: 1px;
+            border-bottom-style: solid;
+            margin-bottom: 0.7em;
+
+            @include breakpoint(phablet) {
+                @include col(1/2, $cycle: 2);
+            }
+
+            @include breakpoint(tablet) {
+                @include col(1/3, $uncycle: 2, $cycle: 3);
+            }
+
+            @include breakpoint(laptop) {
+                @include col(1/4, $uncycle: 3, $cycle: 4);
+            }
+        }
     }
 }
 
@@ -225,11 +251,31 @@ $mediaNormalPadding: 3%;
 }
 
 .media--episodesList {
-
+    @include cf();
 }
 
 .media--episodesList--item {
     @include cf();
+
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    margin-bottom: 0.7em;
+
+    @include breakpoint(phablet) {
+
+    }
+
+    @include breakpoint(tablet) {
+        @include col(1/2, $cycle: 2);
+    }
+
+    @include breakpoint(laptop) {
+        @include col(1/3, $uncycle: 2, $cycle: 3);
+    }
+
+    @include breakpoint(desktop) {
+        @include col(1/4, $uncycle: 3, $cycle: 4);
+    }
 
     & > * {
         display: inline-block;
@@ -243,23 +289,33 @@ $mediaNormalPadding: 3%;
         @include col(3/12);
 
         @include breakpoint(tablet) {
-            @include col(3/12);
+            @include col(4/12);
         }
 
         @include breakpoint(laptop) {
-            @include col(2/12);
+            @include col(4/12);
+        }
+
+        @include breakpoint(desktop) {
+            @include col(5/12);
         }
     }
 
     .episode--title {
+        font-size: 1.2em;
+
         @include col(9/12);
 
         @include breakpoint(tablet) {
-            @include col(9/12);
+            @include col(8/12);
         }
 
         @include breakpoint(laptop) {
-            @include col(10/12);
+            @include col(8/12);
+        }
+
+        @include breakpoint(desktop) {
+            @include col(7/12);
         }
     }
 }
