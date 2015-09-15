@@ -1,25 +1,43 @@
+html {
+    @extend .blue-grey, .darken-4;
+}
+
+body {
+    @extend .blue-grey, .darken-4;
+    color: hsla(0,100%,100%,.65);
+}
+
+
 /*
     à déplacer
 */
 
 html {
-    font-size: 17px;
+    font-size: 13px;
+}
+
+@include breakpoint(phablet) {
+    html { font-size: 14px; }
+}
+
+@include breakpoint(tablet) {
+    html { font-size: 15px; }
+}
+
+@include breakpoint(laptop) {
+    html { font-size: 16px; }
+}
+
+@include breakpoint(desktop) {
+    html { font-size: 17px; }
 }
 
 body {
-    background-color: #f7f7f7;
+
 }
 
 #page {
 
-}
-
-@media (max-width: 900px) {
-    html { font-size: 15px; }
-}
-
-@media (max-width: 400px) {
-    html { font-size: 13px; }
 }
 
 h1 {
@@ -39,7 +57,7 @@ h4 {
 }
 
 p {
-    font-size: 1.4em;
+    font-size: 1.25em;
 }
 
 
@@ -48,8 +66,36 @@ p {
     Media
 */
 
-.media {
+$mediaNormalPadding: 3%;
 
+/* rem du module
+   et em modifiés
+*/
+.media {
+    font-size: 1.1rem;
+
+    .media--season,
+    .media--date,
+    .media--genre,
+    .media--duration,
+    .media--rating,
+    .media--author {
+        font-size: 1.25em;
+        font-weight: 300;
+    }
+}
+
+.media {
+    @extend .blue-grey, .darken-4;
+
+    h2, h3 {
+        font-weight: 100;
+        color: hsla(0,100%,100%,1);
+    }
+}
+
+.media--header, .media--quickActions, .media--remaining {
+    @include cf();
 }
 
 .media--poster, .media--mainInformations {
@@ -69,6 +115,8 @@ p {
 }
 
 .media--mainInformations {
+    margin-bottom: 10px;
+
     @include col(7/12);
 
     @include breakpoint(tablet) {
@@ -85,10 +133,53 @@ p {
     max-width: 100%;
 }
 
+.media--rating {
+    .media--rating--logo {
+        border-width: 1px;
+        border-style: solid;
+        padding: .15em .18em;
+        border-radius: .3em;
+        color: hsla(0,100%,100%,1);
+    }
+}
+
+.media--quickActions {
+    background-color: hsla(0,100%,100%,.15);
+
+    text-align: center;
+    padding: 20px 10px;
+
+    .media--quickActions--button {
+        vertical-align: middle;
+        display: inline-block;
+        margin: 5px 2px;
+    }
+
+    @include breakpoint(tablet) {
+        .media--quickActions--button {
+            vertical-align: middle;
+            display: inline-block;
+            margin: 6px 6px;
+        }
+    }
+
+    @include breakpoint(laptop) {
+        .media--quickActions--button {
+            vertical-align: middle;
+            display: inline-block;
+            margin: 10px;
+        }
+    }
+}
+
 .media--subTitle {
+
+    margin-right: $mediaNormalPadding;
+    margin-left: $mediaNormalPadding;
 
     & > * {
         display: inline-block;
+        vertical-align: middle;
     }
 
     .media--subTitle--title {
@@ -100,10 +191,37 @@ p {
     }
 }
 
-.media--subContent {
-    &.is-hidden {
+.media--remaining--element {
+    .media--subTitle--hideShowButton {
+        @extend .waves-effect, .waves-red, .btn-flat;
+        color: hsla(0,100%,100%,.8);
+
+        i {
+            @extend .mdi-hardware-keyboard-arrow-up;
+            font-size: 1.5em;
+        }
+    }
+    .media--subContent {
+
+    }
+}
+
+.media--remaining--element.is-hidden {
+    .media--subTitle--hideShowButton {
+        i {
+            @extend .mdi-hardware-keyboard-arrow-down;
+        }
+    }
+    .media--subContent {
         display: none;
     }
+}
+
+.media--subContent {
+    margin-right: $mediaNormalPadding;
+    margin-left: $mediaNormalPadding;
+
+    font-weight: 300;
 }
 
 .media--episodesList {
@@ -111,6 +229,8 @@ p {
 }
 
 .media--episodesList--item {
+    @include cf();
+
     & > * {
         display: inline-block;
     }
@@ -120,26 +240,26 @@ p {
     }
 
     .episode--thumbnail {
-        @include col(5/12);
+        @include col(3/12);
 
         @include breakpoint(tablet) {
-            @include col(4/12);
+            @include col(3/12);
         }
 
         @include breakpoint(laptop) {
-            @include col(3/12);
+            @include col(2/12);
         }
     }
 
     .episode--title {
-        @include col(7/12);
+        @include col(9/12);
 
         @include breakpoint(tablet) {
-            @include col(8/12);
+            @include col(9/12);
         }
 
         @include breakpoint(laptop) {
-            @include col(9/12);
+            @include col(10/12);
         }
     }
 }
