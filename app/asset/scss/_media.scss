@@ -1,0 +1,324 @@
+/*------------------------------------*\
+    ##MEDIA
+    page standard pour les séries (tvshow)
+\*------------------------------------*/
+
+
+
+
+
+
+/*
+    Constantes
+*/
+
+$media-titleColor: hsla(1,83%,63%,1); //Red.400
+$media-titleWeight: 100;
+
+$media-sectionTitleColor: hsla(36,100%,50%,1); //Orange.500
+$media-sectionTitleWeight: 100;
+
+//$media-normalTextColor:
+$media-normalTextWeight: 300;
+
+$mediaNormalPadding: 3%;
+
+
+
+
+
+/*
+    rem du module
+   et em modifiés
+*/
+.media {
+    font-size: 1.1rem;
+
+    .media--season,
+    .media--date,
+    .media--genre,
+    .media--duration,
+    .media--rating,
+    .media--author {
+        font-size: 1.25em;
+    }
+
+    .media--actorsList {
+        font-size: 1.25em;
+    }
+}
+
+
+
+
+
+
+.media--header, .media--quickActions, .media--remaining {
+    @include cf();
+}
+
+.media--header {
+    text-align: center;
+
+    @include breakpoint(phablet) {
+        text-align: left;
+    }
+
+    @include breakpoint(tablet) {
+        @include center($max_width: 1024px);
+    }
+
+    .media--title {
+        color: $media-titleColor;
+        font-weight: $media-titleWeight;
+    }
+
+    .media--season,
+    .media--date,
+    .media--genre,
+    .media--duration,
+    .media--rating,
+    .media--author {
+        font-weight: $media-normalTextWeight;
+    }
+
+    .media--rating {
+        .media--rating--logo {
+            padding: .15em .18em;
+
+            color: hsla(0,100%,100%,1);
+
+            border-width: 1px;
+            border-style: solid;
+            border-radius: .3em;
+        }
+    }
+
+    .media--poster, .media--mainInformations {
+        display: inline-block;
+    }
+
+    .media--poster {
+        @include col(1/1);
+
+        @include breakpoint(phablet) {
+            @include col(5/12);
+        }
+
+        @include breakpoint(tablet) {
+            @include col(4/12);
+        }
+
+        @include breakpoint(laptop) {
+            @include col(3/12);
+        }
+
+        & > img {
+            display: block;
+            max-width: 100%;
+            margin-right: auto;
+            margin-left: auto;
+        }
+    }
+
+    .media--mainInformations {
+        margin-bottom: 10px;
+
+        @include col(1/1);
+
+        @include breakpoint(phablet) {
+            @include col(7/12);
+        }
+
+        @include breakpoint(tablet) {
+            @include col(8/12);
+        }
+
+        @include breakpoint(laptop) {
+            @include col(9/12);
+        }
+    }
+}
+
+.media--quickActions {
+    padding: 20px 10px;
+
+    text-align: center;
+
+    background-color: hsla(0,100%,100%,.15);
+
+    .media--quickActions--button {
+        vertical-align: middle;
+        display: inline-block;
+        margin: 5px 2px;
+    }
+
+    @include breakpoint(tablet) {
+        .media--quickActions--button {
+            vertical-align: middle;
+            display: inline-block;
+            margin: 6px 6px;
+        }
+    }
+
+    @include breakpoint(laptop) {
+        .media--quickActions--button {
+            vertical-align: middle;
+            display: inline-block;
+            margin: 10px;
+        }
+    }
+}
+
+.media--trailer {
+    &.is-hidden {
+        display: none;
+    }
+}
+
+.media--remaining--element {
+    .media--subTitle {
+
+        margin-right: $mediaNormalPadding;
+        margin-left: $mediaNormalPadding;
+
+        & > * {
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .media--subTitle--title {
+            color: $media-sectionTitleColor;
+            font-weight: $media-sectionTitleWeight;
+        }
+
+        .media--subTitle--hideShowButton {
+
+        }
+    }
+
+    .media--subTitle--hideShowButton {
+        color: hsla(0,100%,100%,1);
+
+        i {
+            @extend .mdi-hardware-keyboard-arrow-up;
+            font-size: 1.5em;
+        }
+    }
+    .media--subContent {
+
+    }
+
+    .media--actorsList {
+        @include cf();
+
+        font-weight: $media-normalTextWeight;
+
+        .media--actorsList--item {
+            border-bottom-width: 1px;
+            border-bottom-style: solid;
+            margin-bottom: 0.7em;
+
+            @include breakpoint(phablet) {
+                @include col(1/2, $cycle: 2);
+            }
+
+            @include breakpoint(tablet) {
+                @include col(1/3, $uncycle: 2, $cycle: 3);
+            }
+
+            @include breakpoint(laptop) {
+                @include col(1/4, $uncycle: 3, $cycle: 4);
+            }
+        }
+    }
+
+    &.is-hidden {
+        .media--subTitle--hideShowButton {
+            i {
+                @extend .mdi-hardware-keyboard-arrow-down;
+            }
+        }
+        .media--subContent {
+            display: none;
+        }
+    }
+
+    .media--subContent {
+        margin-right: $mediaNormalPadding;
+        margin-left: $mediaNormalPadding;
+
+        font-weight: 300;
+    }
+
+    .media--episodesList {
+        @include cf();
+
+        .media--episodesList--item {
+            @include cf();
+
+            border-bottom-width: 1px;
+            border-bottom-style: solid;
+            margin-bottom: 0.7em;
+
+            @include breakpoint(phablet) {
+
+            }
+
+            @include breakpoint(tablet) {
+                @include col(1/2, $cycle: 2);
+            }
+
+            @include breakpoint(laptop) {
+                @include col(1/3, $uncycle: 2, $cycle: 3);
+            }
+
+            @include breakpoint(desktop) {
+                @include col(1/4, $uncycle: 3, $cycle: 4);
+            }
+
+            & > * {
+                display: inline-block;
+            }
+
+            .episode--thumbnail img {
+                max-width: 100%;
+            }
+
+            .episode--thumbnail {
+                @include col(3/12);
+
+                @include breakpoint(tablet) {
+                    @include col(4/12);
+                }
+
+                @include breakpoint(laptop) {
+                    @include col(4/12);
+                }
+
+                @include breakpoint(desktop) {
+                    @include col(5/12);
+                }
+            }
+
+            .episode--title {
+                font-size: 1.2em;
+
+                @include col(9/12);
+
+                @include breakpoint(tablet) {
+                    @include col(8/12);
+                }
+
+                @include breakpoint(laptop) {
+                    @include col(8/12);
+                }
+
+                @include breakpoint(desktop) {
+                    @include col(7/12);
+                }
+            }
+        }
+
+    }
+}

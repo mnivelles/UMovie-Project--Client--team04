@@ -9,13 +9,16 @@
 /*
     Base
 */
+$bodyColor: hsla(0,100%,100%,.65);
+
+
 html {
     @extend .blue-grey, .darken-4;
 }
 
 body {
     @extend .blue-grey, .darken-4;
-    color: hsla(0,100%,100%,.65);
+    color: $bodyColor;
 }
 
 html {
@@ -66,18 +69,19 @@ p {
     font-size: 1.25em;
 }
 
+
+
+
+
+
+
 @import "pageHeader";
 @import "pageContent";
 @import "pageMenu";
 @import "movie";
-@import "tvShow";
+@import "media";
 @import "actor";
 
 a {
     cursor: pointer;
-}
-
-body {
-    //@extend .blue-grey, .darken-3;
-    //@extend .white-text;
 }
