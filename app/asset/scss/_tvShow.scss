@@ -103,12 +103,28 @@ $mediaNormalPadding: 3%;
     @include cf();
 }
 
+.media--header {
+    text-align: center;
+
+    @include breakpoint(phablet) {
+        text-align: left;
+    }
+
+    @include breakpoint(tablet) {
+        @include center($max_width: 1024px);
+    }
+}
+
 .media--poster, .media--mainInformations {
     display: inline-block;
 }
 
 .media--poster {
-    @include col(5/12);
+    @include col(1/1);
+
+    @include breakpoint(phablet) {
+        @include col(5/12);
+    }
 
     @include breakpoint(tablet) {
         @include col(4/12);
@@ -122,7 +138,11 @@ $mediaNormalPadding: 3%;
 .media--mainInformations {
     margin-bottom: 10px;
 
-    @include col(7/12);
+    @include col(1/1);
+
+    @include breakpoint(phablet) {
+        @include col(7/12);
+    }
 
     @include breakpoint(tablet) {
         @include col(8/12);
@@ -136,6 +156,8 @@ $mediaNormalPadding: 3%;
 .media--poster img {
     display: block;
     max-width: 100%;
+    margin-right: auto;
+    margin-left: auto;
 }
 
 .media--rating {
@@ -174,6 +196,12 @@ $mediaNormalPadding: 3%;
             display: inline-block;
             margin: 10px;
         }
+    }
+}
+
+.media--trailer {
+    &.is-hidden {
+        display: none;
     }
 }
 
