@@ -4,24 +4,54 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Movie</title>
+    <title>Actor</title>
     <link rel="stylesheet" href="css/vendor.min.css">
     <link rel="stylesheet" href="css/app.min.css">
 
     <link href='https://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
 </head>
 <body class="blue-grey darken-4">
-    <h1>Matthew McConaughey</h1>
-    <img class="actor--img"
-         src="http://media3.popsugar-assets.com/files/2012/12/52/4/192/1922398/fd377e392c1cd55b_matthewmcconaughey.xxxlarge_2.jpg"/>
-    <p>Genres: Matthew McConaughey as played in a variety of movies genres ranging from comedy to drama.</p>
-    <a href="https://geo.itunes.apple.com/us/podcast/matthew-mcconaughey-jared/id811331249?mt=2" style="display:inline-block;overflow:hidden;background:url(http://linkmaker.itunes.apple.com/images/badges/en-us/badge_itunes-lrg.svg) no-repeat;width:165px;height:40px;"></a>
+<div class="actor--centered">
+    <div class="actor--bio-section">
+        <h1 class="actor--name">Matthew McConaughey</h1>
+        <img class="actor--img"
+             src="http://media3.popsugar-assets.com/files/2012/12/52/4/192/1922398/fd377e392c1cd55b_matthewmcconaughey.xxxlarge_2.jpg"/>
+
+        <p>Genres: Matthew McConaughey as played in a variety of movies genres ranging from comedy to drama.</p>
+
+        <a href="https://geo.itunes.apple.com/us/podcast/matthew-mcconaughey-jared/id811331249?mt=2"
+           style="display:inline-block;overflow:hidden;background:url(http://linkmaker.itunes.apple.com/images/badges/en-us/badge_itunes-lrg.svg) no-repeat;width:165px;height:40px;"></a>
+    </div>
 
     <div class="actor--movie-list">
         <ul>
-            <li>Interstellar</li>
-            <li>Dallas Buyers Club</li>
-            <li>Mud</li>
+            <li>
+                <div class="actor--movie-entry">
+                    <h2 class="actor--movie-title">Interstellar</h2>
+                    <img class="actor--movie-poster"
+                         src="https://jaysanalysis.files.wordpress.com/2014/11/interstellar.jpg"/>
+                    <iframe class="actor--video" frameborder="0" allowfullscreen
+                            src="https://www.youtube.com/embed/zSWdZVtXT7E"></iframe>
+                </div>
+            </li>
+            <li>
+                <div class="actor--movie-entry">
+                    <h2 class="actor--movie-title">Dallas Buyers Club</h2>
+                    <img class="actor--movie-poster"
+                         src="http://images.redbox.com/Images/EPC/Kiosk/6982.jpg">
+                    <iframe class="actor--video" frameborder="0" allowfullscreen
+                            src="https://www.youtube.com/embed/U8utPuIFVnU"></iframe>
+                </div>
+            </li>
+            <li>
+                <div class="actor--movie-entry">
+                    <h2 class="actor--movie-title">Mud</h2>
+                    <img class="actor--movie-poster"
+                         src="http://www.retourverslecinema.com/wp-content/uploads/Affiches/mud-sur-les-rives-du-mississippi.jpg"/>
+                    <iframe class="actor--video" frameborder="0" allowfullscreen
+                            src="https://www.youtube.com/embed/2m9IFlz2iYo"></iframe>
+                </div>
+            </li>
         </ul>
     </div>
 
@@ -30,6 +60,6 @@
             <li>True Detective</li>
         </ul>
     </div>
-
+</div>
 </body>
 </html>
