@@ -123,6 +123,10 @@ Comme mentionner plus haut, il est souhaitable sous Windows d'ajouter un program
 
 Une console apparaît et montre le résultat sans sortir de Webstorm.
 
+###Utilisation de Materialize
+
+Pour éviter d'importer toute la bibliothèque Materialize au complet, les composants non utilisés ont été mis en commentaire dans app/asset/scss/_materialize.scss. Afin de rendre un composant disponible à l'utilisation, il faut s'assurer de le décommenter dans ce fichier avant.
+
 ###Images de remplacements
 Pour ne pas ajouter des images au projet qui l'alourdiraient inutilement, il est possible d'utiliser les trois fournisseurs suivants :
 
