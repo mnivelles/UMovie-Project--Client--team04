@@ -34,12 +34,7 @@ $mediaNormalPadding: 3%;
 .media {
     font-size: 1.1rem;
 
-    .media--season,
-    .media--date,
-    .media--genre,
-    .media--duration,
-    .media--rating,
-    .media--author {
+    .mainInformations--element {
         font-size: 1.25em;
     }
 
@@ -73,17 +68,10 @@ $mediaNormalPadding: 3%;
         font-weight: $media-titleWeight;
     }
 
-    .media--season,
-    .media--date,
-    .media--genre,
-    .media--duration,
-    .media--rating,
-    .media--author {
+    .mainInformations--element {
         font-weight: $media-normalTextWeight;
-    }
 
-    .media--rating {
-        .media--rating--logo {
+        .media--ratingLogo {
             padding: .15em .18em;
 
             color: hsla(0,100%,100%,1);
