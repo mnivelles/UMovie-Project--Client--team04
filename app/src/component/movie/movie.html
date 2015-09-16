@@ -10,65 +10,119 @@
 
     <link href='https://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
 </head>
-<body class="blue-grey darken-4">
+<body>
+<div class="media">
 
-<div class="movie--centered indigo darken-4">
-
-
-    <img class="movie--img"
-         src="http://cdn2-www.superherohype.com/assets/uploads/gallery/interstellar/hr_interstellar_5.jpg"
-         alt="Interstellar cover"/>
-
-    <h1 class="movie--title ">Interstellar</h1>
+    <header class="media--header">
+        <div class="media--poster">
+            <img src="http://cdn2-www.superherohype.com/assets/uploads/gallery/interstellar/hr_interstellar_5.jpg"
+                 alt="Interstellar cover"/>
+        </div>
 
 
-    <div class="movie--synopsis card-panel red darken-4">
-        A team of explorers travel through a wormhole in space in an attempt to ensure humanity's survival.
-    </div>
+        <div class="media--mainInformations">
+            <h2 class="media--title">Interstellar</h2>
 
-    <div class="movie--rating card-panel red darken-4">PG-13</div>
+            <div class="mainInformations--element">Released on november 7 2014</div>
+            <div class="mainInformations--element">Adventure, Drama, Sci-Fi</div>
+            <div class="mainInformations--element">169 minutes</div>
+            <div class="mainInformations--element">Rating: <span class="media--ratingLogo">PG-13</span></div>
+        </div>
+    </header>
 
-    <div class="movie--genre card-panel red darken-4">Adventure, Drama, Sci-Fi</div>
-
-    <div class="movie--release card-panel red darken-4">Released on november 7 2014</div>
-    <div class="movie--actors">
-        <ul class="collapsible" data-collapsible="accordion">
-            <li>
-                <div class="collapsible-header movie--header red darken-4 z-depth-2">Cast</div>
-                <div class="collapsible-body movie--actors-list">
-                    <ul>
-                        <li>Matthew McConaughey</li>
-                        <li>Ellen Burstyn</li>
-                        <li>Mackenzie Foy</li>
-                        <li>John Lithgow</li>
-                        <li>Timothée Chalamet</li>
-                        <li>Anne Hathaway</li>
-                        <li>Michael Caine</li>
-                        <li>Jessica Chastain</li>
-                        <li>Matt Damon</li>
-                        <li>Andrew Borba</li>
-                    </ul>
-                </div>
-            </li>
-        </ul>
-
-    </div>
-
-    <div class="movie--itunes">
-        <a href="https://itunes.apple.com/ca/movie/interstellar/id960891136">
-            <img class=" movie--itunes-logo" src="image/ituneslogo.png"
-                 alt="See in Itunes"/>
+    <section class="media--quickActions">
+        <button class="media--quickActions--button waves-effect waves-light btn-large red" onclick="showTrailer();"><i
+            class="mdi-av-play-circle-outline left"></i> Trailer
+        </button>
+        <button class="media--quickActions--button waves-effect waves-light btn-large red"><i
+            class="mdi-content-add-circle-outline left"></i> Wish List
+        </button>
+        <a class="media--quickActions--button" href="https://itunes.apple.com/ca/movie/interstellar/id960891136">
+            <img src="image/get-on-itunes-badge-en_US-138x50.png">
         </a>
+    </section>
+
+    <div class="media--centered indigo darken-4">
+        <div class="is-hidden media--trailer video-container">
+            <iframe class="movie--video" frameborder="0" allowfullscreen
+                    src="https://www.youtube.com/embed/zSWdZVtXT7E"></iframe>
+        </div>
     </div>
 
+    <section class="media--remaining">
+        <div class="media--remaining--element">
+            <div class="media--subTitle">
+                <h3 class="media--subTitle--title">Synopsis</h3>
+                <button class="media--subTitle--hideShowButton waves-effect waves-red btn-flat"><i
+                    class="mdi-hardware-keyboard-arrow-up"></i></button>
+            </div>
 
-</div>
+            <div class="media--subContent">
+                <p>
+                    A team of explorers travel through a wormhole in space in an attempt to ensure humanity's survival.
+                </p>
+            </div>
+        </div>
+        <div class="media--remaining--element">
+            <div class="media--subTitle">
+                <h3 class="media--subTitle--title">Starring</h3>
+                <button class="media--subTitle--hideShowButton waves-effect waves-red btn-flat"><i
+                    class="mdi-hardware-keyboard-arrow-up"></i></button>
+            </div>
 
-<div class="movie--video-container">
-    <iframe class="movie--video" frameborder="0" allowfullscreen
-            src="https://www.youtube.com/embed/zSWdZVtXT7E"></iframe>
+            <div class="media--subContent">
+                <ul class="media--actorsList">
+                    <li class="media--actorsList--item">Matthew McConaughey</li>
+                    <li class="media--actorsList--item">Ellen Burstyn</li>
+                    <li class="media--actorsList--item">Mackenzie Foy</li>
+                    <li class="media--actorsList--item">John Lithgow</li>
+                    <li class="media--actorsList--item">Timothée Chalamet</li>
+                    <li class="media--actorsList--item">Anne Hathaway</li>
+                    <li class="media--actorsList--item">Michael Caine</li>
+                    <li class="media--actorsList--item">Jessica Chastain</li>
+                    <li class="media--actorsList--item">Matt Damon</li>
+                    <li class="media--actorsList--item">Andrew Borba</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
 </div>
 <script src="js/vendor.min.js"></script>
+
+<script>
+    // Show Trailer
+    function showTrailer() {
+        var isHiddenClass = 'is-hidden';
+        var mediaTrailer = document.getElementsByClassName('media--trailer')[0];
+        mediaTrailer.classList.remove(isHiddenClass);
+        var iFrame = mediaTrailer.getElementsByTagName('iframe')[0];
+        iFrame.height = (9 / 16) * window.innerWidth;
+    }
+
+    $(document).ready(function () {
+
+        // Show/Hide subContent
+        var hideShowButtons = document.getElementsByClassName('media--subTitle--hideShowButton');
+        var hideContentMaxWidth = 900;
+
+        [].forEach.call(hideShowButtons, function (button, index, array) {
+            var remainingElement = button.parentElement.parentElement;
+            var isHiddenClass = 'is-hidden';
+            button.onclick = function () {
+                if (remainingElement.classList.contains(isHiddenClass)) {
+                    remainingElement.classList.remove(isHiddenClass);
+                } else {
+                    remainingElement.classList.add(isHiddenClass);
+                }
+            };
+
+            if (window.innerWidth < hideContentMaxWidth) {
+                remainingElement.classList.add(isHiddenClass);
+            }
+        });
+    });
+</script>
 
 </body>
 </html>

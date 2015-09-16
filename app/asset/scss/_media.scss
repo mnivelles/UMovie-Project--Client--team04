@@ -43,7 +43,9 @@ $mediaNormalPadding: 3%;
     }
 }
 
-
+.media--centered {
+    @include center(1024px);
+}
 
 
 
