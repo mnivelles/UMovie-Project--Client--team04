@@ -7,8 +7,6 @@ var concat = require('gulp-concat');
 
 var vendor = {
     src: [
-        cte.basePaths.src + 'asset/css/nothing.css',
-
         // ajouter le CSS de lib externe
         //cte.basePaths.bower + 'spectrum/spectrum.css'
         cte.basePaths.bower + 'slick-carousel/slick/slick.css',
