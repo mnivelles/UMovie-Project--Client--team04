@@ -1,2 +1,38 @@
 .pageContent {
 }
+
+.pageContent--slider
+{
+    @include cf();
+    @include center(1024px);
+}
+
+.pageContent--slider img
+{
+    @include col(3/4);
+
+}
+
+.pageContent--slider img:hover
+{
+    @include col(9/10);
+}
+
+.pageContent--slider img:hover + p
+{
+    @include col(9/10);
+}
+
+.pageContent--slider p
+{
+    margin: 0%;
+    @include col(3/4);
+    background-color: #B71C1C;
+    color:white;
+}
+
+.pageContent--category
+{
+    @include center(1024px);
+}
+
