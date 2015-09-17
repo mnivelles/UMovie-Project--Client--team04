@@ -21,8 +21,7 @@ var appFiles = {
 var vendor = { // TODO en production, il faut utiliser un CDN pour ceux disponibles
     src: [
         cte.basePaths.bower + 'jquery/dist/jquery.js',
-        cte.basePaths.bower + 'materialize/dist/js/materialize.js', // Materialize need JQuery
-        cte.basePaths.bower + 'slick-carousel/slick/slick.js',
+        cte.basePaths.bower + 'materialize/dist/js/materialize.js', // Materialize need JQuerygu
         cte.basePaths.bower + 'underscore/underscore.js'//,
         //  à activer quand nécessaire
         //cte.basePaths.bower + 'backbone/backbone.js', // Backbone need Underscore

@@ -27,7 +27,6 @@
     "jquery": "~2.1.4",
     "materialize": "~0.97.0",
     "nunjucks": "~2.0.0",
-    "slick-carousel": "slick.js#~1.5.8",
     "underscore": "~1.8.3"
   },
   "devDependencies": {}
