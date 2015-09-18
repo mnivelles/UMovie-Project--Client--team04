@@ -7,53 +7,72 @@
     <title>Actor</title>
     <link rel="stylesheet" href="css/vendor.min.css">
     <link rel="stylesheet" href="css/app.min.css">
-
     <link href='https://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
 </head>
 <body class="blue-grey darken-4">
-<div class="actor--centered">
-    <div class="actor--bio-section">
-        <h1 class="actor--name">Matthew McConaughey</h1>
-        <img class="actor--img"
-             src="http://media3.popsugar-assets.com/files/2012/12/52/4/192/1922398/fd377e392c1cd55b_matthewmcconaughey.xxxlarge_2.jpg"/>
+<div class="media">
+    <header class="media--header">
+        <div class="media--poster">
+            <img src="http://media3.popsugar-assets.com/files/2012/12/52/4/192/1922398/fd377e392c1cd55b_matthewmcconaughey.xxxlarge_2.jpg"/>
+        </div>
 
-        <p>Genres: Matthew McConaughey as played in a variety of movies genres ranging from comedy to drama.</p>
+        <div class="media--mainInformations">
+            <div class="media--information">
+                <h2 class="media--title">Matthew McConaughey</h2>
+                <div class="mainInformations--element">Born November 4, 1969 in Uvalde, Texas, USA</div>
+                <!-- Bio taken on wikipedia: https://en.wikipedia.org/wiki/Matthew_McConaughey-->
+                <div class="mainInformations--element">Bio: Matthew McConaughey is an American actor and producer. He first gained notice for his breakout role in the coming-of-age comedy Dazed and Confused (1993), and went on to appear in films such as the slasher Texas Chainsaw Massacre: The Next Generation (1994).
+                    <br>McConaughey achieved much success in 2013 for portraying a cowboy diagnosed with AIDS in the biographical film Dallas Buyers Club, which earned him the Academy Award for Best Actor and Golden Globe Award for Best Actor, among other awards and nominations. In 2014, he also starred as Rust Cohle in the acclaimed HBO crime anthology series True Detective, for which he won a Critics' Choice Award and was nominated for a Primetime Emmy Award for Outstanding Lead Actor in a Drama Series.</div>
+                <div class="mainInformations--element">Genres: Matthew McConaughey as played in a variety of movies genres ranging from comedy to drama.</div>
+            </div>
+        </div>
+    </header>
 
-        <a href="https://geo.itunes.apple.com/us/podcast/matthew-mcconaughey-jared/id811331249?mt=2"
-           style="display:inline-block;overflow:hidden;background:url(http://linkmaker.itunes.apple.com/images/badges/en-us/badge_itunes-lrg.svg) no-repeat;width:165px;height:40px;"></a>
-    </div>
+    <section class="media--quickActions">
+        <a class="media--quickActions--button" href="https://geo.itunes.apple.com/us/podcast/matthew-mcconaughey-jared/id811331249?mt=2">
+            <img src="image/get-on-itunes-badge-en_US-138x50.png">
+        </a>
+    </section>
 
-    <div class="actor--movie-list">
-        <ul>
-            <li>
-                <div class="actor--movie-entry">
-                    <h2 class="actor--movie-title">Interstellar</h2>
-                    <img class="actor--movie-poster"
-                         src="https://jaysanalysis.files.wordpress.com/2014/11/interstellar.jpg"/>
-                    <iframe class="actor--video" frameborder="0" allowfullscreen
-                            src="https://www.youtube.com/embed/zSWdZVtXT7E"></iframe>
-                </div>
-            </li>
-            <li>
-                <div class="actor--movie-entry">
-                    <h2 class="actor--movie-title">Dallas Buyers Club</h2>
-                    <img class="actor--movie-poster"
-                         src="http://images.redbox.com/Images/EPC/Kiosk/6982.jpg">
-                    <iframe class="actor--video" frameborder="0" allowfullscreen
-                            src="https://www.youtube.com/embed/U8utPuIFVnU"></iframe>
-                </div>
-            </li>
-            <li>
-                <div class="actor--movie-entry">
-                    <h2 class="actor--movie-title">Mud</h2>
-                    <img class="actor--movie-poster"
-                         src="http://www.retourverslecinema.com/wp-content/uploads/Affiches/mud-sur-les-rives-du-mississippi.jpg"/>
-                    <iframe class="actor--video" frameborder="0" allowfullscreen
-                            src="https://www.youtube.com/embed/2m9IFlz2iYo"></iframe>
-                </div>
-            </li>
-        </ul>
-    </div>
+    <section class="media--remaining">
+        <div class="media--remaining--element">
+            <div class="media--subTitle">
+                <h3 class="media--subTitle--title">Movies</h3>
+            </div>
+
+            <div class="media--subContent">
+                <ul>
+                    <li>
+                        <div class="actor--movie-entry">
+                            <h2 class="actor--movie-title">Interstellar</h2>
+                            <img class="actor--movie-poster"
+                                 src="https://jaysanalysis.files.wordpress.com/2014/11/interstellar.jpg"/>
+                            <iframe class="actor--video" frameborder="0" allowfullscreen
+                                    src="https://www.youtube.com/embed/zSWdZVtXT7E"></iframe>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="actor--movie-entry">
+                            <h2 class="actor--movie-title">Dallas Buyers Club</h2>
+                            <img class="actor--movie-poster"
+                                 src="http://images.redbox.com/Images/EPC/Kiosk/6982.jpg">
+                            <iframe class="actor--video" frameborder="0" allowfullscreen
+                                    src="https://www.youtube.com/embed/U8utPuIFVnU"></iframe>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="actor--movie-entry">
+                            <h2 class="actor--movie-title">Mud</h2>
+                            <img class="actor--movie-poster"
+                                 src="http://www.retourverslecinema.com/wp-content/uploads/Affiches/mud-sur-les-rives-du-mississippi.jpg"/>
+                            <iframe class="actor--video" frameborder="0" allowfullscreen
+                                    src="https://www.youtube.com/embed/2m9IFlz2iYo"></iframe>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
 
     <div class="actor--tvseries-list">
         <ul>
