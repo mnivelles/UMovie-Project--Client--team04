@@ -1,20 +1,73 @@
-.actor--movie-list {
-    @include center(960px);
+.actor--movie-entry {
+    width: 100%;
+    @include stack();
 }
 
-.actor--movie-entry {
-    @include stack();
+.actor--movie-poster-title {
+    @include column(1/3);
 
+    @include breakpoint(mobileonly) {
+        @include column(1/1);
+    }
+
+    @include breakpoint(phablet) {
+        @include column(1/2);
+    }
+
+    @include breakpoint(tablet) {
+        @include column(1/3);
+    }
+
+
+    @include breakpoint(laptop) {
+        @include column(1/3);
+    }
 }
 
 .actor--movie-poster {
     width: 100%;
+    height: auto;
 }
 
-.actor--tvseries-list {
+.actor--trailer {
+    @include column(2/3);
+    height: 100%;
 
+    @include breakpoint(mobileonly) {
+        @include column(1/1);
+    }
+
+    @include breakpoint(phablet) {
+        @include column(1/2);
+    }
+
+    @include breakpoint(tablet) {
+        @include column(2/3);
+    }
+
+    @include breakpoint(laptop) {
+        @include column(2/3);
+    }
 }
 
 .actor--video {
+    width:100%;
+    height: 600px;
+
+    @include breakpoint(mobileonly) {
+        height: 250px;
+    }
+
+    @include breakpoint(phablet) {
+        height: 300px;
+    }
+
+    @include breakpoint(tablet) {
+        height: 400px;
+    }
+
+    @include breakpoint(laptop) {
+        height: 600px;
+    }
 
 }
