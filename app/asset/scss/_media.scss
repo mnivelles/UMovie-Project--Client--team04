@@ -194,6 +194,10 @@ $mediaNormalPadding: 3%;
             @extend .mdi-hardware-keyboard-arrow-up;
             font-size: 1.5em;
         }
+
+        &:focus {
+            background-color: transparent;
+        }
     }
     .media--subContent {
 
@@ -307,6 +311,21 @@ $mediaNormalPadding: 3%;
                 @include breakpoint(desktop) {
                     @include col(7/12);
                 }
+            }
+
+            .episode--number {
+                color: hsla(0,100%,100%,1);
+            }
+
+            .episode--ratingLogo {
+                padding: .15em .18em;
+
+                font-size: .75em;
+                color: hsla(0,100%,100%,1);
+
+                border-width: 1px;
+                border-style: solid;
+                border-radius: .3em;
             }
         }
 
