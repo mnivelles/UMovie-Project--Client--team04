@@ -1,4 +1,6 @@
-.pageContent {
+.page {
+    font-weight: 100;
+    font-size: 1.1rem;
 }
 
 .pageContent--slider {
@@ -15,8 +17,8 @@
     @include col(9/10);
 }
 
-.pageContent--slider img:hover + div {
-    //@include col(9/10);
+.pageContent--slider div:hover > img {
+    @include col(9/10);
 }
 
 
@@ -26,7 +28,6 @@
 
 .pageContent--slider-info
 {
-    background-color: #B71C1C;
     @include col(3/4);
 }
 
