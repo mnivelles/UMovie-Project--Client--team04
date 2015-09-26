@@ -1,0 +1,90 @@
+/*article*/
+.movingCard {
+    box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.3);
+    position: relative;
+    width: 150px;
+    margin: 0 auto;
+    transition: box-shadow 0.15s ease-out, transform 0.25s ease;
+    perspective: 500px;
+    perspective-origin: 50% 50%;
+    transform-style: preserve-3d;
+
+    &:hover {
+        transform: scale(1.1);
+        box-shadow: none;
+    }
+
+    &.hover--ending {
+        transition: box-shadow 0.5s ease;
+    }
+
+    @include breakpoint(540px) {
+        display: inline-block;
+    }
+
+    + .movingCard {
+        margin: 45px auto 0;
+
+        @include breakpoint(540px) {
+            margin: 0 0 0 25px;
+        }
+    }
+}
+
+/*span*/
+.highlight {
+    display: block;
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    top: 0;
+    right: 0;
+    opacity: 0;
+    z-index: 3;
+    transition: opacity 0.25s ease;
+    background: radial-gradient(60px at 50%, rgba(255, 255, 255, 0.13) 0%, rgba(255, 255, 255, 0) 100%);
+}
+
+/*a*/
+.movingCard__link {
+    display: block;
+    position: relative;
+    width: 150px;
+    height: 228px;
+    overflow: hidden;
+    transform-origin: center center;
+    transform-style: preserve-3d;
+}
+
+/*img*/
+.movingCard__image {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    object-fit: cover;
+}
+
+/*h2*/
+.movingCard__title {
+    font-size: 14px;
+    width: 100%;
+    height: 24px;
+    line-height: 24px;
+    text-align: center;
+    color: #FFFFFF;
+    position: absolute;
+    left: 0;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    opacity: 0;
+    transition: opacity 0.15s ease-in;
+    text-shadow: 0 2px 2px rgba(0, 0, 0, 0.06);
+
+    /*article*/
+    .movingCard:hover & {
+        opacity: 0.8;
+    }
+}

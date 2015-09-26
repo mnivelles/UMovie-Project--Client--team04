@@ -234,6 +234,80 @@
                     </div>
                 </div>
             </section>
+
+            <section class="selectionSection">
+                <h2 class="selectionSection--title">Unbelievable</h2>
+
+                <div class="mediaCarousel">
+                    <div class="mediaCarousel--element movingCard">
+                        <span class="highlight"></span>
+                        <img src="http://lorempixel.com/340/510/abstract" alt="abstract" class="element--image"/>
+
+                        <div class="element--title">Abstract</div>
+                    </div>
+                    <div class="mediaCarousel--element movingCard">
+                        <span class="highlight"></span>
+                        <img src="http://lorempixel.com/340/510/transport" alt="transport" class="element--image"/>
+
+                        <div class="element--title">Transport</div>
+                    </div>
+                    <div class="mediaCarousel--element movingCard">
+                        <img src="http://lorempixel.com/340/510/animals" alt="animals" class="element--image"/>
+
+                        <div class="element--title">Animals</div>
+                    </div>
+                    <div class="mediaCarousel--element movingCard">
+                        <img src="http://lorempixel.com/340/510/technics" alt="technics" class="element--image"/>
+
+                        <div class="element--title">Technics</div>
+                    </div>
+                    <div class="mediaCarousel--element movingCard">
+                        <img src="http://lorempixel.com/340/510/business" alt="business" class="element--image"/>
+
+                        <div class="element--title">Business</div>
+                    </div>
+                    <div class="mediaCarousel--element movingCard">
+                        <img src="http://lorempixel.com/340/510/sports" alt="sports" class="element--image"/>
+
+                        <div class="element--title">Sports</div>
+                    </div>
+                    <div class="mediaCarousel--element movingCard">
+                        <img src="http://lorempixel.com/340/510/cats" alt="cats" class="element--image"/>
+
+                        <div class="element--title">Cats</div>
+                    </div>
+                    <div class="mediaCarousel--element movingCard">
+                        <img src="http://lorempixel.com/340/510/nature" alt="nature" class="element--image"/>
+
+                        <div class="element--title">Nature</div>
+                    </div>
+                    <div class="mediaCarousel--element movingCard">
+                        <img src="http://lorempixel.com/340/510/city" alt="city" class="element--image"/>
+
+                        <div class="element--title">City</div>
+                    </div>
+                    <div class="mediaCarousel--element movingCard">
+                        <img src="http://lorempixel.com/340/510/people" alt="people" class="element--image"/>
+
+                        <div class="element--title">People</div>
+                    </div>
+                    <div class="mediaCarousel--element movingCard">
+                        <img src="http://lorempixel.com/340/510/food" alt="food" class="element--image"/>
+
+                        <div class="element--title">Food</div>
+                    </div>
+                    <div class="mediaCarousel--element movingCard">
+                        <img src="http://lorempixel.com/340/510/fashion" alt="fashion" class="element--image"/>
+
+                        <div class="element--title">Fashion</div>
+                    </div>
+                    <div class="mediaCarousel--element movingCard">
+                        <img src="http://lorempixel.com/340/510/nightlife" alt="nightlife" class="element--image"/>
+
+                        <div class="element--title">Nightlife</div>
+                    </div>
+                </div>
+            </section>
         </div>
     </main>
     <footer class="pageFooter">
@@ -270,6 +344,44 @@
                     }
                 }
             ]
+        });
+
+
+
+        $card	= $( '.movingCard' );
+
+        $card.on( 'mousemove', function( e ) {
+            var $this		= $( this ),
+                eX			= e.offsetX,
+                eY			= e.offsetY,
+                dim			= this.getBoundingClientRect();
+            w			= dim.width/2,
+                h			= dim.height/2,
+                tiltLimit	= 15,
+                posX		= ( h - eY ) * ( tiltLimit / h );
+            posY		= ( w - eX ) * ( tiltLimit / w ) * -1;
+
+            $this.find( 'img' ).css({
+                'transform': 'rotateX( ' + posX + 'deg ) rotateY( ' + posY + 'deg )',
+                'box-shadow': ( posY * -1 ) + 'px ' + ( posX + 14 ) + 'px 34px 0 rgba( 0, 0, 0, 0.1 )'
+            });
+
+            $this.find( '.highlight' ).css({
+                'opacity': 1,
+                'transform': 'translate3d( ' + ( posX * -4 ) + 'px, ' + ( posY * -4 ) + 'px, '  + '0 )'
+            });
+        });
+
+        $card.mouseleave( function( e ) {
+            var $el = $( this ).find( 'a' );
+
+            $el.removeAttr( 'style' ).addClass( 'hover--ending' );
+
+            setTimeout( function() {
+                $el.removeClass( 'hover--ending' );
+            }, 500 );
+
+            $el.find( '.highlight' ).removeAttr( 'style' );
         });
     });
 
