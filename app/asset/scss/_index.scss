@@ -1,0 +1,30 @@
+$featuredImageWidth: 650px;
+
+.featuredMediaCarousel {
+    font-size: 1rem;
+
+    &--element {
+        position: relative;
+        outline: none;
+
+        .element--title {
+            position: absolute;
+            top: 14px;
+            left: 14px;
+
+            display: inline-block;
+            padding: 7px 14px;
+            background-color: hsla(0,0,0,.75);
+
+            color: hsla(0,0,100%,.9);
+            font-weight: 300;
+            font-size: 1.4em;
+        }
+
+        @media (max-width: $featuredImageWidth) {
+            .element--image {
+                max-width: 100%;
+            }
+        }
+    }
+}
