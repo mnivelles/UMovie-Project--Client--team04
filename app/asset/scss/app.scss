@@ -1,6 +1,8 @@
 @import 'jeet/index';
 @import "materialize";
 
+@import "animate";
+
 @import "breakpoint";
 
 // TODO activer et désactiver à sa guise
@@ -86,7 +88,6 @@ p {
 @import "media";
 @import "actor";
 @import "mediaCarousel";
-@import "tvOSCard";
 
 a {
     cursor: pointer;

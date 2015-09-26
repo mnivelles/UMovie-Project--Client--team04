@@ -16,5 +16,17 @@
             text-align: center;
             padding-top: 0.5em;
         }
+
+        &:hover {
+            .element--image {
+                @include pulse(
+                    $duration: 0.7s,
+                    $function: ease-in-out
+                );
+            }
+            .element--title {
+                color: hsla(0,100%,100%,1);
+            }
+        }
     }
 }

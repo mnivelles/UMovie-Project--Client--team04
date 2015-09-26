@@ -28,7 +28,8 @@ var paths = {
 
         // vendor
         cte.basePaths.bower + 'materialize/sass/',
-        cte.basePaths.bower + 'jeet/scss/'
+        cte.basePaths.bower + 'jeet/scss/',
+        cte.basePaths.bower + 'animate.css-scss/'
     ],
     dest: cte.basePaths.dest + 'css/'
 };
