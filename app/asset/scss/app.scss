@@ -10,6 +10,8 @@
     Base
 */
 $bodyColor: hsla(0,100%,100%,.65);
+$standardSectionTitleColor: hsla(36,100%,50%,1); //Orange.500
+$standardSectionTitleWeight: 100;
 
 
 html {
@@ -83,6 +85,7 @@ p {
 @import "index";
 @import "media";
 @import "actor";
+@import "mediaCarousel";
 
 a {
     cursor: pointer;

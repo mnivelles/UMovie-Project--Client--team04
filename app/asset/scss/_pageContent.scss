@@ -1,49 +1,6 @@
-.page {
-    font-weight: 100;
-    font-size: 1.1rem;
+.pageContent {
 }
 
-.pageContent--slider {
-    @include cf();
-    @include center(1024px);
-}
-
-.pageContent--slider img {
-    @include col(3/4);
-
-}
-
-.pageContent--slider img:hover {
-    @include col(9/10);
-}
-
-.pageContent--slider div:hover > img {
-    @include col(9/10);
-}
-
-
-.pageContent--slider div:hover > .pageContent--slider-info {
-    @include col(9/10);
-}
-
-.pageContent--slider-info
-{
-    @include col(3/4);
-}
-
-.pageContent--movie--info {
-    @include col(3/4);
-}
-
-.pageContent--movie-title {
-    @include col(3/4);
-    color: white;
-    font-weight: bold;
-}
-
-.pageContent--category {
-    @include center(1024px);
-}
 
 
 

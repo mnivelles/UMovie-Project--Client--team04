@@ -15,9 +15,6 @@
 $media-titleColor: hsla(1,83%,63%,1); //Red.400
 $media-titleWeight: 100;
 
-$media-sectionTitleColor: hsla(36,100%,50%,1); //Orange.500
-$media-sectionTitleWeight: 100;
-
 //$media-normalTextColor:
 $media-normalTextWeight: 300;
 
@@ -192,8 +189,8 @@ $mediaNormalPadding: 3%;
         }
 
         .media--subTitle--title {
-            color: $media-sectionTitleColor;
-            font-weight: $media-sectionTitleWeight;
+            color: $standardSectionTitleColor;
+            font-weight: $standardSectionTitleWeight;
         }
 
         .media--subTitle--hideShowButton {
