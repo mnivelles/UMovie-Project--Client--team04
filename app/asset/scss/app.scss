@@ -70,7 +70,9 @@ p {
 }
 
 
-
+.l-centered {
+    @include center(1024px);
+}
 
 
 

@@ -1,10 +1,8 @@
 // Show Trailer
+
+
 function showTrailer() {
-    var isHiddenClass = 'is-hidden';
-    var mediaTrailer = document.getElementsByClassName('media--trailer')[0];
-    mediaTrailer.classList.remove(isHiddenClass);
-    var iFrame = mediaTrailer.getElementsByTagName('iframe')[0];
-    iFrame.height = (9 / 16) * window.innerWidth;
+    showElementWithId('media--trailer');
 }
 
 $(document).ready(function () {
