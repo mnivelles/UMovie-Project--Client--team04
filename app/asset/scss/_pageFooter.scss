@@ -1,0 +1,19 @@
+$footerBorderColor: hsla(231,48%,48%,1);
+
+.pageFooter {
+    font-size: 1.1rem;
+
+    padding: 20px 40px;
+    margin-top: 40px;
+
+    border-top: 8px solid $footerBorderColor;
+    @extend .grey, .darken-4;
+    @extend .white-text;
+
+    text-align: center;
+
+    &--copyright {
+        font-weight: 100;
+        font-size: 1em;
+    }
+}
