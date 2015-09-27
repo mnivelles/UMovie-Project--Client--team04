@@ -26,6 +26,10 @@
     left: 0;
 }
 
+.headerMenuContainer--link {
+    cursor: pointer;
+}
+
 .pageHeader--title {
     @include col(8/12);
     @include shift(4/12);
