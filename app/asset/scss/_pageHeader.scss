@@ -1,9 +1,11 @@
 .pageHeader {
+    font-size: 1rem;
+
     position: relative;
     z-index: 10;
 }
 
-#headerMenuContainer{
+#headerMenuContainer {
     margin-top: 0px;
     background-color: #1A237E;
     padding-left: 20px;
@@ -11,166 +13,107 @@
     margin-bottom: 0px;
 }
 
-.headerMenuContainer--avatar{
+.headerMenuContainer--avatar {
     display: block;
     margin-left: auto;
     margin-right: auto;
 }
 
-.headerMenuContainer--logo img{
+.headerMenuContainer--logo {
+    font-family: "Varela Round", sans-serif;
+}
+
+.headerMenuContainer--logo img {
     position: absolute;
-    top:5px;
+    top: 5px;
     left: 20px;
 }
 
-.headerMenuContainer--separator{
+.headerMenuContainer--separator {
     border-left: 1px solid #fff;
     display: inline-block;
     height: 45px;
 }
 
-.is-right-aligned{
+.is-right-aligned {
     text-align: right;
 }
 
-.headerMenuContainer--link:hover{
+.headerMenuContainer--link:hover {
     color: #FF9800;
 }
 
-#headerMenuContainer--searchField{
+#headerMenuContainer--searchField {
     height: 2rem;
 }
 
-.headerMenuContainer--logo p{
+.headerMenuContainer--logo > div {
     margin-left: 60%;
 }
 
-@media screen and (min-width: 993px){
-    .is-mobile-only{
+@media screen and (min-width: 993px) {
+    .is-mobile-only {
         display: none;
     }
-    .headerMenuContainer--logo img{
+    .headerMenuContainer--logo img {
         max-width: 70px;
     }
 }
 
 @media screen and (min-width: 600px) and (max-width: 992px) {
-    #headerMenuContainer{
+    #headerMenuContainer {
         height: 45px;
     }
 
-    .headerMenuContainer--logo img{
+    .headerMenuContainer--logo img {
         max-width: 50px;
     }
 
-    .headerMenuContainer--separator{
+    .headerMenuContainer--separator {
         height: 30px;
     }
 
-    .is-mobile-only{
+    .is-mobile-only {
         display: none;
     }
 
-    .headerMenuContainer--link{
+    .headerMenuContainer--link {
         font-size: smaller;
     }
 }
 
 @media screen and (max-width: 599px) {
 
-    #headerMenuContainer{
+    #headerMenuContainer {
         height: 40px;
         padding-left: 0px;
     }
 
-    #headerMenuContainer--avatar{
+    #headerMenuContainer--avatar {
         max-width: 80% !important;
     }
 
-    .headerMenuContainer--logo{
+    .headerMenuContainer--logo {
         text-align: center;
     }
 
-    .is-hidden-on-mobile{
+    .is-hidden-on-mobile {
         display: none;
     }
 
-    #logoutMobileHeaderMenu li{
+    #logoutMobileHeaderMenu li {
         text-align: right;
     }
 
-    .collection a.collection-item{
-        color : white !important;
+    .pageHeader .collection a.collection-item {
+        color: white !important;
     }
 
-    #mainMobileHeaderMenu{
-        color :  white;
+    #mainMobileHeaderMenu {
+        color: white;
     }
 
-    .collection .collection-item:last-child{
-        background-color: #263238 ;
-    }
-}
-
-
-/*
-.pageHeader {
-    @include cf();
-    margin-bottom: 10%;
-
-    //@extend .indigo, .darken-3;
-    //@extend .white-text;
-}
-
-.pageHeader--logo {
-    @include col(4/12);
-
-    @include breakpoint(tablet) {
-        @include col(3/12);
-    }
-
-    @include breakpoint(laptop) {
-        @include col(2/12);
-    }
-
-    img {
-        width: 100%;
-    }
-
-    position: absolute;
-    top: 0;
-    left: 0;
-}
-
-.pageHeader--title {
-    @include col(8/12);
-    @include shift(4/12);
-
-    @include breakpoint(tablet) {
-        @include col(9/12);
-        @include shift(3/12);
-    }
-
-    @include breakpoint(laptop) {
-        @include col(10/12);
-        @include shift(2/12);
-    }
-
-    font-family: "Varela Round", sans-serif;
-}
-
-.pageHeader--menu {
-    @include col(8/12);
-    @include shift(4/12);
-
-    @include breakpoint(tablet) {
-        @include col(9/12);
-        @include shift(3/12);
-    }
-
-    @include breakpoint(laptop) {
-        @include col(10/12);
-        @include shift(2/12);
+    .pageHeader .collection .collection-item:last-child {
+        background-color: #263238;
     }
 }
-*/
