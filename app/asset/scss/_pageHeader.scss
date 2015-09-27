@@ -6,11 +6,11 @@
 }
 
 #headerMenuContainer {
-    margin-top: 0px;
+    margin-top: 0;
     background-color: #1A237E;
     padding-left: 20px;
     color: white;
-    margin-bottom: 0px;
+    margin-bottom: 0;
 }
 
 .headerMenuContainer--avatar {
@@ -19,7 +19,7 @@
     margin-right: auto;
 }
 
-.headerMenuContainer--logo {
+.headerMenuContainer--logo a {
     font-family: "Varela Round", sans-serif;
 }
 
@@ -47,7 +47,7 @@
     height: 2rem;
 }
 
-.headerMenuContainer--logo > div {
+.headerMenuContainer--logo > a > div {
     margin-left: 60%;
 }
 
