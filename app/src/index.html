@@ -21,62 +21,66 @@
 
 <div class="page">
 
-    <nav id="headerMenuContainer" class="row valign-wrapper">
+    <header class="pageHeader">
+        <nav id="headerMenuContainer" class="row valign-wrapper">
 
         <span id="btn-menu-mobile" class="is-mobile-only col s2">
             <a><i class="headerMenuContainer--link fa fa-bars"></i></a>
         </span>
 
-        <span class="headerMenuContainer--logo is-mobile-only col s8">UMI</span>
-        <span class="headerMenuContainer--logo is-hidden-on-mobile col l2 m2 "><img src="./image/umi-project-logo-500x500.png"><p> UMI</p></span>
+            <span class="headerMenuContainer--logo is-mobile-only col s8">UMI</span>
+            <span class="headerMenuContainer--logo is-hidden-on-mobile col l2 m2 "><img
+                src="./image/umi-project-logo-500x500.png"><p> UMI</p></span>
 
-        <div class="headerMenuContainer--separator is-hidden-on-mobile"></div>
+            <div class="headerMenuContainer--separator is-hidden-on-mobile"></div>
 
-        <span class="headerMenuContainer--link is-hidden-on-mobile col l2 m2"><i class="fa fa-play-circle-o"></i> Watchlists</span>
+            <span class="headerMenuContainer--link is-hidden-on-mobile col l2 m2"><i class="fa fa-play-circle-o"></i> Watchlists</span>
 
-        <span class="is-hidden-on-mobile col l3 m3 ">
+        <div class="is-hidden-on-mobile col l3 m3 ">
             <form>
                 <div class="valign-wrapper">
                     <span class="col s1">
                         <label for="headerMenuContainer--searchField"><i class="fa fa-search"></i></label>
                     </span>
                     <span class="col s11">
-                        <input id="headerMenuContainer--searchField" type="text" class="form-control" placeholder="Search...">
+                        <input id="headerMenuContainer--searchField" type="text" class="form-control"
+                               placeholder="Search...">
                     </span>
                 </div>
             </form>
-        </span>
+        </div>
 
-        <span class="headerMenuContainer--link is-hidden-on-mobile is-right-aligned col l2 m2"><i class="fa fa-cogs"></i> Settings</span>
+            <span class="headerMenuContainer--link is-hidden-on-mobile is-right-aligned col l2 m2"><i
+                class="fa fa-cogs"></i> Settings</span>
 
         <span class="is-hidden-on-mobile valign-wrapper col l1 m1">
             <img id="headerMenuContainer--avatar" class="responsive-img circle" src="./image/rsz_2profile.jpg">
         </span>
 
-        <span class="headerMenuContainer--link is-hidden-on-mobile col l2 m2"><i class="fa fa-sign-out"></i> Log out</span>
+            <span class="headerMenuContainer--link is-hidden-on-mobile col l2 m2"><i class="fa fa-sign-out"></i> Log out</span>
 
-    </nav>
-    <ul id="logoutMobileHeaderMenu" class="collection is-mobile-only" hidden="hidden">
-        <li><a href="#!" class="collection-item"> <i class="fa fa-cogs"></i> Settings</a></li>
-        <li><a href="#!" class="collection-item"> Logout <i class="fa fa-sign-out"></i></a></li>
-    </ul>
-    <ul id="mainMobileHeaderMenu" class="collection is-mobile-only" hidden="hidden">
-        <li><a href="#!" class="collection-item"> <i class="fa fa-home"></i> Home</a></li>
-        <li><a href="#!" class="collection-item"> <i class="fa fa-play-circle-o"></i> Watchlists</a></li>
-        <li><input type="text" class="form-control collection-item" placeholder="recherche..."></li>
-    </ul>
-
-   <!-- <header class="pageHeader">
-        <div class="pageHeader&#45;&#45;logo">
-            <a href="/"><img src="image/umi-project-logo-500x500.png" alt="ULaval Movie Ima Logo"/></a>
-        </div>
-        <h1 class="pageHeader&#45;&#45;title">UMI</h1>
-        <nav class="pageHeader&#45;&#45;menu pageMenu">
-            <div class="pageMenu&#45;&#45;item"><a href="actor.html">Actor</a></div>
-            <div class="pageMenu&#45;&#45;item"><a href="movie.html">Movie</a></div>
-            <div class="pageMenu&#45;&#45;item"><a href="tvShow.html">TV Show</a></div>
         </nav>
-    </header>-->
+        <ul id="logoutMobileHeaderMenu" class="collection is-mobile-only" hidden="hidden">
+            <li><a href="#!" class="collection-item"> <i class="fa fa-cogs"></i> Settings</a></li>
+            <li><a href="#!" class="collection-item"> Logout <i class="fa fa-sign-out"></i></a></li>
+        </ul>
+        <ul id="mainMobileHeaderMenu" class="collection is-mobile-only" hidden="hidden">
+            <li><a href="#!" class="collection-item"> <i class="fa fa-home"></i> Home</a></li>
+            <li><a href="#!" class="collection-item"> <i class="fa fa-play-circle-o"></i> Watchlists</a></li>
+            <li><input type="text" class="form-control collection-item" placeholder="recherche..."></li>
+        </ul>
+    </header>
+    <!-- <header class="pageHeader">
+         <div class="pageHeader&#45;&#45;logo">
+             <a href="/"><img src="image/umi-project-logo-500x500.png" alt="ULaval Movie Ima Logo"/></a>
+         </div>
+         <h1 class="pageHeader&#45;&#45;title">UMI</h1>
+         <nav class="pageHeader&#45;&#45;menu pageMenu">
+             <div class="pageMenu&#45;&#45;item"><a href="actor.html">Actor</a></div>
+             <div class="pageMenu&#45;&#45;item"><a href="movie.html">Movie</a></div>
+             <div class="pageMenu&#45;&#45;item"><a href="tvShow.html">TV Show</a></div>
+         </nav>
+     </header>-->
 
     <main class="pageContent">
         <div class="indexContent">
@@ -291,8 +295,9 @@
     </footer>
 </div>
 <script src="js/vendor.min.js"></script>
-<script type="text/javascript" src="http://cdn.jsdelivr.net/jquery.slick/1.5.8/slick.min.js"></script>
+<script src="http://cdn.jsdelivr.net/jquery.slick/1.5.8/slick.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/js/materialize.min.js"></script>
+<script src="js/app.min.js"></script>
 <script>
     $(document).ready(function () {
         $('#featuredMediaCarousel').slick({
@@ -361,7 +366,5 @@
         });
     });
 </script>
-<script src="js/app.min.js"></script>
-
 </body>
 </html>
