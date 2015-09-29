@@ -29,7 +29,7 @@ gulp.task('default:mode-message', function() {
 });
 
 gulp.task('build', function(callback) {
-    runSequence('default:mode-message', 'clean', ['css', 'font', 'html', 'image', 'js', 'jshint', 'scss'],
+    runSequence('default:mode-message', 'clean', ['css', 'font', 'html', 'image', 'js', 'jshint', 'scss', 'server'],
         'default:success-message', callback);
 });
 
