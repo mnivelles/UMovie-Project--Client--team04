@@ -4,6 +4,7 @@ var hlp = require('./helper.js');
 var cssCte = require('./css.js');
 var fontCte = require('./font.js');
 var htmlCte = require('./html.js');
+var nunjucksCte = require('./nunjucks.js');
 var imageCte = require('./image.js');
 var jsCte = require('./js.js');
 var scssCte = require('./scss.js');
@@ -29,12 +30,17 @@ gulp.task('default:mode-message', function() {
 });
 
 gulp.task('build', function(callback) {
-    runSequence('default:mode-message', 'clean', ['css', 'font', 'html', 'image', 'js', 'jshint', 'scss', 'server'],
+    runSequence('default:mode-message', 'clean',
+        ['css', 'font', 'html', 'image', 'js', 'jshint', 'scss', 'nunjucks', 'server'],
         'default:success-message', callback);
 });
 
 gulp.task('watch', ['build'], function(callback) {
     runSequence('default:start-watch-message', callback);
+
+    gulp.watch(cte.basePaths.dest + '**/*.*', ['server:reload']).on('change', function(evt) {
+        hlp.changeEvent(evt);
+    });
 
     gulp.watch(cssCte.watchable, ['css']).on('change', function(evt) {
         hlp.changeEvent(evt);
@@ -45,6 +51,10 @@ gulp.task('watch', ['build'], function(callback) {
     });
 
     gulp.watch(htmlCte.watchable, ['html']).on('change', function(evt) {
+        hlp.changeEvent(evt);
+    });
+
+    gulp.watch(nunjucksCte.watchable, ['nunjucks']).on('change', function(evt) {
         hlp.changeEvent(evt);
     });
 

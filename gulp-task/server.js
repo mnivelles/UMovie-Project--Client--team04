@@ -13,13 +13,18 @@ var config = {
         return [
             modRewrite(['^[^\\.]*$ /index.html [L]'])
         ];
-    }/*,
-    livereload: true */
+    },
+    livereload: true
 };
 
 // TODO chercher les paramètres de ce serveur
 gulp.task('server:start', function() {
     connect.server(config);
+});
+
+gulp.task('server:reload', function () {
+    gulp.src(cte.basePaths.dest + '**/*.*')
+        .pipe(connect.reload());
 });
 
 gulp.task('server', ['server:start'], function() {

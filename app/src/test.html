@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>UMI ULaval Movie Ima by 300 UMI</title>
+
+    <link rel="icon"
+          type="image/png"
+          href="image/umi-project-logo-500x500.png?v=42">
+
+    <link rel="stylesheet" href="css/vendor.min.css">
+    <link rel="stylesheet" href="css/app.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
+</head>
+<body>
+
+<div id="nunj-pageHeader"></div>
+
+<script src="js/vendor.min.js"></script>
+<script src="js/app.min.js"></script>
+<script src="js/template.min.js"></script>
+
+
+<script>
+    nunjucks.configure('', { autoescape: true });
+    nunjucks.render('pageHeader.nunj.html', {}, function(err, res) {
+        $("#nunj-pageHeader").html(res);
+    });
+</script>
+</body>
+</html>
