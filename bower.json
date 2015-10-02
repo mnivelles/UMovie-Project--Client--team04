@@ -28,7 +28,7 @@
     "jquery": "~2.1.4",
     "materialize": "~0.97.0",
     "nunjucks": "~2.0.0",
-    "underscore": "~1.8.3"
+    "lodash": "~2.4.2"
   },
   "devDependencies": {}
 }

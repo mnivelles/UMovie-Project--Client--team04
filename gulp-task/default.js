@@ -31,42 +31,42 @@ gulp.task('default:mode-message', function() {
 
 gulp.task('build', function(callback) {
     runSequence('default:mode-message', 'clean',
-        ['css', 'font', 'html', 'image', 'js', 'jshint', 'scss', 'nunjucks', 'server'],
+        ['css', 'font', 'html', 'image', 'js', 'jshint', 'scss', 'nunjucks'],
         'default:success-message', callback);
 });
 
-gulp.task('watch', ['build'], function(callback) {
+gulp.task('watch', ['build', 'server'], function(callback) {
     runSequence('default:start-watch-message', callback);
 
-    gulp.watch(cte.basePaths.dest + '**/*.*', ['server:reload']).on('change', function(evt) {
+    gulp.watch(cte.basePaths.dest + '**/*.*', ['server:reload']).on(['add', 'change', 'unlink'], function(evt) {
         hlp.changeEvent(evt);
     });
 
-    gulp.watch(cssCte.watchable, ['css']).on('change', function(evt) {
+    gulp.watch(cssCte.watchable, ['css']).on(['add', 'change', 'unlink'], function(evt) {
         hlp.changeEvent(evt);
     });
 
-    gulp.watch(fontCte.watchable, ['font']).on('change', function(evt) {
+    gulp.watch(fontCte.watchable, ['font']).on(['add', 'change', 'unlink'], function(evt) {
         hlp.changeEvent(evt);
     });
 
-    gulp.watch(htmlCte.watchable, ['html']).on('change', function(evt) {
+    gulp.watch(htmlCte.watchable, ['html']).on(['add', 'change', 'unlink'], function(evt) {
         hlp.changeEvent(evt);
     });
 
-    gulp.watch(nunjucksCte.watchable, ['nunjucks']).on('change', function(evt) {
+    gulp.watch(nunjucksCte.watchable, ['nunjucks']).on(['add', 'change', 'unlink'], function(evt) {
         hlp.changeEvent(evt);
     });
 
-    gulp.watch(imageCte.watchable, ['image']).on('change', function(evt) {
+    gulp.watch(imageCte.watchable, ['image']).on(['add', 'change', 'unlink'], function(evt) {
         hlp.changeEvent(evt);
     });
 
-    gulp.watch(jsCte.watchable, ['js']).on('change', function(evt) {
+    gulp.watch(jsCte.watchable, ['js']).on(['add', 'change', 'unlink'], function(evt) {
         hlp.changeEvent(evt);
     });
 
-    gulp.watch(scssCte.watchable, ['scss']).on('change', function(evt) {
+    gulp.watch(scssCte.watchable, ['scss']).on(['add', 'change', 'unlink'], function(evt) {
         hlp.changeEvent(evt);
     });
 });

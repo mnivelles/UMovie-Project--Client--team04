@@ -1,0 +1,16 @@
+<form class="editUserForm">
+    <hr/>
+    <legend>{{ 'Edit' if user else 'New' }} User</legend>
+    <label>First Name</label>
+    <input name="firstname" type="text" value="{{ user.firstname if user else '' }}">
+    <label>Last Name</label>
+    <input name="lastname" type="text" value="{{ user.lastname if user }}">
+    <label>Age</label>
+    <input name="age" type="text" value="{{ user.age if user }}">
+    <hr />
+    <button type="submit" class="btn">{{ 'Update' if user else 'Create' }}</button>
+    {% if user %}
+    <input type="hidden" name="id" value="{{ user.id }}" />
+    <button data-user-id="{{ user.id }}" class="btn btn-danger delete">Delete</button>
+    {% endif %}
+</form>
