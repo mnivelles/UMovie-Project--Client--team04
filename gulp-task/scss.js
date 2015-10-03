@@ -28,6 +28,7 @@ var paths = {
 
         // vendor
         cte.basePaths.bower + 'materialize/sass/',
+        cte.basePaths.bower + 'slick-carousel/slick',
         cte.basePaths.bower + 'jeet/scss/',
         cte.basePaths.bower + 'animate.css-scss/'
     ],

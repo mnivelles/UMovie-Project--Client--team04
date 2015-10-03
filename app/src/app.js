@@ -11,7 +11,7 @@ require.config({
         '*': {
             //'app/models/employee': 'app/models/memory/employee'
         }
-    },
+    }
 });
 
 require(['router'], function (Router) {

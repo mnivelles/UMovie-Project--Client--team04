@@ -22,6 +22,7 @@ var vendor = { // TODO en production, il faut utiliser un CDN pour ceux disponib
     src: [
         cte.basePaths.bower + 'jquery/dist/jquery.js',
         cte.basePaths.bower + 'materialize/dist/js/materialize.js', // Materialize need jQuery
+        cte.basePaths.bower + 'slick-carousel/slick/slick.js',
         cte.basePaths.bower + 'lodash/dist/lodash.js', // au lieu de underscorejs
         cte.basePaths.bower + 'backbone/backbone.js', // Backbone need Lodash ou Underscore
         cte.basePaths.bower + 'nunjucks/browser/nunjucks-slim.js'
