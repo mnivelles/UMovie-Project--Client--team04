@@ -171,7 +171,7 @@ app/
 -------------------- footer.html
 ---------- components/   // each component is treated as a mini Backbone app
 --------------- home/
--------------------- home.js
+-------------------- home.view.js
 -------------------- home.html
 --------------- blog/
 -------------------- blog.js
