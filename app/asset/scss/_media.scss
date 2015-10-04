@@ -39,10 +39,10 @@ $mediaNormalPadding: 3%;
         .unorderedWordList {
             font-size: 1.25em;
         }
-    }
 
-    .media--actorsList {
-        font-size: 1.25em;
+        .unorderedEpisodeList {
+
+        }
     }
 }
 
@@ -293,6 +293,96 @@ $mediaNormalPadding: 3%;
 
             @include breakpoint(laptop) {
                 @include col(1/4, $uncycle: 3, $cycle: 4);
+            }
+        }
+    }
+}
+
+/*------------------------------------*\
+    ##MEDIA_SECTION -> unorderedEpisodeList
+\*------------------------------------*/
+.mediaSection {
+    .unorderedEpisodeList {
+        @include cf();
+
+        &--item {
+            @include cf();
+
+            border-bottom-width: 1px;
+            border-bottom-style: solid;
+            margin-bottom: 0.7em;
+
+            @include breakpoint(phablet) {
+
+            }
+
+            @include breakpoint(tablet) {
+                @include col(1/2, $cycle: 2);
+            }
+
+            @include breakpoint(laptop) {
+                @include col(1/3, $uncycle: 2, $cycle: 3);
+            }
+
+            @include breakpoint(desktop) {
+                @include col(1/4, $uncycle: 3, $cycle: 4);
+            }
+
+            & > * {
+                display: inline-block;
+            }
+
+            .item--thumbnail img {
+                max-width: 100%;
+            }
+
+            .item--thumbnail {
+                @include col(3/12);
+
+                @include breakpoint(tablet) {
+                    @include col(4/12);
+                }
+
+                @include breakpoint(laptop) {
+                    @include col(4/12);
+                }
+
+                @include breakpoint(desktop) {
+                    @include col(5/12);
+                }
+            }
+
+            .item--title {
+                font-size: 1.2em;
+
+                @include col(9/12);
+
+                @include breakpoint(tablet) {
+                    @include col(8/12);
+                }
+
+                @include breakpoint(laptop) {
+                    @include col(8/12);
+                }
+
+                @include breakpoint(desktop) {
+                    @include col(7/12);
+                }
+            }
+
+            .episode--number {
+                color: hsla(0,100%,100%,1);
+            }
+
+            .episode--ratingLogo {
+                padding: .15em .18em;
+
+                font-size: .75em;
+                color: hsla(0,100%,100%,1);
+
+                border-width: 1px;
+                border-style: solid;
+                border-radius: .3em;
             }
         }
     }

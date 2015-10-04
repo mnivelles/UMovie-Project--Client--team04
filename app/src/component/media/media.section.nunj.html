@@ -6,7 +6,14 @@
 
 {% macro wordListSection(title, words) %}
     {% import "base.media.section.nunj.html" as section %}
-    {% import "word.list.nunj.html" as list %}
+    {% import "list.nunj.html" as list %}
 
     {{ section.section(title, list.unorderedWordList(words)) }}
+{% endmacro %}
+
+{% macro seasonSection(title, episodes) %}
+    {% import "base.media.section.nunj.html" as section %}
+    {% import "list.nunj.html" as list %}
+
+    {{ section.section(title, list.unorderedEpisodeList(episodes)) }}
 {% endmacro %}

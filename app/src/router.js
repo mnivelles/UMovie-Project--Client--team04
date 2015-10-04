@@ -45,19 +45,6 @@ define(function (require) {
         showTvShow: function(id) {
             tvShowView.delegateEvents(); // delegate events when the view is recycled
             tvShowView.render();
-
-/*            require(["app/views/Employee", "app/models/employee"], function (EmployeeView, models) {
-                var employee = new models.Employee({id: id});
-                employee.fetch({
-                    success: function (data) {
-                        // Note that we could also 'recycle' the same instance of EmployeeFullView
-                        // instead of creating new instances
-                        var view = new EmployeeView({model: data, el: $content});
-                        view.render();
-                    }
-                });
-                shellView.selectMenuItem();
-            });*/
         }
 
     });
@@ -68,6 +55,8 @@ define(function (require) {
 url: autant que possible en minuscule avec des tirets sauf les slug
 de titres qui peuvent avoir des majuscules
 
-index : collections
-show(id) : collections/id
+Ex :
+
+indexCats : collections
+showCat(id) : collections/id
  */
