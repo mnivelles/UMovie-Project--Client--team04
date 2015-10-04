@@ -15,7 +15,7 @@ define(function (require) {
             url: '/'
         },{
             title: 'Overcrowded Land',
-            img: 'http://lorempixel.com/650/300/people',
+            img: 'http://lorempixel.com/650/300/people/2',
             url: '/'
         },{
             title: 'No Human\'s Planet',
