@@ -4,7 +4,7 @@ define(function (require) {
 
     var FeaturedMediaCarouselView = require('/js/component/carousel/featuredMediaCarousel.view.js'),
         MediaCarouselView = require('/js/component/carousel/mediaCarousel.view.js'),
-        template = 'home.nunj.html';
+        template = 'home.page.nunj.html';
 
     var newMovies = [
         {

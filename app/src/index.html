@@ -8,7 +8,7 @@
 
     <link rel="icon"
           type="image/png"
-          href="image/umi-project-logo-500x500.png?v=42">
+          href="/image/umi-project-logo-500x500.png?v=42">
 
     <link href='https://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="/css/app.min.css">
@@ -20,73 +20,7 @@
 
 <script src="/js/vendor.min.js" type="text/javascript"></script>
 <script src="/js/template.min.js" type="text/javascript"></script>
-<script data-main="js/app" src="/js/require.min.js" type="text/javascript"></script>
-
-<script>
-    $('.mediaCarousel').slick({
-        infinite: false,
-        arrows: false,
-        speed: 300,
-        slidesToShow: 7.5,
-        slidesToScroll: 7,
-        responsive: [
-            {
-                breakpoint: 1280,
-                settings: {
-                    slidesToShow: 6.5,
-                    slidesToScroll: 6,
-                    infinite: true
-                }
-            },
-            {
-                breakpoint: 1000,
-                settings: {
-                    slidesToShow: 5.5,
-                    slidesToScroll: 5
-                }
-            },
-            {
-                breakpoint: 600,
-                settings: {
-                    slidesToShow: 4.5,
-                    slidesToScroll: 4
-                }
-            },
-            {
-                breakpoint: 480,
-                settings: {
-                    slidesToShow: 3.5,
-                    slidesToScroll: 3
-                }
-            }
-        ]
-    });
-    $('#featuredMediaCarousel').slick({
-        accessibility: true,
-        dots: false,
-        arrows: false,
-        infinite: true,
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        speed: 600,
-        centerMode: true,
-        variableWidth: true,
-        autoplay: true,
-        autoplaySpeed: 2000,
-        responsive: [
-            {
-                breakpoint: 650,
-                settings: {
-                    variableWidth: false,
-                    slidesToShow: 1,
-                    slidesToScroll: 1,
-                    centerMode: false,
-                    autoplaySpeed: 2400
-                }
-            }
-        ]
-    });
-</script>
+<script data-main="/js/app" src="/js/require.min.js" type="text/javascript"></script>
 </body>
 
 </html>

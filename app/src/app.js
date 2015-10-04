@@ -37,3 +37,12 @@ require(['router'], function (Router) {
         }
     });
 });
+
+_.extend(Backbone.View.prototype, {
+    showElementWithId: function(id) {
+        var isHiddenClass = 'hide'; // Provient de Materialize
+        var element = document.getElementById(id);
+        element.classList.remove(isHiddenClass);
+    }
+});
+
