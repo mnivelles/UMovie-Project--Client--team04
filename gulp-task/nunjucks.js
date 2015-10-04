@@ -15,7 +15,7 @@ var paths = {
 };
 
 var appFiles = {
-    src: [paths.src + '**/*.nunj.html'],
+    src: paths.src + '**/*.nunj.html',
     destName: 'template.min.js'
 };
 

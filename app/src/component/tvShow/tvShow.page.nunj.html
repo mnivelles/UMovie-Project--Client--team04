@@ -1,25 +1,9 @@
 <div class="tvShowContent">
     <div class="media">
-        <header class="media--header">
-            <div class="media--poster">
-                <img src="http://lorempixel.com/366/546/transport/1" alt="/!\ Transport"/>
-            </div>
-
-
-            <div class="media--mainInformations">
-                <h2 class="media--title">Stargate: Universe</h2>
-
-                <div class="mainInformations--element">2 october 2009 - 2011</div>
-                <div class="mainInformations--element">2 seasons</div>
-                <div class="mainInformations--element">Science-Fiction and Fantasy</div>
-                <div class="mainInformations--element">by Robert C. Cooper, Brad Wright</div>
-            </div>
-        </header>
-
+        {% include "media.header.nunj.html" %}
 
         <section class="media--quickActions">
-            <button class="media--quickActions--button waves-effect waves-light btn-large red"
-                    onclick="showTrailer();"><i class="mdi-av-play-circle-outline left"></i> Trailer
+            <button class="media--quickActions--button showTrailerButton waves-effect waves-light btn-large red"><i class="mdi-av-play-circle-outline left"></i> Trailer
             </button>
             <a class="media--quickActions--button"
                href="https://itunes.apple.com/ca/tv-season/stargate-universe-season-1/id323880910">

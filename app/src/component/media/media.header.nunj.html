@@ -1,0 +1,14 @@
+<header class="media--header">
+    <div class="media--poster">
+        <img src="{{ media.img }}" alt="{{ media.title }}"/>
+    </div>
+
+
+    <div class="media--mainInformations">
+        <h2 class="media--title">{{ media.title }}</h2>
+
+        {% for info in media.mainInformations %}
+            <div class="mainInformations--element">{{ info | safe }}</div>
+        {% endfor %}
+    </div>
+</header>

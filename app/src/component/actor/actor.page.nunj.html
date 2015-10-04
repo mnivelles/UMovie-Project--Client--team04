@@ -1,29 +1,12 @@
 <div class="actorContent">
     <div class="media">
-        <header class="media--header">
-            <div class="media--poster">
-                <img src="/image/matthewM.jpg">
-            </div>
-            <div class="media--mainInformations">
-                <div class="media--information">
-                    <h2 class="media--title">Matthew McConaughey</h2>
 
-                    <div class="mainInformations--element">Born November 4, 1969 in Uvalde, Texas, USA</div>
-                    <div class="mainInformations--element">Genres: Matthew McConaughey as played in a variety of
-                        movies
-                        genres ranging from comedy to drama.
-                    </div>
-                </div>
-            </div>
-        </header>
+        {% include "media.header.nunj.html" %}
 
         <section class="media--quickActions">
-            <form action="http://www.imdb.com/name/nm0000190/" target="_blank" style="display: inline;">
-                <button class="media--quickActions--button waves-effect waves-light btn-large red"><i
-                        class="mdi-action-info-outline left"></i> IMDB
-                </button>
-            </form>
-            <a class="media--quickActions--button"
+            <a class="media--quickActions--button waves-effect waves-light btn-large red" target="_blank"
+               href="http://www.imdb.com/name/nm0000190/"><i class="mdi-action-info-outline left"></i> IMDB</a>
+            <a class="media--quickActions--button" target="_blank"
                href="https://geo.itunes.apple.com/us/podcast/matthew-mcconaughey-jared/id811331249?mt=2">
                 <img src="/image/get-on-itunes-badge-en_US-138x50.png">
             </a>

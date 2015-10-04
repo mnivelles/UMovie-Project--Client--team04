@@ -6,22 +6,27 @@ define(function (require) {
 
     return Backbone.View.extend({
 
-        render: function () {
-            var html = nunjucks.render(template, {});
+        render: function() {
+            var self = this;
+
+            var html = nunjucks.render(template, {
+                media: {
+                    title: 'Stargate: Universe',
+                    img: 'http://lorempixel.com/366/546/transport/1',
+                    mainInformations: [
+                        '2 october 2009 - 2011',
+                        '2 seasons',
+                        'Science-Fiction and Fantasy',
+                        'by Robert C. Cooper, Brad Wright'
+                    ]
+                }
+            });
             this.$el.html(html);
 
-            //console.log(this.model.attributes);
-            /*this.model.episodes.fetch({
-                success: function (data) {
-                    if (data.length === 0) {
-                        //$('.no-reports').show();
-                        console.log('no-report');
-                    }
-                }
-            });*/
+            $('.media--quickActions--button.showTrailerButton', this.el).click(function () {
+                self.showTrailer();
+            });
 
-            //var listView = new EmployeeListView({collection: this.model.reports, el: $('.report-list', this.el)});
-            //listView.render();
             return this;
         }
     });

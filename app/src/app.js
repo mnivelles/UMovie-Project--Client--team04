@@ -1,3 +1,5 @@
+// voir http://coenraets.org/blog/2013/06/building-modular-web-applications-with-backbone-js-and-requirejs-sample-app/
+
 require.config({
 
     baseUrl: '/js/',
@@ -43,6 +45,10 @@ _.extend(Backbone.View.prototype, {
         var isHiddenClass = 'hide'; // Provient de Materialize
         var element = document.getElementById(id);
         element.classList.remove(isHiddenClass);
+    },
+
+    showTrailer: function() {
+        this.showElementWithId('media--trailer');
     }
 });
 

@@ -1,27 +1,10 @@
 <div class="movieContent">
     <div class="media">
-        <header class="media--header">
-            <div class="media--poster">
-                <img src="/image/interstellar.jpg"
-                     alt="Interstellar cover"/>
-            </div>
 
-
-            <div class="media--mainInformations">
-                <h2 class="media--title">Interstellar</h2>
-
-                <div class="mainInformations--element">7 november 2014</div>
-                <div class="mainInformations--element">Adventure, Drama and Science-Fiction</div>
-                <div class="mainInformations--element">2h49</div>
-                <div class="mainInformations--element">Rating: <span class="media--ratingLogo">PG-13</span>
-                </div>
-            </div>
-        </header>
-
+        {% include "media.header.nunj.html" %}
 
         <section class="media--quickActions">
-            <button class="media--quickActions--button waves-effect waves-light btn-large red"
-                    onclick="showTrailer();"><i
+            <button class="media--quickActions--button showTrailerButton waves-effect waves-light btn-large red"><i
                     class="mdi-av-play-circle-outline left"></i> Trailer
             </button>
             <button class="media--quickActions--button waves-effect waves-light btn-large red"><i
