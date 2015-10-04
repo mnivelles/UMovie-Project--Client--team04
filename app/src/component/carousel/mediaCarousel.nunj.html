@@ -1,10 +1,12 @@
 <div class="mediaCarousel">
     {% for element in media %}
     <div class="mediaCarousel--element">
-        <img src="{{ element.img }}" alt="{{ element.title }}"
+        <a href="{{ element.url }}">
+            <img src="{{ element.img }}" alt="{{ element.title }}"
              class="element--image"/>
+        </a>
 
-        <div class="element--title">{{ element.title }}</div>
+        <div class="element--title"><a href="{{ element.url }}">{{ element.title }}</a></div>
     </div>
     {% endfor %}
 </div>

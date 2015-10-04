@@ -1,8 +1,10 @@
 <section id="featuredMediaCarousel" class="featuredMediaCarousel">
     {% for element in featuredMedia %}
     <div class="featuredMediaCarousel--element">
-        <img src="{{ element.img }}"
+        <a href="{{ element.url }}">
+            <img src="{{ element.img }}"
              alt="{{ element.title }}" class="element--image"/>
+        </a>
 
         <div class="element--title"><a href="{{ element.url }}">{{ element.title }}</a></div>
     </div>
