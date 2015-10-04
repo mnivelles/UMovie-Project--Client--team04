@@ -32,6 +32,12 @@ define(function (require) {
             });
             this.$el.html(html);
 
+            $('.mediaSection--hideShowButton', this.el).click(function() {
+                self.toggleMediaSectionParentOfElement($(this));
+            });
+
+            self.hideMediaSectionForSmallScreen();
+
             return this;
         }
     });

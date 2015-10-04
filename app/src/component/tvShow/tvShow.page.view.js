@@ -141,6 +141,12 @@ define(function (require) {
                 self.showTrailer();
             });
 
+            $('.mediaSection--hideShowButton', this.el).click(function() {
+                self.toggleMediaSectionParentOfElement($(this));
+            });
+
+            self.hideMediaSectionForSmallScreen();
+
             return this;
         }
     });

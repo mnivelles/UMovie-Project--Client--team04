@@ -29,6 +29,8 @@ $mediaNormalPadding: 3%;
    et em modifiés
 */
 .media {
+    @include cf();
+
     font-size: 1.1rem;
 
     .mediaHeader .mainInformations--element {
@@ -389,7 +391,7 @@ $mediaNormalPadding: 3%;
 }
 
 /*
-OOLLLDDD
+ TODO se débarasser : Legacy
 */
 .media--remaining--element {
     .media--subTitle {
@@ -426,30 +428,6 @@ OOLLLDDD
     }
     .media--subContent {
 
-    }
-
-    .media--actorsList {
-        @include cf();
-
-        font-weight: $media-normalTextWeight;
-
-        .media--actorsList--item {
-            border-bottom-width: 1px;
-            border-bottom-style: solid;
-            margin-bottom: 0.7em;
-
-            @include breakpoint(phablet) {
-                @include col(1/2, $cycle: 2);
-            }
-
-            @include breakpoint(tablet) {
-                @include col(1/3, $uncycle: 2, $cycle: 3);
-            }
-
-            @include breakpoint(laptop) {
-                @include col(1/4, $uncycle: 3, $cycle: 4);
-            }
-        }
     }
 
     &.is-hidden {

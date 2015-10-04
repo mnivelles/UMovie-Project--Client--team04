@@ -6,7 +6,7 @@ require.config({
 
     paths: {
         app: '/js'/*,
-        tpl: '/js/tpl'*/
+         tpl: '/js/tpl'*/
     },
 
     map: {
@@ -25,7 +25,7 @@ require(['router'], function (Router) {
 
     // Correction : évite l'utilisation de #/new (etc)
     // de http://artsy.github.io/blog/2012/06/25/replacing-hashbang-routes-with-pushstate/
-    $(document).on("click", "a[href^='/']", function(event) {
+    $(document).on("click", "a[href^='/']", function (event) {
         var href, passThrough, url;
         href = $(event.currentTarget).attr('href');
         passThrough = href.indexOf('sign_out') >= 0;
@@ -41,14 +41,37 @@ require(['router'], function (Router) {
 });
 
 _.extend(Backbone.View.prototype, {
-    showElementWithId: function(id) {
+    showElementWithId: function (id) {
         var isHiddenClass = 'hide'; // Provient de Materialize
         var element = document.getElementById(id);
         element.classList.remove(isHiddenClass);
     },
 
-    showTrailer: function() {
+    showTrailer: function () {
         this.showElementWithId('mediaTrailer');
+    },
+
+    toggleSection: function (element) {
+        var isHiddenClass = 'is-hidden';
+        if (element.hasClass(isHiddenClass)) {
+            element.removeClass(isHiddenClass);
+        } else {
+            element.addClass(isHiddenClass);
+        }
+    },
+
+    toggleMediaSectionParentOfElement: function(element) {
+        var section = element.parents('.mediaSection');
+        this.toggleSection(section);
+    },
+
+    hideMediaSectionForSmallScreen: function() {
+        var hideMaxWidth = 900;
+        var isHiddenClass = 'is-hidden';
+
+        if (window.innerWidth < hideMaxWidth) {
+            $('.mediaSection').addClass(isHiddenClass);
+        }
     }
 });
 
