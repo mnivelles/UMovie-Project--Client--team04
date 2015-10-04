@@ -1,7 +1,9 @@
 <div class="actorContent">
     <div class="media">
 
-        {% include "media.header.nunj.html" %}
+        {% import "media.nunj.html" as mediaHelper %}
+
+        {{ mediaHelper.header(media.title, media.img, media.mainInformations) }}
 
         <section class="media--quickActions">
             <a class="media--quickActions--button waves-effect waves-light btn-large red" target="_blank"
@@ -12,9 +14,7 @@
             </a>
         </section>
 
-        {% import "media.section.nunj.html" as section %}
-
-        {{ section.paragraphSection("Biography", media.biography) }}
+        {{ mediaHelper.paragraphSection("Biography", media.biography) }}
 
         <section class="mediaSection">
             <div class="mediaSection--titleContainer">

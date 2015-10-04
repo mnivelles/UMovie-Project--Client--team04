@@ -1,7 +1,9 @@
 <div class="movieContent">
     <div class="media">
 
-        {% include "media.header.nunj.html" %}
+        {% import "media.nunj.html" as mediaHelper %}
+
+        {{ mediaHelper.header(media.title, media.img, media.mainInformations) }}
 
         <section class="media--quickActions">
             <button class="media--quickActions--button showTrailerButton waves-effect waves-light btn-large red"><i
@@ -17,13 +19,11 @@
         </section>
 
 
-        {% include "media.trailer.nunj.html" %}
+        {{ mediaHelper.trailer(media.youtubeTrailerUrl) }}
 
-        {% import "media.section.nunj.html" as section %}
+        {{ mediaHelper.paragraphSection("Synopsis", media.synopsis) }}
 
-        {{ section.paragraphSection("Synopsis", media.synopsis) }}
-
-        {{ section.wordListSection("Starring", media.actors) }}
+        {{ mediaHelper.wordListSection("Starring", media.actors) }}
 
     </div>
 </div>

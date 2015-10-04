@@ -1,6 +1,9 @@
 <div class="tvShowContent">
     <div class="media">
-        {% include "media.header.nunj.html" %}
+
+        {% import "media.nunj.html" as mediaHelper %}
+
+        {{ mediaHelper.header(media.title, media.img, media.mainInformations) }}
 
         <section class="media--quickActions">
             <button class="media--quickActions--button showTrailerButton waves-effect waves-light btn-large red"><i class="mdi-av-play-circle-outline left"></i> Trailer
@@ -11,15 +14,13 @@
             </a>
         </section>
 
-        {% include "media.trailer.nunj.html" %}
+        {{ mediaHelper.trailer(media.youtubeTrailerUrl) }}
 
-        {% import "media.section.nunj.html" as section %}
+        {{ mediaHelper.paragraphSection("Synopsis", media.synopsis) }}
 
-        {{ section.paragraphSection("Synopsis", media.synopsis) }}
+        {{ mediaHelper.wordListSection("Starring", media.actors) }}
 
-        {{ section.wordListSection("Starring", media.actors) }}
-
-        {{ section.seasonSection("Episodes", media.episodes) }}
+        {{ mediaHelper.seasonSection("Episodes", media.episodes) }}
 
     </div>
 </div>
