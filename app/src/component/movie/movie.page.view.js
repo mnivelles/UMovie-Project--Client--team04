@@ -19,7 +19,8 @@ define(function (require) {
                         '2h49',
                         'by Christopher Nolan',
                         'Rating: <span class="media--ratingLogo">PG-13</span>'
-                    ]
+                    ],
+                    youtubeTrailerUrl: 'https://www.youtube.com/embed/zSWdZVtXT7E'
                 }
             });
             this.$el.html(html);

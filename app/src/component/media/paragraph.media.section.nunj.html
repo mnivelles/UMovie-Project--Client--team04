@@ -1,0 +1,8 @@
+{% macro paragraphSection(title, paragraph) %}
+
+{% extends "media.section.nunj.html" %}
+
+{% block title %}{{ title }}{% endblock %}
+{% block content %}<p>{{ paragraph }}</p>{% endblock %}
+
+{% endmacro %}

@@ -1,16 +1,3 @@
-// Show Trailer
-
-
-function showElementWithId(id) {
-    var isHiddenClass = 'hide'; // Provient de Materialize
-    var element = document.getElementById(id);
-    element.classList.remove(isHiddenClass);
-}
-
-function showTrailer() {
-    showElementWithId('media--trailer');
-}
-
 $(document).ready(function () {
 
     // Show/Hide subContent

@@ -18,7 +18,15 @@ define(function (require) {
                         '2 seasons',
                         'Science-Fiction and Fantasy',
                         'by Robert C. Cooper, Brad Wright'
-                    ]
+                    ],
+                    youtubeTrailerUrl: 'https://www.youtube.com/embed/0HyD3aKFTkA',
+                    synopsis: {
+                        title: 'Synopsis',
+                        paragraph: 'When their hidden base comes under attack, a band of civilians and military personnel ' +
+                        'escape through a Stargate on an ancient ship headed into deep space. Now, these ' +
+                        'survivors must figure out a way to get back to Earth, while also providing themselves ' +
+                        'with the most basic of needs - food, water and air.<br>— iTunes'
+                    }
                 }
             });
             this.$el.html(html);
