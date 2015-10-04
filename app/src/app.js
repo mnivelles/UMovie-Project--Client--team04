@@ -48,7 +48,7 @@ _.extend(Backbone.View.prototype, {
     },
 
     showTrailer: function() {
-        this.showElementWithId('media--trailer');
+        this.showElementWithId('mediaTrailer');
     }
 });
 

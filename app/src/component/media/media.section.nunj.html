@@ -1,11 +1,12 @@
-<section class="mediaSection">
-    <div class="mediaSection--titleContainer">
-        <h3 class="mediaSection--title">{% block title %}{% endblock %}</h3>
-        <button class="mediaSection--hideShowButton waves-effect waves-red btn-flat"><i
-                class="mdi-hardware-keyboard-arrow-up"></i></button>
-    </div>
+{% macro paragraphSection(title, paragraph) %}
+    {% import "base.media.section.nunj.html" as section %}
 
-    <div class="mediaSection--content">
-        {% block content %}{% endblock %}
-    </div>
-</section>
+    {{ section.section(title, "<p>" + paragraph + "</p>") }}
+{% endmacro %}
+
+{% macro wordListSection(title, words) %}
+    {% import "base.media.section.nunj.html" as section %}
+    {% import "word.list.nunj.html" as list %}
+
+    {{ section.section(title, list.unorderedWordList(words)) }}
+{% endmacro %}

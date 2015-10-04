@@ -20,13 +20,17 @@ define(function (require) {
                         'by Robert C. Cooper, Brad Wright'
                     ],
                     youtubeTrailerUrl: 'https://www.youtube.com/embed/0HyD3aKFTkA',
-                    synopsis: {
-                        title: 'Synopsis',
-                        paragraph: 'When their hidden base comes under attack, a band of civilians and military personnel ' +
+                    synopsis: 'When their hidden base comes under attack, a band of civilians and military personnel ' +
                         'escape through a Stargate on an ancient ship headed into deep space. Now, these ' +
                         'survivors must figure out a way to get back to Earth, while also providing themselves ' +
-                        'with the most basic of needs - food, water and air.<br>— iTunes'
-                    }
+                        'with the most basic of needs - food, water and air.<br>— iTunes',
+                    actors: [
+                        'Robert Carlyle',
+                        'Louis Ferreira',
+                        'Brian J. Smith',
+                        'Elyse Levesque',
+                        'David Blue'
+                    ]
                 }
             });
             this.$el.html(html);

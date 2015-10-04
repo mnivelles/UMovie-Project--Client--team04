@@ -6,40 +6,17 @@
         <section class="media--quickActions">
             <a class="media--quickActions--button waves-effect waves-light btn-large red" target="_blank"
                href="http://www.imdb.com/name/nm0000190/"><i class="mdi-action-info-outline left"></i> IMDB</a>
-            <a class="media--quickActions--button" target="_blank"
+            <a class="media--quickActions--button imageButton" target="_blank"
                href="https://geo.itunes.apple.com/us/podcast/matthew-mcconaughey-jared/id811331249?mt=2">
                 <img src="/image/get-on-itunes-badge-en_US-138x50.png">
             </a>
         </section>
 
+        {% import "media.section.nunj.html" as section %}
+
+        {{ section.paragraphSection("Biography", media.biography) }}
+
         <section class="media--remaining">
-            <div class="media--remaining--element">
-                <div class="media--subTitle">
-                    <h3 class="media--subTitle--title">Biography</h3>
-                    <button class="media--subTitle--hideShowButton waves-effect waves-red btn-flat"><i
-                            class="mdi-hardware-keyboard-arrow-up"></i></button>
-                </div>
-                <div class="media--subContent">
-                    <!-- Bio taken on wikipedia: https://en.wikipedia.org/wiki/Matthew_McConaughey-->
-                    <p>
-                        Matthew McConaughey is an American actor and producer. He
-                        first gained notice for his breakout role in the coming-of-age comedy Dazed and Confused
-                        (1993), and
-                        went on to appear in films such as the slasher Texas Chainsaw Massacre: The Next
-                        Generation (1994).
-                        <br>McConaughey achieved much success in 2013 for portraying a cowboy diagnosed with
-                        AIDS in the
-                        biographical film Dallas Buyers Club, which earned him the Academy Award for Best Actor
-                        and Golden
-                        Globe Award for Best Actor, among other awards and nominations. In 2014, he also starred
-                        as Rust
-                        Cohle in the acclaimed HBO crime anthology series True Detective, for which he won a
-                        Critics' Choice
-                        Award and was nominated for a Primetime Emmy Award for Outstanding Lead Actor in a Drama
-                        Series.
-                    </p>
-                </div>
-            </div>
 
             <div class="media--remaining--element">
                 <div class="media--subTitle">
