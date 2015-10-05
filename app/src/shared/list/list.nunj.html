@@ -1,0 +1,23 @@
+{# unordered car utilise des ul #}
+
+{% macro unorderedWordList(words) %}
+    <ul class="unorderedWordList">
+        {% for word in words %}
+        <li class="unorderedWordList--item">{{ word }}</li>
+        {% endfor %}
+    </ul>
+{% endmacro %}
+
+{% macro unorderedEpisodeList(episodes) %}
+    <ul class="unorderedEpisodeList">
+        {% for episode in episodes %}
+            <li class="unorderedEpisodeList--item">
+                <div class="item--thumbnail">
+                    <img src="{{ episode.img }}" alt="{{ episode.title }}"/>
+                </div>
+                <div class="item--title"><span class="episode--number">{{ episode.trackId }}.</span> {{ episode.title }}
+                    <span class="episode--ratingLogo">{{ episode.rating }}</span></div>
+            </li>
+        {% endfor %}
+    </ul>
+{% endmacro %}

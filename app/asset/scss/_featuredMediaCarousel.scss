@@ -25,6 +25,10 @@ $featuredImageWidth: 650px;
             color: hsla(0,0,100%,.9);
             font-weight: 300;
             font-size: 1.4em;
+
+            & a {
+                color: inherit;
+            }
         }
 
         @media (max-width: $featuredImageWidth) {
@@ -32,29 +36,5 @@ $featuredImageWidth: 650px;
                 max-width: 100%;
             }
         }
-    }
-}
-
-
-
-
-
-/*------------------------------------*\
-    ##FEATURED_MEDIA_CAROUSEL
-
-\*------------------------------------*/
-$index-sectionTitleColor: hsla(36,100%,50%,1); //Orange.500
-$index-sectionTitleWeight: 100;
-
-.selectionSection {
-    padding-left: 10px;
-
-    @include breakpoint(tablet) {
-        margin-left: 20px;
-    }
-
-    &--title {
-        color: $standardSectionTitleColor;
-        font-weight: $standardSectionTitleWeight;
     }
 }

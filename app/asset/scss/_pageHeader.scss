@@ -21,12 +21,17 @@
 
 .headerMenuContainer--logo a {
     font-family: "Varela Round", sans-serif;
+
+    color: inherit;
 }
 
 .headerMenuContainer--logo img {
     position: absolute;
     top: 5px;
     left: 20px;
+
+    image-rendering: optimizeQuality;  /* Firefox 3.6+ ; comportement identique à celui par défaut, pas besoin de spécifier */
+    -ms-interpolation-mode: bicubic;
 }
 
 .headerMenuContainer--separator {

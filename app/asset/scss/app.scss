@@ -1,5 +1,6 @@
 @import 'jeet/index';
 @import "materialize";
+@import "slick";
 
 @import "animate";
 
@@ -85,10 +86,11 @@ p {
 @import "pageContent";
 @import "pageMenu";
 @import "pageFooter";
-@import "index";
+@import "selectionSection";
 @import "media";
 @import "actor";
 @import "mediaCarousel";
+@import "featuredMediaCarousel";
 
 a {
     cursor: pointer;

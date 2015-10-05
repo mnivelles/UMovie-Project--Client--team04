@@ -1,0 +1,29 @@
+<div class="movieContent">
+    <div class="media">
+
+        {% import "helper.media.nunj.html" as mediaHelper %}
+
+        {{ mediaHelper.header(media.title, media.img, media.mainInformations) }}
+
+        <section class="media--quickActions">
+            <button class="media--quickActions--button showTrailerButton waves-effect waves-light btn-large red"><i
+                    class="mdi-av-play-circle-outline left"></i> Trailer
+            </button>
+            <button class="media--quickActions--button waves-effect waves-light btn-large red"><i
+                    class="mdi-content-add-circle-outline left"></i> Watch List
+            </button>
+            <a class="media--quickActions--button imageButton"
+               href="https://itunes.apple.com/ca/movie/interstellar/id960891136">
+                <img src="/image/get-on-itunes-badge-en_US-138x50.png">
+            </a>
+        </section>
+
+
+        {{ mediaHelper.trailer(media.youtubeTrailerUrl) }}
+
+        {{ mediaHelper.paragraphSection("Synopsis", media.synopsis) }}
+
+        {{ mediaHelper.wordListSection("Starring", media.actors) }}
+
+    </div>
+</div>

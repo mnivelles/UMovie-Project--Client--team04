@@ -1,0 +1,15 @@
+$index-sectionTitleColor: hsla(36,100%,50%,1); //Orange.500
+$index-sectionTitleWeight: 100;
+
+.selectionSection {
+    padding-left: 10px;
+
+    @include breakpoint(tablet) {
+        margin-left: 20px;
+    }
+
+    &--title {
+        color: $standardSectionTitleColor;
+        font-weight: $standardSectionTitleWeight;
+    }
+}
