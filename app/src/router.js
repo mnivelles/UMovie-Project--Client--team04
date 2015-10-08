@@ -4,11 +4,11 @@ define(function (require) {
 
     "use strict";
 
-    var PageView   = require('component/page/page.view'),
-        HomeView   = require('component/home/home.page.view'),
-        ActorView  = require('component/actor/actor.page.view'),
-        MovieView  = require('component/movie/movie.page.view'),
-        TvShowView = require('component/tvShow/tvShow.page.view'),
+    var PageView   = require('page.view'),
+        HomeView   = require('home.page.view'),
+        ActorView  = require('actor.page.view'),
+        MovieView  = require('movie.page.view'),
+        TvShowView = require('tvShow.page.view'),
 
         $page = $('#page'),
         pageView = new PageView({el: $page}).render(),

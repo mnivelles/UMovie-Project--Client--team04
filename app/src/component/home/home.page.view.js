@@ -2,8 +2,8 @@ define(function (require) {
 
     "use strict";
 
-    var FeaturedMediaCarouselView = require('/js/component/carousel/featuredMediaCarousel.view.js'),
-        MediaCarouselView = require('/js/component/carousel/mediaCarousel.view.js'),
+    var FeaturedMediaCarouselView = require('/js/featuredMediaCarousel.view.js'),
+        MediaCarouselView = require('/js/mediaCarousel.view.js'),
         template = 'home.page.nunj.html';
 
     var featuredMedia = [

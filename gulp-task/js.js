@@ -7,6 +7,7 @@ var concat = require('gulp-concat');
 var plumber = require('gulp-plumber');
 var uglify = require('gulp-uglify');
 var sourcemaps = require('gulp-sourcemaps');
+var flatten = require('gulp-flatten');
 
 var paths = {
     src: cte.basePaths.src + 'src/',
@@ -58,6 +59,7 @@ gulp.task('js:requirejs:concat', function() {
 gulp.task('js:app:concat', function() {
     return gulp.src(appFiles.src)
         .pipe(sourcemaps.init())
+        .pipe(flatten())
         .pipe(plumber({errorHandler: hlp.displayError}))
         //.pipe(concat(appFiles.destName))
         .pipe(getUglify())

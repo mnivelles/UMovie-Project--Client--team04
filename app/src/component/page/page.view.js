@@ -19,6 +19,7 @@ define(function (require) {
             return this;
         },
 
+        // TODO à améliorer
         manageMenu: function() {
             var menu = document.getElementById('mainMobileHeaderMenu');
             var menu_logout = document.getElementById('logoutMobileHeaderMenu');
