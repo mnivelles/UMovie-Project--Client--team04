@@ -122,9 +122,13 @@
         @include col(7/24, $offset: 3/24);
     }
 
-    .user--avatarButton {
-        @include col(2/12);
+    .user--avatarButton,
+    .user--watchListButton {
+        display: inline-block;
+        vertical-align: middle;
+    }
 
+    .user--avatarButton {
         height: 40px;
         width: auto;
         margin: 0;
@@ -142,9 +146,8 @@
     }
 
     .user--watchListButton {
-        @include col(8/12);
-
         padding: 0;
+        margin-left: 10px;
         height: 40px;
         text-align: center;
 
