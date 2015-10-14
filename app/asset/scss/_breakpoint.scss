@@ -8,6 +8,9 @@
     @else if $point == tablet {
         @media (min-width: 50em) { @content ; }
     }
+    @else if $point == smalltablet {
+        @media (min-width: 43.8em) { @content ; }
+    }
     @else if $point == phablet {
         @media (min-width: 37.5em)  { @content ; }
     }

@@ -1,15 +1,172 @@
 .pageMenu {
+    @extend .indigo, .lighten-4;
+    @extend .z-depth-3;
 
-}
+    font-size: 1.1rem;
 
-.pageMenu--item {
-    @include stack($align: center);
+    @include cf();
+
+    height: 40px;
 
     @include breakpoint(phablet) {
-        @include col(6/12);
+        height: 45px;
     }
 
     @include breakpoint(tablet) {
-        @include col(4/12);
+        height: 50px;
+    }
+}
+
+.pageMenu--searchButton {
+    @include col(2/12);
+
+    color: hsla(0,100%,100%,1);
+
+    i {
+        font-size: 30px;
+        vertical-align: middle;
+    }
+
+    &:focus {
+        background-color: transparent;
+    }
+
+    height: 40px;
+    padding: 0;
+    text-align: center;
+
+    @include breakpoint(phablet) {
+        height: 45px;
+
+        i {
+            font-size: 35px;
+        }
+    }
+
+    @include breakpoint(tablet) {
+        display: none;
+    }
+}
+
+.pageMenu--brand {
+    @include col(5/12);
+
+    @include breakpoint(smalltablet) {
+        @include col(4/12, $offset: 1/12);
+    }
+
+    position: relative;
+
+    a {
+        color: hsla(0,100%,100%,1);
+    }
+
+    .brand--logo {
+        @include col(4/12, $offset: 2/12);
+
+        position: absolute;
+
+        height: 60px;
+        width: auto;
+
+        @include breakpoint(phablet) {
+            height: 65px;
+        }
+
+        @include breakpoint(tablet) {
+            height: 75px;
+        }
+    }
+
+    .brand--name {
+        @include col(6/12, $offset: 13/24);
+
+        height: 40px;
+        font-family: "Varela Round", sans-serif;
+        font-size: 30px;
+        padding-top: 5px;
+        margin-top: 0;
+        margin-bottom: 0;
+
+        @include breakpoint(phablet) {
+            @include col(7/12, $offset: 10/24);
+
+            height: 45px;
+            font-size: 35px;
+        }
+        @include breakpoint(smalltablet) {
+            @include col(8/12, $offset: 11/24);
+        }
+    }
+}
+
+.pageMenu--search {
+
+    display: none;
+
+    /*
+    @include breakpoint(tablet) {
+        display: inline-block;
+    }
+    */
+}
+
+.pageMenu--user {
+    @include col(5/12);
+
+    @include breakpoint(phablet) {
+        @include col(4/12, $offset: 1/12);
+    }
+
+    @include breakpoint(smalltablet) {
+        @include col(7/24, $offset: 3/24);
+    }
+
+    .user--avatarButton {
+        @include col(2/12);
+
+        height: 40px;
+        width: auto;
+        margin: 0;
+        padding: 0;
+        border: none;
+
+        .avatarButton--image {
+            height: inherit;
+            width: auto;
+        }
+
+        @include breakpoint(phablet) {
+            height: 45px;
+        }
+    }
+
+    .user--watchListButton {
+        @include col(8/12);
+
+        padding: 0;
+        height: 40px;
+        text-align: center;
+
+        color: hsla(0,100%,100%,1);
+        font-size: 17px;
+        font-weight: 300;
+
+        &:focus {
+            background-color: transparent;
+        }
+
+
+        @include breakpoint(phablet) {
+            height: 45px;
+
+            font-size: 22px;
+        }
+
+        @include breakpoint(tablet) {
+            height: 50px;
+
+            font-size: 27px;
+        }
     }
 }

@@ -21,6 +21,7 @@ define(function (require) {
 
         // TODO à améliorer
         manageMenu: function() {
+            /*
             var menu = document.getElementById('mainMobileHeaderMenu');
             var menu_logout = document.getElementById('logoutMobileHeaderMenu');
             var show_hide_button = document.getElementById('btn-menu-mobile');
@@ -57,6 +58,7 @@ define(function (require) {
                 menuName.removeAttribute('hidden');
                 Materialize.showStaggeredList('#' + menuName.id);
             }
+            */
         }
     });
 
