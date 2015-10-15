@@ -175,7 +175,11 @@
 }
 
 
-
+.pageMenu--searchButton.is-active {
+    i {
+        @extend .mdi-navigation-close;
+    }
+}
 
 
 /*------------------------------------*\
@@ -189,6 +193,7 @@
     font-size: 1rem;
 
     padding-top: 30px;
+    padding-bottom: 30px;
     padding-left: 0.7em;
     padding-right: 0.7em;
 
@@ -257,7 +262,7 @@
     .filterRow--element {
         @include col(4/12);
 
-        color: white;
+        @extend .white-text;
 
         border: 1px solid $border-color;
         border-radius: 5px;
@@ -271,6 +276,13 @@
 
         &:focus {
             background-color: transparent;
+        }
+
+        &.is-active {
+            @extend .indigo-text, .text-darken-3;
+            @extend .white;
+
+            font-weight: 400;
         }
     }
 }
