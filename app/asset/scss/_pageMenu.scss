@@ -185,7 +185,7 @@
 /*------------------------------------*\
     ##MOBILE_SEARCH_BOX
 \*------------------------------------*/
-.searchBox {
+.search {
     @extend .indigo, .darken-3;
 
     @include cf();
@@ -208,7 +208,7 @@
     }
 }
 
-.searchBox--inputRow {
+.search--inputRow {
 
     input.inputRow--input {
         @include col(9/12);
@@ -244,7 +244,7 @@
     }
 }
 
-.searchBox--filterRow {
+.search--filterRow {
     $border-color: hsla(0,100%,100%,0.8);
 
     .filterRow--elementWrapper{
