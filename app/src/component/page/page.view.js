@@ -2,12 +2,12 @@ define(function (require) {
 
     "use strict";
 
-    var template = 'page.nunj.html';
+    var PageHeaderView  = require('pageHeader.view'),
+        template = 'page.nunj.html';
 
     return Backbone.View.extend({
 
         initialize: function () {
-
         },
 
         render: function () {
@@ -15,6 +15,8 @@ define(function (require) {
             this.$el.html(html);
 
             this.manageMenu();
+
+            new PageHeaderView();
 
             return this;
         },

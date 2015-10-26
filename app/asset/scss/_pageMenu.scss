@@ -1,4 +1,10 @@
+/*------------------------------------*\
+    ##PAGE_MENU
+\*------------------------------------*/
 .pageMenu {
+
+    z-index: z("menu");
+
     @extend .indigo, .darken-4;
     @extend .z-depth-2;
 
@@ -62,6 +68,8 @@
     }
 
     .brand--logo {
+        z-index: z("menu") + 1;
+
         @include col(4/12, $offset: 2/12);
 
         position: absolute;
@@ -178,111 +186,5 @@
 .pageMenu--searchButton.is-active {
     i {
         @extend .mdi-navigation-close;
-    }
-}
-
-
-/*------------------------------------*\
-    ##MOBILE_SEARCH_BOX
-\*------------------------------------*/
-.search {
-    @extend .indigo, .darken-3;
-
-    @include cf();
-
-    font-size: 1rem;
-
-    padding-top: 30px;
-    padding-bottom: 30px;
-    padding-left: 0.7em;
-    padding-right: 0.7em;
-
-    @include breakpoint(tablet) {
-        display: none;
-    }
-
-    &--inputRow,
-    &--filterRow,
-    &--result {
-        @include cf();
-    }
-}
-
-.search--inputRow {
-
-    input.inputRow--input {
-        @include col(9/12);
-
-        border-bottom-color: hsla(0,100%,100%,0.85);
-
-        &:focus {
-            border-bottom-color: color("green", "base");
-        }
-
-        font-size: 2.5em;
-        font-weight: 200;
-        letter-spacing: 0.1em;
-        @extend .white-text;
-
-        @include breakpoint(phablet) {
-            @include col(10/12);
-        }
-
-        @include breakpoint(smalltablet) {
-
-        }
-    }
-
-    .inputRow--submitButton {
-        color: hsla(0,100%,100%,1);
-        font-weight: 300;
-        font-size: 1.4em;
-
-        &:focus {
-            background-color: transparent;
-        }
-    }
-}
-
-.search--filterRow {
-    $border-color: hsla(0,100%,100%,0.8);
-
-    .filterRow--elementWrapper{
-        @include col(10/12, $offset: 1/12);
-
-        @include breakpoint(phablet) {
-            @include col(8/12, $offset: 2/12);
-        }
-
-        @include breakpoint(smalltablet) {
-            @include col(6/12, $offset: 3/12);
-        }
-    }
-
-    .filterRow--element {
-        @include col(4/12);
-
-        @extend .white-text;
-
-        border: 1px solid $border-color;
-        border-radius: 5px;
-
-        font-size: 1.1em;
-        font-weight: 200;
-        text-align: center;
-
-        padding-left: 0;
-        padding-right: 0;
-
-        &:focus {
-            background-color: transparent;
-        }
-
-        &.is-active {
-            @extend .indigo-text, .text-darken-3;
-            @extend .white;
-
-            font-weight: 400;
-        }
     }
 }

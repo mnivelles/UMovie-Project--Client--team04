@@ -5,6 +5,7 @@
 @import "animate";
 
 @import "breakpoint";
+@import "zIndex";
 
 // TODO activer et désactiver à sa guise
 //@include edit(); // /!\ Créée un fond gris utile pour les tests
@@ -83,6 +84,7 @@ p {
 @import "pageContent";
 @import "pageMenu";
 @import "pageFooter";
+@import "search";
 @import "selectionSection";
 @import "media";
 @import "actor";

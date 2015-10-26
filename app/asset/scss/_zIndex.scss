@@ -1,0 +1,20 @@
+// http://www.sitepoint.com/better-solution-managing-z-index-sass/
+
+$z-layers: (
+    "heaven": 999,
+    "modal": 900,
+    "menu": 750,
+    "search": 600,
+    "above": 10,
+    "default": 1,
+    "below": -10,
+    "hell": -999
+);
+
+@function z($layer) {
+    @if not map-has-key($z-layers, $layer) {
+        @warn "No layer found for `#{$layer}` in $z-layers map. Property omitted.";
+    }
+
+    @return map-get($z-layers, $layer);
+}
