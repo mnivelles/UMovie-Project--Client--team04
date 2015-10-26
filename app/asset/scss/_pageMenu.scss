@@ -182,9 +182,23 @@
     }
 }
 
-
 .pageMenu--searchButton.is-active {
     i {
         @extend .mdi-navigation-close;
+    }
+}
+
+.pageMenu--user .user--avatarButton {
+    .defaultImage {
+        display: none;
+    }
+
+    &.is-active {
+        .defaultImage {
+            display: inline;
+        }
+        .userImage {
+            display: none;
+        }
     }
 }
