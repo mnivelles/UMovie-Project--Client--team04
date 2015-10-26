@@ -2,12 +2,12 @@ define(function (require) {
 
     "use strict";
 
-    var template = 'page.nunj.html';
+    var PageHeaderView  = require('pageHeader.view'),
+        template = 'page.nunj.html';
 
     return Backbone.View.extend({
 
         initialize: function () {
-
         },
 
         render: function () {
@@ -16,11 +16,14 @@ define(function (require) {
 
             this.manageMenu();
 
+            new PageHeaderView();
+
             return this;
         },
 
         // TODO à améliorer
         manageMenu: function() {
+            /*
             var menu = document.getElementById('mainMobileHeaderMenu');
             var menu_logout = document.getElementById('logoutMobileHeaderMenu');
             var show_hide_button = document.getElementById('btn-menu-mobile');
@@ -57,6 +60,7 @@ define(function (require) {
                 menuName.removeAttribute('hidden');
                 Materialize.showStaggeredList('#' + menuName.id);
             }
+            */
         }
     });
 

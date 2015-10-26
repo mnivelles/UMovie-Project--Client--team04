@@ -1,3 +1,4 @@
+<!--
 <nav class="pageMenu">
     <nav id="headerMenuContainer" class="row valign-wrapper">
 
@@ -46,5 +47,25 @@
         <li><a href="/" class="collection-item"> <i class="mdi-av-play-circle-fill"></i> Watchlists</a></li>
         <li><input type="text" class="form-control collection-item" placeholder="Search..."></li>
     </ul>
+</nav>
+-->
+
+<nav class="pageMenu">
+    <button class="pageMenu--searchButton waves-effect waves-red btn-flat"><i class="mdi-action-search"></i></button>
+    <div class="pageMenu--brand">
+        <a href="/">
+            <img class="brand--logo" src="/image/umi-project-logo-500x500.png" alt="UMI ULaval Movie Ima logo"/>
+            <h1 class="brand--name">UMI</h1>
+        </a>
+    </div>
+    <div class="pageMenu--search">
+        <label for="pageSearchInput"><i class="mdi-action-search"></i></label><input id="pageSearchInput" class="search--input" type="text"/>
+    </div>
+    <div class="pageMenu--user">
+        <button class="user--avatarButton">
+            <img class="avatarButton--image" src="/image/avatar-daruma.jpg" alt="User avatar"/>
+        </button>
+        <button class="user--watchListButton waves-effect waves-red btn-flat">Watchlist</button>
+    </div>
 </nav>
 
