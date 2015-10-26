@@ -142,10 +142,15 @@
         margin: 0;
         padding: 0;
         border: none;
+        background-color: hsla(0,0,87%,1);
 
         .avatarButton--image {
             height: inherit;
             width: auto;
+
+            &:hover {
+                opacity: .5;
+            }
         }
 
         @include breakpoint(phablet) {
