@@ -6,10 +6,6 @@ define(function (require) {
 
     return Backbone.View.extend({
 
-        events: {
-            'click .media--quickActions--button.showTrailerButton': 'showTrailer'
-        },
-
         render: function() {
             var self = this;
 
@@ -141,10 +137,13 @@ define(function (require) {
             });
             this.$el.html(html);
 
+            $('.media--quickActions--button.showTrailerButton', this.el).click(function () {
+                self.showTrailer();
+            });
+
             $('.mediaSection--hideShowButton', this.el).click(function() {
                 self.toggleMediaSectionParentOfElement($(this));
             });
-
             self.hideMediaSectionForSmallScreen();
 
             return this;
