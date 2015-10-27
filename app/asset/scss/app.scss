@@ -14,7 +14,7 @@
     Base
 */
 $bodyColor: hsla(0,100%,100%,.65);
-$standardSectionTitleColor: hsla(36,100%,50%,1); //Orange.500
+$standardSectionTitleColor: color("orange", "base");//range.500
 $standardSectionTitleWeight: 100;
 
 
