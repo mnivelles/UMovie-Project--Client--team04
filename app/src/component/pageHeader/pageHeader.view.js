@@ -11,11 +11,7 @@ define(function (require) {
 
         events: {
             'click .pageMenu--searchButton': 'toggleSearch',
-            'click .pageMenu--user .user--avatarButton': 'toggleUserMenu'/*,
-            'click .destroy':	'clear',
-            'keypress .edit':	'updateOnEnter',
-            'keydown .edit':	'revertOnEscape',
-            'blur .edit':		'close'*/
+            'click .pageMenu--user .user--avatarButton': 'toggleUserMenu'
         },
 
         initialize: function () {
