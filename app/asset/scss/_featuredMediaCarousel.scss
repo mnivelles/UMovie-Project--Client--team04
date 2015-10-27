@@ -15,21 +15,18 @@ $featuredImageWidth: 650px;
 
         .element--title {
             position: absolute;
-            //top: 14px;
-            //left: 14px;
 
             bottom: 14px;
             right: 18px;
 
             display: inline-block;
-            //padding: 7px 14px;
-            //background-color: hsla(0,0,0,.75);
 
-            background-color: hsla(36,100%,50%,1);
+            @extend .orange;
+            @extend .white-text;
+
             border-right: 6px solid white;
             padding: 7px 14px 7px 60px;
 
-            color: hsla(0,0,100%,.9);
             font-weight: 300;
             font-size: 1.4em;
 
