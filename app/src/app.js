@@ -4,19 +4,33 @@ require.config({
 
     baseUrl: '/js/',
 
-    paths: {
-        app: '/js'/*,
-         tpl: '/js/tpl'*/
+    shim: {
+        underscore: {
+            exports: '_'
+        },
+        backbone: {
+            deps: [
+                'underscore',
+                'jquery'
+            ],
+            exports: 'backbone'
+        },
+        nunjucks: {
+            exports: 'nunjucks'
+        }
     },
 
-    map: {
-        '*': {
-            //'app/models/employee': 'app/models/memory/employee'
-        }
+    paths: {
+        backbone: 'lib/backbone',
+        jquery: 'lib/jquery',
+        materialize: 'lib/materialize',
+        nunjucks: 'lib/nunjucks-slim',
+        slick: 'lib/slick',
+        underscore: 'lib/lodash' // superset of underscore with more updates
     }
 });
 
-require(['router'], function (Router) {
+require(['jquery', 'underscore', 'backbone', 'router'], function ($, _, Backbone, Router) {
     var router = new Router();
     Backbone.history.start({
         pushState: true,
@@ -25,7 +39,7 @@ require(['router'], function (Router) {
 
     // Correction : évite l'utilisation de #/new (etc)
     // de http://artsy.github.io/blog/2012/06/25/replacing-hashbang-routes-with-pushstate/
-    $(document).on("click", "a[href^='/']", function (event) {
+    $(document).on('click', 'a[href^=\'/\']', function (event) {
         var href, passThrough, url;
         href = $(event.currentTarget).attr('href');
         passThrough = href.indexOf('sign_out') >= 0;
@@ -38,40 +52,40 @@ require(['router'], function (Router) {
             return false;
         }
     });
-});
 
-_.extend(Backbone.View.prototype, {
-    showElementWithId: function (id) {
-        var isHiddenClass = 'hide'; // Provient de Materialize
-        var element = document.getElementById(id);
-        element.classList.remove(isHiddenClass);
-    },
+    _.extend(Backbone.View.prototype, {
+        showElementWithId: function (id) {
+            var isHiddenClass = 'hide'; // Provient de Materialize
+            var element = document.getElementById(id);
+            element.classList.remove(isHiddenClass);
+        },
 
-    showTrailer: function () {
-        this.showElementWithId('mediaTrailer');
-    },
+        showTrailer: function () {
+            this.showElementWithId('mediaTrailer');
+        },
 
-    toggleSection: function (element) {
-        var isHiddenClass = 'is-hidden';
-        if (element.hasClass(isHiddenClass)) {
-            element.removeClass(isHiddenClass);
-        } else {
-            element.addClass(isHiddenClass);
+        toggleSection: function (element) {
+            var isHiddenClass = 'is-hidden';
+            if (element.hasClass(isHiddenClass)) {
+                element.removeClass(isHiddenClass);
+            } else {
+                element.addClass(isHiddenClass);
+            }
+        },
+
+        toggleMediaSectionParentOfElement: function(element) {
+            var section = element.parents('.mediaSection');
+            this.toggleSection(section);
+        },
+
+        hideMediaSectionForSmallScreen: function() {
+            var hideMaxWidth = 900;
+            var isHiddenClass = 'is-hidden';
+
+            if (window.innerWidth < hideMaxWidth) {
+                $('.mediaSection').addClass(isHiddenClass);
+            }
         }
-    },
-
-    toggleMediaSectionParentOfElement: function(element) {
-        var section = element.parents('.mediaSection');
-        this.toggleSection(section);
-    },
-
-    hideMediaSectionForSmallScreen: function() {
-        var hideMaxWidth = 900;
-        var isHiddenClass = 'is-hidden';
-
-        if (window.innerWidth < hideMaxWidth) {
-            $('.mediaSection').addClass(isHiddenClass);
-        }
-    }
+    });
 });
 

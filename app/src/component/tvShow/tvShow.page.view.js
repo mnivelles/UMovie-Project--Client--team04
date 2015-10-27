@@ -1,15 +1,18 @@
 define(function (require) {
 
-    "use strict";
+    'use strict';
 
-    var template = 'tvShow.page.nunj.html';
+    var Backbone = require('backbone'),
+        $ = require('jquery'),
+        Nunjucks = require('nunjucks'),
+        template = 'tvShow.page.nunj.html';
 
     return Backbone.View.extend({
 
         render: function() {
             var self = this;
 
-            var html = nunjucks.render(template, {
+            var html = Nunjucks.render(template, {
                 media: {
                     title: 'Stargate: Universe, Season 1',
                     img: 'http://lorempixel.com/366/546/transport/1',
@@ -145,7 +148,7 @@ define(function (require) {
                 self.toggleMediaSectionParentOfElement($(this));
             });
 
-            self.hideMediaSectionForSmallScreen();
+            //self.hideMediaSectionForSmallScreen();
 
             return this;
         }

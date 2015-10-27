@@ -1,0 +1,114 @@
+/*------------------------------------*\
+    ##SEARCH_BOX
+\*------------------------------------*/
+.userMenu {
+    z-index: z("menu") - 1;
+
+    position: absolute;
+    right: 0;
+    left: 0;
+
+    display: inline-block;
+
+    &.is-hidden {
+        display: none;
+    }
+
+    @extend .grey, .darken-4;
+
+    @include cf();
+
+    font-size: 1.1rem;
+
+    padding-top: 30px;
+    padding-bottom: 30px;
+    padding-left: 0.7em;
+    padding-right: 0.7em;
+
+    @include breakpoint(tablet) {
+        display: none;
+    }
+
+    &--leftCol,
+    &--rightCol {
+
+    }
+
+    &--leftCol {
+        @include col(4/12, $offset: 2/12);
+
+        @include breakpoint(phablet) {
+            @include col(3/12, $offset: 3/12);
+        }
+
+        @include breakpoint(smalltablet) {
+            @include col(5/24, $offset: 5/24);
+        }
+    }
+
+    &--rightCol {
+        @include col(5/12);
+
+        @include breakpoint(phablet) {
+            @include col(5/12);
+        }
+
+        @include breakpoint(smalltablet) {
+            @include col(11/24);
+        }
+    }
+}
+
+.userMenu--leftCol {
+    img {
+        max-width: 100%;
+
+        border-radius: 8%;
+    }
+}
+
+.userMenu--rightCol {
+    text-align: center;
+
+    hr {
+        border-bottom-width: 0;
+        border-top-color: hsla(0,100%,100%,1);
+    }
+
+    .rightCol--name {
+        font-size: 1.25em;
+        font-weight: 200;
+        @extend .amber-text;
+
+        @include breakpoint(phablet) {
+            font-size: 1.55em;
+        }
+
+        @include breakpoint(smalltablet) {
+            font-size: 1.85em;
+        }
+    }
+
+    .rightCol--signoutButton,
+    .rightCol--settingsButton {
+        padding: 0 10px;
+        margin-left: 10px;
+        text-align: center;
+
+        @extend .white-text;
+        font-size: 1.1em;
+        font-weight: 300;
+
+        &:focus {
+            background-color: transparent;
+        }
+
+        @include breakpoint(phablet) {
+            font-size: 1.25em;
+        }
+
+        @include breakpoint(tablet) {
+            font-size: 1.4em;
+        }
+    }
+}
