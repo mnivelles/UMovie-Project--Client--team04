@@ -1,9 +1,11 @@
 define(function (require) {
 
-    "use strict";
+    'use strict';
 
-    var activeClass = 'is-active';
-    var hiddenClass = 'is-hidden';
+    var Backbone = require('backbone'),
+        $ = require('jquery'),
+        activeClass = 'is-active',
+        hiddenClass = 'is-hidden';
 
     return Backbone.View.extend({
 

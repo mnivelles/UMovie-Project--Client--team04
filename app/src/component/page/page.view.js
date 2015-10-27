@@ -1,8 +1,10 @@
 define(function (require) {
 
-    "use strict";
+    'use strict';
 
-    var PageHeaderView  = require('pageHeader.view'),
+    var Backbone = require('backbone'),
+        Nunjucks = require('nunjucks'),
+        PageHeaderView  = require('pageHeader.view'),
         template = 'page.nunj.html';
 
     return Backbone.View.extend({
@@ -11,7 +13,7 @@ define(function (require) {
         },
 
         render: function () {
-            var html = nunjucks.render(template, {});
+            var html = Nunjucks.render(template, {});
             this.$el.html(html);
 
             new PageHeaderView();

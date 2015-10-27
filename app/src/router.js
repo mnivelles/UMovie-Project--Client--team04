@@ -2,9 +2,10 @@
 
 define(function (require) {
 
-    "use strict";
+    'use strict';
 
-    var PageView   = require('page.view'),
+    var Backbone = require('backbone'),
+        PageView   = require('page.view'),
         HomeView   = require('home.page.view'),
         ActorView  = require('actor.page.view'),
         MovieView  = require('movie.page.view'),
@@ -12,7 +13,7 @@ define(function (require) {
 
         $page = $('#page'),
         pageView = new PageView({el: $page}).render(),
-        $content = $("#template-pageContent", pageView.el),
+        $content = $('#template-pageContent', pageView.el),
         homeView = new HomeView({el: $content}),
         actorView = new ActorView({el : $content}),
         movieView = new MovieView({el : $content}),
@@ -21,10 +22,10 @@ define(function (require) {
     return Backbone.Router.extend({
 
         routes: {
-            "": "home",
-            "actors/:id": "showActor",
-            "movies/:id": "showMovie",
-            "tv-shows/:id": "showTvShow"
+            '': 'home',
+            'actors/:id': 'showActor',
+            'movies/:id': 'showMovie',
+            'tv-shows/:id': 'showTvShow'
         },
 
         home: function () {
@@ -33,16 +34,19 @@ define(function (require) {
         },
 
         showActor: function(id) {
+            console.log('Actor ' + id);
             actorView.delegateEvents(); // delegate events when the view is recycled
             actorView.render();
         },
 
         showMovie: function(id) {
+            console.log('Movie ' + id);
             movieView.delegateEvents(); // delegate events when the view is recycled
             movieView.render();
         },
 
         showTvShow: function(id) {
+            console.log('Tv Show ' + id);
             tvShowView.delegateEvents(); // delegate events when the view is recycled
             tvShowView.render();
         }

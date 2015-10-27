@@ -1,8 +1,11 @@
 define(function (require) {
 
-    "use strict";
+    'use strict';
 
-    var FeaturedMediaCarouselView = require('/js/featuredMediaCarousel.view.js'),
+    var Backbone = require('backbone'),
+        $ = require('jquery'),
+        Nunjucks = require('nunjucks'),
+        FeaturedMediaCarouselView = require('/js/featuredMediaCarousel.view.js'),
         MediaCarouselView = require('/js/mediaCarousel.view.js'),
         template = 'home.page.nunj.html';
 
@@ -161,7 +164,7 @@ define(function (require) {
     return Backbone.View.extend({
 
         render: function () {
-            var html = nunjucks.render(template, {});
+            var html = Nunjucks.render(template, {});
             this.$el.html(html);
 
             var featuredMediaCarouselView = new FeaturedMediaCarouselView({
