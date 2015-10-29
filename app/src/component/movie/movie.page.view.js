@@ -5,48 +5,47 @@ define(function (require) {
     var Backbone = require('backbone'),
         $ = require('jquery'),
         Nunjucks = require('nunjucks'),
-        template = 'movie.page.nunj.html';
+        template = 'movie.page.nunj.html',
+        MovieModel = require('movie.model');
+
+    var model = new MovieModel({id: 960891136});
 
     return Backbone.View.extend({
 
         render: function () {
             var self = this;
-
-            var html = Nunjucks.render(template, {
-                media: {
-                    title: 'Interstellar',
-                    img: '/image/interstellar.jpg',
-                    mainInformations: [
-                        '7 november 2014',
-                        'Adventure, Drama and Science-Fiction',
-                        '2h49',
-                        'by Christopher Nolan',
-                        'Rating: <span class="media--ratingLogo">PG-13</span>'
-                    ],
-                    youtubeTrailerUrl: 'https://www.youtube.com/embed/zSWdZVtXT7E',
-                    synopsis: 'From director Christopher Nolan (Inception, The Dark Knight trilogy) ' +
-                        'comes the story of a team of pioneers undertaking the most important mission in human ' +
-                        'history. Academy Award®-winner Matthew McConaughey (Dallas Buyer’s Club) stars as ' +
-                        'ex-pilot-turned-farmer Cooper, who must leave his family and a foundering Earth behind ' +
-                        'to lead an expedition traveling beyond this galaxy to discover whether mankind has a future ' +
-                        'among the stars. Academy Award®-winner Anne Hathaway (Les Misérables) and Academy ' +
-                        'Award®-nominee Jessica Chastain (Zero Dark Thirty) also star in this landmark film.<br>' +
-                        '— iTunes',
-                    actors: [
-                        'Matthew McConaughey',
-                        'Ellen Burstyn',
-                        'Mackenzie Foy',
-                        'John Lithgow',
-                        'Timothée Chalamet',
-                        'Anne Hathaway',
-                        'Michael Caine',
-                        'Jessica Chastain',
-                        'Matt Damon',
-                        'Andrew Borba'
-                    ]
-                }
+            model.fetch().complete(function(){
+                var html = Nunjucks.render(template, {
+                    media: {
+                        title: model.get('trackName'),
+                        img: model.get('artworkUrl100'),
+                        mainInformations: [
+                            GetMovieReleaseDateFormatedString(model.get('releaseDate')),
+                            model.get('primaryGenreName'),
+                            GetMovieLengthString(model.get('trackTimeMillis')),
+                            'by ' + model.get('artistName'),
+                            'Rating: <span class="media--ratingLogo">' + model.get('contentAdvisoryRating') + '</span>'
+                        ],
+                        itunesLink: model.get('trackViewUrl'),
+                        youtubeTrailerUrl: 'https://www.youtube.com/embed/zSWdZVtXT7E',
+                        synopsis: model.get('longDescription'),
+                        actors: [
+                            'Matthew McConaughey',
+                            'Ellen Burstyn',
+                            'Mackenzie Foy',
+                            'John Lithgow',
+                            'Timothée Chalamet',
+                            'Anne Hathaway',
+                            'Michael Caine',
+                            'Jessica Chastain',
+                            'Matt Damon',
+                            'Andrew Borba'
+                        ]
+                    }
+                });
+                self.$el.html(html);
             });
-            this.$el.html(html);
+
 
             $('.media--quickActions--button.showTrailerButton', this.el).click(function () {
                 self.showTrailer();
@@ -63,3 +62,14 @@ define(function (require) {
     });
 
 });
+
+function GetMovieReleaseDateFormatedString(releaseDate) {
+    return releaseDate.substring(0, releaseDate.indexOf('T'));
+}
+
+function GetMovieLengthString(lengthInMillis) {
+    var seconds = lengthInMillis / 1000;
+    var minutes = seconds / 60;
+    var hours = minutes / 60;
+    return Math.floor(hours).toString() + "h" + Math.floor(minutes % 60).toString();
+}
