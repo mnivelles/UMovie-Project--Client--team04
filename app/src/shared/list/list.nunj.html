@@ -13,11 +13,13 @@
         {% for episode in episodes %}
             <li class="unorderedEpisodeList--item">
                 <div class="item--thumbnail">
-                    <img src="{{ episode.img }}" alt="{{ episode.title }}"/>
+                    <img src="{{ episode.artworkUrl100 }}" alt="{{ episode.trackName }}"/>
                 </div>
-                <div class="item--title"><span class="episode--number">{{ episode.trackId }}.</span> {{ episode.title }}
-                    <span class="episode--ratingLogo">{{ episode.rating }}</span></div>
+                <div class="item--title"><span class="episode--number">{{ episode.trackNumber }}.</span> {{ episode.trackName }}
+                    <span class="episode--ratingLogo">{{ episode.contentAdvisoryRating }}</span></div>
             </li>
         {% endfor %}
     </ul>
 {% endmacro %}
+
+

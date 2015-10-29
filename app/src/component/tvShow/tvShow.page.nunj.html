@@ -9,7 +9,7 @@
             <button class="media--quickActions--button showTrailerButton waves-effect waves-light btn-large red"><i class="mdi-av-play-circle-outline left"></i> Trailer
             </button>
             <a class="media--quickActions--button imageButton"
-               href="https://itunes.apple.com/ca/tv-season/stargate-universe-season-1/id323880910">
+               href="{{media.itunesUrl}}">
                 <img src="/image/get-on-itunes-badge-en_US-138x50.png">
             </a>
         </section>
@@ -18,9 +18,8 @@
 
         {{ mediaHelper.paragraphSection("Synopsis", media.synopsis) }}
 
-        {{ mediaHelper.wordListSection("Starring", media.actors) }}
-
         {{ mediaHelper.seasonSection("Episodes", media.episodes) }}
+
 
     </div>
 </div>

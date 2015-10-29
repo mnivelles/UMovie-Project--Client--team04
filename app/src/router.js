@@ -48,7 +48,7 @@ define(function (require) {
         showTvShow: function(id) {
             console.log('Tv Show ' + id);
             tvShowView.delegateEvents(); // delegate events when the view is recycled
-            tvShowView.render();
+            tvShowView.render({id:id});
         }
 
     });
