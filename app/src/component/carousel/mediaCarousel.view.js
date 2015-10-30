@@ -10,9 +10,13 @@ define(function (require) {
 
     return Backbone.View.extend({
 
+        initialize: function() {
+
+        },
+
         render: function () {
             var html = Nunjucks.render(template, {
-                media: this.collection
+                media: this.collection.toJSON()
             });
             this.$el.html(html);
 
