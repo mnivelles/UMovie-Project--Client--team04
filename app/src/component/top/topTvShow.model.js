@@ -18,7 +18,7 @@ define(function (require) {
             var collectionId = data['im:collection']['link']['attributes']['href'].match(idRegExp)[1];
             var tvShow = {
                 title: data['im:collection']['im:name']['label'],
-                img: img,
+                img: img.replace("100x100", "200x200"),
                 url: tvShowBaseUrl + collectionId
             };
             return tvShow;

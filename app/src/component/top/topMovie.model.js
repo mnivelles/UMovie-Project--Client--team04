@@ -15,7 +15,7 @@ define(function (require) {
             })[0]['label'];
             var movie = {
                 title: data['im:name']['label'],
-                img: img,
+                img: img.replace("170x170", "200x200"),
                 url: movieBaseUrl + data['id']['attributes']['im:id']
             };
             return movie;
