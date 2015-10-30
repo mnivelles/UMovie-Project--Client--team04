@@ -12,12 +12,10 @@ define(function (require) {
 
         model: TopTvShowModel,
 
-        url: 'https://itunes.apple.com/us/rss/toptvepisodes/limit=' + number + '/json',
+        url: 'https://itunes.apple.com/us/rss/toptvseasons/limit=' + number + '/json',
 
         parse : function(data) {
-            return _.uniq(data.feed.entry, function(item, key, a) {
-                return item['im:collection']['im:name']['label'];
-            });
+            return data.feed.entry;
         }
     });
 });
