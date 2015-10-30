@@ -8,44 +8,33 @@ define(function (require) {
         template = 'movie.page.nunj.html',
         MovieModel = require('movie.model');
 
-    var model = new MovieModel({id: 960891136});
-
     return Backbone.View.extend({
+
+        initializeWithId: function(id) {
+            this.model = new MovieModel({id: id});
+            this.listenTo(this.model, 'change', this.render);
+            this.model.fetch();
+        },
 
         render: function () {
             var self = this;
-            model.fetch().complete(function(){
-                var html = Nunjucks.render(template, {
-                    media: {
-                        title: model.get('trackName'),
-                        img: model.get('artworkUrl100'),
-                        mainInformations: [
-                            GetMovieReleaseDateFormatedString(model.get('releaseDate')),
-                            model.get('primaryGenreName'),
-                            GetMovieLengthString(model.get('trackTimeMillis')),
-                            'by ' + model.get('artistName'),
-                            'Rating: <span class="media--ratingLogo">' + model.get('contentAdvisoryRating') + '</span>'
-                        ],
-                        itunesLink: model.get('trackViewUrl'),
-                        youtubeTrailerUrl: 'https://www.youtube.com/embed/zSWdZVtXT7E',
-                        synopsis: model.get('longDescription'),
-                        actors: [
-                            'Matthew McConaughey',
-                            'Ellen Burstyn',
-                            'Mackenzie Foy',
-                            'John Lithgow',
-                            'Timothée Chalamet',
-                            'Anne Hathaway',
-                            'Michael Caine',
-                            'Jessica Chastain',
-                            'Matt Damon',
-                            'Andrew Borba'
-                        ]
+            var html = Nunjucks.render(template, {
+                media: {
+                    title: self.model.get('trackName'),
+                    img: self.model.get('artworkUrl100').replace("100x100", "400x400"),
+                    mainInformations: [
+                        GetMovieReleaseDateFormatedString(self.model.get('releaseDate')),
+                        self.model.get('primaryGenreName'),
+                        GetMovieLengthString(self.model.get('trackTimeMillis')),
+                        'by ' + self.model.get('artistName'),
+                        'Rating: <span class="media--ratingLogo">' + self.model.get('contentAdvisoryRating') + '</span>'
+                    ],
+                    itunesLink: self.model.get('trackViewUrl'),
+                    youtubeTrailerUrl: self.model.get('previewUrl'),
+                    synopsis: self.model.get('longDescription')
                     }
                 });
                 self.$el.html(html);
-            });
-
 
             $('.media--quickActions--button.showTrailerButton', this.el).click(function () {
                 self.showTrailer();

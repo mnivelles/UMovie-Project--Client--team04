@@ -41,8 +41,9 @@ define(function (require) {
 
         showMovie: function(id) {
             console.log('Movie ' + id);
+            id = 960891136;
             movieView.delegateEvents(); // delegate events when the view is recycled
-            movieView.render();
+            movieView.initializeWithId(id);
         },
 
         showTvShow: function(id) {
