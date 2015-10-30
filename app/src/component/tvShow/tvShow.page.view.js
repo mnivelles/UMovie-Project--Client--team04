@@ -5,18 +5,19 @@ define(function (require) {
     var Backbone = require('backbone'),
         $ = require('jquery'),
         Nunjucks = require('nunjucks'),
+        Common = require('/js/common.js'),
         template = 'tvShow.page.nunj.html';
 
-    $.ajaxPrefilter(function (options) {
+    /*$.ajaxPrefilter(function (options) {
         options.url = 'https://umovie.herokuapp.com/unsecure' + options.url;
-    });
+    });*/
 
     var Seasons = Backbone.Collection.extend({
         initialize: function (models, options) {
             this.id = options.id;
         },
         url: function () {
-            return '/tvshows/season/' + this.id
+            return Common.UMOVIE_API_BASE_URL + 'tvshows/season/' + this.id
         },
 
         parse: function (response) {
@@ -29,7 +30,7 @@ define(function (require) {
             this.id = options.id;
         },
         url: function () {
-            return '/tvshows/season/' + this.id + '/episodes'
+            return Common.UMOVIE_API_BASE_URL + 'tvshows/season/' + this.id + '/episodes'
         },
         parse: function (response) {
             return response.results;
