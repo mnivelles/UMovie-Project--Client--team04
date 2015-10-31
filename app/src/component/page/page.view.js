@@ -4,7 +4,7 @@ define(function (require) {
 
     var Backbone = require('backbone'),
         Nunjucks = require('nunjucks'),
-        PageHeaderView  = require('pageHeader.view'),
+        PageHeaderView = require('pageHeader.view'),
         template = 'page.nunj.html';
 
     return Backbone.View.extend({

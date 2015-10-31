@@ -8,7 +8,7 @@ define(function (require) {
     return Backbone.Model.extend({
 
         urlRoot: function () {
-            return Common.UMOVIE_API_BASE_URL + 'movies'
+            return Common.UMOVIE_API_BASE_URL + 'movies';
         },
 
         parse : function(data) {

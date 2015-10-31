@@ -17,20 +17,25 @@ require.config({
         },
         nunjucks: {
             exports: 'nunjucks'
+        },
+        materialize: {
+            deps: [
+                'jquery'
+            ]
         }
     },
 
     paths: {
         backbone: 'lib/backbone',
         jquery: 'lib/jquery',
-        materialize: 'lib/materialize',
+        materialize: 'lib/materialize.amd',
         nunjucks: 'lib/nunjucks-slim',
         slick: 'lib/slick',
         underscore: 'lib/lodash' // superset of underscore with more updates
     }
 });
 
-require(['jquery', 'underscore', 'backbone', 'router'], function ($, _, Backbone, Router) {
+require(['jquery', 'underscore', 'backbone', 'router', 'materialize'], function ($, _, Backbone, Router, Materialize) {
     var router = new Router();
 
     router.on('route', function() {
