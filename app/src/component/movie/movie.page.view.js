@@ -8,6 +8,17 @@ define(function (require) {
         template = 'movie.page.nunj.html',
         MovieModel = require('movie.model');
 
+    function getMovieReleaseDateFormatedString(releaseDate) {
+        return releaseDate.substring(0, releaseDate.indexOf('T'));
+    }
+
+    function getMovieLengthString(lengthInMillis) {
+        var seconds = lengthInMillis / 1000;
+        var minutes = seconds / 60;
+        var hours = minutes / 60;
+        return Math.floor(hours).toString() + 'h' + Math.floor(minutes % 60).toString();
+    }
+
     return Backbone.View.extend({
 
         initializeWithId: function(id) {
@@ -21,11 +32,11 @@ define(function (require) {
             var html = Nunjucks.render(template, {
                 media: {
                     title: self.model.get('trackName'),
-                    img: self.model.get('artworkUrl100').replace("100x100", "400x400"),
+                    img: self.model.get('artworkUrl100').replace('100x100', '400x400'),
                     mainInformations: [
-                        GetMovieReleaseDateFormatedString(self.model.get('releaseDate')),
+                        getMovieReleaseDateFormatedString(self.model.get('releaseDate')),
                         self.model.get('primaryGenreName'),
-                        GetMovieLengthString(self.model.get('trackTimeMillis')),
+                        getMovieLengthString(self.model.get('trackTimeMillis')),
                         'by ' + self.model.get('artistName'),
                         'Rating: <span class="media--ratingLogo">' + self.model.get('contentAdvisoryRating') + '</span>'
                     ],
@@ -44,21 +55,10 @@ define(function (require) {
                 self.toggleMediaSectionParentOfElement($(this));
             });
 
-            //self.hideMediaSectionForSmallScreen();
+            self.hideMediaSectionForSmallScreen();
 
             return this;
         }
     });
 
 });
-
-function GetMovieReleaseDateFormatedString(releaseDate) {
-    return releaseDate.substring(0, releaseDate.indexOf('T'));
-}
-
-function GetMovieLengthString(lengthInMillis) {
-    var seconds = lengthInMillis / 1000;
-    var minutes = seconds / 60;
-    var hours = minutes / 60;
-    return Math.floor(hours).toString() + "h" + Math.floor(minutes % 60).toString();
-}

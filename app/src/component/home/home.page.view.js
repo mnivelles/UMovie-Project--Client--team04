@@ -11,6 +11,7 @@ define(function (require) {
         topMovieCollection = new TopMovieCollection(),
         TopTvShowCollection = require('/js/topTvShow.collection.js'),
         topTvShowCollection = new TopTvShowCollection(),
+        TopListModel = require('/js/topList.model.js'),
         template = 'home.page.nunj.html';
 
     var featuredMedia = [
@@ -61,7 +62,7 @@ define(function (require) {
                 el: $('.template-topMovieCarousel', this.el),
                 collection: topMovieCollection
             });
-            topMovieCollection.fetch().done(function(data) {
+            topMovieCollection.fetch().done(function() {
                 topMovieCarouselView.render();
             });
 
@@ -69,8 +70,71 @@ define(function (require) {
                 el: $('.template-topTvShowCarousel', this.el),
                 collection: topTvShowCollection
             });
-            topTvShowCollection.fetch().done(function(data) {
+            topTvShowCollection.fetch().done(function() {
                 topTvShowCarouselView.render();
+            });
+
+            var topList1 = new TopListModel({
+                query: 'pixar',
+                minItemCount: 3,
+                minFavoriteCount: 2
+            });
+            var topList2 = new TopListModel({
+                query: 'oscar',
+                minItemCount: 3,
+                minFavoriteCount: 2
+            });
+            var topList3 = new TopListModel({
+                query: 'collection',
+                minItemCount: 3,
+                minFavoriteCount: 1
+            });
+            var topList4 = new TopListModel({
+                query: 'science',
+                minItemCount: 3,
+                minFavoriteCount: 1
+            });
+            var topList5 = new TopListModel({
+                query: 'water',
+                minItemCount: 3,
+                minFavoriteCount: 1
+            });
+            var topList6 = new TopListModel({
+                query: 'light',
+                minItemCount: 3,
+                minFavoriteCount: 1
+            });
+            var topList7 = new TopListModel({
+                query: 'earth',
+                minItemCount: 3,
+                minFavoriteCount: 1
+            });
+
+            var topListCollection = [topList1, topList2, topList3, topList4, topList5, topList6, topList7];
+            var listSelectionCarouselView = new MediaCarouselView({
+                el: $('.template-listSelectionCarousel', this.el),
+                collection: topListCollection
+            });
+            topList1.fetch().done(function() {
+                listSelectionCarouselView.render();
+            });
+            topList2.fetch().done(function() {
+                listSelectionCarouselView.render();
+            });
+            topList3.fetch().done(function() {
+                listSelectionCarouselView.render();
+            });
+            topList4.fetch().done(function() {
+                listSelectionCarouselView.render();
+            });
+            topList5.fetch().done(function() {
+                listSelectionCarouselView.render();
+            });
+            topList6.fetch().done(function() {
+                listSelectionCarouselView.render();
+            });
+            topList7.fetch().done(function() {
+                listSelectionCarouselView.render();
             });
 
             return this;

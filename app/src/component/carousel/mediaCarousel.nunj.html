@@ -1,5 +1,11 @@
 <div class="mediaCarousel">
+    {% if media['toJSON'] %}
+        {% set media = media.toJSON() %}
+    {% endif %}
     {% for element in media %}
+        {% if element['toJSON'] %}
+            {% set element = element.toJSON() %}
+        {% endif %}
     <div class="mediaCarousel--element">
         <a href="{{ element.url }}">
             <img src="{{ element.img }}" alt="{{ element.title }}"

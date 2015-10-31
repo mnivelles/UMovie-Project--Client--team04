@@ -16,7 +16,7 @@ define(function (require) {
 
         render: function () {
             var html = Nunjucks.render(template, {
-                media: this.collection.toJSON()
+                media: this.collection
             });
             this.$el.html(html);
 

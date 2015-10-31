@@ -3,7 +3,6 @@ define(function (require) {
     'use strict';
 
     var Backbone = require('backbone'),
-        _ = require('underscore'),
         TopTvShowModel = require('/js/topTvShow.model.js');
 
     var number = 25; // 10, 25, 50, 100
