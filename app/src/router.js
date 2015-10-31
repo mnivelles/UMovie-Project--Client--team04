@@ -34,19 +34,16 @@ define(function (require) {
         },
 
         showActor: function(id) {
-            console.log('Actor ' + id);
             actorView.delegateEvents(); // delegate events when the view is recycled
             actorView.render();
         },
 
         showMovie: function(id) {
-            console.log('Movie ' + id);
             movieView.delegateEvents(); // delegate events when the view is recycled
             movieView.initializeWithId(id);
         },
 
         showTvShow: function(id) {
-            console.log('Tv Show ' + id);
             tvShowView.delegateEvents(); // delegate events when the view is recycled
             tvShowView.render({id:id});
         }
