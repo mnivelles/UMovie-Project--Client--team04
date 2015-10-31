@@ -7,6 +7,8 @@ define(function (require) {
         Nunjucks = require('nunjucks'),
         template = 'movie.page.nunj.html',
         MovieModel = require('movie.model');
+    require('https://apis.google.com/js/client.js?onload=googleApiClientReady');
+
 
     function getMovieReleaseDateFormatedString(releaseDate) {
         return releaseDate.substring(0, releaseDate.indexOf('T'));
@@ -23,11 +25,18 @@ define(function (require) {
 
         initializeWithId: function(id) {
             this.model = new MovieModel({id: id});
-            this.listenTo(this.model, 'change', this.render);
+            this.listenTo(this.model, 'change', this.getMovieInfo);
             this.model.fetch();
         },
 
-        render: function () {
+        getMovieInfo: function() {
+            var self = this;
+            youtubeSearch(this.model.get('trackName'), function(videoUrl){
+                self.render(videoUrl);
+            });
+        },
+
+        render: function (videoUrl) {
             var self = this;
             var html = Nunjucks.render(template, {
                 media: {
@@ -41,7 +50,7 @@ define(function (require) {
                         'Rating: <span class="media--ratingLogo">' + self.model.get('contentAdvisoryRating') + '</span>'
                     ],
                     itunesLink: self.model.get('trackViewUrl'),
-                    youtubeTrailerUrl: self.model.get('previewUrl'),
+                    youtubeTrailerUrl: videoUrl,
                     synopsis: self.model.get('longDescription')
                     }
                 });
