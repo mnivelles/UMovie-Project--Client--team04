@@ -60,6 +60,10 @@ define(function (require) {
                 self.showTrailer();
             });
 
+            $('.media--quickActions--button.watchListButton', this.el).click(function(){
+               self.addMovieToWatchList();
+            });
+
             $('.mediaSection--hideShowButton', this.el).click(function() {
                 self.toggleMediaSectionParentOfElement($(this));
             });
@@ -67,6 +71,10 @@ define(function (require) {
             self.hideMediaSectionForSmallScreen();
 
             return this;
+        },
+
+        addMovieToWatchList: function(){
+            console.log('movie added to watchlist');
         }
     });
 
