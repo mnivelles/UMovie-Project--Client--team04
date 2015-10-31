@@ -17,7 +17,7 @@ define(function (require) {
             this.id = options.id;
         },
         url: function () {
-            return Common.UMOVIE_API_BASE_URL + 'tvshows/season/' + this.id
+            return Common.UMOVIE_API_BASE_URL + 'tvshows/season/' + this.id;
         },
 
         parse: function (response) {
@@ -30,7 +30,7 @@ define(function (require) {
             this.id = options.id;
         },
         url: function () {
-            return Common.UMOVIE_API_BASE_URL + 'tvshows/season/' + this.id + '/episodes'
+            return Common.UMOVIE_API_BASE_URL + 'tvshows/season/' + this.id + '/episodes';
         },
         parse: function (response) {
             return response.results;
@@ -56,7 +56,7 @@ define(function (require) {
                             var html = Nunjucks.render(template, {
                                 media: {
                                     title: self.season.collectionName,
-                                    img: self.season.artworkUrl100.replace("100x100", "400x400"),
+                                    img: self.season.artworkUrl100.replace('100x100', '400x400'),
                                     mainInformations: [
                                         self.season.releaseDate.split('T')[0],
                                         self.season.primaryGenreName
@@ -77,6 +77,8 @@ define(function (require) {
                             $('.mediaSection--hideShowButton', self.$el).click(function () {
                                 self.toggleMediaSectionParentOfElement($(this));
                             });
+
+                            self.hideMediaSectionForSmallScreen();
                         }
                     });
 

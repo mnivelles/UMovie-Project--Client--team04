@@ -1,5 +1,5 @@
 <p align="center">
-  <img height="300" width="300" src="logo-umi-project-github.png" alt="Logo de UMI - ULaval Movie Ima" />
+  <img height="300" width="300" style="max-width:100%;" src="logo-umi-project-github.png" alt="Logo de UMI - ULaval Movie Ima" />
 </p>
 
 #UMI - ULaval Movie Ima (v0.0.0α) par 300 Umi
@@ -187,3 +187,5 @@ Source : [https://scotch.io/tutorials/angularjs-best-practices-directory-structu
 
 ##Attribution de contenus
 * Logo baleine [Fish in circle shape](http://www.flaticon.com/free-icon/fish-in-circle-shape_32631) par [freepik](http://www.freepik.com) de [www.flaticon.com](www.flaticon.com)  
+* [Flux RSS de iTunes](https://rss.itunes.apple.com/us/?urlDesc=) pour le top des films et des saisons de séries télévisées
+* [TheMovieDb](https://www.themoviedb.org/) pour les listes de films populaires
