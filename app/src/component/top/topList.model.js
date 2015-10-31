@@ -22,9 +22,12 @@ define(function (require) {
                     element.favorite_count >= self.get('minFavoriteCount');
             });
             var list = _.sample(result);
+            var image = (list.poster_path) ?
+                imageBaseUrl + list.poster_path + '?api_key=' + Common.TMDB_API_KEY :
+                'http://placehold.it/342x514?text=Void';
             return {
                 title: list.name,
-                img: imageBaseUrl + list.poster_path,// + '?api_key=' + Common.TMDB_API_KEY,
+                img: image,
                 url: '/#' + list.id
             };
         }
