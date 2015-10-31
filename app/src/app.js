@@ -32,6 +32,11 @@ require.config({
 
 require(['jquery', 'underscore', 'backbone', 'router'], function ($, _, Backbone, Router) {
     var router = new Router();
+
+    router.on('route', function() {
+        $(document).scrollTop(0);
+    });
+
     Backbone.history.start({
         pushState: true,
         root: '/'
