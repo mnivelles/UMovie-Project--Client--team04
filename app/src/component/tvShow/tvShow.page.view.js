@@ -8,10 +8,6 @@ define(function (require) {
         Common = require('/js/common.js'),
         template = 'tvShow.page.nunj.html';
 
-    /*$.ajaxPrefilter(function (options) {
-        options.url = 'https://umovie.herokuapp.com/unsecure' + options.url;
-    });*/
-
     var Seasons = Backbone.Collection.extend({
         initialize: function (models, options) {
             this.id = options.id;

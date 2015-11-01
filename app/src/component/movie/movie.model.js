@@ -7,7 +7,9 @@ define(function (require) {
 
     return Backbone.Model.extend({
 
-        urlRoot: function () {
+        idAttribute: 'trackId',
+
+        urlRoot : function () {
             return Common.UMOVIE_API_BASE_URL + 'movies';
         },
 

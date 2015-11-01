@@ -5,6 +5,7 @@ define(function (require) {
     var Backbone = require('backbone'),
         $ = require('jquery'),
         Nunjucks = require('nunjucks'),
+        Common = require('/js/common.js'),
         template = 'movie.page.nunj.html',
         MovieModel = require('movie.model');
     require('https://apis.google.com/js/client.js?onload=googleApiClientReady');
@@ -24,7 +25,7 @@ define(function (require) {
     return Backbone.View.extend({
 
         initializeWithId: function(id) {
-            this.model = new MovieModel({id: id});
+            this.model = new MovieModel({trackId: id});
             this.listenTo(this.model, 'change', this.getMovieInfo);
             this.model.fetch();
         },
@@ -74,7 +75,16 @@ define(function (require) {
         },
 
         addMovieToWatchList: function(){
-            console.log('movie added to watchlist');
+            $.ajax({
+                url: Common.UMOVIE_API_BASE_URL + 'watchlists/5635a50299d4cd0300a10c61/movies',
+                type: 'POST',
+                data: JSON.stringify(this.model.toJSON()),
+                contentType: 'application/json'
+            }).done(function(){
+                console.log('movie added to watchlist');
+            }).fail(function(){
+                console.log('add to watchlist failed');
+            });
         }
     });
 
