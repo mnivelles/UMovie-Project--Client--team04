@@ -5,36 +5,51 @@ define(function (require) {
     var Backbone = require('backbone'),
         $ = require('jquery'),
         Nunjucks = require('nunjucks'),
-        Common = require('/js/common.js'),
-        template = 'tvShow.page.nunj.html';
-
-    var Seasons = Backbone.Collection.extend({
-        initialize: function (models, options) {
-            this.id = options.id;
-        },
-        url: function () {
-            return Common.UMOVIE_API_BASE_URL + 'tvshows/season/' + this.id;
-        },
-
-        parse: function (response) {
-            return response.results;
-        }
-    });
-
-    var Episodes = Backbone.Collection.extend({
-        initialize: function (models, options) {
-            this.id = options.id;
-        },
-        url: function () {
-            return Common.UMOVIE_API_BASE_URL + 'tvshows/season/' + this.id + '/episodes';
-        },
-        parse: function (response) {
-            return response.results;
-        }
-    });
-
+        template = 'tvShow.page.nunj.html',
+        Episodes = require('tvShow.episodes.model'),
+        Seasons = require('tvShow.season.model');
+    require('https://apis.google.com/js/client.js?onload=googleApiClientReady');
 
     return Backbone.View.extend({
+
+
+        getYoutubeTrailer: function() {
+            var self = this;
+            youtubeSearch(self.season.collectionName  + ' trailer', function(videoUrl){
+                var episodes = new Episodes([], {id: self.id});
+                episodes.fetch({
+                    success: function (episodes) {
+                        self.episodes = episodes.toJSON();
+                        var html = Nunjucks.render(template, {
+                            media: {
+                                title: self.season.collectionName,
+                                img: self.season.artworkUrl100.replace('100x100', '400x400'),
+                                mainInformations: [
+                                    self.season.releaseDate.split('T')[0],
+                                    self.season.primaryGenreName
+                                ],
+                                youtubeTrailerUrl: videoUrl,
+                                synopsis: self.season.longDescription,
+                                itunesUrl: self.season.collectionViewUrl,
+
+                                episodes: self.episodes
+                            }
+                        });
+
+                        self.$el.html(html);
+                        $('.media--quickActions--button.showTrailerButton', self.$el).click(function () {
+                            self.showTrailer();
+                        });
+
+                        $('.mediaSection--hideShowButton', self.$el).click(function () {
+                            self.toggleMediaSectionParentOfElement($(this));
+                        });
+
+                        self.hideMediaSectionForSmallScreen();
+                    }
+                });
+            });
+        },
 
         render: function (options) {
             var self = this;
@@ -45,39 +60,7 @@ define(function (require) {
                 success: function (seasons) {
 
                     self.season = seasons.toJSON().shift();
-                    var episodes = new Episodes([], {id: self.id});
-                    episodes.fetch({
-                        success: function (episodes) {
-                            self.episodes = episodes.toJSON();
-                            var html = Nunjucks.render(template, {
-                                media: {
-                                    title: self.season.collectionName,
-                                    img: self.season.artworkUrl100.replace('100x100', '400x400'),
-                                    mainInformations: [
-                                        self.season.releaseDate.split('T')[0],
-                                        self.season.primaryGenreName
-                                    ],
-                                    youtubeTrailerUrl: 'https://www.youtube.com/embed/0HyD3aKFTkA',
-                                    synopsis: self.season.longDescription,
-                                    itunesUrl: self.season.artistViewUrl,
-
-                                    episodes: self.episodes
-                                }
-                            });
-
-                            self.$el.html(html);
-                            $('.media--quickActions--button.showTrailerButton', self.$el).click(function () {
-                                self.showTrailer();
-                            });
-
-                            $('.mediaSection--hideShowButton', self.$el).click(function () {
-                                self.toggleMediaSectionParentOfElement($(this));
-                            });
-
-                            self.hideMediaSectionForSmallScreen();
-                        }
-                    });
-
+                    self.getYoutubeTrailer();
                 }
             });
 
