@@ -55,25 +55,26 @@
 }
 
 .pageMenu--brand {
-    @include col(5/12);
+    @include col(4/12, $offset: 1/12);
 
     @include breakpoint(smalltablet) {
         @include col(4/12, $offset: 1/12);
     }
 
     position: relative;
+    z-index: z("menu") + 1;
 
     a {
         color: hsla(0,100%,100%,1);
     }
 
+    .brand--logo,
+    .brand--name {
+        display: inline-block;
+        vertical-align: top;
+    }
+
     .brand--logo {
-        z-index: z("menu") + 1;
-
-        @include col(4/12, $offset: 2/12);
-
-        position: absolute;
-
         height: 60px;
         width: auto;
 
@@ -87,8 +88,6 @@
     }
 
     .brand--name {
-        @include col(6/12, $offset: 13/24);
-
         height: 40px;
         font-family: "Varela Round", sans-serif;
         font-size: 30px;
@@ -97,13 +96,10 @@
         margin-bottom: 0;
 
         @include breakpoint(phablet) {
-            @include col(7/12, $offset: 10/24);
-
             height: 45px;
             font-size: 35px;
         }
         @include breakpoint(smalltablet) {
-            @include col(8/12, $offset: 11/24);
         }
     }
 }
