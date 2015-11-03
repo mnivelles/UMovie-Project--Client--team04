@@ -55,14 +55,16 @@
 }
 
 .pageMenu--brand {
-    @include col(4/12, $offset: 1/12);
-
-    @include breakpoint(smalltablet) {
-        @include col(4/12, $offset: 1/12);
-    }
-
-    position: relative;
     z-index: z("menu") + 1;
+    position: relative;
+
+    @include col(5/12);
+    height: inherit;
+
+    @include col(4/12, $offset: 1/12);
+    @include breakpoint(smalltablet) {
+
+    }
 
     a {
         color: hsla(0,100%,100%,1);
