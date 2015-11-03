@@ -109,32 +109,23 @@ define(function (require) {
                 minItemCount: 3,
                 minFavoriteCount: 1
             });
+            var topList8 = new TopListModel({
+                query: 'dead',
+                minItemCount: 3,
+                minFavoriteCount: 1
+            });
 
-            var topListCollection = [topList1, topList2, topList3, topList4, topList5, topList6, topList7];
+            var topListCollection = [topList1, topList2, topList3, topList4,
+                topList5, topList6, topList7, topList8];
             var listSelectionCarouselView = new MediaCarouselView({
                 el: $('.template-listSelectionCarousel', this.el),
                 collection: topListCollection
             });
-            topList1.fetch().done(function() {
-                listSelectionCarouselView.render();
-            });
-            topList2.fetch().done(function() {
-                listSelectionCarouselView.render();
-            });
-            topList3.fetch().done(function() {
-                listSelectionCarouselView.render();
-            });
-            topList4.fetch().done(function() {
-                listSelectionCarouselView.render();
-            });
-            topList5.fetch().done(function() {
-                listSelectionCarouselView.render();
-            });
-            topList6.fetch().done(function() {
-                listSelectionCarouselView.render();
-            });
-            topList7.fetch().done(function() {
-                listSelectionCarouselView.render();
+
+            topListCollection.forEach(function(movieList) {
+                movieList.fetch().done(function() {
+                    listSelectionCarouselView.render();
+                });
             });
 
             return this;
