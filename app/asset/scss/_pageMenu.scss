@@ -62,8 +62,8 @@
     height: inherit;
 
     @include col(4/12, $offset: 1/12);
-    @include breakpoint(smalltablet) {
-
+    @include breakpoint(tablet) {
+        @include col(6/24);
     }
 
     a {
@@ -107,14 +107,13 @@
 }
 
 .pageMenu--search {
-
+    background-color: yellow;
     display: none;
 
-    /*
     @include breakpoint(tablet) {
-        display: inline-block;
+        display: block;
+        @include col(11/24);
     }
-    */
 }
 
 .pageMenu--user {
@@ -126,6 +125,10 @@
 
     @include breakpoint(smalltablet) {
         @include col(7/24, $offset: 3/24);
+    }
+
+    @include breakpoint(tablet) {
+        @include col(7/24);
     }
 
     .user--avatarButton,
