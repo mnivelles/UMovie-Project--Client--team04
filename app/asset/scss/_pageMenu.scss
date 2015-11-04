@@ -63,7 +63,7 @@
 
     @include col(4/12, $offset: 1/12);
     @include breakpoint(tablet) {
-        @include col(6/24);
+        @include col(11/48, $offset: 1/48);
     }
 
     a {
@@ -114,6 +114,15 @@
         display: block;
         @include col(11/24);
     }
+
+    @include breakpoint(laptop) {
+        @include col(11/24);
+    }
+
+    @include breakpoint(desktop) {
+        @include col(11/24);
+        background-color: green;
+    }
 }
 
 .pageMenu--user {
@@ -129,6 +138,14 @@
 
     @include breakpoint(tablet) {
         @include col(7/24);
+    }
+
+    @include breakpoint(laptop) {
+        @include col(6/24, $offset: 1/24);
+    }
+
+    @include breakpoint(desktop) {
+        @include col(5/24, $offset: 2/24);
     }
 
     .user--avatarButton,
@@ -157,6 +174,10 @@
         @include breakpoint(phablet) {
             height: 45px;
         }
+
+        @include breakpoint(tablet) {
+            height: 50px;
+        }
     }
 
     .user--watchListButton {
@@ -183,7 +204,7 @@
         @include breakpoint(tablet) {
             height: 50px;
 
-            font-size: 27px;
+            font-size: 25px;
         }
     }
 }
