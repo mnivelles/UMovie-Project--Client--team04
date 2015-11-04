@@ -36,6 +36,10 @@
 
 .search--inputRow {
 
+    @include breakpoint(tablet) {
+        display: none;
+    }
+
     input.inputRow--input {
         @include col(9/12);
 
@@ -52,10 +56,6 @@
 
         @include breakpoint(phablet) {
             @include col(10/12);
-        }
-
-        @include breakpoint(smalltablet) {
-
         }
     }
 
