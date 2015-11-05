@@ -63,7 +63,7 @@
 
     @include col(4/12, $offset: 1/12);
     @include breakpoint(tablet) {
-        @include col(11/48, $offset: 1/48);
+        @include col(13/48, $offset: 1/48);
     }
 
     a {
@@ -116,14 +116,14 @@
 
     @include breakpoint(tablet) {
         display: block;
-        @include col(11/24);
+        @include col(10/24);
     }
 
     input.search--input {
         @include col(18/24);
 
         @include breakpoint(laptop) {
-            @include col(20/24);
+            @include col(19/24);
 
             text-align: center;
         }
@@ -148,7 +148,7 @@
         @include col(3/12);
 
         @include breakpoint(laptop) {
-            @include col(2/12);
+            @include col(5/24);
         }
 
         color: hsla(0,100%,100%,1);

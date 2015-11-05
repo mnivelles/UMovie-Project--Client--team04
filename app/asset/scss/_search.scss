@@ -34,6 +34,32 @@
     }
 }
 
+.search--closeButton {
+    display: none;
+
+    @include breakpoint(tablet) {
+        display: block;
+    }
+
+    position: absolute;
+
+    color: hsla(0,100%,100%,1);
+
+    height: 45px;
+    padding-left: 5px;
+    padding-right: 5px;
+    border: 1px solid hsla(0,100%,100%,.25);
+
+    i {
+        font-size: 35px;
+        vertical-align: middle;
+    }
+
+    &:focus {
+        background-color: transparent;
+    }
+}
+
 .search--inputRow {
 
     @include breakpoint(tablet) {
