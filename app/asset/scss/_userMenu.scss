@@ -15,6 +15,7 @@
     }
 
     @extend .grey, .darken-4;
+    @extend .z-depth-2;
 
     @include cf();
 
@@ -89,8 +90,7 @@
         }
     }
 
-    .rightCol--signoutButton,
-    .rightCol--settingsButton {
+    .rightCol--button {
         padding: 0 10px;
         margin-left: 10px;
         text-align: center;

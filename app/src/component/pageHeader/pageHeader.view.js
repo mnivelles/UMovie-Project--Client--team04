@@ -13,7 +13,11 @@ define(function (require) {
 
         events: {
             'click .pageMenu--searchButton': 'toggleSearch',
-            'click .pageMenu--user .user--avatarButton': 'toggleUserMenu'
+            'click .pageMenu .search--submitButton': 'openSearch',
+            'click .pageMenu--user .user--avatarButton': 'toggleUserMenu',
+            'click .search .search--closeButton': 'closeSearch',
+            'click .search .filterRow--element': 'toggleFilter',
+            'click .userMenu .settingsButton': 'showSettings'
         },
 
         initialize: function () {
@@ -31,6 +35,24 @@ define(function (require) {
         toggleSearch: function() {
             this._toggleUserMenu(true);
             this._toggleSearch(this.searchButton.hasClass(activeClass));
+        },
+
+        openSearch: function() {
+            this._toggleUserMenu(true);
+            this._toggleSearch(false);
+        },
+
+        closeSearch: function() {
+            this._toggleSearch(true);
+        },
+
+        toggleFilter: function(e) {
+            $(e.currentTarget).toggleClass(activeClass);
+        },
+
+        showSettings: function() {
+            this._toggleUserMenu(true);
+            Backbone.history.navigate('settings', true);
         },
 
         _toggleSearch: function(isActive) {

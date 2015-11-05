@@ -28,7 +28,7 @@ define(function (require) {
         manageCarousel: function() {
             $('.mediaCarousel', this.el).slick({
                 infinite: false,
-                arrows: false,
+                arrows: true,
                 speed: 300,
                 slidesToShow: 7.5,
                 slidesToScroll: 7,
