@@ -13,6 +13,7 @@
     }
 
     @extend .indigo, .darken-3;
+    @extend .z-depth-2;
 
     @include cf();
 
