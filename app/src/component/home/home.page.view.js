@@ -16,33 +16,33 @@ define(function (require) {
 
     var featuredMedia = [
         {
-            title: 'The World of Animals',
-            img: 'http://lorempixel.com/650/300/animals',
-            url: '/movies/1'
+            title: 'Wall•E, the Pixar Robot',
+            img: '/image/wall-e--wall-alphacoders-83015.jpg',
+            url: '/movies/286533539'
         },{
-            title: 'Sky Cities',
-            img: 'http://lorempixel.com/g/650/300/city',
-            url: '/tv-shows/1'
+            title: 'Stargate Universe, the True Destiny',
+            img: '/image/stargate-universe--wall-alphacoders-504245.jpg',
+            url: '/tv-shows/323880910'
         },{
-            title: 'Overcrowded Land',
-            img: 'http://lorempixel.com/650/300/people/2',
-            url: '/movies/1'
+            title: 'Her, the Future of Siri',
+            img: '/image/her--wall-alphacoders-548874.jpg',
+            url: '/movies/810314926'
         },{
-            title: 'No Human\'s Planet',
-            img: 'http://lorempixel.com/650/300/nature',
-            url: '/tv-shows/1'
+            title: 'Attack On Titan, Human\'s Last Hope',
+            img: '/image/attack-on-titans--wall-alphacoders-508247.jpg',
+            url: '/tv-shows/659124986'
         },{
-            title: 'Kin Sekai',
-            img: 'http://lorempixel.com/650/300/sports',
-            url: '/movies/1'
+            title: 'The Lord of the Rings Trilogy of Frodo',
+            img: '/image/the-lord-of-the-ring--wall-alphacoders-436308.jpg',
+            url: '/movies/291360661'
         },{
-            title: 'All works',
-            img: 'http://lorempixel.com/g/650/300/business',
-            url: '/tv-shows/1'
+            title: 'Mr Robot, Our Democracy Has Been Hacked',
+            img: '/image/mr-robot--maxresdefault.jpg',
+            url: '/tv-shows/993272008'
         },{
-            title: 'Takoyaki',
-            img: 'http://lorempixel.com/650/300/food',
-            url: '/movies/1'
+            title: 'Matrix Collection, the World Reloaded',
+            img: '/image/the-matrix--wall-alphacoders-151091.jpg',
+            url: '/movies/271469518'
         }
     ];
 
