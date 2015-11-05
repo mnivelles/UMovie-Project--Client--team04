@@ -112,7 +112,7 @@
     }
 
     .filterRow--element {
-        @include col(4/12);
+        @include col(3/12);
 
         @extend .white-text;
 
