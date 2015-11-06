@@ -55,25 +55,28 @@
 }
 
 .pageMenu--brand {
-    @include col(5/12);
-
-    @include breakpoint(smalltablet) {
-        @include col(4/12, $offset: 1/12);
-    }
-
+    z-index: z("menu") + 1;
     position: relative;
+
+    @include col(5/12);
+    height: inherit;
+
+    @include col(4/12, $offset: 1/12);
+    @include breakpoint(tablet) {
+        @include col(13/48, $offset: 1/48);
+    }
 
     a {
         color: hsla(0,100%,100%,1);
     }
 
+    .brand--logo,
+    .brand--name {
+        display: inline-block;
+        vertical-align: top;
+    }
+
     .brand--logo {
-        z-index: z("menu") + 1;
-
-        @include col(4/12, $offset: 2/12);
-
-        position: absolute;
-
         height: 60px;
         width: auto;
 
@@ -87,8 +90,6 @@
     }
 
     .brand--name {
-        @include col(6/12, $offset: 13/24);
-
         height: 40px;
         font-family: "Varela Round", sans-serif;
         font-size: 30px;
@@ -97,26 +98,73 @@
         margin-bottom: 0;
 
         @include breakpoint(phablet) {
-            @include col(7/12, $offset: 10/24);
-
             height: 45px;
             font-size: 35px;
         }
         @include breakpoint(smalltablet) {
-            @include col(8/12, $offset: 11/24);
         }
     }
 }
 
 .pageMenu--search {
-
     display: none;
+    height: inherit;
 
-    /*
+    @extend .indigo, .darken-3;
+
+    border-bottom: 1px solid hsla(0,100%,100%,.7);
+
     @include breakpoint(tablet) {
-        display: inline-block;
+        display: block;
+        @include col(10/24);
     }
-    */
+
+    input.search--input {
+        @include col(18/24);
+
+        @include breakpoint(laptop) {
+            @include col(19/24);
+
+            text-align: center;
+        }
+
+        border-bottom: none;
+
+        &:focus {
+            border-bottom: none;
+            box-shadow: none;
+        }
+
+        font-size: 25px;
+        font-weight: 200;
+        letter-spacing: 0.1em;
+
+        @extend .white-text;
+
+        text-align: center;
+    }
+
+    .search--submitButton {
+        @include col(3/12);
+
+        @include breakpoint(laptop) {
+            @include col(5/24);
+        }
+
+        color: hsla(0,100%,100%,1);
+        font-weight: 300;
+        height: 50px;
+        padding-top: 5px;
+
+        i {
+            transform: rotateY(180deg);
+            font-size: 40px;
+        }
+
+        &:focus {
+            background-color: transparent;
+        }
+    }
 }
 
 .pageMenu--user {
@@ -128,6 +176,18 @@
 
     @include breakpoint(smalltablet) {
         @include col(7/24, $offset: 3/24);
+    }
+
+    @include breakpoint(tablet) {
+        @include col(7/24);
+    }
+
+    @include breakpoint(laptop) {
+        @include col(6/24, $offset: 1/24);
+    }
+
+    @include breakpoint(desktop) {
+        @include col(5/24, $offset: 2/24);
     }
 
     .user--avatarButton,
@@ -156,6 +216,10 @@
         @include breakpoint(phablet) {
             height: 45px;
         }
+
+        @include breakpoint(tablet) {
+            height: 50px;
+        }
     }
 
     .user--watchListButton {
@@ -182,7 +246,7 @@
         @include breakpoint(tablet) {
             height: 50px;
 
-            font-size: 27px;
+            font-size: 25px;
         }
     }
 }

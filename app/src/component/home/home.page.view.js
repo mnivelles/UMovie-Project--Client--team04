@@ -16,33 +16,33 @@ define(function (require) {
 
     var featuredMedia = [
         {
-            title: 'The World of Animals',
-            img: 'http://lorempixel.com/650/300/animals',
-            url: '/movies/1'
+            title: 'Wall•E, the Pixar Robot',
+            img: '/image/wall-e--wall-alphacoders-83015.jpg',
+            url: '/movies/286533539'
         },{
-            title: 'Sky Cities',
-            img: 'http://lorempixel.com/g/650/300/city',
-            url: '/tv-shows/1'
+            title: 'Stargate Universe, the True Destiny',
+            img: '/image/stargate-universe--wall-alphacoders-504245.jpg',
+            url: '/tv-shows/323880910'
         },{
-            title: 'Overcrowded Land',
-            img: 'http://lorempixel.com/650/300/people/2',
-            url: '/movies/1'
+            title: 'Her, the Future of Siri',
+            img: '/image/her--wall-alphacoders-548874.jpg',
+            url: '/movies/810314926'
         },{
-            title: 'No Human\'s Planet',
-            img: 'http://lorempixel.com/650/300/nature',
-            url: '/tv-shows/1'
+            title: 'Attack On Titan, Human\'s Last Hope',
+            img: '/image/attack-on-titans--wall-alphacoders-508247.jpg',
+            url: '/tv-shows/659124986'
         },{
-            title: 'Kin Sekai',
-            img: 'http://lorempixel.com/650/300/sports',
-            url: '/movies/1'
+            title: 'The Lord of the Rings Trilogy of Frodo',
+            img: '/image/the-lord-of-the-ring--wall-alphacoders-436308.jpg',
+            url: '/movies/291360661'
         },{
-            title: 'All works',
-            img: 'http://lorempixel.com/g/650/300/business',
-            url: '/tv-shows/1'
+            title: 'Mr Robot, Our Democracy Has Been Hacked',
+            img: '/image/mr-robot--maxresdefault.jpg',
+            url: '/tv-shows/993272008'
         },{
-            title: 'Takoyaki',
-            img: 'http://lorempixel.com/650/300/food',
-            url: '/movies/1'
+            title: 'Matrix Collection, the World Reloaded',
+            img: '/image/the-matrix--wall-alphacoders-151091.jpg',
+            url: '/movies/271469518'
         }
     ];
 
@@ -109,32 +109,23 @@ define(function (require) {
                 minItemCount: 3,
                 minFavoriteCount: 1
             });
+            var topList8 = new TopListModel({
+                query: 'dead',
+                minItemCount: 3,
+                minFavoriteCount: 1
+            });
 
-            var topListCollection = [topList1, topList2, topList3, topList4, topList5, topList6, topList7];
+            var topListCollection = [topList1, topList2, topList3, topList4,
+                topList5, topList6, topList7, topList8];
             var listSelectionCarouselView = new MediaCarouselView({
                 el: $('.template-listSelectionCarousel', this.el),
                 collection: topListCollection
             });
-            topList1.fetch().done(function() {
-                listSelectionCarouselView.render();
-            });
-            topList2.fetch().done(function() {
-                listSelectionCarouselView.render();
-            });
-            topList3.fetch().done(function() {
-                listSelectionCarouselView.render();
-            });
-            topList4.fetch().done(function() {
-                listSelectionCarouselView.render();
-            });
-            topList5.fetch().done(function() {
-                listSelectionCarouselView.render();
-            });
-            topList6.fetch().done(function() {
-                listSelectionCarouselView.render();
-            });
-            topList7.fetch().done(function() {
-                listSelectionCarouselView.render();
+
+            topListCollection.forEach(function(movieList) {
+                movieList.fetch().done(function() {
+                    listSelectionCarouselView.render();
+                });
             });
 
             return this;

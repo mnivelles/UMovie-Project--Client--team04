@@ -1,13 +1,15 @@
 <div class="search is-hidden">
+    <button class="search--closeButton waves-effect waves-red btn-flat"><i class="mdi-navigation-close"></i></button>
     <div class="search--inputRow">
         <input id="search--input" class="inputRow--input validate" type="text" placeholder="Search..."/>
         <button class="inputRow--submitButton waves-effect waves-green btn-flat">OK</button>
     </div>
     <div class="search--filterRow">
         <div class="filterRow--elementWrapper">
-            <button class="filterRow--element waves-effect waves-light btn-flat">Actors</button>
-            <button class="filterRow--element waves-effect waves-light btn-flat">Movies</button>
-            <button class="filterRow--element waves-effect waves-light btn-flat">Tv Shows</button>
+            <button class="is-active filterRow--element waves-effect waves-light btn-flat">Actors</button>
+            <button class="is-active filterRow--element waves-effect waves-light btn-flat">Movies</button>
+            <button class="is-active filterRow--element waves-effect waves-light btn-flat">Tv Shows</button>
+            <button class="is-active filterRow--element waves-effect waves-light btn-flat">Users</button>
         </div>
     </div>
     <div class="search--result">Result...</div>

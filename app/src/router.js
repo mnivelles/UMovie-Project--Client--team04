@@ -10,6 +10,7 @@ define(function (require) {
         ActorView  = require('actor.page.view'),
         MovieView  = require('movie.page.view'),
         TvShowView = require('tvShow.page.view'),
+        SettingsView = require('settings.page.view'),
 
         $page = $('#page'),
         pageView = new PageView({el: $page}).render(),
@@ -17,7 +18,8 @@ define(function (require) {
         homeView = new HomeView({el: $content}),
         actorView = new ActorView({el : $content}),
         movieView = new MovieView({el : $content}),
-        tvShowView = new TvShowView({el : $content});
+        tvShowView = new TvShowView({el : $content}),
+        settingsView = new SettingsView({el : $content});
 
     return Backbone.Router.extend({
 
@@ -25,7 +27,8 @@ define(function (require) {
             '': 'home',
             'actors/:id': 'showActor',
             'movies/:id': 'showMovie',
-            'tv-shows/:id': 'showTvShow'
+            'tv-shows/:id': 'showTvShow',
+            'settings': 'showSettings'
         },
 
         home: function () {
@@ -46,6 +49,11 @@ define(function (require) {
         showTvShow: function(id) {
             tvShowView.delegateEvents(); // delegate events when the view is recycled
             tvShowView.render({id:id});
+        },
+
+        showSettings: function() {
+            settingsView.delegateEvents();
+            settingsView.render();
         }
 
     });
