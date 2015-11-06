@@ -10,44 +10,64 @@ define(function (require) {
         template = 'watchList.page.nunj.html';
 
     return Backbone.View.extend({
+        initialize: function() {
+            this.watchList = new WatchListModel();
+        },
 
         events: function() {
             return {
                 'click .media--quickActions--button.deleteButton': 'deleteWatchList',
-                'click .media--quickActions--button.editButton': 'editWatchList',
-                'click .unorderedEpisodeList--item .item--deleteButton': 'deleteMovie'
+                'click .media--quickActions--button.renameButton': 'renameWatchList',
+                'click .unorderedEpisodeList--item .item--deleteButton': 'deleteMovie',
+                'click #renameWatchListModal .applyButton': 'submitNewName'
+
             }
         },
 
         render: function(options) {
             var self = this;
 
-            var watchList = new WatchListModel({id: options.id});
+            this.watchList = new WatchListModel({id: options.id});
 
-            watchList.fetch().done(function(data) {
-                var html = Nunjucks.render(template, {
-                    watchList: {
-                        title: data.name,
-                        movies: data.movies
-                    }
-                });
-                self.$el.html(html);
+            this.watchList.fetch({
+                success: function (result) {
+                    var html = Nunjucks.render(template, {
+                        watchList: {
+                            title: result.get('title'),
+                            movies: result.get('simpleMovies')
+                        }
+                    });
+                    self.$el.html(html);
 
-                $('.mediaSection--hideShowButton', this.el).click(function() {
-                    self.toggleMediaSectionParentOfElement($(this));
-                });
+                    $('.mediaSection--hideShowButton', self.el).click(function () {
+                        self.toggleMediaSectionParentOfElement($(this));
+                    });
 
-                self.hideMediaSectionForSmallScreen();
+                    self.hideMediaSectionForSmallScreen();
+                }
             });
 
             return this;
         },
 
-        editWatchList: function() {
+        renameWatchList: function() {
             $('#renameWatchListModal', this.el).openModal();
 
             var watchListTitleInput = $('#watchlist_title', this.el);
             watchListTitleInput.focus();
+        },
+
+        submitNewName: function() {
+            var self = this;
+
+            var newTitle = $('#watchlist_title', this.el).val();
+            this.watchList.set({
+                name: newTitle
+            }).save().done(function() {
+                self.render({
+                    id: self.watchList.id
+                });
+            });
         },
 
         deleteWatchList: function() {
@@ -55,8 +75,20 @@ define(function (require) {
         },
 
         deleteMovie: function(event){
-            console.log('Delete item was clicked')
-
+            var button = event.currentTarget;
+            var movieId = button.attr('data-id');
+            console.log(movieId);
+/*
+            $.ajax({
+                url: Common.UMOVIE_API_BASE_URL + 'watchlists/' + watchlistId + '/movies',
+                type: 'POST',
+                data: JSON.stringify(this.toJSON()),
+                contentType: 'application/json'
+            }).done(function(){
+                console.log('movie added to watchlist');
+            }).fail(function(){
+                console.log('add to watchlist failed');
+            });*/
         }
     });
 
