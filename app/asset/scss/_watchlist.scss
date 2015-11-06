@@ -1,0 +1,53 @@
+$watchList-titleColor: hsla(1,83%,63%,1); //Red.400
+$watchList-titleWeight: 100;
+
+.watchListContent {
+    font-size: 1rem;
+
+    .mediaHeader .mediaHeader--title {
+        color: $watchList-titleColor;
+        font-weight: $watchList-titleWeight;
+        text-align: center;
+
+        font-size: 3em;
+
+        &:first-letter {
+            text-transform: uppercase;
+        }
+    }
+
+    .unorderedEpisodeList--item {
+        position: relative;
+    }
+
+    .unorderedEpisodeList .item--deleteButton {
+        position: absolute;
+        top: -22px;
+        left: -22px;
+
+        height: 44px;
+        width: 44px;
+        border-radius: 50%;
+        padding: 0;
+        padding-left: 11px;
+    }
+}
+
+.watchlist--title {
+    font-weight: $media-titleWeight;
+    color: darkorange;
+
+}
+
+p::first-letter{
+    text-transform: capitalize;
+}
+
+#watchlist--collection--content{
+    border:none;
+}
+
+select{
+    background-color: #1A237E;
+}
+

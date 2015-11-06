@@ -1,0 +1,11 @@
+.modal {
+    @extend .indigo, .darken-3;
+
+    .modal-footer {
+        @extend .indigo;
+
+        .modal-action {
+            color: hsla(0,100%,100%,0.7);
+        }
+    }
+}

@@ -11,6 +11,8 @@ define(function (require) {
         MovieView  = require('movie.page.view'),
         TvShowView = require('tvShow.page.view'),
         SettingsView = require('settings.page.view'),
+        //WatchListIndexView= require ('watchlist.index.page.view'),
+        WatchListView= require ('watchList.page.view'),
 
         $page = $('#page'),
         pageView = new PageView({el: $page}).render(),
@@ -19,7 +21,10 @@ define(function (require) {
         actorView = new ActorView({el : $content}),
         movieView = new MovieView({el : $content}),
         tvShowView = new TvShowView({el : $content}),
-        settingsView = new SettingsView({el : $content});
+        settingsView = new SettingsView({el : $content}),
+        //watchListIndexView= new  WatchListIndexView({el : $content});
+        watchListView= new  WatchListView({el : $content});
+
 
     return Backbone.Router.extend({
 
@@ -28,7 +33,9 @@ define(function (require) {
             'actors/:id': 'showActor',
             'movies/:id': 'showMovie',
             'tv-shows/:id': 'showTvShow',
-            'settings': 'showSettings'
+            'settings': 'showSettings',
+            //'watchlists': 'indexWatchList',
+            'watchlists/:id': 'showWatchList'
         },
 
         home: function () {
@@ -54,7 +61,19 @@ define(function (require) {
         showSettings: function() {
             settingsView.delegateEvents();
             settingsView.render();
+        },
+/*
+        indexWatchList: function(){
+            watchListIndexView.delegateEvents();
+            watchListIndexView.render();
+
+        },*/
+
+        showWatchList: function(id){
+            watchListView.delegateEvents();
+            watchListView.render({id:id});
         }
+
 
     });
 

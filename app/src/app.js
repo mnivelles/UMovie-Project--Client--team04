@@ -47,6 +47,7 @@ require(['jquery', 'underscore', 'backbone', 'router', 'materialize'], function 
         root: '/'
     });
 
+
     // Correction : évite l'utilisation de #/new (etc)
     // de http://artsy.github.io/blog/2012/06/25/replacing-hashbang-routes-with-pushstate/
     $(document).on('click', 'a[href^=\'/\']', function (event) {

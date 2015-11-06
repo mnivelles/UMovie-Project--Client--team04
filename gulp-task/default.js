@@ -38,9 +38,9 @@ gulp.task('build', function(callback) {
 gulp.task('watch', ['build', 'server'], function(callback) {
     runSequence('default:start-watch-message', callback);
 
-    gulp.watch(cte.basePaths.dest + '**/*.*', ['server:reload']).on(['add', 'change', 'unlink'], function(evt) {
-        hlp.changeEvent(evt);
-    });
+    //gulp.watch(cte.basePaths.dest + '**/*.*', ['server:reload']).on(['add', 'change', 'unlink'], function(evt) {
+    //    hlp.changeEvent(evt);
+    //});*/
 
     gulp.watch(cssCte.watchable, ['css']).on(['add', 'change', 'unlink'], function(evt) {
         hlp.changeEvent(evt);
