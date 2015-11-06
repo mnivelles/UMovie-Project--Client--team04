@@ -17,4 +17,21 @@
 
     {{ watchListHelper.watchListMoviesList("Movies", watchList.movies) }}
 
+
+    <!-- Modal Structure -->
+    <div id="renameWatchListModal" class="modal">
+        <div class="modal-content">
+            <h4>Rename watchlist</h4>
+            <div>
+                <div class="input-field">
+                    <input id="watchlist_title" type="text" class="validate" onfocus="this.select();" value="{{ watchList.title }}" />
+                    <label for="watchlist_title">Obvious Title</label>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Apply</a>
+        </div>
+    </div>
+
 </div>

@@ -23,8 +23,8 @@ var vendor = { // TODO en production, il faut utiliser un CDN pour ceux disponib
         cte.basePaths.bower + 'jquery/dist/jquery.js',
         //cte.basePaths.bower + 'materialize/dist/js/materialize.js', // Materialize need jQuery
 
-        // source : https://github.com/max1011/materialize-AMD/blob/master/dist/js/materialize.amd.js
-        // cette version v0.96.1 de materialize fonctionne avec requirejs
+        // source : https://github.com/noodny/materializecss-amd
+        // cette version v0.97.0 de materialize fonctionne avec requirejs
         cte.basePaths.src + 'asset/js/materialize.amd.js',
 
         cte.basePaths.bower + 'slick-carousel/slick/slick.js',

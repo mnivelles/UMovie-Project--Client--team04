@@ -4,23 +4,20 @@ define(function (require) {
 
     var Backbone = require('backbone'),
         Nunjucks = require('nunjucks'),
-        Common = require('/js/common.js'),
+        $ = require('jquery'),
+        Materialize = require('materialize'),
+        WatchListModel = require('/js/watchList.model.js'),
         template = 'watchList.page.nunj.html';
 
-    var WatchListModel = Backbone.Model.extend({
-
-        urlRoot : function () {
-            return Common.UMOVIE_API_BASE_URL + 'watchlists';
-        },
-
-        parse : function(data) {
-            return {
-                movies: data.movies
-            };
-        }
-    });
-
     return Backbone.View.extend({
+
+        events: function() {
+            return {
+                'click .media--quickActions--button.deleteButton': 'deleteWatchList',
+                'click .media--quickActions--button.editButton': 'editWatchList',
+                'click .unorderedEpisodeList--item .item--deleteButton': 'deleteMovie'
+            }
+        },
 
         render: function(options) {
             var self = this;
@@ -28,8 +25,6 @@ define(function (require) {
             var watchList = new WatchListModel({id: options.id});
 
             watchList.fetch().done(function(data) {
-                console.log(data.movies);
-
                 var html = Nunjucks.render(template, {
                     watchList: {
                         title: data.name,
@@ -37,9 +32,31 @@ define(function (require) {
                     }
                 });
                 self.$el.html(html);
+
+                $('.mediaSection--hideShowButton', this.el).click(function() {
+                    self.toggleMediaSectionParentOfElement($(this));
+                });
+
+                self.hideMediaSectionForSmallScreen();
             });
 
             return this;
+        },
+
+        editWatchList: function() {
+            $('#renameWatchListModal', this.el).openModal();
+
+            var watchListTitleInput = $('#watchlist_title', this.el);
+            watchListTitleInput.focus();
+        },
+
+        deleteWatchList: function() {
+            console.log('Inu');
+        },
+
+        deleteMovie: function(event){
+            console.log('Delete item was clicked')
+
         }
     });
 
