@@ -7,6 +7,7 @@ define(function (require) {
         Nunjucks = require('nunjucks'),
         template = 'actor.page.nunj.html',
         Actor = require('actor.model'),
+        Movies = require('actor.movies.model'),
         imageSearch = require('TMDbImageSearch');
     require('https://apis.google.com/js/client.js?onload=googleApiClientReady');
 
@@ -19,16 +20,24 @@ define(function (require) {
                 success: function(result){
                     var actor = result.toJSON();
                     imageSearch(actor.artistName, function(imageUrl){
-                        self.display(
-                            {
-                                name : actor.artistName,
-                                primaryGenre : actor.primaryGenreName,
-                                iTunesLink : actor.artistLinkUrl,
-                                imageUrl : imageUrl
+
+                        var movies = new Movies(id);
+                        movies.fetch({
+                            success : function(movies){
+                                self.display(
+                                    {
+                                        name : actor.artistName,
+                                        primaryGenre : actor.primaryGenreName,
+                                        iTunesLink : actor.artistLinkUrl,
+                                        imageUrl : imageUrl,
+                                        movies : movies.toJSON()
+                                    }
+                                );
+
+                                $('.mediaSection--hideShowButton', self.el).click(function() {
+                                    self.toggleMediaSectionParentOfElement($(this));
+                                });
                             }
-                        );
-                        $('.mediaSection--hideShowButton', self.el).click(function() {
-                            self.toggleMediaSectionParentOfElement($(this));
                         });
                     });
                 }
@@ -46,6 +55,7 @@ define(function (require) {
                         'Primary genre : ' + options.primaryGenre
                     ],
                     itunesLink: options.iTunesLink,
+                    movies : options.movies
                 }
             });
             self.$el.html(html);

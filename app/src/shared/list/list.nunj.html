@@ -23,3 +23,30 @@
 {% endmacro %}
 
 
+{% macro unorderedMoviesList(movies) %}
+    <ul class="unorderedMoviesList">
+        {% for movie in movies %}
+            <li class="unorderedMoviesList--item">
+                <div class="actor--movie-entry">
+                    <div class="actor--movie-poster-title">
+                        <div class="actor--movie-title">{{ movie.trackName }}</div>
+                        <img class="actor--movie-poster" src="{{ movie.artworkUrl100.replace('100x100','400x400') }}">
+                    </div>
+                    <div class="actor--trailer">
+                        <div class="media--remaining--element">
+                            <div class="media--subTitle">
+                                <div class="actor--trailer-tag">Trailer</div>
+                                <button class="media--subTitle--hideShowButton waves-effect waves-red btn-flat">
+                                    <i class="mdi-hardware-keyboard-arrow-up"></i></button>
+                            </div>
+                            <div class="media--subContent">
+                                <iframe class="actor--video" frameborder="0" allowfullscreen src="https://www.youtube.com/embed/2m9IFlz2iYo"></iframe>
+                            </div>
+                        </div>
+                        <p> Released date : {{ movie.releaseDate.substring(0, 10) }}</p>
+                    </div>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+{% endmacro %}

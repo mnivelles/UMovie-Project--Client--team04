@@ -63,3 +63,9 @@
 {% endmacro %}
 
 
+
+{% macro actorMoviesSection(title, movies) %}
+    {% import "list.nunj.html" as list %}
+
+    {{ section(title, list.unorderedMoviesList(movies)) }}
+{% endmacro %}
