@@ -55,14 +55,15 @@ define(function (require) {
                     synopsis: self.model.get('longDescription')
                     }
                 });
-                self.$el.html(html);
+
+            self.$el.html(html);
 
             $('.media--quickActions--button.showTrailerButton', this.el).click(function () {
                 self.showTrailer();
             });
 
             $('.media--quickActions--button.watchListButton', this.el).click(function(){
-               self.addMovieToWatchList();
+               self.model.addToWatchList('563ca093a9547c030068098b');
             });
 
             $('.mediaSection--hideShowButton', this.el).click(function() {
@@ -72,20 +73,6 @@ define(function (require) {
             self.hideMediaSectionForSmallScreen();
 
             return this;
-        },
-
-        addMovieToWatchList: function(){
-            $.ajax({
-                url: Common.UMOVIE_API_BASE_URL + 'watchlists/5635a50299d4cd0300a10c61/movies',
-                type: 'POST',
-                data: JSON.stringify(this.model.toJSON()),
-                contentType: 'application/json'
-            }).done(function(){
-                console.log('movie added to watchlist');
-            }).fail(function(){
-                console.log('add to watchlist failed');
-            });
         }
     });
-
 });
