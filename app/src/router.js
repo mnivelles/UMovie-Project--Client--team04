@@ -9,6 +9,8 @@ define(function (require) {
         ActorView  = require('actor.page.view'),
         MovieView  = require('movie.page.view'),
         TvShowView = require('tvShow.page.view'),
+        WatchlistView = require('watchlist.page.view'),
+        WatchListItemView = require('watchlist.view'),
 
         $page = $('#page'),
         pageView = new PageView({el: $page}).render(),
@@ -16,7 +18,9 @@ define(function (require) {
         homeView = new HomeView({el: $content}),
         actorView = new ActorView({el : $content}),
         movieView = new MovieView({el : $content}),
-        tvShowView = new TvShowView({el : $content});
+        tvShowView = new TvShowView({el : $content}),
+        watchlistView = new WatchlistView ({el : $content}),
+        watchListItem= new WatchListItemView ({el : $content});
 
     return Backbone.Router.extend({
 
@@ -24,12 +28,15 @@ define(function (require) {
             "": "home",
             "actors/:id": "showActor",
             "movies/:id": "showMovie",
-            "tv-shows/:id": "showTvShow"
+            "tv-shows/:id": "showTvShow",
+            "watchlists": "getWatchLists",
+            "watchlists/:id": "showWatchList"
         },
 
         home: function () {
             homeView.delegateEvents(); // delegate events when the view is recycled
             homeView.render();
+
         },
 
         showActor: function(id) {
@@ -45,7 +52,21 @@ define(function (require) {
         showTvShow: function(id) {
             tvShowView.delegateEvents(); // delegate events when the view is recycled
             tvShowView.render();
+        },
+
+        getWatchLists: function(id) {
+            watchlistView.delegateEvents(); // delegate events when the view is recycled
+            watchlistView.render({id:id}); // remove id:id?
+
+
+        },
+        showWatchList: function(id) {
+            watchListItem.delegateEvents(); // delegate events when the view is recycled
+            watchListItem.render({id:id});
+
+
         }
+
 
     });
 

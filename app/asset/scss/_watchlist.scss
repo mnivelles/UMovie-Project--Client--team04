@@ -1,0 +1,27 @@
+.watchlist--title {
+    font-weight: $media-titleWeight;
+    color: darkorange;
+
+}
+
+p::first-letter{
+    text-transform: capitalize;
+}
+
+#watchlist--collection--content{
+    border:none;
+}
+
+.watchlist--header-title{
+    text-align:center;
+    font-weight: $media-titleWeight;
+    color: darkorange;
+    text-transform:uppercase;
+
+
+}
+
+select{
+    background-color: #1A237E;
+}
+

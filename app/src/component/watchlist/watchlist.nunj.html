@@ -1,0 +1,40 @@
+<div class="watchlist--page">
+    {% import "helper.media.nunj.html" as mediaHelper %}
+
+<div class="watchlist--header-title"> <h1>rosewood</h1></div>
+
+
+    <section  class="media--quickActions">
+
+        <button id="addTvShow" class="media--quickActions--button createWatchlistButton waves-effect waves-light btn-large red"><i
+                class="mdi-av-queue left"></i> ADD Tv Show
+        </button>
+
+    </section>
+
+        {{ mediaHelper.seasonSection("TV Show watchlist", media.episodes) }}
+
+    <section  class="media--quickActions">
+
+        <button id="addMovie" class="media--quickActions--button createWatchlistButton waves-effect waves-light btn-large red"><i
+                class="mdi-av-queue left"></i> ADD Movies
+        </button>
+        <div class="add-component" hidden="hidden">
+
+            <label> Select the movie of your choice </label>
+            {{ mediaHelper.moviesOption(movies) }}
+           <!-- <select class="browser-default">
+                <option value="" disabled selected>Choose your option</option>
+                <option value="Comedy">Comedy</option>
+                <option value="2">Adventure</option>
+                <option value="3">Action</option>
+            </select>-->
+
+        </div>
+
+    </section>
+
+
+    {{ mediaHelper.seasonSectionWatchlists("Movies watchlist", media.episodes) }}
+
+</div>

@@ -21,3 +21,21 @@
         {% endfor %}
     </ul>
 {% endmacro %}
+
+{% macro unorderedEpisodesWatchLists(episodes) %}
+    <ul class="unorderedEpisodeList">
+        {% for episode in episodes %}
+            <li class="unorderedEpisodeList--item">
+                <div class="item--thumbnail">
+                    <img src="{{ episode.img }}" alt="{{ episode.title }}"/>
+                </div>
+                <div class="item--title"><span class="episode--number">{{ episode.trackId }}.</span> {{ episode.title }}
+                    <span class="episode--ratingLogo">{{ episode.rating }}</span></div>
+                <div><a class="waves-effect waves-light btn green darken-2" id="btn-large"><i class="mdi-av-play-arrow"> </i> </a></div>
+                <!--<div><a class="waves-effect waves-light btn red lighten-1" id="btn-delete"><i class="mdi-action-delete"> </i> </a></div>-->
+            </li>
+        {% endfor %}
+    </ul>
+{% endmacro %}
+
+
