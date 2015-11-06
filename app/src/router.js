@@ -45,7 +45,7 @@ define(function (require) {
 
         showActor: function(id) {
             actorView.delegateEvents(); // delegate events when the view is recycled
-            actorView.render();
+            actorView.render(id);
         },
 
         showMovie: function(id) {

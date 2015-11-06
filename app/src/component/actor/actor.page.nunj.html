@@ -6,15 +6,11 @@
         {{ mediaHelper.header(media.title, media.img, media.mainInformations) }}
 
         <section class="media--quickActions">
-            <a class="media--quickActions--button waves-effect waves-light btn-large red" target="_blank"
-               href="http://www.imdb.com/name/nm0000190/"><i class="mdi-action-info-outline left"></i> IMDB</a>
             <a class="media--quickActions--button imageButton" target="_blank"
-               href="https://geo.itunes.apple.com/us/podcast/matthew-mcconaughey-jared/id811331249?mt=2">
+               href={{media.itunesLink}}>
                 <img src="/image/get-on-itunes-badge-en_US-138x50.png">
             </a>
         </section>
-
-        {{ mediaHelper.paragraphSection("Biography", media.biography) }}
 
         <section class="mediaSection">
             <div class="mediaSection--titleContainer">
