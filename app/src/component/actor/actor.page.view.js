@@ -6,7 +6,7 @@ define(function (require) {
         $ = require('jquery'),
         Nunjucks = require('nunjucks'),
         template = 'actor.page.nunj.html',
-        ActorModel = require('actor.model'),
+        Actor = require('actor.model'),
         imageSearch = require('TMDbImageSearch');
     require('https://apis.google.com/js/client.js?onload=googleApiClientReady');
 
@@ -14,32 +14,38 @@ define(function (require) {
 
         render: function (id) {
             var self = this;
-            var actor = new ActorModel({artistId:id});
+            var actor = new Actor({artistId:id});
             actor.fetch({
                 success: function(result){
-                    self.actor = result.toJSON();
-                    imageSearch(self.actor.artistName, function(imageUrl){
-                        self.display(imageUrl);
+                    var actor = result.toJSON();
+                    imageSearch(actor.artistName, function(imageUrl){
+                        self.display(
+                            {
+                                name : actor.artistName,
+                                primaryGenre : actor.primaryGenreName,
+                                iTunesLink : actor.artistLinkUrl,
+                                imageUrl : imageUrl
+                            }
+                        );
                         $('.mediaSection--hideShowButton', self.el).click(function() {
                             self.toggleMediaSectionParentOfElement($(this));
                         });
-                        //this.hideMediaSectionForSmallScreen();
                     });
                 }
             });
             return this;
         },
 
-        display: function(imageUrl){
+        display: function(options){
             var self = this;
             var html = Nunjucks.render(template, {
                 media: {
-                    title: self.actor.artistName,
-                    img: imageUrl,
+                    title: options.name,
+                    img: options.imageUrl,
                     mainInformations: [
-                        'Primary genre : ' + self.actor.primaryGenreName
+                        'Primary genre : ' + options.primaryGenre
                     ],
-                    itunesLink: self.actor.artistLinkUrl,
+                    itunesLink: options.iTunesLink,
                 }
             });
             self.$el.html(html);
