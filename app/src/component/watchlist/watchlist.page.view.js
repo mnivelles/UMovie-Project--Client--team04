@@ -5,7 +5,7 @@ define(function (require) {
     var Backbone = require('backbone'),
         Nunjucks = require('nunjucks'),
         $ = require('jquery'),
-        Materialize = require('materialize'),
+        Common = require('/js/common.js'),
         WatchListModel = require('/js/watchList.model.js'),
         template = 'watchList.page.nunj.html';
 
@@ -75,20 +75,22 @@ define(function (require) {
         },
 
         deleteMovie: function(event){
-            var button = event.currentTarget;
+            var self = this;
+            var button = $(event.currentTarget);
             var movieId = button.attr('data-id');
-            console.log(movieId);
-/*
+
+
             $.ajax({
-                url: Common.UMOVIE_API_BASE_URL + 'watchlists/' + watchlistId + '/movies',
-                type: 'POST',
-                data: JSON.stringify(this.toJSON()),
-                contentType: 'application/json'
+                url: Common.UMOVIE_API_BASE_URL + 'watchlists/' + self.watchList.id + '/movies/' + movieId,
+                type: 'DELETE'
             }).done(function(){
-                console.log('movie added to watchlist');
+                console.log('Movie ' + movieId + ' deleted');
+                self.render({
+                    id: self.watchList.id
+                });
             }).fail(function(){
-                console.log('add to watchlist failed');
-            });*/
+                console.log('Fail to remove Movie ' + movieId);
+            });
         }
     });
 
