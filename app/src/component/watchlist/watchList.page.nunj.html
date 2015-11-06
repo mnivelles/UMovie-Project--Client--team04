@@ -1,0 +1,20 @@
+<div class="watchListContent">
+
+    <header class="mediaHeader">
+        <h2 class="mediaHeader--title">{{ watchList.title }}</h2>
+    </header>
+
+    <div class="media">
+        <section class="media--quickActions">
+            <button class="media--quickActions--button deleteButton waves-effect waves-light btn-large red darken-2"><i class="mdi-action-delete left"></i> Delete
+            </button>
+            <button class="media--quickActions--button editButton waves-effect waves-light btn-large green darken-1"><i class="mdi-image-edit left"></i> Edit
+            </button>
+        </section>
+    </div>
+
+    {% import "helper.watchList.nunj.html" as watchListHelper %}
+
+    {{ watchListHelper.watchListMoviesList("Movies", watchList.movies) }}
+
+</div>

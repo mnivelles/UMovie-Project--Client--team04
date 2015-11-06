@@ -4,6 +4,8 @@
 
 define(function (require) {
 
+    'use strict';
+
     var WatchListModel= require('watchlist.model');
 
     return Backbone.Collection.extend({
