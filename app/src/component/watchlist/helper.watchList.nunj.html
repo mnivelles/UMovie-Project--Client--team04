@@ -4,11 +4,11 @@
     <ul class="unorderedEpisodeList">
         {% for movie in movies %}
             <li class="unorderedEpisodeList--item">
-                <button class="item--deleteButton waves-effect waves-light btn red darken-2"><i class="mdi-action-delete left"></i></button>
+                <button data-id="{{ movie.id }}" class="item--deleteButton waves-effect waves-light btn red darken-2"><i class="mdi-action-delete left"></i></button>
                 <div class="item--thumbnail">
-                    <img src="{{ movie.artworkUrl100 }}" alt="{{ movie.trackName }}"/>
+                    <img src="{{ movie.poster }}" alt="{{ movie.title }}"/>
                 </div>
-                <div class="item--title">{{ movie.trackName }}</div>
+                <div class="item--title">{{ movie.title }}</div>
             </li>
         {% endfor %}
     </ul>

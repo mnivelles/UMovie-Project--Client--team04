@@ -3,7 +3,9 @@ define(function (require) {
     'use strict';
 
     var Backbone = require('backbone'),
+        _ = require('underscore'),
         Common = require('/js/common.js');
+
 
     return Backbone.Model.extend({
 
@@ -12,8 +14,25 @@ define(function (require) {
         },
 
         parse : function(data) {
+            var movies = _.map(data.movies, function(movie) {
+                var poster = movie.artworkUrl100;
+
+                if (poster) {
+                    poster = poster.replace('100x100', '400x400');
+                } else {
+                    poster = 'http://placehold.it/342x514?text=Void'
+                }
+                return {
+                    id: movie.trackId,
+                    poster: poster,
+                    title: movie.trackName
+                }
+            });
             return {
-                movies: data.movies
+                id: data.id,
+                title: data.name,
+                movies: data.movies,
+                simpleMovies: movies
             };
         }
     });
