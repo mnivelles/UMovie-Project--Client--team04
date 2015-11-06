@@ -1,13 +1,21 @@
 define(function (require) {
 
-    "use strict";
+    'use strict';
 
-    var template = 'mediaCarousel.nunj.html';
+    var Backbone = require('backbone'),
+        $ = require('jquery'),
+        slick = require('slick'),
+        Nunjucks = require('nunjucks'),
+        template = 'mediaCarousel.nunj.html';
 
     return Backbone.View.extend({
 
+        initialize: function() {
+
+        },
+
         render: function () {
-            var html = nunjucks.render(template, {
+            var html = Nunjucks.render(template, {
                 media: this.collection
             });
             this.$el.html(html);
@@ -20,7 +28,7 @@ define(function (require) {
         manageCarousel: function() {
             $('.mediaCarousel', this.el).slick({
                 infinite: false,
-                arrows: false,
+                arrows: true,
                 speed: 300,
                 slidesToShow: 7.5,
                 slidesToScroll: 7,

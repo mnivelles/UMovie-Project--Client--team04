@@ -5,6 +5,7 @@
 @import "animate";
 
 @import "breakpoint";
+@import "zIndex";
 
 // TODO activer et désactiver à sa guise
 //@include edit(); // /!\ Créée un fond gris utile pour les tests
@@ -13,7 +14,7 @@
     Base
 */
 $bodyColor: hsla(0,100%,100%,.65);
-$standardSectionTitleColor: hsla(36,100%,50%,1); //Orange.500
+$standardSectionTitleColor: color("orange", "base");
 $standardSectionTitleWeight: 100;
 
 
@@ -79,13 +80,12 @@ p {
     @include center(1024px);
 }
 
-
-
-
 @import "pageHeader";
 @import "pageContent";
 @import "pageMenu";
 @import "pageFooter";
+@import "search";
+@import "userMenu";
 @import "selectionSection";
 @import "media";
 @import "actor";

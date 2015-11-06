@@ -43,6 +43,10 @@ var config = {
 var normalConfig = Object.create(config);
 var gulpConfig = Object.create(config);
 
+normalConfig.globals = {
+    'define': false
+};
+
 gulpConfig.globals = {
     'module': false,
     'require': false,

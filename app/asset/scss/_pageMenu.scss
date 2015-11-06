@@ -1,15 +1,273 @@
+/*------------------------------------*\
+    ##PAGE_MENU
+\*------------------------------------*/
 .pageMenu {
 
-}
+    z-index: z("menu");
 
-.pageMenu--item {
-    @include stack($align: center);
+    @extend .indigo, .darken-4;
+    @extend .z-depth-2;
+
+    font-size: 1.1rem;
+
+    @include cf();
+
+    height: 40px;
 
     @include breakpoint(phablet) {
-        @include col(6/12);
+        height: 45px;
     }
 
     @include breakpoint(tablet) {
-        @include col(4/12);
+        height: 50px;
+    }
+}
+
+.pageMenu--searchButton {
+    @include col(2/12);
+
+    color: hsla(0,100%,100%,1);
+
+    i {
+        font-size: 30px;
+        vertical-align: middle;
+    }
+
+    &:focus {
+        background-color: transparent;
+    }
+
+    height: 40px;
+    padding: 0;
+    text-align: center;
+
+    @include breakpoint(phablet) {
+        height: 45px;
+
+        i {
+            font-size: 35px;
+        }
+    }
+
+    @include breakpoint(tablet) {
+        display: none;
+    }
+}
+
+.pageMenu--brand {
+    z-index: z("menu") + 1;
+    position: relative;
+
+    @include col(5/12);
+    height: inherit;
+
+    @include col(4/12, $offset: 1/12);
+    @include breakpoint(tablet) {
+        @include col(13/48, $offset: 1/48);
+    }
+
+    a {
+        color: hsla(0,100%,100%,1);
+    }
+
+    .brand--logo,
+    .brand--name {
+        display: inline-block;
+        vertical-align: top;
+    }
+
+    .brand--logo {
+        height: 60px;
+        width: auto;
+
+        @include breakpoint(phablet) {
+            height: 65px;
+        }
+
+        @include breakpoint(tablet) {
+            height: 75px;
+        }
+    }
+
+    .brand--name {
+        height: 40px;
+        font-family: "Varela Round", sans-serif;
+        font-size: 30px;
+        padding-top: 5px;
+        margin-top: 0;
+        margin-bottom: 0;
+
+        @include breakpoint(phablet) {
+            height: 45px;
+            font-size: 35px;
+        }
+        @include breakpoint(smalltablet) {
+        }
+    }
+}
+
+.pageMenu--search {
+    display: none;
+    height: inherit;
+
+    @extend .indigo, .darken-3;
+
+    border-bottom: 1px solid hsla(0,100%,100%,.7);
+
+    @include breakpoint(tablet) {
+        display: block;
+        @include col(10/24);
+    }
+
+    input.search--input {
+        @include col(18/24);
+
+        @include breakpoint(laptop) {
+            @include col(19/24);
+
+            text-align: center;
+        }
+
+        border-bottom: none;
+
+        &:focus {
+            border-bottom: none;
+            box-shadow: none;
+        }
+
+        font-size: 25px;
+        font-weight: 200;
+        letter-spacing: 0.1em;
+
+        @extend .white-text;
+
+        text-align: center;
+    }
+
+    .search--submitButton {
+        @include col(3/12);
+
+        @include breakpoint(laptop) {
+            @include col(5/24);
+        }
+
+        color: hsla(0,100%,100%,1);
+        font-weight: 300;
+        height: 50px;
+        padding-top: 5px;
+
+        i {
+            transform: rotateY(180deg);
+            font-size: 40px;
+        }
+
+        &:focus {
+            background-color: transparent;
+        }
+    }
+}
+
+.pageMenu--user {
+    @include col(5/12);
+
+    @include breakpoint(phablet) {
+        @include col(4/12, $offset: 1/12);
+    }
+
+    @include breakpoint(smalltablet) {
+        @include col(7/24, $offset: 3/24);
+    }
+
+    @include breakpoint(tablet) {
+        @include col(7/24);
+    }
+
+    @include breakpoint(laptop) {
+        @include col(6/24, $offset: 1/24);
+    }
+
+    @include breakpoint(desktop) {
+        @include col(5/24, $offset: 2/24);
+    }
+
+    .user--avatarButton,
+    .user--watchListButton {
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    .user--avatarButton {
+        height: 40px;
+        width: auto;
+        margin: 0;
+        padding: 0;
+        border: none;
+        background-color: hsla(0,0,87%,1);
+
+        .avatarButton--image {
+            height: inherit;
+            width: auto;
+
+            &:hover {
+                opacity: .5;
+            }
+        }
+
+        @include breakpoint(phablet) {
+            height: 45px;
+        }
+
+        @include breakpoint(tablet) {
+            height: 50px;
+        }
+    }
+
+    .user--watchListButton {
+        padding: 0;
+        margin-left: 10px;
+        height: 40px;
+        text-align: center;
+
+        color: hsla(0,100%,100%,1);
+        font-size: 17px;
+        font-weight: 300;
+
+        &:focus {
+            background-color: transparent;
+        }
+
+
+        @include breakpoint(phablet) {
+            height: 45px;
+
+            font-size: 22px;
+        }
+
+        @include breakpoint(tablet) {
+            height: 50px;
+
+            font-size: 25px;
+        }
+    }
+}
+
+.pageMenu--searchButton.is-active {
+    i {
+        @extend .mdi-navigation-close;
+    }
+}
+
+.pageMenu--user .user--avatarButton {
+    .defaultImage {
+        display: none;
+    }
+
+    &.is-active {
+        .defaultImage {
+            display: inline;
+        }
+        .userImage {
+            display: none;
+        }
     }
 }

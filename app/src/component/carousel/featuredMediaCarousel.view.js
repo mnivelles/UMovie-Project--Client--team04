@@ -1,13 +1,17 @@
 define(function (require) {
 
-    "use strict";
+    'use strict';
 
-    var template = 'featuredMediaCarousel.nunj.html';
+    var Backbone = require('backbone'),
+        $ = require('jquery'),
+        slick = require('slick'),
+        Nunjucks = require('nunjucks'),
+        template = 'featuredMediaCarousel.nunj.html';
 
     return Backbone.View.extend({
 
         render: function () {
-            var html = nunjucks.render(template, {
+            var html = Nunjucks.render(template, {
                 featuredMedia: this.collection
             });
             this.$el.html(html);

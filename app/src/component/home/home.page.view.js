@@ -1,167 +1,55 @@
 define(function (require) {
 
-    "use strict";
+    'use strict';
 
-    var FeaturedMediaCarouselView = require('/js/featuredMediaCarousel.view.js'),
+    var Backbone = require('backbone'),
+        $ = require('jquery'),
+        Nunjucks = require('nunjucks'),
+        FeaturedMediaCarouselView = require('/js/featuredMediaCarousel.view.js'),
         MediaCarouselView = require('/js/mediaCarousel.view.js'),
+        TopMovieCollection = require('/js/topMovie.collection.js'),
+        topMovieCollection = new TopMovieCollection(),
+        TopTvShowCollection = require('/js/topTvShow.collection.js'),
+        topTvShowCollection = new TopTvShowCollection(),
+        TopListModel = require('/js/topList.model.js'),
         template = 'home.page.nunj.html';
 
     var featuredMedia = [
         {
-            title: 'The World of Animals',
-            img: 'http://lorempixel.com/650/300/animals',
-            url: '/movies/1'
+            title: 'Wall•E, the Pixar Robot',
+            img: '/image/wall-e--wall-alphacoders-83015.jpg',
+            url: '/movies/286533539'
         },{
-            title: 'Sky Cities',
-            img: 'http://lorempixel.com/g/650/300/city',
-            url: '/tv-shows/1'
+            title: 'Stargate Universe, the True Destiny',
+            img: '/image/stargate-universe--wall-alphacoders-504245.jpg',
+            url: '/tv-shows/323880910'
         },{
-            title: 'Overcrowded Land',
-            img: 'http://lorempixel.com/650/300/people/2',
-            url: '/movies/1'
+            title: 'Her, the Future of Siri',
+            img: '/image/her--wall-alphacoders-548874.jpg',
+            url: '/movies/810314926'
         },{
-            title: 'No Human\'s Planet',
-            img: 'http://lorempixel.com/650/300/nature',
-            url: '/tv-shows/1'
+            title: 'Attack On Titan, Human\'s Last Hope',
+            img: '/image/attack-on-titans--wall-alphacoders-508247.jpg',
+            url: '/tv-shows/659124986'
         },{
-            title: 'Kin Sekai',
-            img: 'http://lorempixel.com/650/300/sports',
-            url: '/movies/1'
+            title: 'The Lord of the Rings Trilogy of Frodo',
+            img: '/image/the-lord-of-the-ring--wall-alphacoders-436308.jpg',
+            url: '/movies/291360661'
         },{
-            title: 'All works',
-            img: 'http://lorempixel.com/g/650/300/business',
-            url: '/tv-shows/1'
+            title: 'Mr Robot, Our Democracy Has Been Hacked',
+            img: '/image/mr-robot--maxresdefault.jpg',
+            url: '/tv-shows/993272008'
         },{
-            title: 'Takoyaki',
-            img: 'http://lorempixel.com/650/300/food',
-            url: '/movies/1'
-        }
-    ];
-
-    var newMovies = [
-        {
-            title: 'Interstellar',
-            img: '/image/interstellar.jpg',
-            url: '/movies/1'
-        },{
-            title: 'Big Hero 6',
-            img: '/image/bighero6.jpg',
-            url: '/movies/1'
-        },{
-            title: 'Kill Bill Vol. 1',
-            img: '/image/killbill.jpg',
-            url: '/movies/1'
-        },{
-            title: 'Up',
-            img: '/image/up.jpg',
-            url: '/movies/1'
-        },{
-            title: 'Batman Begins',
-            img: '/image/batman.jpg',
-            url: '/movies/1'
-        },{
-            title: 'The Imitation Game',
-            img: '/image/theimitationgame.jpg',
-            url: '/movies/1'
-        },{
-            title: 'Lord of the Rings: The Return of the King',
-            img: '/image/lotr.jpg',
-            url: '/movies/1'
-        },{
-            title: 'Star Trek: Into Darkness',
-            img: '/image/startrek.jpg',
-            url: '/movies/1'
-        },{
-            title: 'Forrest Gump',
-            img: '/image/forestgump.jpg',
-            url: '/movies/1'
-        },{
-            title: 'Mad Max: Fury Road',
-            img: '/image/madmax.jpg',
-            url: '/movies/1'
-        },{
-            title: 'Jurassic World',
-            img: '/image/jurrassicworld.jpg',
-            url: '/movies/1'
-        },{
-            title: 'Inside Out',
-            img: '/image/insideout.jpg',
-            url: '/movies/1'
-        },{
-            title: 'Avengers: Age of Ultron',
-            img: '/image/avengers.jpg',
-            url: '/movies/1'
-        },{
-            title: 'Mission Impossible: Rogue Nation',
-            img: '/image/missionimpossible.jpg',
-            url: '/movies/1'
-        },{
-            title: 'Pawn Sacrifice',
-            img: '/image/pawnsacrifice.jpg',
-            url: '/movies/1'
-        }
-    ];
-
-    var newTVShow = [
-        {
-            title: 'Abstract',
-            img: 'http://lorempixel.com/340/510/abstract',
-            url: '/tv-shows/1'
-        },{
-            title: 'Transport',
-            img: 'http://lorempixel.com/340/510/transport',
-            url: '/tv-shows/1'
-        },{
-            title: 'Animals',
-            img: 'http://lorempixel.com/340/510/animals',
-            url: '/tv-shows/1'
-        },{
-            title: 'Technics',
-            img: 'http://lorempixel.com/340/510/technics',
-            url: '/tv-shows/1'
-        },{
-            title: 'Business',
-            img: 'http://lorempixel.com/340/510/business',
-            url: '/tv-shows/1'
-        },{
-            title: 'Sports',
-            img: 'http://lorempixel.com/340/510/sports',
-            url: '/tv-shows/1'
-        },{
-            title: 'Cats',
-            img: 'http://lorempixel.com/340/510/cats',
-            url: '/tv-shows/1'
-        },{
-            title: 'Nature',
-            img: 'http://lorempixel.com/340/510/nature',
-            url: '/tv-shows/1'
-        },{
-            title: 'City',
-            img: 'http://lorempixel.com/340/510/city',
-            url: '/tv-shows/1'
-        },{
-            title: 'People',
-            img: 'http://lorempixel.com/340/510/people',
-            url: '/tv-shows/1'
-        },{
-            title: 'Food',
-            img: 'http://lorempixel.com/340/510/food',
-            url: '/tv-shows/1'
-        },{
-            title: 'Fashion',
-            img: 'http://lorempixel.com/340/510/fashion',
-            url: '/tv-shows/1'
-        },{
-            title: 'Nightlife',
-            img: 'http://lorempixel.com/340/510/nightlife',
-            url: '/tv-shows/1'
+            title: 'Matrix Collection, the World Reloaded',
+            img: '/image/the-matrix--wall-alphacoders-151091.jpg',
+            url: '/movies/271469518'
         }
     ];
 
     return Backbone.View.extend({
 
         render: function () {
-            var html = nunjucks.render(template, {});
+            var html = Nunjucks.render(template, {});
             this.$el.html(html);
 
             var featuredMediaCarouselView = new FeaturedMediaCarouselView({
@@ -170,17 +58,75 @@ define(function (require) {
             });
             featuredMediaCarouselView.render();
 
-            var newMovieCarouselView = new MediaCarouselView({
-                el: $('.template-newMovieCarousel', this.el),
-                collection: newMovies
+            var topMovieCarouselView = new MediaCarouselView({
+                el: $('.template-topMovieCarousel', this.el),
+                collection: topMovieCollection
             });
-            newMovieCarouselView.render();
+            topMovieCollection.fetch().done(function() {
+                topMovieCarouselView.render();
+            });
 
-            var newTVShowCarouselView = new MediaCarouselView({
-                el: $('.template-newTVShowCarousel', this.el),
-                collection: newTVShow
+            var topTvShowCarouselView = new MediaCarouselView({
+                el: $('.template-topTvShowCarousel', this.el),
+                collection: topTvShowCollection
             });
-            newTVShowCarouselView.render();
+            topTvShowCollection.fetch().done(function() {
+                topTvShowCarouselView.render();
+            });
+
+            var topList1 = new TopListModel({
+                query: 'pixar',
+                minItemCount: 3,
+                minFavoriteCount: 2
+            });
+            var topList2 = new TopListModel({
+                query: 'oscar',
+                minItemCount: 3,
+                minFavoriteCount: 2
+            });
+            var topList3 = new TopListModel({
+                query: 'collection',
+                minItemCount: 3,
+                minFavoriteCount: 1
+            });
+            var topList4 = new TopListModel({
+                query: 'science',
+                minItemCount: 3,
+                minFavoriteCount: 1
+            });
+            var topList5 = new TopListModel({
+                query: 'water',
+                minItemCount: 3,
+                minFavoriteCount: 1
+            });
+            var topList6 = new TopListModel({
+                query: 'light',
+                minItemCount: 3,
+                minFavoriteCount: 1
+            });
+            var topList7 = new TopListModel({
+                query: 'earth',
+                minItemCount: 3,
+                minFavoriteCount: 1
+            });
+            var topList8 = new TopListModel({
+                query: 'dead',
+                minItemCount: 3,
+                minFavoriteCount: 1
+            });
+
+            var topListCollection = [topList1, topList2, topList3, topList4,
+                topList5, topList6, topList7, topList8];
+            var listSelectionCarouselView = new MediaCarouselView({
+                el: $('.template-listSelectionCarousel', this.el),
+                collection: topListCollection
+            });
+
+            topListCollection.forEach(function(movieList) {
+                movieList.fetch().done(function() {
+                    listSelectionCarouselView.render();
+                });
+            });
 
             return this;
         }

@@ -1,52 +1,68 @@
 define(function (require) {
 
-    "use strict";
+    'use strict';
 
-    var template = 'movie.page.nunj.html';
+    var Backbone = require('backbone'),
+        $ = require('jquery'),
+        Nunjucks = require('nunjucks'),
+        Common = require('/js/common.js'),
+        template = 'movie.page.nunj.html',
+        MovieModel = require('movie.model');
+    require('https://apis.google.com/js/client.js?onload=googleApiClientReady');
+
+
+    function getMovieReleaseDateFormatedString(releaseDate) {
+        return releaseDate.substring(0, releaseDate.indexOf('T'));
+    }
+
+    function getMovieLengthString(lengthInMillis) {
+        var seconds = lengthInMillis / 1000;
+        var minutes = seconds / 60;
+        var hours = minutes / 60;
+        return Math.floor(hours).toString() + 'h' + Math.floor(minutes % 60).toString();
+    }
 
     return Backbone.View.extend({
 
-        render: function () {
-            var self = this;
+        initializeWithId: function(id) {
+            this.model = new MovieModel({trackId: id});
+            this.listenTo(this.model, 'change', this.getMovieInfo);
+            this.model.fetch();
+        },
 
-            var html = nunjucks.render(template, {
-                media: {
-                    title: 'Interstellar',
-                    img: '/image/interstellar.jpg',
-                    mainInformations: [
-                        '7 november 2014',
-                        'Adventure, Drama and Science-Fiction',
-                        '2h49',
-                        'by Christopher Nolan',
-                        'Rating: <span class="media--ratingLogo">PG-13</span>'
-                    ],
-                    youtubeTrailerUrl: 'https://www.youtube.com/embed/zSWdZVtXT7E',
-                    synopsis: 'From director Christopher Nolan (Inception, The Dark Knight trilogy) ' +
-                        'comes the story of a team of pioneers undertaking the most important mission in human ' +
-                        'history. Academy Award®-winner Matthew McConaughey (Dallas Buyer’s Club) stars as ' +
-                        'ex-pilot-turned-farmer Cooper, who must leave his family and a foundering Earth behind ' +
-                        'to lead an expedition traveling beyond this galaxy to discover whether mankind has a future ' +
-                        'among the stars. Academy Award®-winner Anne Hathaway (Les Misérables) and Academy Award®-nominee ' +
-                        'Jessica Chastain (Zero Dark Thirty) also star in this landmark film.<br>' +
-                        '— iTunes',
-                    actors: [
-                        'Matthew McConaughey',
-                        'Ellen Burstyn',
-                        'Mackenzie Foy',
-                        'John Lithgow',
-                        'Timothée Chalamet',
-                        'Anne Hathaway',
-                        'Michael Caine',
-                        'Jessica Chastain',
-                        'Matt Damon',
-                        'Andrew Borba'
-                    ]
-                }
+        getMovieInfo: function() {
+            var self = this;
+            youtubeSearch(this.model.get('trackName'), function(videoUrl){
+                self.render(videoUrl);
             });
-            this.$el.html(html);
+        },
+
+        render: function (videoUrl) {
+            var self = this;
+            var html = Nunjucks.render(template, {
+                media: {
+                    title: self.model.get('trackName'),
+                    img: self.model.get('artworkUrl100').replace('100x100', '400x400'),
+                    mainInformations: [
+                        getMovieReleaseDateFormatedString(self.model.get('releaseDate')),
+                        self.model.get('primaryGenreName'),
+                        getMovieLengthString(self.model.get('trackTimeMillis')),
+                        'by ' + self.model.get('artistName'),
+                        'Rating: <span class="media--ratingLogo">' + self.model.get('contentAdvisoryRating') + '</span>'
+                    ],
+                    itunesLink: self.model.get('trackViewUrl'),
+                    youtubeTrailerUrl: videoUrl,
+                    synopsis: self.model.get('longDescription')
+                    }
+                });
+                self.$el.html(html);
 
             $('.media--quickActions--button.showTrailerButton', this.el).click(function () {
                 self.showTrailer();
+            });
+
+            $('.media--quickActions--button.watchListButton', this.el).click(function(){
+               self.addMovieToWatchList();
             });
 
             $('.mediaSection--hideShowButton', this.el).click(function() {
@@ -56,6 +72,19 @@ define(function (require) {
             self.hideMediaSectionForSmallScreen();
 
             return this;
+        },
+
+        addMovieToWatchList: function(){
+            $.ajax({
+                url: Common.UMOVIE_API_BASE_URL + 'watchlists/5635a50299d4cd0300a10c61/movies',
+                type: 'POST',
+                data: JSON.stringify(this.model.toJSON()),
+                contentType: 'application/json'
+            }).done(function(){
+                console.log('movie added to watchlist');
+            }).fail(function(){
+                console.log('add to watchlist failed');
+            });
         }
     });
 

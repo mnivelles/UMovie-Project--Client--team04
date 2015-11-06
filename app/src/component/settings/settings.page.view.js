@@ -4,19 +4,13 @@ define(function (require) {
 
     var Backbone = require('backbone'),
         Nunjucks = require('nunjucks'),
-        PageHeaderView = require('pageHeader.view'),
-        template = 'page.nunj.html';
+        template = 'settings.page.nunj.html';
 
     return Backbone.View.extend({
 
-        initialize: function () {
-        },
-
-        render: function () {
+        render: function() {
             var html = Nunjucks.render(template, {});
             this.$el.html(html);
-
-            new PageHeaderView();
 
             return this;
         }

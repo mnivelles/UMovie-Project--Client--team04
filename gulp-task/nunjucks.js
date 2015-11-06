@@ -22,8 +22,8 @@ var appFiles = {
 gulp.task('nunjucks:compile', function () {
     return gulp.src(appFiles.src)
         .pipe(flatten())
-        .pipe(nunjucks())
         .pipe(plumber({errorHandler: hlp.displayError}))
+        .pipe(nunjucks())
         .pipe(concat(appFiles.destName))
         .pipe(getUglify())
         .pipe(gulp.dest(paths.dest));
