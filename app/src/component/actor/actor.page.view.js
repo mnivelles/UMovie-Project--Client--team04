@@ -8,7 +8,6 @@ define(function (require) {
         Actor = require('actor.model'),
         MoviesView = require('actor.movies.view'),
         imageSearch = require('TMDbImageSearch');
-    require('https://apis.google.com/js/client.js?onload=googleApiClientReady');
 
     return Backbone.View.extend({
 
@@ -27,7 +26,7 @@ define(function (require) {
                                 imageUrl : imageUrl,
                             }
                         );
-                        var moviesView = new MoviesView({el : self.$(".actor--movies")});
+                        var moviesView = new MoviesView({el : self.$('.actor--movies')});
                         moviesView.render(id);
                     });
 
@@ -44,7 +43,7 @@ define(function (require) {
                     title: options.name,
                     img: options.imageUrl,
                     mainInformations: [
-                        'Primary genre :' + options.primaryGenre
+                        'Primary genre : ' + options.primaryGenre
                     ],
                     itunesLink: options.iTunesLink,
                 }

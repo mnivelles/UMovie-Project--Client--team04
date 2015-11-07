@@ -80,7 +80,6 @@ define(function(require){
         },
 
         display : function(movies) {
-            console.log(movies);
             var self = this;
             var html = Nunjucks.render(moviesTemplate, { movies : movies} );
             self.$el.append(html);
