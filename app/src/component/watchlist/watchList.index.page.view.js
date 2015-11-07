@@ -15,11 +15,12 @@ define(function (require) {
 
         events: function() {
             return {
-
+                'click .media--quickActions--button.createButton': 'createWatchList',
+                'click #createWatchListModal .applyButton': 'submitNewWatchList'
             }
         },
 
-        render: function(options) {
+        render: function() {
             var self = this;
 
             this.watchListCollection = new WatchListCollection();
@@ -38,6 +39,39 @@ define(function (require) {
             });
 
             return this;
+        },
+
+        createWatchList: function() {
+            $('#createWatchListModal', this.el).openModal();
+            $('#createWatchListModal #watchlist_title', this.el).focus();
+        },
+
+        submitNewWatchList: function() {
+            var self = this;
+
+            var newTitle = $('#watchlist_title', this.el).val().trim();
+
+
+            if (newTitle.length > 0) {
+                $('#createWatchListModal .input-field .error-message').hide();
+                $('#createWatchListModal .input-field input').removeClass('invalid');
+
+                $('#createWatchListModal', this.el).closeModal();
+
+                this.watchListCollection.create({
+                    name: newTitle,
+                    owner: 'nanashi@sekai-no-owari.umovie'
+                }, {
+                    wait : true,
+
+                    success : function() {
+                        self.render();
+                    }
+                });
+            } else {
+                $('#createWatchListModal .input-field .error-message').text('Invalid name. Choose a smarter one.').fadeIn(300);
+                $('#createWatchListModal .input-field input').addClass('invalid');
+            }
         }
     });
 

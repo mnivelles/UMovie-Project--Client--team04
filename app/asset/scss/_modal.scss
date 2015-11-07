@@ -1,6 +1,11 @@
 .modal {
     @extend .indigo, .darken-3;
 
+    .error-message {
+        @extend .red-text, .darken-2;
+        display: none;
+    }
+
     .modal-footer {
         @extend .indigo;
 
