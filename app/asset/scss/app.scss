@@ -80,6 +80,12 @@ p {
     @include center(1024px);
 }
 
+
+.success-toast {
+    @extend .green;
+    @extend .white-text;
+}
+
 @import "pageHeader";
 @import "pageContent";
 @import "pageMenu";

@@ -9,7 +9,8 @@
             <button class="media--quickActions--button showTrailerButton waves-effect waves-light btn-large red"><i
                     class="mdi-av-play-circle-outline left"></i> Trailer
             </button>
-            <button class="media--quickActions--button watchListButton waves-effect waves-light btn-large red"><i
+            <button class="media--quickActions--button watchListButton dropdown-button waves-effect waves-light btn-large red"
+                    data-activates='watchListSelectionDropDown'><i
                     class="mdi-content-add-circle-outline left"></i> Watch List
             </button>
             <a class="media--quickActions--button imageButton"
@@ -21,6 +22,12 @@
         {{ mediaHelper.trailer(media.youtubeTrailerUrl) }}
 
         {{ mediaHelper.paragraphSection("Synopsis", media.synopsis) }}
+
+        <ul id='watchListSelectionDropDown' class='dropdown-content watchListSelection'>
+            {% for watchList in watchListCollection %}
+                <li><a class="watchListSelection--item" data-id="{{ watchList.id }}">{{ watchList.title | truncate(22) }}</a></li>
+            {% endfor %}
+        </ul>
 
     </div>
 </div>
