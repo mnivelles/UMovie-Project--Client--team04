@@ -24,7 +24,11 @@
 }
 
 .pageMenu--searchButton {
-    @include col(2/12);
+    @include col(3/24);
+
+    @include breakpoint(phablet) {
+        @include col(2/12);
+    }
 
     color: hsla(0,100%,100%,1);
 
@@ -57,11 +61,18 @@
 .pageMenu--brand {
     z-index: z("menu") + 1;
     position: relative;
-
-    @include col(5/12);
     height: inherit;
 
-    @include col(4/12, $offset: 1/12);
+    @include col(10/24);
+
+    @include breakpoint(smartphone) {
+        @include col(7/24, $offset: 3/24);
+    }
+
+    @include breakpoint(phablet) {
+        @include col(4/12, $offset: 1/12);
+    }
+
     @include breakpoint(tablet) {
         @include col(13/48, $offset: 1/48);
     }
@@ -169,7 +180,11 @@
 }
 
 .pageMenu--user {
-    @include col(5/12);
+    @include col(11/24);
+
+    @include breakpoint(smartphone) {
+        @include col(4/12, $offset: 1/12);
+    }
 
     @include breakpoint(phablet) {
         @include col(4/12, $offset: 1/12);
@@ -230,13 +245,16 @@
         text-align: center;
 
         color: hsla(0,100%,100%,1);
-        font-size: 17px;
+        font-size: 15px;
         font-weight: 300;
 
         &:focus {
             background-color: transparent;
         }
 
+        @include breakpoint(smartphone) {
+            font-size: 18px;
+        }
 
         @include breakpoint(phablet) {
             height: 45px;
