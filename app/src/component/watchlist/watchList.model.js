@@ -28,7 +28,6 @@ define(function (require) {
                     title: movie.trackName
                 }
             });
-            console.log(data);
 
             var title = data.name.trim();
             var title = title || '[Nanashi-SansNom]';
