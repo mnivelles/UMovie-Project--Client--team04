@@ -11,7 +11,7 @@ define(function (require) {
         MovieView  = require('movie.page.view'),
         TvShowView = require('tvShow.page.view'),
         SettingsView = require('settings.page.view'),
-        //WatchListIndexView= require ('watchlist.index.page.view'),
+        WatchListIndexView= require ('watchList.index.page.view'),
         WatchListView= require ('watchList.page.view'),
 
         $page = $('#page'),
@@ -22,7 +22,7 @@ define(function (require) {
         movieView = new MovieView({el : $content}),
         tvShowView = new TvShowView({el : $content}),
         settingsView = new SettingsView({el : $content}),
-        //watchListIndexView= new  WatchListIndexView({el : $content});
+        watchListIndexView= new  WatchListIndexView({el : $content}),
         watchListView= new  WatchListView({el : $content});
 
 
@@ -34,7 +34,7 @@ define(function (require) {
             'movies/:id': 'showMovie',
             'tv-shows/:id': 'showTvShow',
             'settings': 'showSettings',
-            //'watchlists': 'indexWatchList',
+            'watchlists': 'indexWatchList',
             'watchlists/:id': 'showWatchList'
         },
 
@@ -62,12 +62,11 @@ define(function (require) {
             settingsView.delegateEvents();
             settingsView.render();
         },
-/*
+
         indexWatchList: function(){
             watchListIndexView.delegateEvents();
             watchListIndexView.render();
-
-        },*/
+        },
 
         showWatchList: function(id){
             watchListView.delegateEvents();

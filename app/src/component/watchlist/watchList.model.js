@@ -28,9 +28,11 @@ define(function (require) {
                     title: movie.trackName
                 }
             });
+            var title = data.name.trim();
+            var title = title || '[Nanashi-SansNom]';
             return {
                 id: data.id,
-                title: data.name,
+                title: title,
                 movies: data.movies,
                 simpleMovies: movies
             };
