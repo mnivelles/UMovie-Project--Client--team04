@@ -87,7 +87,7 @@ define(function (require) {
 
         deleteWatchList: function() {
             this.watchList.destroy().done (function() {
-                Backbone.history.navigate('/', {trigger: true});
+                Backbone.history.navigate('/watchlists', {trigger: true});
             });
 
         },
