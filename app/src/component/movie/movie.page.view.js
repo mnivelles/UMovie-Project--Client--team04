@@ -102,6 +102,8 @@ define(function (require) {
 
             self.hideMediaSectionForSmallScreen();
 
+            self.changePageTitleWith(self.model.get('trackName'));
+
             return this;
         },
 

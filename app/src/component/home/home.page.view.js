@@ -128,6 +128,8 @@ define(function (require) {
                 });
             });
 
+            this.changePageTitleWith();
+
             return this;
         }
 

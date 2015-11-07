@@ -29,6 +29,8 @@ define(function (require) {
                         var moviesView = new MoviesView({el : self.$('.actor--movies')});
                         moviesView.render(id);
                     });
+
+                    self.changePageTitleWith(actor.artistName);
                 }
             });
             return this;

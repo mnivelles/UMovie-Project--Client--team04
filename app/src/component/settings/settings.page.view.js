@@ -12,6 +12,8 @@ define(function (require) {
             var html = Nunjucks.render(template, {});
             this.$el.html(html);
 
+            this.changePageTitleWith('Settings');
+
             return this;
         }
     });

@@ -27,7 +27,7 @@
     @include col(3/24);
 
     @include breakpoint(phablet) {
-        @include col(2/12);
+        @include col(3/24, $offset: 1/24);
     }
 
     color: hsla(0,100%,100%,1);

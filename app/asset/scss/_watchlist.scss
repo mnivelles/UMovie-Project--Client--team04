@@ -22,8 +22,19 @@ $watchList-titleWeight: 100;
 
     .unorderedEpisodeList .item--deleteButton {
         position: absolute;
-        top: -22px;
-        left: -22px;
+
+        top: -10px;
+        left: -10px;
+
+        @include breakpoint(phablet) {
+            top: -16px;
+            left: -16px;
+        }
+
+        @include breakpoint(tablet) {
+            top: -16px;
+            left: -22px;
+        }
 
         height: 44px;
         width: 44px;
