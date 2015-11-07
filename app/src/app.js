@@ -31,7 +31,8 @@ require.config({
         materialize: 'lib/materialize.amd',
         nunjucks: 'lib/nunjucks-slim',
         slick: 'lib/slick',
-        underscore: 'lib/lodash' // superset of underscore with more updates
+        underscore: 'lib/lodash', // superset of underscore with more updates
+        bluebird: 'lib/bluebird'
     }
 });
 

@@ -30,9 +30,10 @@ var vendor = { // TODO en production, il faut utiliser un CDN pour ceux disponib
         cte.basePaths.bower + 'slick-carousel/slick/slick.js',
         cte.basePaths.bower + 'lodash/lodash.js', // au lieu de underscorejs
         cte.basePaths.bower + 'backbone/backbone.js', // Backbone need Lodash ou Underscore
-        cte.basePaths.bower + 'nunjucks/browser/nunjucks-slim.js'
+        cte.basePaths.bower + 'nunjucks/browser/nunjucks-slim.js',
 
         // ajouter ici d'autres bibliothèques
+        cte.basePaths.bower + 'bluebird/js/browser/bluebird.js'
     ],
     dest: paths.dest + 'lib/'
 };
