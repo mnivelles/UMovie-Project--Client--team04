@@ -5,6 +5,7 @@ define(function (require) {
     var Backbone = require('backbone'),
         Nunjucks = require('nunjucks'),
         $ = require('jquery'),
+        _ = require('underscore'),
         WatchListCollection = require('/js/watchList.collection.js'),
         template = 'watchList.index.page.nunj.html';
 
@@ -27,7 +28,9 @@ define(function (require) {
 
             this.watchListCollection.fetch({
                 success: function(result) {
-                    var collection = _.map(result.models, function(watchList) {
+                    var collection = _.map(_.sortBy(result.models, function (watchList) {
+                        return watchList.get('title').toLowerCase();
+                    }), function(watchList) {
                         return watchList.toJSON();
                     });
 
@@ -66,6 +69,10 @@ define(function (require) {
 
                     success : function() {
                         self.render();
+
+                        var message = '"' + newTitle + '" : succesfully created';
+
+                        Materialize.toast(message, 4000, 'success-toast rounded');
                     }
                 });
             } else {

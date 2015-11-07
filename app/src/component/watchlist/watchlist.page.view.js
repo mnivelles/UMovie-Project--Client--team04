@@ -74,6 +74,10 @@ define(function (require) {
                     self.render({
                         id: self.watchList.id
                     });
+
+                    var message = 'Rename as "' + newTitle + '"';
+
+                    Materialize.toast(message, 4000, 'success-toast rounded');
                 });
             } else {
                 $('#renameWatchListModal .input-field .error-message').text('Invalid name. Choose a smarter one.').fadeIn(300);

@@ -4,6 +4,7 @@ define(function (require) {
 
     var Backbone = require('backbone'),
         $ = require('jquery'),
+        _ = require('underscore'),
         Nunjucks = require('nunjucks'),
         Materialize = require('materialize'),
         Common = require('/js/common.js'),
@@ -109,7 +110,8 @@ define(function (require) {
             var watchListId = button.attr('data-id');
             this.model.addToWatchList(watchListId);
 
-            var message = this.model.get('trackName') + ' added to watchlist : ' + button.text();
+            var message = '"' + this.model.get('trackName') + '"' +
+                ' added to watchlist : "' + button.text() + '"';
 
             Materialize.toast(message, 4000, 'success-toast rounded');
         }
