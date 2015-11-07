@@ -38,7 +38,6 @@ define(function (require) {
                         settings: {
                             slidesToShow: 6.5,
                             slidesToScroll: 6,
-                            infinite: true
                         }
                     },
                     {
