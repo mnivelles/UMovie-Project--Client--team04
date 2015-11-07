@@ -41,6 +41,8 @@ define(function (require) {
                 }
             });
 
+            self.changePageTitleWith('Watchlists');
+
             return this;
         },
 

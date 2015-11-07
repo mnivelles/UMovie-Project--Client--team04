@@ -36,6 +36,8 @@ define(function (require) {
                                 $('.mediaSection--hideShowButton', self.el).click(function() {
                                     self.toggleMediaSectionParentOfElement($(this));
                                 });
+
+                                self.changePageTitleWith(actor.artistName);
                             }
                         });
                     });

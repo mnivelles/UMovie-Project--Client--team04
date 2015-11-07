@@ -35,7 +35,8 @@ require.config({
     }
 });
 
-require(['jquery', 'underscore', 'backbone', 'router', 'materialize'], function ($, _, Backbone, Router, Materialize) {
+require(['jquery', 'underscore', 'backbone', 'router', 'materialize', '/js/helper.view.js'], function ($, _, Backbone, Router, Materialize) {
+
     var router = new Router();
 
     router.on('route', function() {
@@ -64,39 +65,6 @@ require(['jquery', 'underscore', 'backbone', 'router', 'materialize'], function 
         }
     });
 
-    _.extend(Backbone.View.prototype, {
-        showElementWithId: function (id) {
-            var isHiddenClass = 'hide'; // Provient de Materialize
-            var element = document.getElementById(id);
-            element.classList.remove(isHiddenClass);
-        },
 
-        showTrailer: function () {
-            this.showElementWithId('mediaTrailer');
-        },
-
-        toggleSection: function (element) {
-            var isHiddenClass = 'is-hidden';
-            if (element.hasClass(isHiddenClass)) {
-                element.removeClass(isHiddenClass);
-            } else {
-                element.addClass(isHiddenClass);
-            }
-        },
-
-        toggleMediaSectionParentOfElement: function(element) {
-            var section = element.parents('.mediaSection');
-            this.toggleSection(section);
-        },
-
-        hideMediaSectionForSmallScreen: function() {
-            var hideMaxWidth = 900;
-            var isHiddenClass = 'is-hidden';
-
-            if (window.innerWidth < hideMaxWidth) {
-                $('.mediaSection').addClass(isHiddenClass);
-            }
-        }
-    });
 });
 

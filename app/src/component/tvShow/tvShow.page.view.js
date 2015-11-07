@@ -46,6 +46,8 @@ define(function (require) {
                         });
 
                         self.hideMediaSectionForSmallScreen();
+
+                        self.changePageTitleWith(self.season.collectionName);
                     }
                 });
             });

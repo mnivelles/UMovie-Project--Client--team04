@@ -44,6 +44,8 @@ define(function (require) {
                     });
 
                     self.hideMediaSectionForSmallScreen();
+
+                    self.changePageTitleWith(result.get('title'));
                 }
             });
 
