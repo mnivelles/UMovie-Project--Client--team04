@@ -1,19 +1,20 @@
+
 <div class="watchListContent">
     <div class="media">
         <header class="mediaHeader">
-            <h2 class="mediaHeader--title">{{ watchList.title }}</h2>
+            <h2 class="mediaHeader--title">Create, Share and Enjoy your WatchLists</h2>
         </header>
 
         <section class="media--quickActions">
-            <button class="media--quickActions--button deleteButton waves-effect waves-light btn-large red darken-2"><i class="mdi-action-delete left"></i> Delete
-            </button>
-            <button class="media--quickActions--button renameButton waves-effect waves-light btn-large green darken-1"><i class="mdi-image-edit left"></i> Rename
+            <button class="media--quickActions--button createButton waves-effect waves-light btn-large red"><i class="mdi-av-my-library-add left"></i> New WatchList
             </button>
         </section>
 
-        {% import "helper.watchList.nunj.html" as watchListHelper %}
-
-        {{ watchListHelper.watchListMoviesList("Movies", watchList.movies) }}
+        <div class="watchListCollection">
+            {% for watchList in watchListCollection %}
+                <div class="watchListCollection--item"><a href="/watchlists/{{ watchList.id }}">{{ watchList.title | truncate(22) }}</a><span class="badge">{{ watchList.movies.length }}</span></div>
+            {% endfor %}
+        </div>
 
     </div>
 

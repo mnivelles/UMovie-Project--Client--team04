@@ -71,7 +71,10 @@ define(function (require) {
         },
 
         deleteWatchList: function() {
-            console.log('Inu');
+            this.watchList.destroy().done (function() {
+                Backbone.history.navigate('/', {trigger: true});
+            });
+
         },
 
         deleteMovie: function(event){
