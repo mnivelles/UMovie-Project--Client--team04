@@ -15,9 +15,10 @@ define(function (require) {
             'click .pageMenu--searchButton': 'toggleSearch',
             'click .pageMenu .search--submitButton': 'openSearch',
             'click .pageMenu--user .user--avatarButton': 'toggleUserMenu',
+            'click .pageMenu .user--watchListButton': 'showWatchLists',
             'click .search .search--closeButton': 'closeSearch',
             'click .search .filterRow--element': 'toggleFilter',
-            'click .userMenu .settingsButton': 'showSettings'
+            'click .userMenu .settingsButton': 'showSettings',
         },
 
         initialize: function () {
@@ -53,6 +54,10 @@ define(function (require) {
         showSettings: function() {
             this._toggleUserMenu(true);
             Backbone.history.navigate('settings', true);
+        },
+
+        showWatchLists: function() {
+            Backbone.history.navigate('watchlists', true);
         },
 
         _toggleSearch: function(isActive) {

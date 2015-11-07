@@ -1,0 +1,39 @@
+
+<div class="watchListContent">
+    <div class="media">
+        <header class="mediaHeader">
+            <h2 class="mediaHeader--title">Create, Share and Enjoy your WatchLists</h2>
+        </header>
+
+        <section class="media--quickActions">
+            <button class="media--quickActions--button createButton waves-effect waves-light btn-large red"><i class="mdi-av-my-library-add left"></i> New WatchList
+            </button>
+        </section>
+
+        <div class="watchListCollection">
+            {% for watchList in watchListCollection %}
+                <div class="watchListCollection--item"><a href="/watchlists/{{ watchList.id }}">{{ watchList.title | truncate(22) }}</a><span class="badge">{{ watchList.movies.length }}</span></div>
+            {% endfor %}
+        </div>
+
+    </div>
+
+
+    <!-- Modal Structure -->
+    <div id="createWatchListModal" class="modal">
+        <div class="modal-content">
+            <h4>Create a New Watchlist</h4>
+            <div>
+                <div class="input-field">
+                    <input id="watchlist_title" type="text" class="validate" value="{{ watchList.title }}" />
+                    <label for="watchlist_title">Obvious Title</label>
+                    <div class="error-message"></div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-action applyButton waves-effect waves-green btn-flat">Apply</a>
+        </div>
+    </div>
+
+</div>

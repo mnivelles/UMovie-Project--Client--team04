@@ -80,6 +80,28 @@ p {
     @include center(1024px);
 }
 
+
+.success-toast {
+    @extend .green;
+    @extend .white-text;
+}
+
+.dropdown-content.watchListSelection {
+    @extend .indigo, .darken-3;
+
+    .watchListSelection--item {
+        @extend .white-text;
+
+        a {
+            color: inherit;
+        }
+
+        &:hover {
+            background-color: hsla(0,0,0,0.7);
+        }
+    }
+}
+
 @import "pageHeader";
 @import "pageContent";
 @import "pageMenu";

@@ -4,10 +4,14 @@ define(function (require) {
 
     var Backbone = require('backbone'),
         $ = require('jquery'),
+        _ = require('underscore'),
         Nunjucks = require('nunjucks'),
+        Materialize = require('materialize'),
         Common = require('/js/common.js'),
         template = 'movie.page.nunj.html',
-        MovieModel = require('movie.model');
+        MovieModel = require('movie.model'),
+        WatchListCollection = require('/js/watchList.collection.js');
+
     require('https://apis.google.com/js/client.js?onload=googleApiClientReady');
 
 
@@ -24,55 +28,92 @@ define(function (require) {
 
     return Backbone.View.extend({
 
-        initializeWithId: function(id) {
+        events: function() {
+            return {
+                'click #watchListSelectionDropDown .watchListSelection--item': 'addToWatchList'
+            }
+        },
+
+        initializeWithId: function (id) {
             this.model = new MovieModel({trackId: id});
             this.listenTo(this.model, 'change', this.getMovieInfo);
             this.model.fetch();
+
+            this.watchListCollection = new WatchListCollection();
+            this.watchListCollection.fetch();
         },
 
-        getMovieInfo: function() {
+        getMovieInfo: function () {
             var self = this;
-            youtubeSearch(this.model.get('trackName'), function(videoUrl){
+            youtubeSearch(this.model.get('trackName'), function (videoUrl) {
                 self.render(videoUrl);
             });
         },
 
         render: function (videoUrl) {
             var self = this;
+
             var html = Nunjucks.render(template, {
-                media: {
-                    title: self.model.get('trackName'),
-                    img: self.model.get('artworkUrl100').replace('100x100', '400x400'),
-                    mainInformations: [
-                        getMovieReleaseDateFormatedString(self.model.get('releaseDate')),
-                        self.model.get('primaryGenreName'),
-                        getMovieLengthString(self.model.get('trackTimeMillis')),
-                        'by ' + self.model.get('artistName'),
-                        'Rating: <span class="media--ratingLogo">' + self.model.get('contentAdvisoryRating') + '</span>'
-                    ],
-                    itunesLink: self.model.get('trackViewUrl'),
-                    youtubeTrailerUrl: videoUrl,
-                    synopsis: self.model.get('longDescription')
+                        media: {
+                            title: self.model.get('trackName'),
+                            img: self.model.get('artworkUrl100').replace('100x100', '400x400'),
+                            mainInformations: [
+                                getMovieReleaseDateFormatedString(self.model.get('releaseDate')),
+                                self.model.get('primaryGenreName'),
+                                getMovieLengthString(self.model.get('trackTimeMillis')),
+                                'by ' + self.model.get('artistName'),
+                                'Rating: <span class="media--ratingLogo">' + self.model.get('contentAdvisoryRating') + '</span>'
+                            ],
+                            itunesLink: self.model.get('trackViewUrl'),
+                            youtubeTrailerUrl: videoUrl,
+                            synopsis: self.model.get('longDescription')
+                        },
+                        watchListCollection: _.map(_.sortBy(self.watchListCollection.models, function (watchList) {
+                            return watchList.get('title').toUpperCase();
+                        }), function (watchList) {
+                            return {
+                                id: watchList.get('id'),
+                                title: watchList.get('title')
+                            }
+                        })
                     }
-                });
+                );
 
             self.$el.html(html);
+
+            $('.watchListButton.dropdown-button').dropdown({
+                    inDuration: 300,
+                    outDuration: 225,
+                    constrain_width: false,
+                    hover: false,
+                    gutter: 0,
+                    belowOrigin: false,
+                    alignment: 'left'
+                }
+            );
 
             $('.media--quickActions--button.showTrailerButton', this.el).click(function () {
                 self.showTrailer();
             });
 
-            $('.media--quickActions--button.watchListButton', this.el).click(function(){
-               self.model.addToWatchList('563ca093a9547c030068098b');
-            });
-
-            $('.mediaSection--hideShowButton', this.el).click(function() {
+            $('.mediaSection--hideShowButton', this.el).click(function () {
                 self.toggleMediaSectionParentOfElement($(this));
             });
 
             self.hideMediaSectionForSmallScreen();
 
             return this;
+        },
+
+        addToWatchList: function(event) {
+            var button = $(event.currentTarget);
+            var watchListId = button.attr('data-id');
+            this.model.addToWatchList(watchListId);
+
+            var message = '"' + this.model.get('trackName') + '"' +
+                ' added to watchlist : "' + button.text() + '"';
+
+            Materialize.toast(message, 4000, 'success-toast rounded');
         }
     });
 });

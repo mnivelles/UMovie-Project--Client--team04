@@ -5,7 +5,7 @@ define(function (require) {
     var Backbone = require('backbone'),
         Nunjucks = require('nunjucks'),
         $ = require('jquery'),
-        Materialize = require('materialize'),
+        Common = require('/js/common.js'),
         WatchListModel = require('/js/watchList.model.js'),
         template = 'watchList.page.nunj.html';
 
@@ -53,42 +53,62 @@ define(function (require) {
         renameWatchList: function() {
             $('#renameWatchListModal', this.el).openModal();
 
-            var watchListTitleInput = $('#watchlist_title', this.el);
+            var watchListTitleInput = $('#renameWatchListModal #watchlist_title', this.el);
             watchListTitleInput.focus();
         },
 
         submitNewName: function() {
             var self = this;
 
-            var newTitle = $('#watchlist_title', this.el).val();
-            this.watchList.set({
-                name: newTitle
-            }).save().done(function() {
-                self.render({
-                    id: self.watchList.id
+            var newTitle = $('#watchlist_title', this.el).val().trim();
+
+            if (newTitle.length > 0) {
+                $('#renameWatchListModal .input-field .error-message').hide();
+                $('#renameWatchListModal .input-field input').removeClass('invalid');
+
+                $('#renameWatchListModal', this.el).closeModal();
+
+                this.watchList.set({
+                    name: newTitle
+                }).save().done(function() {
+                    self.render({
+                        id: self.watchList.id
+                    });
+
+                    var message = 'Rename as "' + newTitle + '"';
+
+                    Materialize.toast(message, 4000, 'success-toast rounded');
                 });
-            });
+            } else {
+                $('#renameWatchListModal .input-field .error-message').text('Invalid name. Choose a smarter one.').fadeIn(300);
+                $('#renameWatchListModal .input-field input').addClass('invalid');
+            }
         },
 
         deleteWatchList: function() {
-            console.log('Inu');
+            this.watchList.destroy().done (function() {
+                Backbone.history.navigate('/watchlists', {trigger: true});
+            });
+
         },
 
         deleteMovie: function(event){
-            var button = event.currentTarget;
+            var self = this;
+            var button = $(event.currentTarget);
             var movieId = button.attr('data-id');
-            console.log(movieId);
-/*
+
+
             $.ajax({
-                url: Common.UMOVIE_API_BASE_URL + 'watchlists/' + watchlistId + '/movies',
-                type: 'POST',
-                data: JSON.stringify(this.toJSON()),
-                contentType: 'application/json'
+                url: Common.UMOVIE_API_BASE_URL + 'watchlists/' + self.watchList.id + '/movies/' + movieId,
+                type: 'DELETE'
             }).done(function(){
-                console.log('movie added to watchlist');
+                console.log('Movie ' + movieId + ' deleted');
+                self.render({
+                    id: self.watchList.id
+                });
             }).fail(function(){
-                console.log('add to watchlist failed');
-            });*/
+                console.log('Fail to remove Movie ' + movieId);
+            });
         }
     });
 
