@@ -103,11 +103,12 @@ define(function (require) {
             $.ajax({
                 url: Common.UMOVIE_API_BASE_URL + 'watchlists/' + self.watchList.id + '/movies/' + movieId,
                 type: 'DELETE'
-            }).done(function(){
-                console.log('Movie ' + movieId + ' deleted');
+            }).done(function(e){
                 self.render({
                     id: self.watchList.id
                 });
+                var message = 'The film has been removed from the list';
+                Materialize.toast(message, 4000, 'information-toast rounded');
             }).fail(function(){
                 console.log('Fail to remove Movie ' + movieId);
             });

@@ -86,6 +86,21 @@ p {
     @extend .white-text;
 }
 
+.information-toast {
+    @extend .blue;
+    @extend .white-text;
+}
+
+.warning-toast {
+    @extend .orange;
+    @extend .white-text;
+}
+
+.error-toast {
+    @extend .red;
+    @extend .white-text;
+}
+
 .dropdown-content.watchListSelection {
     @extend .indigo, .darken-3;
 
