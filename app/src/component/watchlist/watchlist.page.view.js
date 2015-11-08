@@ -84,6 +84,7 @@ define(function (require) {
             } else {
                 $('#renameWatchListModal .input-field .error-message').text('Invalid name. Choose a smarter one.').fadeIn(300);
                 $('#renameWatchListModal .input-field input').addClass('invalid');
+                self.shakeForErrorWithElement($('#renameWatchListModal'));
             }
         },
 

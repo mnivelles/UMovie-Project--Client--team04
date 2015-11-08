@@ -80,6 +80,7 @@ define(function (require) {
             } else {
                 $('#createWatchListModal .input-field .error-message').text('Invalid name. Choose a smarter one.').fadeIn(300);
                 $('#createWatchListModal .input-field input').addClass('invalid');
+                self.shakeForErrorWithElement($('#createWatchListModal'));
             }
         }
     });

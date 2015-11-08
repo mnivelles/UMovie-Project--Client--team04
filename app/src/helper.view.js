@@ -44,6 +44,13 @@ define(function (require) {
             } else {
                 document.title = title + ' | ULaval Movie Ima by 300 UMI';
             }
+        },
+
+        shakeForErrorWithElement: function(element) {
+            element.addClass('is-animation-shake');
+            setTimeout(function() {
+                element.removeClass('is-animation-shake');
+            }, 1000);
         }
     });
 });

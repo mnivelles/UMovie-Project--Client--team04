@@ -17,25 +17,3 @@
 {% macro watchListMoviesList(title, movies) %}
     {{ mediaHelper.section(title, unorderedMovieList(movies)) }}
 {% endmacro %}
-
-
-{% macro showWatchLists(title, id) %}
-
-    <li class="collection-item avatar grey darken-3">
-        <i class="material-icons circle deep-orange"><i class="mdi-av-videocam"></i></i>
-        <p class="watchlist--title"> {{ title }}</p>
-                    <span> UMovie <br>
-                        Your watchlist...your pleasure
-                    </span>
-
-        <div>
-            <span><a data-id='{{ id }}' class="waves-effect waves-light btn yellow darken-2" id="btn-watch"><i class="mdi-av-play-shopping-bag"></i> </a></span>
-            <span><a class="waves-effect waves-light btn green darken-2" id="btn-share"><i class="mdi-social-people"> </i> </a></span>
-            <span><a data-id='{{ id }}' class="waves-effect waves-light btn red lighten-1" id="btn-delete"><i class="mdi-action-delete" onclick="Materialize.toast('Deleting the watchlist...', 4000)"></i>  </a></span>
-            <a href="#!"class="secondary-content"><i class="material-icons"><i class="mdi-toggle-star"></i> </i></a>
-
-        </div>
-    </li>
-
-
-{% endmacro %}

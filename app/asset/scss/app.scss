@@ -80,6 +80,9 @@ p {
     @include center(1024px);
 }
 
+/*
+    ##TOAST
+*/
 
 .success-toast {
     @extend .green;
@@ -101,6 +104,10 @@ p {
     @extend .white-text;
 }
 
+/*
+    ##DROP_DOWN
+*/
+
 .dropdown-content.watchListSelection {
     @extend .indigo, .darken-3;
 
@@ -115,6 +122,17 @@ p {
             background-color: hsla(0,0,0,0.7);
         }
     }
+}
+
+/*
+    ##ANIMATION
+*/
+
+.is-animation-shake {
+    @include shake(
+        $duration: 0.7s,
+        $function: ease-in-out
+    );
 }
 
 @import "pageHeader";
