@@ -16,7 +16,13 @@
                     <img src="{{ episode.artworkUrl100 }}" alt="{{ episode.trackName }}"/>
                 </div>
                 <div class="item--title"><span class="episode--number">{{ episode.trackNumber }}.</span> {{ episode.trackName }}
-                    <span class="episode--ratingLogo">{{ episode.contentAdvisoryRating }}</span></div>
+                    <span class="episode--ratingLogo">
+                        {% if episode.contentAdvisoryRating != undefined %}
+                            {{ episode.contentAdvisoryRating }}
+                        {% else %}
+                            Unrated
+                        {% endif %}
+                    </span></div>
             </li>
         {% endfor %}
     </ul>
