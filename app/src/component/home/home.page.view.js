@@ -74,6 +74,48 @@ define(function (require) {
                 topTvShowCarouselView.render();
             });
 
+            var topActorCollection = [
+                {
+                    title: 'Brad Pitt',
+                    img: 'http://image.tmdb.org/t/p/w342/kc3M04QQAuZ9woUvH3Ju5T7ZqG5.jpg?api_key=8f002dc2dff6b5a18ac35ef9ca6d5d02',
+                    url: '/actors/272994458'
+                },{
+                    title: 'Marion Cotillard',
+                    img: 'http://image.tmdb.org/t/p/w342/mJl7ngstco78rgxSAwLCPhTEOh5.jpg?api_key=8f002dc2dff6b5a18ac35ef9ca6d5d02',
+                    url: '/actors/250818115'
+                },{
+                    title: 'Shun Oguri',
+                    img: 'http://image.tmdb.org/t/p/w342/nQC5diyl25qS8qLsdMxTzafjnHn.jpg?api_key=8f002dc2dff6b5a18ac35ef9ca6d5d02',
+                    url: '/actors/293765129'
+                },{
+                    title: 'Scarlett Johansson',
+                    img: 'http://image.tmdb.org/t/p/w342/f3c1rwcOoeU0v6Ak5loUvMyifR0.jpg?api_key=8f002dc2dff6b5a18ac35ef9ca6d5d02',
+                    url: '/actors/2082973'
+                },{
+                    title: 'Jean Dujardin',
+                    img: 'http://image.tmdb.org/t/p/w342/fpNJxVL3I4atLSmWJqmVzDR4TWI.jpg?api_key=8f002dc2dff6b5a18ac35ef9ca6d5d02',
+                    url: '/actors/369233939'
+                },{
+                    title: 'Emma Watson',
+                    img: 'http://image.tmdb.org/t/p/w342/xzrpSynR4z8jzodyatQqa6lOJgH.jpg?api_key=8f002dc2dff6b5a18ac35ef9ca6d5d02',
+                    url: '/actors/271500732'
+                },{
+                    title: 'Rupert Grint',
+                    img: 'http://image.tmdb.org/t/p/w342/dFVVJufva2zUSP6WS0pFfR7g8uN.jpg?api_key=8f002dc2dff6b5a18ac35ef9ca6d5d02',
+                    url: '/actors/271278235'
+                },{
+                    title: 'Ziyi Zhang',
+                    img: 'http://image.tmdb.org/t/p/w342/4j5u0mSIcphI3sOSJGKbIliG4jO.jpg?api_key=8f002dc2dff6b5a18ac35ef9ca6d5d02',
+                    url: '/actors/270980739'
+                }
+            ];
+
+            var topActorCarouselView = new MediaCarouselView({
+                el: $('.template-topActorCarousel', this.el),
+                collection: topActorCollection
+            });
+            topActorCarouselView.render();
+
             var topList1 = new TopListModel({
                 query: 'pixar',
                 minItemCount: 3,
@@ -127,6 +169,7 @@ define(function (require) {
                     listSelectionCarouselView.render();
                 });
             });
+
 
             this.changePageTitleWith();
 
