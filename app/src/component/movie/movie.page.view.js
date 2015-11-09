@@ -110,6 +110,7 @@ define(function (require) {
         addToWatchList: function(event) {
             var button = $(event.currentTarget);
             var watchListId = button.attr('data-id');
+
             this.model.addToWatchList(watchListId);
 
             var message = '"' + this.model.get('trackName') + '"' +

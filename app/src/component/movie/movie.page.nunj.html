@@ -25,7 +25,7 @@
 
         <ul id='watchListSelectionDropDown' class='dropdown-content watchListSelection'>
             {% for watchList in watchListCollection %}
-                <li class="watchListSelection--item"><a data-id="{{ watchList.id }}">{{ watchList.title | truncate(22) }}</a></li>
+                <li class="watchListSelection--item" data-id="{{ watchList.id }}"><a href="#!">{{ watchList.title | truncate(22) }}</a></li>
             {% endfor %}
         </ul>
 
