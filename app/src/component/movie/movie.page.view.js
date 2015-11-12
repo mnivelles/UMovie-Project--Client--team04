@@ -53,6 +53,18 @@ define(function (require) {
         render: function (videoUrl) {
             var self = this;
 
+            var reactions = {
+                happyPercentage: 20,
+                cryPercentage: 10,
+                shootPercentage: 10,
+                devilPercentage: 10,
+                cheersPercentage: 5,
+                coolPercentage: 15,
+                surprisedPercentage: 8,
+                sadPercentage: 7,
+                funnyPercentage: 15
+            };
+
             var html = Nunjucks.render(template, {
                         media: {
                             title: self.model.get('trackName'),
@@ -68,6 +80,7 @@ define(function (require) {
                             youtubeTrailerUrl: videoUrl,
                             synopsis: self.model.get('longDescription')
                         },
+                        reactions: reactions,
                         watchListCollection: _.map(_.sortBy(self.watchListCollection.models, function (watchList) {
                             return watchList.get('title').toUpperCase();
                         }), function (watchList) {

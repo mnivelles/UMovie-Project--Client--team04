@@ -1,50 +1,52 @@
 <div class="reactions">
-    <div class="reactions--title">What is your reaction?</div>
-    <div class="reactions--row">
+    <div class="reactions--wrapper">
         <div class="reaction">
             <div class="reaction--icon"><i class="icon-emo-happy"></i></div>
             <div class="reaction--text">Happy!</div>
-            <div class="reaction--percentage">{{ happyPercentage }}</div>
+            <div class="reaction--percentage">{{ reactions.happyPercentage }}%</div>
         </div>
         <div class="reaction">
             <div class="reaction--icon"><i class="icon-emo-cry"></i></div>
             <div class="reaction--text">Cry</div>
-            <div class="reaction--percentage">{{ cryPercentage }}</div>
+            <div class="reaction--percentage">{{ reactions.cryPercentage }}%</div>
         </div>
         <div class="reaction">
             <div class="reaction--icon"><i class="icon-emo-shoot"></i></div>
             <div class="reaction--text">Shoot!</div>
-            <div class="reaction--percentage">{{ shootPercentage }}</div>
+            <div class="reaction--percentage">{{ reactions.shootPercentage }}%</div>
         </div>
         <div class="reaction">
             <div class="reaction--icon"><i class="icon-emo-devil"></i></div>
             <div class="reaction--text">Devil</div>
-            <div class="reaction--percentage">{{ devilPercentage }}</div>
+            <div class="reaction--percentage">{{ reactions.devilPercentage }}%</div>
         </div>
         <div class="reaction">
             <div class="reaction--icon"><i class="icon-emo-beer"></i></div>
             <div class="reaction--text">Cheers!</div>
-            <div class="reaction--percentage">{{ cheersPercentage }}</div>
+            <div class="reaction--percentage">{{ reactions.cheersPercentage }}%</div>
         </div>
         <div class="reaction">
             <div class="reaction--icon"><i class="icon-emo-sunglasses"></i></div>
             <div class="reaction--text">Cool</div>
-            <div class="reaction--percentage">{{ coolPercentage }}</div>
+            <div class="reaction--percentage">{{ reactions.coolPercentage }}%</div>
         </div>
         <div class="reaction">
             <div class="reaction--icon"><i class="icon-emo-surprised"></i></div>
             <div class="reaction--text">Surprised</div>
-            <div class="reaction--percentage">{{ surprisedPercentage }}</div>
+            <div class="reaction--percentage">{{ reactions.surprisedPercentage }}%</div>
         </div>
         <div class="reaction">
             <div class="reaction--icon"><i class="icon-emo-unhappy"></i></div>
             <div class="reaction--text">Sad</div>
-            <div class="reaction--percentage">{{ sadPercentage }}</div>
+            <div class="reaction--percentage">{{ reactions.sadPercentage }}%</div>
         </div>
         <div class="reaction">
             <div class="reaction--icon"><i class="icon-emo-laugh"></i></div>
             <div class="reaction--text">Funny</div>
-            <div class="reaction--percentage">{{ funnyPercentage }}</div>
+            <div class="reaction--percentage">{{ reactions.funnyPercentage }}%</div>
         </div>
+    </div>
+    <div class="reactions--reviewButtonWrapper">
+        <a class="reviewButton waves-effect waves-light btn blue"><i class="mdi-communication-comment"></i></a>
     </div>
 </div>

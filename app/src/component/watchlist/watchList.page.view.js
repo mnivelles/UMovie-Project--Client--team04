@@ -27,6 +27,18 @@ define(function (require) {
         render: function(options) {
             var self = this;
 
+            var reactions = {
+                            happyPercentage: 20,
+                            cryPercentage: 10,
+                            shootPercentage: 10,
+                            devilPercentage: 10,
+                            cheersPercentage: 5,
+                            coolPercentage: 15,
+                            surprisedPercentage: 8,
+                            sadPercentage: 7,
+                            funnyPercentage: 15
+                        };
+
             this.watchList = new WatchListModel({id: options.id});
 
             this.watchList.fetch({
@@ -35,7 +47,8 @@ define(function (require) {
                         watchList: {
                             title: result.get('title'),
                             movies: result.get('simpleMovies')
-                        }
+                        },
+                        reactions: reactions
                     });
                     self.$el.html(html);
 

@@ -19,6 +19,18 @@ define(function (require) {
                 var episodes = new Episodes([], {id: self.id});
                 episodes.fetch({
                     success: function (episodes) {
+                        var reactions = {
+                            happyPercentage: 20,
+                            cryPercentage: 10,
+                            shootPercentage: 10,
+                            devilPercentage: 10,
+                            cheersPercentage: 5,
+                            coolPercentage: 15,
+                            surprisedPercentage: 8,
+                            sadPercentage: 7,
+                            funnyPercentage: 15
+                        };
+
                         self.episodes = episodes.toJSON();
                         var html = Nunjucks.render(template, {
                             media: {
@@ -33,7 +45,8 @@ define(function (require) {
                                 itunesUrl: self.season.collectionViewUrl,
 
                                 episodes: self.episodes
-                            }
+                            },
+                            reactions: reactions
                         });
 
                         self.$el.html(html);
