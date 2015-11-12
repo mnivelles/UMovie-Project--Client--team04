@@ -1,0 +1,21 @@
+.reactions {
+    font-size: 1rem;
+
+    &--title {
+        font-size: 2em;
+        font-weight: 200;
+        @extend .white-text;
+    }
+
+    &--row {
+        .reaction {
+            display: inline-block;
+            padding: 17px 12px;
+            text-align: center;
+
+            &--text {
+                text-transform: uppercase;
+            }
+        }
+    }
+}
