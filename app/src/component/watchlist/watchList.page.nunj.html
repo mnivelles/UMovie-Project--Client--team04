@@ -11,6 +11,8 @@
             </button>
         </section>
 
+        {% include "reactions.nunj.html" %}
+
         {% import "helper.watchList.nunj.html" as watchListHelper %}
 
         {{ watchListHelper.watchListMoviesList("Movies", watchList.movies) }}

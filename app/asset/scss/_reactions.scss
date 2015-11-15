@@ -1,0 +1,73 @@
+.reactions {
+    font-size: 1rem;
+
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+
+    background-color: hsla(0,0%,0%,.15);
+
+    &--wrapper,
+    &--reviewButtonWrapper {
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    &--wrapper {
+
+        .reaction {
+            vertical-align: top;
+            display: inline-block;
+            padding: 10px 12px;
+            text-align: center;
+            cursor: pointer;
+
+            color: hsla(0,100%,100%,.85);
+            font-weight: 300;
+
+            &:hover {
+                @extend .blue-text;
+            }
+
+            &--icon {
+                font-size: 1.4em;
+	    }
+
+            &--text {
+                text-transform: uppercase;
+                font-size: 0.9em;
+            }
+
+            &--percentage {
+                &.xsmall {
+                    font-size: .75em;
+                }
+                &.small {
+                    font-size: .85em;
+                }
+                &.medium {
+                    font-size: 1em;
+                }
+                &.large {
+                    font-size: 1.15em;
+                }
+                &.xlarge {
+                    font-size: 1.25em;
+                }
+            }
+        }
+    }
+
+    &--reviewButtonWrapper {
+        padding: 10px 24px 10px 12px;
+
+        .reviewButton {
+            i {
+                -moz-transform: scaleX(-1);
+                -o-transform: scaleX(-1);
+                -webkit-transform: scaleX(-1);
+                transform: scaleX(-1);
+            }
+        }
+    }
+}

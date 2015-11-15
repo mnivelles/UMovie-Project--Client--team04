@@ -27,6 +27,45 @@ define(function (require) {
         render: function(options) {
             var self = this;
 
+            var reactions = {
+                happy: {
+                    percentage: 20,
+                    percentageSize: 'xsmall'
+                },
+                cry: {
+                    percentage: 10,
+                    percentageSize: 'small'
+                },
+                shoot: {
+                    percentage: 10,
+                    percentageSize: 'large'
+                },
+                devil: {
+                    percentage: 10,
+                    percentageSize: 'xlarge'
+                },
+                cheers: {
+                    percentage: 5,
+                    percentageSize: 'medium'
+                },
+                cool: {
+                    percentage: 15,
+                    percentageSize: 'large'
+                },
+                surprised: {
+                    percentage: 8,
+                    percentageSize: 'small'
+                },
+                sad: {
+                    percentage: 7,
+                    percentageSize: 'xsmall'
+                },
+                funny: {
+                    percentage: 15,
+                    percentageSize: 'medium'
+                }
+            };
+
             this.watchList = new WatchListModel({id: options.id});
 
             this.watchList.fetch({
@@ -35,7 +74,8 @@ define(function (require) {
                         watchList: {
                             title: result.get('title'),
                             movies: result.get('simpleMovies')
-                        }
+                        },
+                        reactions: reactions
                     });
                     self.$el.html(html);
 

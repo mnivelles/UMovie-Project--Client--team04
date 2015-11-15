@@ -6,6 +6,7 @@
 
 @import "breakpoint";
 @import "zIndex";
+@import "emoji-reactions";
 
 // TODO activer et désactiver à sa guise
 //@include edit(); // /!\ Créée un fond gris utile pour les tests
@@ -148,6 +149,7 @@ p {
 @import "featuredMediaCarousel";
 @import "modal";
 @import "watchlist";
+@import "reactions";
 
 
 a {

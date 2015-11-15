@@ -20,6 +20,8 @@
         </section>
 
         {{ mediaHelper.trailer(media.youtubeTrailerUrl) }}
+        
+        {% include "reactions.nunj.html" %}
 
         {{ mediaHelper.paragraphSection("Synopsis", media.synopsis) }}
 
