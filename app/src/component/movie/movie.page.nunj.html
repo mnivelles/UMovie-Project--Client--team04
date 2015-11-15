@@ -30,7 +30,9 @@
         {{ mediaHelper.paragraphSection("Synopsis", media.synopsis) }}
 
         {% if media.actors %}
-            {{ mediaHelper.wordListSection("Casting", media.actors) }}
+            <div class="castingWrapper">
+                {{ mediaHelper.wordWithDataListSection("Casting", media.actors) }}
+            </div>
         {% endif %}
 
         {% if media.crew %}

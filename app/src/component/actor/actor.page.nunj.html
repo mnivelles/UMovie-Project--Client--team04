@@ -16,7 +16,9 @@
             </a>
         </section>
 
-        {{ mediaHelper.paragraphSection("Biography", media.biography) }}
+        {% if media.biography %}
+            {{ mediaHelper.paragraphSection("Biography", media.biography) }}
+        {% endif %}
 
         <section class="actor--movies"></section>
 

@@ -6,7 +6,7 @@ define(function (require) {
         $ = require('jquery'),
         Nunjucks = require('nunjucks'),
         Moment = require('moment'),
-        TMDb = require('TMDbSearch'),
+        //TMDb = require('TMDbSearch'),
         template = 'tvShow.page.nunj.html',
         Episodes = require('tvShow.episodes.model'),
         Seasons = require('tvShow.season.model');

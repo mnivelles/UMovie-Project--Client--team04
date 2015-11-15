@@ -58,7 +58,11 @@
     {{ section(title, list.unorderedWordList(words)) }}
 {% endmacro %}
 
+{% macro wordWithDataListSection(title, words) %}
+    {% import "list.nunj.html" as list %}
 
+    {{ section(title, list.unorderedWordWithDataList(words)) }}
+{% endmacro %}
 
 {% macro seasonSection(title, episodes) %}
     {% import "list.nunj.html" as list %}

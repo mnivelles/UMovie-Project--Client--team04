@@ -24,7 +24,7 @@ define(function (require) {
             var list = _.sample(result);
             var image = list.poster_path ?
                 imageBaseUrl + list.poster_path + '?api_key=' + Common.TMDB_API_KEY :
-                'http://placehold.it/342x514?text=Void';
+                'http://dummyimage.com/342x514/cccccc/4d4d4d&text='+ encodeURIComponent('Image not found :(');
             return {
                 title: list.name,
                 img: image,

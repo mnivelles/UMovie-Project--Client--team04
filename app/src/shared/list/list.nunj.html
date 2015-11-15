@@ -8,6 +8,14 @@
     </ul>
 {% endmacro %}
 
+{% macro unorderedWordWithDataList(elements) %}
+    <ul class="unorderedWordList">
+        {% for element in elements %}
+            <li class="unorderedWordList--item"><a data-info="{{ element.data }}" href="#!">{{ element.name }}</a></li>
+        {% endfor %}
+    </ul>
+{% endmacro %}
+
 {% macro unorderedEpisodeList(episodes) %}
     <ul class="unorderedEpisodeList">
         {% for episode in episodes %}

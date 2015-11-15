@@ -2,10 +2,10 @@ define(function(require){
 
     'use strict';
 
-    var Common = require('/js/common.js');
-    var imageWidth = 342;
-    var imageBaseUrl = 'http://image.tmdb.org/t/p/w' + imageWidth;
-    var defaultImageURI = 'http://placehold.it/342x514?text='+ encodeURIComponent('image not found :(');
+    var Common = require('/js/common.js'),
+        imageWidth = 342,
+        imageBaseUrl = 'http://image.tmdb.org/t/p/w' + imageWidth,
+        defaultImageURI = 'http://dummyimage.com/342x514/cccccc/4d4d4d&text='+ encodeURIComponent('Image not found :(');
 
     return {
         searchActor: function(query, callback) {
@@ -41,7 +41,6 @@ define(function(require){
                     var movieUrl = Common.TMDB_API_BASE_URL + 'movie/' + movieId + '?append_to_response=trailers,credits&api_key=' + Common.TMDB_API_KEY;
 
                     $.get(movieUrl, function(movieResult) {
-                        console.log(movieResult);
                         callback({
                             homepage: movieResult.homepage,
                             tagline: movieResult.tagline,

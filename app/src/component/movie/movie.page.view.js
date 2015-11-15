@@ -11,6 +11,7 @@ define(function (require) {
         Common = require('/js/common.js'),
         template = 'movie.page.nunj.html',
         TMDb = require('TMDbSearch'),
+        iTunes = require('iTunesSearch'),
         MovieModel = require('movie.model'),
         WatchListCollection = require('/js/watchList.collection.js');
 
@@ -28,7 +29,8 @@ define(function (require) {
 
         events: function() {
             return {
-                'click #watchListSelectionDropDown .watchListSelection--item': 'addToWatchList'
+                'click #watchListSelectionDropDown .watchListSelection--item': 'addToWatchList',
+                'click .castingWrapper .unorderedWordList--item a': 'showActorPage'
             }
         },
 
@@ -109,10 +111,17 @@ define(function (require) {
                             homepage: tmdbMovie.homepage,
                             tagline: tmdbMovie.tagline,
                             actors: tmdbMovie.actors ? _.map(tmdbMovie.actors, function(actor) {
-                                return actor.name + ' (' + actor.character + ')';
+                                var result = actor.name;
+                                result += actor.character ? ' (' + actor.character + ')' : '';
+                                return {
+                                    name: result,
+                                    data: actor.name
+                                };
                             }) : undefined,
                             crew: tmdbMovie.crew ? _.map(tmdbMovie.crew, function(person) {
-                                return person.name + ' (' + person.job + ')';
+                                var result = person.name;
+                                result += person.job ? ' (' + person.job + ')' : '';
+                                return result;
                             }) : undefined
                         },
                         reactions: reactions,
@@ -165,6 +174,20 @@ define(function (require) {
                 ' added to watchlist : "' + button.text() + '"';
 
             Materialize.toast(message, 4000, 'success-toast rounded');
+        },
+
+        showActorPage: function(event) {
+            var button = $(event.currentTarget);
+            var query = button.attr('data-info');
+
+            iTunes.searchActorId(query, function(actorId) {
+                var actorUrl = '/actors/' + actorId;
+                Backbone.history.navigate(actorUrl, true);
+            }, function() {
+                var message = 'No page found for "' + query + '"';
+
+                Materialize.toast(message, 3000, 'error-toast rounded');
+            });
         }
     });
 });
