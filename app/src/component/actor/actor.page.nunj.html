@@ -7,12 +7,25 @@
 
         <section class="media--quickActions">
             <a class="media--quickActions--button imageButton" target="_blank"
-               href={{media.itunesLink}}>
+               href={{ media.itunesLink }}>
                 <img src="/image/get-on-itunes-badge-en_US-138x50.png">
             </a>
         </section>
 
         <section class="actor--movies"></section>
 
+        <!-- Modal Structure -->
+        <div id="showTrailerModal" class="modal">
+            <div class="modal-content">
+                <div class="modal--trailerContainer">
+                    <!-- a image for ratio -->
+                    <img class="ratio" src="http://placehold.it/16x9"/>
+                    <iframe class="modal--trailerVideo" src="" frameborder="0" allowfullscreen></iframe>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a href="#!" class="modal-action modal-close closeButton waves-effect waves-red btn-flat">Close</a>
+            </div>
+        </div>
     </div>
 </div>

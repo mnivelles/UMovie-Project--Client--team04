@@ -33,24 +33,13 @@
     <ul class="unorderedMoviesList">
         {% for movie in movies %}
             <li class="unorderedMoviesList--item">
-                <div class="actor--movie-entry">
-                    <div class="actor--movie-poster-title">
-                        <div class="actor--movie-title">{{ movie.title }}</div>
-                        <img class="actor--movie-poster" src="{{ movie.artWork }}">
-                    </div>
-                    <div class="actor--trailer">
-                        <div class="media--remaining--element">
-                            <div class="media--subTitle">
-                                <div class="actor--trailer-tag">Trailer</div>
-                                <button class="media--subTitle--hideShowButton waves-effect waves-red btn-flat">
-                                    <i class="mdi-hardware-keyboard-arrow-up"></i></button>
-                            </div>
-                            <div class="media--subContent">
-                                <iframe class="actor--video" frameborder="0" allowfullscreen src="{{ movie.trailer }}"></iframe>
-                            </div>
-                        </div>
-                        <p> Released date : {{ movie.releaseDate }}</p>
-                    </div>
+                <div class="item--thumbnail">
+                    <a href="/movies/{{ movie.id }}"><img src="{{ movie.poster }}" alt="{{ movie.title }}"/></a>
+                </div>
+                <div class="item--rightCol">
+                    <div class="item--title"><a href="/movies/{{ movie.id }}">{{ movie.title }}</a></div>
+                    <div class="item--informationElement">{{ movie.releaseDate }}</div>
+                    <button data-trailer-link="{{ movie.trailerLink }}" class="item--trailerButton waves-effect waves-light btn blue">Trailer</button>
                 </div>
             </li>
         {% endfor %}

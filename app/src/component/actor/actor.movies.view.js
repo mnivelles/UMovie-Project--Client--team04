@@ -41,9 +41,10 @@ define(function(require){
             _.each(rawMovieList.toJSON(), function(movie) {
                 movieList.push(
                     {
+                        id: movie.trackId,
                         title : movie.trackName,
-                        artWork : movie.artworkUrl100.replace('100x100','400x400'),
-                        trailer : 'https://www.youtube.com/embed/2m9IFlz2iYo',
+                        poster : movie.artworkUrl100.replace('100x100','400x400'),
+                        trailerLink: 'https://www.youtube.com/embed/2m9IFlz2iYo',
                         releaseDate : movie.releaseDate.substring(0, 10)
                     }
                 );
@@ -69,7 +70,7 @@ define(function(require){
             for(var i=0; i< movieList.length; i++){
                 var promise = self.getYoutubeTrailer(movieList[i].title, i);
                 promise.then(function(result){
-                    movieList[result.index].trailer = result.link;
+                    movieList[result.index].trailerLink = result.link;
                 });
                 promises.push(promise);
             }

@@ -36,7 +36,8 @@ require.config({
     }
 });
 
-require(['jquery', 'underscore', 'backbone', 'router', 'materialize', '/js/helper.view.js'], function ($, _, Backbone, Router, Materialize) {
+require(['jquery', 'underscore', 'backbone', 'router', 'materialize', '/js/helper.view.js'],
+    function ($, _, Backbone, Router, Materialize) {
 
     var router = new Router();
 

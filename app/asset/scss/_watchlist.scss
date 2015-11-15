@@ -47,7 +47,7 @@ $watchList-titleWeight: 100;
         color: inherit;
 
         &:hover {
-            @extend .orange-text, .lighten-3;
+            color: color("red", "lighten-1");
         }
     }
 

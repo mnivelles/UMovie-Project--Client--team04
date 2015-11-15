@@ -3,26 +3,18 @@
     page standard pour les séries (tvshow)
 \*------------------------------------*/
 
-
-
-
-
-
 /*
     Constantes
 */
 
-$media-titleColor: hsla(1,83%,63%,1); //Red.400
+$media-titleColor: color("red", "lighten-1");
+//Red.400
 $media-titleWeight: 100;
 
 //$media-normalTextColor:
 $media-normalTextWeight: 300;
 
 $mediaNormalPadding: 3%;
-
-
-
-
 
 /*
     rem du module
@@ -48,15 +40,9 @@ $mediaNormalPadding: 3%;
     }
 }
 
-
-
-
 .mediaHeader, .media--quickActions, .media--remaining {
     @include cf();
 }
-
-
-
 
 /*------------------------------------*\
     ##MEDIA_HEADER
@@ -83,7 +69,7 @@ $mediaNormalPadding: 3%;
         .media--ratingLogo {
             padding: .15em .18em;
 
-            color: hsla(0,100%,100%,1);
+            color: hsla(0, 100%, 100%, 1);
 
             border-width: 1px;
             border-style: solid;
@@ -137,10 +123,6 @@ $mediaNormalPadding: 3%;
     }
 }
 
-
-
-
-
 /*------------------------------------*\
     ##MEDIA_QUICK_ACTIONS
 \*------------------------------------*/
@@ -149,7 +131,7 @@ $mediaNormalPadding: 3%;
 
     text-align: center;
 
-    background-color: hsla(0,100%,100%,.15);
+    background-color: hsla(0, 100%, 100%, .15);
 
     &--button {
         vertical-align: middle;
@@ -184,10 +166,6 @@ $mediaNormalPadding: 3%;
     }
 }
 
-
-
-
-
 /*------------------------------------*\
     ##MEDIA_TRAILER
 \*------------------------------------*/
@@ -197,12 +175,12 @@ $mediaNormalPadding: 3%;
     .trailerContainer {
         @extend .l-centered;
 
-        position:relative;
+        position: relative;
 
         .ratio {
-            display:block;
-            width:100%;
-            height:auto;
+            display: block;
+            width: 100%;
+            height: auto;
         }
 
         iframe {
@@ -214,10 +192,6 @@ $mediaNormalPadding: 3%;
         }
     }
 }
-
-
-
-
 
 /*------------------------------------*\
     ##MEDIA_SECTION
@@ -251,7 +225,7 @@ $mediaNormalPadding: 3%;
     }
 
     &--hideShowButton {
-        color: hsla(0,100%,100%,1);
+        color: hsla(0, 100%, 100%, 1);
 
         i {
             @extend .mdi-hardware-keyboard-arrow-up;
@@ -413,14 +387,14 @@ $mediaNormalPadding: 3%;
             }
 
             .episode--number {
-                color: hsla(0,100%,100%,1);
+                color: hsla(0, 100%, 100%, 1);
             }
 
             .episode--ratingLogo {
                 padding: .15em .18em;
 
                 font-size: .75em;
-                color: hsla(0,100%,100%,1);
+                color: hsla(0, 100%, 100%, 1);
 
                 border-width: 1px;
                 border-style: solid;
@@ -432,73 +406,20 @@ $mediaNormalPadding: 3%;
     }
 }
 
-/*
- TODO se débarasser : Legacy
-*/
-.media--remaining--element {
-    .media--subTitle {
-
-        margin-right: $mediaNormalPadding;
-        margin-left: $mediaNormalPadding;
-
-        & > * {
-            display: inline-block;
-            vertical-align: middle;
-        }
-
-        .media--subTitle--title {
-            color: $standardSectionTitleColor;
-            font-weight: $standardSectionTitleWeight;
-        }
-
-        .media--subTitle--hideShowButton {
-
-        }
-    }
-
-    .media--subTitle--hideShowButton {
-        color: hsla(0,100%,100%,1);
-
-        i {
-            @extend .mdi-hardware-keyboard-arrow-up;
-            font-size: 1.5em;
-        }
-
-        &:focus {
-            background-color: transparent;
-        }
-    }
-    .media--subContent {
-
-    }
-
-    &.is-hidden {
-        .media--subTitle--hideShowButton {
-            i {
-                @extend .mdi-hardware-keyboard-arrow-down;
-            }
-        }
-        .media--subContent {
-            display: none;
-        }
-    }
-
-    .media--subContent {
-        margin-right: $mediaNormalPadding;
-        margin-left: $mediaNormalPadding;
-
-        font-weight: 300;
-    }
-
-    .media--episodesList {
+/*------------------------------------*\
+    ##MEDIA_SECTION -> unorderedMoviesList
+\*------------------------------------*/
+.mediaSection {
+    .unorderedMoviesList {
         @include cf();
 
-        .media--episodesList--item {
+        &--item {
             @include cf();
 
-            border-bottom-width: 1px;
-            border-bottom-style: solid;
-            margin-bottom: 0.7em;
+            border-top-width: 1px;
+            border-top-style: solid;
+            margin-top: 0.7em;
+            padding-top: 0.7em;
 
             @include breakpoint(phablet) {
 
@@ -506,25 +427,64 @@ $mediaNormalPadding: 3%;
 
             @include breakpoint(tablet) {
                 @include col(1/2, $cycle: 2);
+
+                &:first-child {
+                    border-top: none;
+                    margin-top: 0;
+                }
+                &:nth-child(2) {
+                    border-top: none;
+                    margin-top: 0;
+                }
             }
 
             @include breakpoint(laptop) {
                 @include col(1/3, $uncycle: 2, $cycle: 3);
+
+                &:first-child {
+                    border-top: none;
+                    margin-top: 0;
+                }
+                &:nth-child(2) {
+                    border-top: none;
+                    margin-top: 0;
+                }
+                &:nth-child(3) {
+                    border-top: none;
+                    margin-top: 0;
+                }
             }
 
             @include breakpoint(desktop) {
                 @include col(1/4, $uncycle: 3, $cycle: 4);
+
+                &:first-child {
+                    border-top: none;
+                    margin-top: 0;
+                }
+                &:nth-child(2) {
+                    border-top: none;
+                    margin-top: 0;
+                }
+                &:nth-child(3) {
+                    border-top: none;
+                    margin-top: 0;
+                }
+                &:nth-child(4) {
+                    border-top: none;
+                    margin-top: 0;
+                }
             }
 
             & > * {
                 display: inline-block;
             }
 
-            .episode--thumbnail img {
+            .item--thumbnail img {
                 max-width: 100%;
             }
 
-            .episode--thumbnail {
+            .item--thumbnail {
                 @include col(3/12);
 
                 @include breakpoint(tablet) {
@@ -540,41 +500,39 @@ $mediaNormalPadding: 3%;
                 }
             }
 
-            .episode--title {
-                font-size: 1.2em;
+            .item--rightCol {
+                font-size: 1.4rem;
 
                 @include col(9/12);
 
                 @include breakpoint(tablet) {
                     @include col(8/12);
+                    font-size: 1.3rem;
                 }
 
                 @include breakpoint(laptop) {
                     @include col(8/12);
+                    font-size: 1.2rem;
                 }
 
                 @include breakpoint(desktop) {
                     @include col(7/12);
                 }
-            }
 
-            .episode--number {
-                color: hsla(0,100%,100%,1);
-            }
+                .item--title a {
+                    font-size: 1.29em;
+                    color: inherit;
 
-            .episode--ratingLogo {
-                padding: .15em .18em;
-
-                font-size: .75em;
-                color: hsla(0,100%,100%,1);
-
-                border-width: 1px;
-                border-style: solid;
-                border-radius: .3em;
-
-                white-space: nowrap;
+                    &:hover {
+                        color: color("red", "lighten-1");
+                    }
+                }
+                .item--informationElement {
+                }
+                .item--trailerButton {
+                    margin-top: 12px;
+                }
             }
         }
-
     }
 }
