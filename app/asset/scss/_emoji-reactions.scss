@@ -54,12 +54,12 @@
     /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
 }
 
-.icon-emo-beer:before { content: 'B'; } /* 'B' */
-.icon-emo-cry:before { content: 'C'; } /* 'C' */
-.icon-emo-devil:before { content: 'D'; } /* 'D' */
-.icon-emo-sunglasses:before { content: 'G'; } /* 'G' */
-.icon-emo-happy:before { content: 'H'; } /* 'H' */
-.icon-emo-laugh:before { content: 'L'; } /* 'L' */
-.icon-emo-surprised:before { content: 'O'; } /* 'O' */
-.icon-emo-shoot:before { content: 'S'; } /* 'S' */
-.icon-emo-unhappy:before { content: 'U'; } /* 'U' */
+.icon-emo-happy:before { content: '\e800'; }
+.icon-emo-cry:before { content: '\e806'; }
+.icon-emo-shoot:before { content: '\e807'; }
+.icon-emo-devil:before { content: '\e802'; }
+.icon-emo-cheers:before { content: '\e804'; }
+.icon-emo-cool:before { content: '\e805'; }
+.icon-emo-surprised:before { content: '\e803'; }
+.icon-emo-sad:before { content: '\e801'; }
+.icon-emo-funny:before { content: '\e808'; }

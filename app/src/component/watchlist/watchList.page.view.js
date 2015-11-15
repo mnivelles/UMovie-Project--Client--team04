@@ -28,16 +28,43 @@ define(function (require) {
             var self = this;
 
             var reactions = {
-                            happyPercentage: 20,
-                            cryPercentage: 10,
-                            shootPercentage: 10,
-                            devilPercentage: 10,
-                            cheersPercentage: 5,
-                            coolPercentage: 15,
-                            surprisedPercentage: 8,
-                            sadPercentage: 7,
-                            funnyPercentage: 15
-                        };
+                happy: {
+                    percentage: 20,
+                    percentageSize: 'xsmall'
+                },
+                cry: {
+                    percentage: 10,
+                    percentageSize: 'small'
+                },
+                shoot: {
+                    percentage: 10,
+                    percentageSize: 'large'
+                },
+                devil: {
+                    percentage: 10,
+                    percentageSize: 'xlarge'
+                },
+                cheers: {
+                    percentage: 5,
+                    percentageSize: 'medium'
+                },
+                cool: {
+                    percentage: 15,
+                    percentageSize: 'large'
+                },
+                surprised: {
+                    percentage: 8,
+                    percentageSize: 'small'
+                },
+                sad: {
+                    percentage: 7,
+                    percentageSize: 'xsmall'
+                },
+                funny: {
+                    percentage: 15,
+                    percentageSize: 'medium'
+                }
+            };
 
             this.watchList = new WatchListModel({id: options.id});
 

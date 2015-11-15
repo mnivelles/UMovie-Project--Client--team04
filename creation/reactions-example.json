@@ -9,11 +9,11 @@
             "cry": 0,
             "shoot": 0,
             "devil": 0,
-            "beer": 0,
-            "sunglasses": 0,
+            "cheers": 0,
+            "cool": 0,
             "surprised": 0,
-            "unhappy": 0,
-            "laugh": 0
+            "sad": 0,
+            "funny": 0
         }
     ],
     "tvShow": [
@@ -26,11 +26,28 @@
             "cry": 0,
             "shoot": 0,
             "devil": 0,
-            "beer": 0,
-            "sunglasses": 0,
+            "cheers": 0,
+            "cool": 0,
             "surprised": 0,
-            "unhappy": 0,
-            "laugh": 0
+            "sad": 0,
+            "funny": 0
+        }
+    ],
+    "watchList": [
+        {
+            "id": "323880910",
+            "voters": [
+                "nanashi@sekai-no-owari.umovie"
+            ],
+            "happy": 0,
+            "cry": 0,
+            "shoot": 0,
+            "devil": 0,
+            "cheers": 0,
+            "cool": 0,
+            "surprised": 0,
+            "sad": 0,
+            "funny": 0
         }
     ]
 }
