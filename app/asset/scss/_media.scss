@@ -7,9 +7,11 @@
     Constantes
 */
 
-$media-titleColor: color("red", "lighten-1");
-//Red.400
+$media-titleColor: color("red", "lighten-1"); //Red.400
 $media-titleWeight: 100;
+
+$media-subtitleColor: color("red", "lighten-2");
+$media-subtitleWeight: 200;
 
 //$media-normalTextColor:
 $media-normalTextWeight: 300;
@@ -61,6 +63,15 @@ $mediaNormalPadding: 3%;
     &--title {
         color: $media-titleColor;
         font-weight: $media-titleWeight;
+    }
+
+    &--subtitle {
+        padding-bottom: 15px;
+
+        color: $media-subtitleColor;
+        font-weight: $media-subtitleWeight;
+
+        font-size: 1.6em;
     }
 
     .mainInformations--element {
@@ -255,20 +266,66 @@ $mediaNormalPadding: 3%;
         font-weight: $media-normalTextWeight;
 
         &--item {
-            border-bottom-width: 1px;
-            border-bottom-style: solid;
-            margin-bottom: 0.7em;
+            @include cf();
+
+            border-top-width: 1px;
+            border-top-style: solid;
+            margin-top: 0.7em;
+            padding-top: 0.7em;
 
             @include breakpoint(phablet) {
-                @include col(1/2, $cycle: 2);
+
             }
 
             @include breakpoint(tablet) {
-                @include col(1/3, $uncycle: 2, $cycle: 3);
+                @include col(1/2, $cycle: 2);
+
+                &:first-child {
+                    border-top: none;
+                    margin-top: 0;
+                }
+                &:nth-child(2) {
+                    border-top: none;
+                    margin-top: 0;
+                }
             }
 
             @include breakpoint(laptop) {
+                @include col(1/3, $uncycle: 2, $cycle: 3);
+
+                &:first-child {
+                    border-top: none;
+                    margin-top: 0;
+                }
+                &:nth-child(2) {
+                    border-top: none;
+                    margin-top: 0;
+                }
+                &:nth-child(3) {
+                    border-top: none;
+                    margin-top: 0;
+                }
+            }
+
+            @include breakpoint(desktop) {
                 @include col(1/4, $uncycle: 3, $cycle: 4);
+
+                &:first-child {
+                    border-top: none;
+                    margin-top: 0;
+                }
+                &:nth-child(2) {
+                    border-top: none;
+                    margin-top: 0;
+                }
+                &:nth-child(3) {
+                    border-top: none;
+                    margin-top: 0;
+                }
+                &:nth-child(4) {
+                    border-top: none;
+                    margin-top: 0;
+                }
             }
         }
     }

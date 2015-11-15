@@ -10,6 +10,7 @@ define(function (require) {
         Moment = require('moment'),
         Common = require('/js/common.js'),
         template = 'movie.page.nunj.html',
+        TMDb = require('TMDbSearch'),
         MovieModel = require('movie.model'),
         WatchListCollection = require('/js/watchList.collection.js');
 
@@ -43,11 +44,13 @@ define(function (require) {
         getMovieInfo: function () {
             var self = this;
             youtubeSearch(this.model.get('trackName'), function (videoUrl) {
-                self.render(videoUrl);
+                TMDb.searchMovie(self.model.get('trackName'), function(tmdbMovie) {
+                    self.render(videoUrl, tmdbMovie);
+                });
             });
         },
 
-        render: function (videoUrl) {
+        render: function (videoUrl, tmdbMovie) {
             var self = this;
 
             var reactions = {
@@ -102,7 +105,15 @@ define(function (require) {
                             ],
                             itunesLink: self.model.get('trackViewUrl'),
                             youtubeTrailerUrl: videoUrl,
-                            synopsis: self.model.get('longDescription')
+                            synopsis: self.model.get('longDescription'),
+                            homepage: tmdbMovie.homepage,
+                            tagline: tmdbMovie.tagline,
+                            actors: tmdbMovie.actors ? _.map(tmdbMovie.actors, function(actor) {
+                                return actor.name + ' (' + actor.character + ')';
+                            }) : undefined,
+                            crew: tmdbMovie.crew ? _.map(tmdbMovie.crew, function(person) {
+                                return person.name + ' (' + person.job + ')';
+                            }) : undefined
                         },
                         reactions: reactions,
                         watchListCollection: _.map(_.sortBy(self.watchListCollection.models, function (watchList) {

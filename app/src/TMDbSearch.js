@@ -27,6 +27,30 @@ define(function(require){
                     });
                 });
             });
+        },
+
+        searchMovie: function(query, callback) {
+            var searchMovieUrl = Common.TMDB_API_BASE_URL + 'search/movie?query=' + encodeURIComponent(query) + '&api_key=' + Common.TMDB_API_KEY;
+
+            $.get(searchMovieUrl, function(searchResult) {
+                if (!searchResult.results[0]) {
+                    callback({});
+                } else {
+                    var movieId = searchResult.results[0].id;
+
+                    var movieUrl = Common.TMDB_API_BASE_URL + 'movie/' + movieId + '?append_to_response=trailers,credits&api_key=' + Common.TMDB_API_KEY;
+
+                    $.get(movieUrl, function(movieResult) {
+                        console.log(movieResult);
+                        callback({
+                            homepage: movieResult.homepage,
+                            tagline: movieResult.tagline,
+                            actors: _.take(movieResult.credits.cast, 20),
+                            crew: _.take(movieResult.credits.crew, 12)
+                        });
+                    });
+                }
+            });
         }
     };
 });

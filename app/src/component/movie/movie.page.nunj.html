@@ -3,9 +3,13 @@
 
         {% import "helper.media.nunj.html" as mediaHelper %}
 
-        {{ mediaHelper.header(media.title, media.img, media.mainInformations) }}
+        {{ mediaHelper.header(media.title, media.img, media.mainInformations, media.tagline) }}
 
         <section class="media--quickActions">
+            {% if media.homepage %}
+                <a href="{{ media.homepage }}" class="media--quickActions--button showTrailerButton waves-effect waves-light btn-large red"><i class="mdi-action-home left"></i> Homepage
+                </a>
+            {% endif %}
             <button class="media--quickActions--button showTrailerButton waves-effect waves-light btn-large red"><i
                     class="mdi-av-play-circle-outline left"></i> Trailer
             </button>
@@ -20,10 +24,18 @@
         </section>
 
         {{ mediaHelper.trailer(media.youtubeTrailerUrl) }}
-        
+
         {% include "reactions.nunj.html" %}
 
         {{ mediaHelper.paragraphSection("Synopsis", media.synopsis) }}
+
+        {% if media.actors %}
+            {{ mediaHelper.wordListSection("Casting", media.actors) }}
+        {% endif %}
+
+        {% if media.crew %}
+            {{ mediaHelper.wordListSection("Crew", media.crew) }}
+        {% endif %}
 
         <ul id='watchListSelectionDropDown' class='dropdown-content watchListSelection'>
             {% for watchList in watchListCollection %}

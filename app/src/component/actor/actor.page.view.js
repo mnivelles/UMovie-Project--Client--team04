@@ -6,9 +6,9 @@ define(function (require) {
         Nunjucks = require('nunjucks'),
         Moment = require('moment'),
         template = 'actor.page.nunj.html',
+        TMDb = require('TMDbSearch'),
         Actor = require('actor.model'),
-        MoviesView = require('actor.movies.view'),
-        TMDb = require('TMDbSearch');
+        MoviesView = require('actor.movies.view');
 
     return Backbone.View.extend({
         events: function () {
