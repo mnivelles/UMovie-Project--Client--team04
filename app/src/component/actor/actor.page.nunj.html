@@ -6,11 +6,17 @@
         {{ mediaHelper.header(media.title, media.img, media.mainInformations) }}
 
         <section class="media--quickActions">
+            {% if media.homepage %}
+                <a href="{{ media.homepage }}" class="media--quickActions--button showTrailerButton waves-effect waves-light btn-large red"><i class="mdi-action-home left"></i> Homepage
+                </a>
+            {% endif %}
             <a class="media--quickActions--button imageButton" target="_blank"
                href={{ media.itunesLink }}>
                 <img src="/image/get-on-itunes-badge-en_US-138x50.png">
             </a>
         </section>
+
+        {{ mediaHelper.paragraphSection("Biography", media.biography) }}
 
         <section class="actor--movies"></section>
 

@@ -3,6 +3,7 @@ define(function(require){
 
     var Backbone = require('backbone'),
         Nunjucks = require('nunjucks'),
+        Moment = require('moment'),
         moviesTemplate = 'actor.movies.nunj.html',
         _ = require('underscore'),
         Movies = require('actor.movies.model'),
@@ -11,6 +12,12 @@ define(function(require){
     var maxDisplayCount = 10;
 
     return Backbone.View.extend({
+        events: function() {
+            return {
+                'click .mediaSection--hideShowButton': 'toggleMediaSection'
+            }
+        },
+
         render: function (id){
             var self = this;
             var movies = new Movies(id);
@@ -29,11 +36,17 @@ define(function(require){
                         $('.mediaSection--hideShowButton', self.el).click(function() {
                             self.toggleMediaSectionParentOfElement($(this));
                         });
+
+                        self.hideMediaSectionForSmallScreen();
                     });
                 }
             });
 
             return this;
+        },
+
+        toggleMediaSection: function(event) {
+            this.toggleMediaSectionParentOfElement($(event.currentTarget));
         },
 
         format : function(rawMovieList) {
@@ -45,7 +58,7 @@ define(function(require){
                         title : movie.trackName,
                         poster : movie.artworkUrl100.replace('100x100','400x400'),
                         trailerLink: 'https://www.youtube.com/embed/2m9IFlz2iYo',
-                        releaseDate : movie.releaseDate.substring(0, 10)
+                        releaseDate : Moment(movie.releaseDate).format('ll')
                     }
                 );
             });

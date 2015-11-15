@@ -33,7 +33,8 @@ var vendor = { // TODO en production, il faut utiliser un CDN pour ceux disponib
         cte.basePaths.bower + 'nunjucks/browser/nunjucks-slim.js',
 
         // ajouter ici d'autres bibliothèques
-        cte.basePaths.bower + 'bluebird/js/browser/bluebird.js'
+        cte.basePaths.bower + 'bluebird/js/browser/bluebird.js',
+        cte.basePaths.bower + 'moment/min/moment-with-locales.js'
     ],
     dest: paths.dest + 'lib/'
 };

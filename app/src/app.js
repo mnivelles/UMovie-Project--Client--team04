@@ -4,6 +4,12 @@ require.config({
 
     baseUrl: '/js/',
 
+    config: {
+        moment: {
+            noGlobal: true
+        }
+    },
+
     shim: {
         underscore: {
             exports: '_'
@@ -32,7 +38,8 @@ require.config({
         nunjucks: 'lib/nunjucks-slim',
         slick: 'lib/slick',
         underscore: 'lib/lodash', // superset of underscore with more updates
-        bluebird: 'lib/bluebird'
+        bluebird: 'lib/bluebird',
+        moment: 'lib/moment-with-locales'
     }
 });
 
