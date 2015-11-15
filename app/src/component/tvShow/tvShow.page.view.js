@@ -5,6 +5,7 @@ define(function (require) {
     var Backbone = require('backbone'),
         $ = require('jquery'),
         Nunjucks = require('nunjucks'),
+        Moment = require('moment'),
         template = 'tvShow.page.nunj.html',
         Episodes = require('tvShow.episodes.model'),
         Seasons = require('tvShow.season.model');
@@ -64,7 +65,7 @@ define(function (require) {
                                 title: self.season.collectionName,
                                 img: self.season.artworkUrl100.replace('100x100', '400x400'),
                                 mainInformations: [
-                                    self.season.releaseDate.split('T')[0],
+                                    'Released ' + Moment(self.season.releaseDate).format('LL'),
                                     self.season.primaryGenreName
                                 ],
                                 youtubeTrailerUrl: videoUrl,

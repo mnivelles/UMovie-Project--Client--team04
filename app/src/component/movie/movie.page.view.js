@@ -7,6 +7,7 @@ define(function (require) {
         _ = require('underscore'),
         Nunjucks = require('nunjucks'),
         Materialize = require('materialize'),
+        Moment = require('moment'),
         Common = require('/js/common.js'),
         template = 'movie.page.nunj.html',
         MovieModel = require('movie.model'),
@@ -14,16 +15,12 @@ define(function (require) {
 
     require('https://apis.google.com/js/client.js?onload=googleApiClientReady');
 
-
-    function getMovieReleaseDateFormatedString(releaseDate) {
-        return releaseDate.substring(0, releaseDate.indexOf('T'));
-    }
-
     function getMovieLengthString(lengthInMillis) {
-        var seconds = lengthInMillis / 1000;
-        var minutes = seconds / 60;
-        var hours = minutes / 60;
-        return Math.floor(hours).toString() + 'h' + Math.floor(minutes % 60).toString();
+        var duration = Moment.duration(lengthInMillis);
+        var minutes = duration.minutes();
+        minutes = minutes < 10 ? '0' + minutes : minutes;
+        var hours = duration.hours();
+        return hours + 'h' + minutes;
     }
 
     return Backbone.View.extend({
@@ -97,7 +94,7 @@ define(function (require) {
                             title: self.model.get('trackName'),
                             img: self.model.get('artworkUrl100').replace('100x100', '400x400'),
                             mainInformations: [
-                                getMovieReleaseDateFormatedString(self.model.get('releaseDate')),
+                                'Released ' + Moment(self.model.get('releaseDate')).format('LL'),
                                 self.model.get('primaryGenreName'),
                                 getMovieLengthString(self.model.get('trackTimeMillis')),
                                 'by ' + self.model.get('artistName'),
