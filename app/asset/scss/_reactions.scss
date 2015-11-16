@@ -39,6 +39,15 @@
             }
 
             &--percentage {
+                height: 30px;
+                line-height: 30px;
+                vertical-align: middle;
+
+                @include breakpoint(tablet) {
+                    height: 35px;
+                    line-height: 35px;
+                }
+
                 &.xsmall {
                     font-size: .75em;
                 }

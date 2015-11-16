@@ -6,14 +6,22 @@ define(function (require) {
         $ = require('jquery'),
         Nunjucks = require('nunjucks'),
         Moment = require('moment'),
+        Common = require('/js/common.js'),
         //TMDb = require('TMDbSearch'),
         template = 'tvShow.page.nunj.html',
+        ReactionsCollection = require('/js/reactions.collection.js'),
+        ReactionsView = require('/js/reactions.view.js'),
         Episodes = require('tvShow.episodes.model'),
         Seasons = require('tvShow.season.model');
     require('https://apis.google.com/js/client.js?onload=googleApiClientReady');
 
     return Backbone.View.extend({
+        initialize: function() {
+            this.reactionsCollection = new ReactionsCollection();
+            this.reactionsCollection.url = Common.REACTIONS_EMOJI_TVSHOW_URL;
 
+            this.reactionsView = new ReactionsView();
+        },
 
         getYoutubeTrailer: function() {
             var self = this;
@@ -21,44 +29,6 @@ define(function (require) {
                 var episodes = new Episodes([], {id: self.id});
                 episodes.fetch({
                     success: function (episodes) {
-                        var reactions = {
-                            happy: {
-                                percentage: 20,
-                                percentageSize: 'xsmall'
-                            },
-                            cry: {
-                                percentage: 10,
-                                percentageSize: 'small'
-                            },
-                            shoot: {
-                                percentage: 10,
-                                percentageSize: 'large'
-                            },
-                            devil: {
-                                percentage: 10,
-                                percentageSize: 'xlarge'
-                            },
-                            cheers: {
-                                percentage: 5,
-                                percentageSize: 'medium'
-                            },
-                            cool: {
-                                percentage: 15,
-                                percentageSize: 'large'
-                            },
-                            surprised: {
-                                percentage: 8,
-                                percentageSize: 'small'
-                            },
-                            sad: {
-                                percentage: 7,
-                                percentageSize: 'xsmall'
-                            },
-                            funny: {
-                                percentage: 15,
-                                percentageSize: 'medium'
-                            }
-                        };
 
                         self.episodes = episodes.toJSON();
                         var html = Nunjucks.render(template, {
@@ -74,8 +44,7 @@ define(function (require) {
                                 itunesUrl: self.season.collectionViewUrl,
 
                                 episodes: self.episodes
-                            },
-                            reactions: reactions
+                            }
                         });
 
                         self.$el.html(html);
@@ -90,6 +59,17 @@ define(function (require) {
                         self.hideMediaSectionForSmallScreen();
 
                         self.changePageTitleWith(self.season.collectionName);
+
+                        self.reactionsView = new ReactionsView({
+                            el: $('.template-reactions', self.el),
+                            collection: self.reactionsCollection
+                        });
+
+                        self.reactionsCollection.fetch({
+                            success: function(data) {
+                                self.reactionsView.renderWithId(self.id);
+                            }
+                        });
                     }
                 });
             });

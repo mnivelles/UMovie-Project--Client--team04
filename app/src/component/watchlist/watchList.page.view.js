@@ -7,11 +7,18 @@ define(function (require) {
         $ = require('jquery'),
         Common = require('/js/common.js'),
         WatchListModel = require('/js/watchList.model.js'),
+        ReactionsCollection = require('/js/reactions.collection.js'),
+        ReactionsView = require('/js/reactions.view.js'),
         template = 'watchList.page.nunj.html';
 
     return Backbone.View.extend({
         initialize: function() {
             this.watchList = new WatchListModel();
+
+            this.reactionsCollection = new ReactionsCollection();
+            this.reactionsCollection.url = Common.REACTIONS_EMOJI_WATCHLIST_URL;
+
+            this.reactionsView = new ReactionsView();
         },
 
         events: function() {
@@ -27,45 +34,6 @@ define(function (require) {
         render: function(options) {
             var self = this;
 
-            var reactions = {
-                happy: {
-                    percentage: 20,
-                    percentageSize: 'xsmall'
-                },
-                cry: {
-                    percentage: 10,
-                    percentageSize: 'small'
-                },
-                shoot: {
-                    percentage: 10,
-                    percentageSize: 'large'
-                },
-                devil: {
-                    percentage: 10,
-                    percentageSize: 'xlarge'
-                },
-                cheers: {
-                    percentage: 5,
-                    percentageSize: 'medium'
-                },
-                cool: {
-                    percentage: 15,
-                    percentageSize: 'large'
-                },
-                surprised: {
-                    percentage: 8,
-                    percentageSize: 'small'
-                },
-                sad: {
-                    percentage: 7,
-                    percentageSize: 'xsmall'
-                },
-                funny: {
-                    percentage: 15,
-                    percentageSize: 'medium'
-                }
-            };
-
             this.watchList = new WatchListModel({id: options.id});
 
             this.watchList.fetch({
@@ -74,8 +42,7 @@ define(function (require) {
                         watchList: {
                             title: result.get('title'),
                             movies: result.get('simpleMovies')
-                        },
-                        reactions: reactions
+                        }
                     });
                     self.$el.html(html);
 
@@ -86,6 +53,17 @@ define(function (require) {
                     self.hideMediaSectionForSmallScreen();
 
                     self.changePageTitleWith(result.get('title'));
+
+                    self.reactionsView = new ReactionsView({
+                        el: $('.template-reactions', self.el),
+                        collection: self.reactionsCollection
+                    });
+
+                    self.reactionsCollection.fetch({
+                        success: function(data) {
+                            self.reactionsView.renderWithId(options.id);
+                        }
+                    });
                 }
             });
 
