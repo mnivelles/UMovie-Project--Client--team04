@@ -55,6 +55,16 @@ define(function (require) {
             youtubeSearch(this.model.get('trackName'), function (videoUrl) {
                 TMDb.searchMovie(self.model.get('trackName'), function(tmdbMovie) {
                     self.render(videoUrl, tmdbMovie);
+                }, function() {
+                    self.render(videoUrl, {
+                        homepage: undefined,
+                        tagline: undefined,
+                        actors: undefined,
+                        crew: undefined
+                    });
+                    var message = 'All the information has not been loaded';
+
+                    Materialize.toast(message, 4000, 'error-toast rounded');
                 });
             });
         },

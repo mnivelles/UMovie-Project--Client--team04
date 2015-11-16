@@ -42,6 +42,25 @@ define(function (require) {
                         moviesView.render(id);
 
                         self.hideMediaSectionForSmallScreen();
+                    }, function() {
+                        self.display({
+                            name: actor.artistName,
+                            primaryGenre: actor.primaryGenreName,
+                            iTunesLink: actor.artistLinkUrl,
+                            biography: undefined,
+                            img: undefined,
+                            birthday: undefined,
+                            placeOfBirth: undefined,
+                            homepage: undefined
+                        });
+                        var moviesView = new MoviesView({el: self.$('.actor--movies')});
+                        moviesView.render(id);
+
+                        var message = 'All the information has not been loaded';
+
+                        Materialize.toast(message, 4000, 'error-toast rounded');
+
+                        self.hideMediaSectionForSmallScreen();
                     });
 
                     self.changePageTitleWith(actor.artistName);
@@ -85,8 +104,9 @@ define(function (require) {
 
         _formatBirth: function (date, place) {
             var day = Moment(date);
+
             var str = 'Born ';
-            str += day.isValid() ? day.format('LL') + ' ' : '';
+            str += (day.isValid() && date) ? day.format('LL') + ' ' : '';
             str += place ? 'in ' + place : 'on Earth';
 
             return str;
