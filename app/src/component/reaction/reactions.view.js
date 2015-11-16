@@ -6,6 +6,7 @@ define(function (require) {
         $ = require('jquery'),
         slick = require('slick'),
         Nunjucks = require('nunjucks'),
+        Common = require('/js/common.js'),
         template = 'reactions.nunj.html';
 
     var xsmallSizeClass = 'xsmall',
@@ -14,10 +15,21 @@ define(function (require) {
         largeSizeClass = 'large',
         xlargeSizeClass = 'xlarge';
 
+    var emotions = ['happy', 'cry', 'shoot', 'devil', 'cheers',
+        'cool', 'surprised', 'sad', 'funny'];
+
+    var activeClass = 'is-active';
+
     return Backbone.View.extend({
 
         initialize: function() {
+            this.mediaId = undefined;
+        },
 
+        events: function() {
+            return {
+                'click .reactions .reaction': 'chooseReaction'
+            }
         },
 
         render: function () {
@@ -30,6 +42,8 @@ define(function (require) {
         },
 
         renderWithId: function(id) {
+            this.mediaId = id;
+
             var reactions = _.find(this.collection.toJSON(), function(element) {
                 return element.id == id;
             });
@@ -52,28 +66,59 @@ define(function (require) {
                 reactions: this._percentagesFrom(reactions)
             });
             this.$el.html(html);
+
+            var voter = _.find(reactions.voters, function(element) {
+                return element.id == Common.VOTER_ID;
+            });
+
+            if (voter) {
+                var button = $('.reactions .reaction[data-content=' + voter.reaction + ']');
+                this._activateButton(button);
+            }
+        },
+
+        chooseReaction: function(event) {
+            var self = this;
+
+            var button = $(event.currentTarget);
+            self._activateButton(button);
+
+            self.collection.fetch({
+                success: function(currentReactions) {
+                    currentReactions.setReaction(button.attr('data-content'), Common.VOTER_ID, self.mediaId, function() {
+                        self.collection.fetch({
+                            success: function() {
+                                self.renderWithId(self.mediaId);
+                            }
+                        });
+                    });
+                }
+            });
+        },
+
+        _activateButton: function(button) {
+            $('.reactions .reaction').removeClass(activeClass);
+            button.addClass(activeClass);
         },
 
         _percentagesFrom: function(reactions) {
-            var emos = ['happy', 'cry', 'shoot', 'devil', 'cheers',
-            'cool', 'surprised', 'sad', 'funny'];
             var total = 0;
             var result = [];
 
-            for (var emo in emos) {
-                total += reactions[emos[emo]];
+            for (var emo in emotions) {
+                total += reactions[emotions[emo]];
             }
 
-            for (var em in emos) {
+            for (var em in emotions) {
                 var element = {};
 
                 if (total < 1) {
                     element.percentage = 0;
                 } else {
-                    element.percentage = Math.round(reactions[emos[em]] * 100 / total);
+                    element.percentage = Math.round(reactions[emotions[em]] * 100 / total);
                 }
                 element.percentageSize = this._percentageSizeFrom(element.percentage);
-                result[emos[em]] = element;
+                result[emotions[em]] = element;
             }
 
             return result;

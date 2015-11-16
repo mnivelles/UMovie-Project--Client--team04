@@ -26,7 +26,11 @@
             font-weight: 300;
 
             &:hover {
-                @extend .blue-text;
+                color: color("blue", "lighten-2");
+            }
+
+            &.is-active {
+                color: color("blue", "lighten-2");
             }
 
             &--icon {
