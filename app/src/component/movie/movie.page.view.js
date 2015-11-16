@@ -9,6 +9,8 @@ define(function (require) {
         Materialize = require('materialize'),
         Moment = require('moment'),
         Common = require('/js/common.js'),
+        ReactionsCollection = require('/js/reactions.collection.js'),
+        ReactionsView = require('/js/reactions.view.js'),
         template = 'movie.page.nunj.html',
         TMDb = require('TMDbSearch'),
         iTunes = require('iTunesSearch'),
@@ -41,6 +43,11 @@ define(function (require) {
 
             this.watchListCollection = new WatchListCollection();
             this.watchListCollection.fetch();
+
+            this.reactionsCollection = new ReactionsCollection();
+            this.reactionsCollection.url = Common.REACTIONS_EMOJI_MOVIE_URL;
+
+            this.reactionsView = new ReactionsView();
         },
 
         getMovieInfo: function () {
@@ -54,45 +61,6 @@ define(function (require) {
 
         render: function (videoUrl, tmdbMovie) {
             var self = this;
-
-            var reactions = {
-                happy: {
-                    percentage: 20,
-                    percentageSize: 'xsmall'
-                },
-                cry: {
-                    percentage: 10,
-                    percentageSize: 'small'
-                },
-                shoot: {
-                    percentage: 10,
-                    percentageSize: 'large'
-                },
-                devil: {
-                    percentage: 10,
-                    percentageSize: 'xlarge'
-                },
-                cheers: {
-                    percentage: 5,
-                    percentageSize: 'medium'
-                },
-                cool: {
-                    percentage: 15,
-                    percentageSize: 'large'
-                },
-                surprised: {
-                    percentage: 8,
-                    percentageSize: 'small'
-                },
-                sad: {
-                    percentage: 7,
-                    percentageSize: 'xsmall'
-                },
-                funny: {
-                    percentage: 15,
-                    percentageSize: 'medium'
-                }
-            };
 
             var html = Nunjucks.render(template, {
                         media: {
@@ -124,7 +92,6 @@ define(function (require) {
                                 return result;
                             }) : undefined
                         },
-                        reactions: reactions,
                         watchListCollection: _.map(_.sortBy(self.watchListCollection.models, function (watchList) {
                             return watchList.get('title').toUpperCase();
                         }), function (watchList) {
@@ -160,6 +127,17 @@ define(function (require) {
             self.hideMediaSectionForSmallScreen();
 
             self.changePageTitleWith(self.model.get('trackName'));
+
+            self.reactionsView = new ReactionsView({
+                el: $('.template-reactions', self.el),
+                collection: self.reactionsCollection
+            });
+
+            self.reactionsCollection.fetch({
+                success: function(data) {
+                    self.reactionsView.renderWithId(self.model.get('trackId'));
+                }
+            });
 
             return this;
         },
