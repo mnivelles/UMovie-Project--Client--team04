@@ -21,6 +21,7 @@ var vendor = { // TODO en production, il faut utiliser un CDN pour ceux disponib
     src: [
         cte.basePaths.bower + 'requirejs/require.js',
         cte.basePaths.bower + 'jquery/dist/jquery.js',
+        cte.basePaths.bower + 'jquery.cookie/jquery.cookie.js',
         //cte.basePaths.bower + 'materialize/dist/js/materialize.js', // Materialize need jQuery
 
         // source : https://github.com/noodny/materializecss-amd

@@ -4,15 +4,14 @@ define(function (require) {
 
     var Backbone = require('backbone'),
         Nunjucks = require('nunjucks'),
-        template = 'settings.page.nunj.html';
+        template = 'login.nunj.html';
 
     return Backbone.View.extend({
 
         render: function() {
             var html = Nunjucks.render(template, {});
             this.$el.html(html);
-
-            this.changePageTitleWith('Settings');
+            this.changePageTitleWith('Login');
 
             return this;
         }
