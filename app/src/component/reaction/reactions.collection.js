@@ -12,21 +12,6 @@ define(function (require) {
             return data;
         },
 
-        _update: function(callback) {
-            var self = this;
-
-            $.ajax({
-                url: self.url,
-                type:"PUT",
-                data: JSON.stringify(this.toJSON()),
-                contentType:"application/json; charset=utf-8",
-                dataType:"json",
-                success: function(data, textStatus, jqXHR) {
-                    callback();
-                }
-            });
-        },
-
         setReaction: function (newReaction, voterId, mediaId, callback) {
             var self = this;
 
@@ -43,6 +28,21 @@ define(function (require) {
                 this.add(newReactionsModel);
             }
             self._update(callback);
+        },
+
+        _update: function(callback) {
+            var self = this;
+
+            $.ajax({
+                url: self.url,
+                type:"PUT",
+                data: JSON.stringify(this.toJSON()),
+                contentType:"application/json; charset=utf-8",
+                dataType:"json",
+                success: function(data, textStatus, jqXHR) {
+                    callback();
+                }
+            });
         }
     });
 });
