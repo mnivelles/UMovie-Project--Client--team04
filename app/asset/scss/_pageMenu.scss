@@ -278,15 +278,6 @@
 
 .pageMenu--user .user--avatarButton {
     .defaultImage {
-        display: none;
-    }
-
-    &.is-active {
-        .defaultImage {
-            display: inline;
-        }
-        .userImage {
-            display: none;
-        }
+        display: inline;
     }
 }

@@ -28,12 +28,18 @@ require.config({
             deps: [
                 'jquery'
             ]
+        },
+        'jquery.cookie': {
+            deps: [
+                'jquery'
+            ]
         }
     },
 
     paths: {
         backbone: 'lib/backbone',
         jquery: 'lib/jquery',
+        'jquery.cookie': 'lib/jquery.cookie',
         materialize: 'lib/materialize.amd',
         nunjucks: 'lib/nunjucks-slim',
         slick: 'lib/slick',
@@ -43,7 +49,7 @@ require.config({
     }
 });
 
-require(['jquery', 'underscore', 'backbone', 'router', 'materialize', '/js/helper.view.js'],
+require(['jquery', 'underscore', 'backbone', 'router', 'materialize', '/js/helper.view.js', 'jquery.cookie'],
     function ($, _, Backbone, Router, Materialize) {
 
     var router = new Router();

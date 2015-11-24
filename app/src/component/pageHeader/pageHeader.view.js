@@ -19,6 +19,7 @@ define(function (require) {
             'click .search .search--closeButton': 'closeSearch',
             'click .search .filterRow--element': 'toggleFilter',
             'click .userMenu .settingsButton': 'showSettings',
+            'click .userMenu .loginButton': 'showLogin'
         },
 
         initialize: function () {
@@ -54,6 +55,11 @@ define(function (require) {
         showSettings: function() {
             this._toggleUserMenu(true);
             Backbone.history.navigate('settings', true);
+        },
+
+        showLogin: function() {
+            this._toggleUserMenu(true);
+            Backbone.history.navigate('login', true);
         },
 
         showWatchLists: function() {

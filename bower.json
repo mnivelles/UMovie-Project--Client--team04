@@ -27,6 +27,7 @@
     "bluebird": "~3.0.5",
     "jeet": "~6.1.2",
     "jquery": "~2.1.4",
+    "jquery.cookie": "~1.4.1",
     "lodash": "~3.10.1",
     "materialize": "~0.97.0",
     "nunjucks": "~2.0.0",

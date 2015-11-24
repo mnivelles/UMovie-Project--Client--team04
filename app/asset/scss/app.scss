@@ -21,15 +21,20 @@ $standardSectionTitleWeight: 100;
 
 html {
     @extend .blue-grey, .darken-4;
+    background: url("/image/bb.jpg") no-repeat;
+    background-size: cover;
 }
 
 body {
-    @extend .blue-grey, .darken-4;
     color: $bodyColor;
 }
 
 html {
     font-size: 13px;
+}
+
+#page {
+    background-color: hsla(0,0%,0%,.35);
 }
 
 @include breakpoint(phablet) {
@@ -149,6 +154,7 @@ p {
 @import "featuredMediaCarousel";
 @import "modal";
 @import "watchlist";
+@import "login";
 @import "reactions";
 
 
