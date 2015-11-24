@@ -30,6 +30,10 @@ define(function (require) {
         },
 
         setReaction: function (newReaction, voterId, mediaId, callback) {
+            var m = new ReactionsModel({id: mediaId});
+            m.addReaction(voterId, newReaction);
+            console.log(m.toJSON());
+
             var self = this;
 
             var reacts = this.toJSON();

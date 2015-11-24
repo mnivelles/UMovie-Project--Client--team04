@@ -27,9 +27,9 @@ define(function (require) {
             return data;
         },
 
-        addReaction: function(user, reaction) {
+        addReaction: function(userId, reaction) {
             var currentUser = _.find(this.get('voters'), function (element) {
-                return element.id == user.id;
+                return element.id == userId;
             });
 
             if (currentUser) {
@@ -42,7 +42,7 @@ define(function (require) {
                 currentUser.reaction = reaction;
             } else {
                 var tempUser = {
-                    id: user.id,
+                    id: userId,
                     reaction: reaction
                 };
                 this._incrementReaction(reaction);
