@@ -13,6 +13,7 @@ define(function (require) {
         SettingsView = require('settings.page.view'),
         WatchListIndexView= require ('watchList.index.page.view'),
         WatchListView= require ('watchList.page.view'),
+        SearchResultView= require ('searchResult.page.view'),
 
         $page = $('#page'),
         pageView = new PageView({el: $page}).render(),
@@ -23,7 +24,8 @@ define(function (require) {
         tvShowView = new TvShowView({el : $content}),
         settingsView = new SettingsView({el : $content}),
         watchListIndexView= new  WatchListIndexView({el : $content}),
-        watchListView= new  WatchListView({el : $content});
+        watchListView= new  WatchListView({el : $content}),
+        searchResultView = new SearchResultView({el : $content});
 
 
     return Backbone.Router.extend({
@@ -35,7 +37,8 @@ define(function (require) {
             'tv-shows/:id': 'showTvShow',
             'settings': 'showSettings',
             'watchlists': 'indexWatchList',
-            'watchlists/:id': 'showWatchList'
+            'watchlists/:id': 'showWatchList',
+            'search/movies/:searchString':'showSearchResults'
         },
 
         home: function () {
@@ -71,6 +74,10 @@ define(function (require) {
         showWatchList: function(id){
             watchListView.delegateEvents();
             watchListView.render({id:id});
+        },
+        showSearchResults: function(searchString){
+            searchResultView.delegateEvents();
+            searchResultView.render({searchString:searchString});
         }
 
 
