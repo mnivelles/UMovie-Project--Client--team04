@@ -7,6 +7,7 @@ define(function (require) {
         Common = require('/js/common.js');
 
     return Backbone.Model.extend({
+
         defaults: function() {
             return {
                 id: undefined,
@@ -42,7 +43,7 @@ define(function (require) {
                 currentUser.reaction = reaction;
             } else {
                 var tempUser = {
-                    id: userId,
+                    id: userId + '',
                     reaction: reaction
                 };
                 this._incrementReaction(reaction);
