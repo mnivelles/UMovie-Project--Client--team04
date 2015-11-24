@@ -1,0 +1,20 @@
+[
+    {
+        "id": "5654cfc411104c03001876fc",
+        "voters": [
+            {
+                "id": "nanashi@sekai-no-owari.umovie",
+                "reaction": "devil"
+            }
+        ],
+        "happy": 0,
+        "cry": 2,
+        "shoot": 1,
+        "devil": 3,
+        "cheers": 4,
+        "cool": 11,
+        "surprised": 8,
+        "sad": 1,
+        "funny": 0
+    }
+]
