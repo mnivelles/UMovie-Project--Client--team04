@@ -43,7 +43,7 @@ define(function (require) {
         },
 
         redirectToSignupPage: function() {
-            console.log("Redirect to signup page.")
+            Backbone.history.navigate('signup', true);
         }
     });
 });
