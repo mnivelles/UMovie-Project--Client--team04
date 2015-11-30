@@ -70,3 +70,19 @@
     {% endfor %}
 </ul>
 {% endmacro %}
+
+
+{% macro searchActorsList(actors) %}
+<ul class="unorderedMoviesList">
+    {% for actor in actors %}
+    <li class="unorderedMoviesList--item">
+        <div class="item--thumbnail">
+            <a href="/actors/{{ actor.id }}"><img src="{{ actor.portrait }}" alt="{{ actor.name }}"/></a>
+        </div>
+        <div class="item--rightCol">
+            <div class="item--title"><a href="/actors/{{ actor.id }}">{{ actor.name }}</a></div>
+        </div>
+    </li>
+    {% endfor %}
+</ul>
+{% endmacro %}

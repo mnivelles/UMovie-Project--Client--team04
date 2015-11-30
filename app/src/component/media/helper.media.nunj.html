@@ -83,3 +83,9 @@
 
     {{ section(title, list.searchMoviesList(movies)) }}
 {% endmacro %}
+
+{% macro searchActorsSection(title, actors) %}
+{% import "list.nunj.html" as list %}
+
+{{ section(title, list.searchActorsList(actors)) }}
+{% endmacro %}

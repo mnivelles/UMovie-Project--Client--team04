@@ -7,12 +7,9 @@ define(function (require) {
         $ = require('jquery'),
         Nunjucks = require('nunjucks'),
         Moment = require('moment'),
-        moviesTemplate = 'searchResult.page.nunj.html',
+        moviesTemplate = 'movieResult.page.nunj.html',
         _ = require('underscore'),
-        Movies = require('search.movies.model'),
-        Promise = require('bluebird');
-
-
+        TvShows = require('search.tvshows.model');
 
 
     return Backbone.View.extend({
@@ -26,16 +23,16 @@ define(function (require) {
         render: function (options){
             var self = this;
             self.searchString = options.searchString;
-            var movies = new Movies(self.searchString);
-            movies.fetch({
+            var tvShows = new TvShows(self.searchString);
+            tvShows.fetch({
                 success : function(result) {
-                    var movies = self.format(result);
-                    var displayCount = movies.length;
-                    var moviesList = [];
+                    var tvShows = self.format(result);
+                    var displayCount = tvShows.length;
+                    var showList = [];
                     for(var i= 0; i < displayCount; i++){
-                        moviesList.push(movies[i]);
+                        showList.push(tvShows[i]);
                     }
-                    self.display(moviesList);
+                    self.display(showList);
 
                     $('.mediaSection--hideShowButton', self.el).click(function() {
                         self.toggleMediaSectionParentOfElement($(this));
@@ -52,26 +49,26 @@ define(function (require) {
             this.toggleMediaSectionParentOfElement($(event.currentTarget));
         },
 
-        format : function(rawMovieList) {
-            var movieList = [];
-            _.each(rawMovieList.toJSON(), function(movie) {
-                movieList.push(
+        format : function(rawTvSeasonList) {
+            var tvSeasonList = [];
+            _.each(rawTvSeasonList.toJSON(), function(tvSeason) {
+                tvSeasonList.push(
                     {
-                        id: movie.trackId,
-                        title : movie.trackName,
-                        poster : movie.artworkUrl100.replace('100x100','400x400'),
+                        id: tvSeason.collectionId,
+                        title : tvSeason.collectionName,
+                        poster : tvSeason.artworkUrl100.replace('100x100','400x400'),
                         trailerLink: 'https://www.youtube.com/embed/2m9IFlz2iYo',
-                        releaseDate : Moment(movie.releaseDate).format('ll')
+                        releaseDate : Moment(tvSeason.releaseDate).format('ll')
                     }
                 );
             });
-            return movieList;
+            return tvSeasonList;
         },
 
         display : function(movies) {
             var self = this;
             var html = Nunjucks.render(moviesTemplate, { movies : movies} );
-            self.$el.append(html);
+            self.$el.html(html);
         }
     });
 

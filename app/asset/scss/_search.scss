@@ -117,29 +117,21 @@
 
         @extend .white-text;
 
-        border: 1px solid $border-color;
-        border-radius: 5px;
-
         font-size: 1.1em;
-        font-weight: 200;
+        font-weight: 300;
         text-align: center;
 
         padding-left: 0;
         padding-right: 0;
 
-        &:focus {
-            background-color: transparent;
-        }
-
-        &.is-active {
-            @extend .indigo-text, .text-darken-3;
-            @extend .white;
-
-            font-weight: 400;
-        }
+    }
+    input[type=radio]:checked + label{
+        font-weight:bold;
+        font-size: 1.5em;
     }
 }
 
 .search--result {
     padding-top: 20px;
 }
+

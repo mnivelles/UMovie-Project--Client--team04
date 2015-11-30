@@ -15,7 +15,9 @@ define(function (require) {
         SignupView = require('signup.page.view'),
         WatchListIndexView= require ('watchList.index.page.view'),
         WatchListView= require ('watchList.page.view'),
-        SearchResultView= require ('searchResult.page.view'),
+        MovieSearchResultView= require ('movieResult.page.view'),
+        TvShowSearchResultView= require ('tvshowResult.page.view'),
+        ActorsSearchResultView = require('actors.page.view'),
 
         $page = $('#page'),
         pageView = new PageView({el: $page}).render(),
@@ -29,7 +31,9 @@ define(function (require) {
         signupView = new SignupView({el:$content}),
         watchListIndexView= new  WatchListIndexView({el : $content}),
         watchListView= new  WatchListView({el : $content}),
-        searchResultView = new SearchResultView({el : $content});
+        movieResultView = new MovieSearchResultView({el : $content}),
+        tvshowResultView = new TvShowSearchResultView({el : $content}),
+        actorsSearchResultView = new ActorsSearchResultView({el : $content});
 
 
     return Backbone.Router.extend({
@@ -44,7 +48,9 @@ define(function (require) {
             'signup': 'showSignup',
             'watchlists': 'indexWatchList',
             'watchlists/:id': 'showWatchList',
-            'search/movies/:searchString':'showSearchResults'
+            'search/movies/:searchString':'showMovieSearchResults',
+            'search/actors/:searchString':'showActorsSearchResults',
+            'search/tvshows/:searchString':'showTvshowSearchResults'
         },
 
         home: function () {
@@ -91,9 +97,17 @@ define(function (require) {
             watchListView.delegateEvents();
             watchListView.render({id:id});
         },
-        showSearchResults: function(searchString){
-            searchResultView.delegateEvents();
-            searchResultView.render({searchString:searchString});
+        showMovieSearchResults: function(searchString){
+            movieResultView.delegateEvents();
+            movieResultView.render({searchString:searchString});
+        },
+        showTvshowSearchResults: function(searchString){
+            tvshowResultView.delegateEvents();
+            tvshowResultView.render({searchString:searchString});
+        },
+        showActorsSearchResults:function(searchString){
+            actorsSearchResultView.delegateEvents();
+            actorsSearchResultView.render({searchString:searchString});
         }
 
 
