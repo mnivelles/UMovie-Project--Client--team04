@@ -4,7 +4,6 @@ define(function (require) {
 
     var Backbone = require('backbone'),
         Nunjucks = require('nunjucks'),
-        UserModel = require('user.model'),
         template = 'login.nunj.html',
         Common = require('/js/common.js');
 
