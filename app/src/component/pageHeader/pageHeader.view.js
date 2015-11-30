@@ -5,6 +5,7 @@ define(function (require) {
     var Backbone = require('backbone'),
         $ = require('jquery'),
         activeClass = 'is-active',
+        Common = require('/js/common.js'),
         hiddenClass = 'is-hidden';
 
     return Backbone.View.extend({
@@ -20,7 +21,8 @@ define(function (require) {
             'click .search .filterRow--element': 'toggleFilter',
             'click .userMenu .settingsButton': 'showSettings',
             'click .userMenu .loginButton': 'showLogin',
-            'click .userMenu .signupButton': 'showSignup'
+            'click .userMenu .signupButton': 'showSignup',
+            'click .userMenu .signoutButton': 'signout'
         },
 
         initialize: function () {
@@ -34,6 +36,7 @@ define(function (require) {
         render: function () {
             return this;
         },
+
 
         toggleSearch: function() {
             this._toggleUserMenu(true);
@@ -68,6 +71,12 @@ define(function (require) {
             Backbone.history.navigate('signup', true);
         },
 
+        signout: function() {
+            $.removeCookie(Common.LOGIN_TOKEN_COOKIE);
+            console.log($.cookie(Common.LOGIN_TOKEN_COOKIE));
+            this._toggleUserMenu(true);
+        },
+
         showWatchLists: function() {
             Backbone.history.navigate('watchlists', true);
         },
@@ -88,6 +97,21 @@ define(function (require) {
         },
 
         _toggleUserMenu: function(isActive) {
+            if($.cookie(Common.LOGIN_TOKEN_COOKIE) !== undefined) {
+                $('.loginButton').hide();
+                $('.signupButton').hide();
+                $('.signoutButton').show();
+                $('.settingsButton').show();
+                $('.unknownLogo').hide();
+                $('.connectedLogo').show();
+            } else {
+                $('.loginButton').show();
+                $('.signupButton').show();
+                $('.signoutButton').hide();
+                $('.settingsButton').hide();
+                $('.unknownLogo').show();
+                $('.connectedLogo').hide();
+            }
             if (isActive) {
                 this.avatarButtons.removeClass(activeClass);
                 this.userMenu.slideUp(500).addClass(hiddenClass);
