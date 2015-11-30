@@ -102,11 +102,15 @@ define(function (require) {
                 $('.signupButton').hide();
                 $('.signoutButton').show();
                 $('.settingsButton').show();
+                $('.unknownLogo').hide();
+                $('.connectedLogo').show();
             } else {
                 $('.loginButton').show();
                 $('.signupButton').show();
                 $('.signoutButton').hide();
                 $('.settingsButton').hide();
+                $('.unknownLogo').show();
+                $('.connectedLogo').hide();
             }
             if (isActive) {
                 this.avatarButtons.removeClass(activeClass);
