@@ -69,7 +69,7 @@ define(function (require) {
                         {
                             id: actor.artistId,
                             name : actor.artistName,
-                            portrait :undefined
+                            portrait :"/image/imageNotFound.png"
                         }
                     );
                 });
