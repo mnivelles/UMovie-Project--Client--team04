@@ -71,6 +71,22 @@
 </ul>
 {% endmacro %}
 
+{% macro searchTvShowsList(tvshows) %}
+<ul class="unorderedMoviesList">
+    {% for tvshow in tvshows %}
+    <li class="unorderedMoviesList--item">
+        <div class="item--thumbnail">
+            <a href="/movies/{{ tvshow.id }}"><img src="{{ tvshow.poster }}" alt="{{ tvshow.title }}"/></a>
+        </div>
+        <div class="item--rightCol">
+            <div class="item--title"><a href="/tv-shows/{{ tvshow.id }}">{{ tvshow.title }}</a></div>
+            <div class="item--informationElement">{{ tvshow.releaseDate }}</div>
+        </div>
+    </li>
+    {% endfor %}
+</ul>
+{% endmacro %}
+
 
 {% macro searchActorsList(actors) %}
 <ul class="unorderedMoviesList">

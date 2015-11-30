@@ -6,7 +6,6 @@ define(function (require) {
     var Backbone = require('backbone'),
         $ = require('jquery'),
         Nunjucks = require('nunjucks'),
-        Moment = require('moment'),
         actorsTemplate = 'actorResult.page.nunj.html',
         _ = require('underscore'),
         Actors = require('search.actors.model'),
@@ -38,8 +37,6 @@ define(function (require) {
                     $('.mediaSection--hideShowButton', self.el).click(function() {
                         self.toggleMediaSectionParentOfElement($(this));
                     });
-
-                    self.hideMediaSectionForSmallScreen();
                 }
             });
 

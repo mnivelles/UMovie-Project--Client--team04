@@ -22,7 +22,9 @@ define(function (require) {
             'click .userMenu .settingsButton': 'showSettings',
             'click .userMenu .loginButton': 'showLogin',
             'click .userMenu .signupButton': 'showSignup',
-            'click .userMenu .signoutButton': 'signout'
+            'click .userMenu .signoutButton': 'signout',
+            'keydown':'startSearch',
+            'click button .inputRow--submitButton':'startSearch'
         },
 
         initialize: function () {
@@ -75,6 +77,34 @@ define(function (require) {
             $.removeCookie(Common.LOGIN_TOKEN_COOKIE);
             console.log($.cookie(Common.LOGIN_TOKEN_COOKIE));
             this._toggleUserMenu(true);
+        },
+        startSearch: function(e) {
+            var key=e.keyCode || e.which;
+            if (key==13){//'Enter' key code
+                var searchText = $('.search--input').val();
+                if(searchText.length<1){
+                    searchText = $('.inputRow--input').val();
+                }
+                $(".filterRow--list input[type='radio']:checked").each(function() {
+                    var idVal = $(this).attr("id");
+                    var selectedSearchType = $("label[for='"+idVal+"']").text();
+                    $('.search--input').val('');
+                    switch(selectedSearchType){
+                        case "Actors":
+                            Backbone.history.navigate('search/actors/'+ searchText, true);
+                            break;
+                        case "Movies":
+                            Backbone.history.navigate('search/movies/'+ searchText, true);
+                            break;
+                        case "Tv Shows":
+                            Backbone.history.navigate('search/tvshows/'+ searchText, true);
+                            break;
+                    }
+
+                });
+            }
+
+
         },
 
         showWatchLists: function() {

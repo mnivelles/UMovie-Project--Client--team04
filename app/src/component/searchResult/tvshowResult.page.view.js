@@ -7,7 +7,7 @@ define(function (require) {
         $ = require('jquery'),
         Nunjucks = require('nunjucks'),
         Moment = require('moment'),
-        moviesTemplate = 'movieResult.page.nunj.html',
+        tvshowTemplate = 'tvshowResult.page.nunj.html',
         _ = require('underscore'),
         TvShows = require('search.tvshows.model');
 
@@ -38,7 +38,6 @@ define(function (require) {
                         self.toggleMediaSectionParentOfElement($(this));
                     });
 
-                    self.hideMediaSectionForSmallScreen();
                 }
             });
 
@@ -65,9 +64,9 @@ define(function (require) {
             return tvSeasonList;
         },
 
-        display : function(movies) {
+        display : function(tvshows) {
             var self = this;
-            var html = Nunjucks.render(moviesTemplate, { movies : movies} );
+            var html = Nunjucks.render(tvshowTemplate, { tvshows : tvshows} );
             self.$el.html(html);
         }
     });
