@@ -21,9 +21,13 @@
         {% for episode in episodes %}
             <li class="unorderedEpisodeList--item">
                 <div class="item--thumbnail">
-                    <img src="{{ episode.artworkUrl100 }}" alt="{{ episode.trackName }}"/>
+                    <a><img src="{{ episode.artworkUrl100 }}". alt="{{ episode.trackName }}"/></a>
                 </div>
-                <div class="item--title"><span class="episode--number">{{ episode.trackNumber }}.</span> {{ episode.trackName }}
+                <div class="item--title"><a id="episodeToWatch" data-episodeId="{{ episode.trackNumber }}"
+                                            data-seasonId="{{  episode.collectionId }}" data-season="{{  episode.collectionName }}"
+                                            data-duration="{{ episode.trackTimeMillis }}" data-picture="{{ episode.artworkUrl100 }}"
+                                            data-title="{{ episode.trackName }} " data-description="{{ episode.longDescription }}"
+                    href="#">{{ episode.trackNumber }}.{{ episode.trackName }}</a>
                     <span class="episode--ratingLogo">
                         {% if episode.contentAdvisoryRating != undefined %}
                             {{ episode.contentAdvisoryRating }}
@@ -31,6 +35,7 @@
                             Unrated
                         {% endif %}
                     </span></div>
+
             </li>
         {% endfor %}
     </ul>
