@@ -79,3 +79,21 @@
 
     {{ section(title, list.unorderedMoviesList(movies)) }}
 {% endmacro %}
+
+{% macro searchMoviesSection(title, movies) %}
+    {% import "list.nunj.html" as list %}
+
+    {{ section(title, list.searchMoviesList(movies)) }}
+{% endmacro %}
+
+{% macro searchTvshowSection(title, tvshows) %}
+{% import "list.nunj.html" as list %}
+
+{{ section(title, list.searchTvShowsList(tvshows)) }}
+{% endmacro %}
+
+{% macro searchActorsSection(title, actors) %}
+{% import "list.nunj.html" as list %}
+
+{{ section(title, list.searchActorsList(actors)) }}
+{% endmacro %}

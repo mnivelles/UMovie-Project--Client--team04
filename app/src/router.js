@@ -12,8 +12,12 @@ define(function (require) {
         TvShowView = require('tvShow.page.view'),
         SettingsView = require('settings.page.view'),
         LoginView = require('login.view'),
+        SignupView = require('signup.page.view'),
         WatchListIndexView= require ('watchList.index.page.view'),
         WatchListView= require ('watchList.page.view'),
+        MovieSearchResultView= require ('movieResult.page.view'),
+        TvShowSearchResultView= require ('tvshowResult.page.view'),
+        ActorsSearchResultView = require('actors.page.view'),
 
         $page = $('#page'),
         pageView = new PageView({el: $page}).render(),
@@ -24,8 +28,12 @@ define(function (require) {
         tvShowView = new TvShowView({el : $content}),
         settingsView = new SettingsView({el : $content}),
         loginView = new LoginView({el: $content}),
+        signupView = new SignupView({el:$content}),
         watchListIndexView= new  WatchListIndexView({el : $content}),
-        watchListView= new  WatchListView({el : $content});
+        watchListView= new  WatchListView({el : $content}),
+        movieResultView = new MovieSearchResultView({el : $content}),
+        tvshowResultView = new TvShowSearchResultView({el : $content}),
+        actorsSearchResultView = new ActorsSearchResultView({el : $content});
 
 
     return Backbone.Router.extend({
@@ -37,8 +45,12 @@ define(function (require) {
             'tv-shows/:id': 'showTvShow',
             'settings': 'showSettings',
             'login': 'showLogin',
+            'signup': 'showSignup',
             'watchlists': 'indexWatchList',
-            'watchlists/:id': 'showWatchList'
+            'watchlists/:id': 'showWatchList',
+            'search/movies/:searchString':'showMovieSearchResults',
+            'search/actors/:searchString':'showActorsSearchResults',
+            'search/tvshows/:searchString':'showTvshowSearchResults'
         },
 
         home: function () {
@@ -71,6 +83,11 @@ define(function (require) {
             loginView.render();
         },
 
+        showSignup: function() {
+            signupView.delegateEvents();
+            signupView.render();
+        },
+
         indexWatchList: function(){
             watchListIndexView.delegateEvents();
             watchListIndexView.render();
@@ -79,6 +96,18 @@ define(function (require) {
         showWatchList: function(id){
             watchListView.delegateEvents();
             watchListView.render({id:id});
+        },
+        showMovieSearchResults: function(searchString){
+            movieResultView.delegateEvents();
+            movieResultView.render({searchString:searchString});
+        },
+        showTvshowSearchResults: function(searchString){
+            tvshowResultView.delegateEvents();
+            tvshowResultView.render({searchString:searchString});
+        },
+        showActorsSearchResults:function(searchString){
+            actorsSearchResultView.delegateEvents();
+            actorsSearchResultView.render({searchString:searchString});
         }
 
 

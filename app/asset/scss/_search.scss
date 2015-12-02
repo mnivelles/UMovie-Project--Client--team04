@@ -44,12 +44,12 @@
 
     position: absolute;
 
-    color: hsla(0,100%,100%,1);
+    color: hsla(0, 100%, 100%, 1);
 
     height: 45px;
     padding-left: 5px;
     padding-right: 5px;
-    border: 1px solid hsla(0,100%,100%,.25);
+    border: 1px solid hsla(0, 100%, 100%, .25);
 
     i {
         font-size: 35px;
@@ -70,7 +70,7 @@
     input.inputRow--input {
         @include col(9/12);
 
-        border-bottom-color: hsla(0,100%,100%,0.85);
+        border-bottom-color: hsla(0, 100%, 100%, 0.85);
 
         &:focus {
             border-bottom-color: color("green", "base");
@@ -87,7 +87,7 @@
     }
 
     .inputRow--submitButton {
-        color: hsla(0,100%,100%,1);
+        color: hsla(0, 100%, 100%, 1);
         font-weight: 300;
         font-size: 1.4em;
 
@@ -98,48 +98,50 @@
 }
 
 .search--filterRow {
-    $border-color: hsla(0,100%,100%,0.8);
-
-    .filterRow--elementWrapper{
-        @include col(10/12, $offset: 1/12);
-
-        @include breakpoint(phablet) {
-            @include col(8/12, $offset: 2/12);
-        }
-
-        @include breakpoint(smalltablet) {
-            @include col(6/12, $offset: 3/12);
-        }
-    }
+    $border-color: hsla(0, 100%, 100%, 0.8);
+    @include col(1, $offset: 1/6);
 
     .filterRow--element {
-        @include col(3/12);
+
+        @include col(1/6);
 
         @extend .white-text;
 
-        border: 1px solid $border-color;
-        border-radius: 5px;
-
         font-size: 1.1em;
-        font-weight: 200;
+        font-weight: 300;
         text-align: center;
 
         padding-left: 0;
         padding-right: 0;
-
-        &:focus {
-            background-color: transparent;
-        }
-
-        &.is-active {
-            @extend .indigo-text, .text-darken-3;
-            @extend .white;
-
-            font-weight: 400;
-        }
+    }
+    input[type=radio]:checked + label {
+        font-weight: bold;
+        font-size: 1.5em;
     }
 }
 
 .search--result {
     padding-top: 20px;
 }
+
+@media screen and (max-width: 800px) {
+    .search--filterRow {
+        .filterRow--element {
+
+            @include col(1/2);
+
+        }
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .search--filterRow {
+        .filterRow--element {
+
+            @include col(1);
+
+        }
+    }
+}
+
+

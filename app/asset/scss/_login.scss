@@ -1,0 +1,30 @@
+.loginForm {
+    width: 400px;
+    margin: auto;
+
+    @include breakpoint(mobileonly) {
+        width: 90%;
+    }
+
+    @include breakpoint(phablet) {
+        width: 90%;
+    }
+
+    @include breakpoint(tablet) {
+        width: 90%;
+    }
+
+
+    @include breakpoint(laptop) {
+        width: 400px;
+    }
+}
+
+.loginFormButton {
+    width: 100%;
+    margin: .5em 0 .5em 0;
+}
+
+.invalidInfo-card {
+    display: none;
+}

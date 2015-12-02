@@ -5,6 +5,7 @@ define(function (require) {
     var Backbone = require('backbone'),
         $ = require('jquery'),
         activeClass = 'is-active',
+        Common = require('/js/common.js'),
         hiddenClass = 'is-hidden';
 
     return Backbone.View.extend({
@@ -19,7 +20,11 @@ define(function (require) {
             'click .search .search--closeButton': 'closeSearch',
             'click .search .filterRow--element': 'toggleFilter',
             'click .userMenu .settingsButton': 'showSettings',
-            'click .userMenu .loginButton': 'showLogin'
+            'click .userMenu .loginButton': 'showLogin',
+            'click .userMenu .signupButton': 'showSignup',
+            'click .userMenu .signoutButton': 'signout',
+            'keydown':'startSearch',
+            'click button .inputRow--submitButton':'startSearch'
         },
 
         initialize: function () {
@@ -33,6 +38,7 @@ define(function (require) {
         render: function () {
             return this;
         },
+
 
         toggleSearch: function() {
             this._toggleUserMenu(true);
@@ -62,6 +68,45 @@ define(function (require) {
             Backbone.history.navigate('login', true);
         },
 
+        showSignup: function() {
+            this._toggleUserMenu(true);
+            Backbone.history.navigate('signup', true);
+        },
+
+        signout: function() {
+            $.removeCookie(Common.LOGIN_TOKEN_COOKIE);
+            console.log($.cookie(Common.LOGIN_TOKEN_COOKIE));
+            this._toggleUserMenu(true);
+        },
+        startSearch: function(e) {
+            var key=e.keyCode || e.which;
+            if (key==13){//'Enter' key code
+                var searchText = $('.search--input').val();
+                if(searchText.length<1){
+                    searchText = $('.inputRow--input').val();
+                }
+                $(".filterRow--list input[type='radio']:checked").each(function() {
+                    var idVal = $(this).attr("id");
+                    var selectedSearchType = $("label[for='"+idVal+"']").text();
+                    $('.search--input').val('');
+                    switch(selectedSearchType){
+                        case "Actors":
+                            Backbone.history.navigate('search/actors/'+ searchText, true);
+                            break;
+                        case "Movies":
+                            Backbone.history.navigate('search/movies/'+ searchText, true);
+                            break;
+                        case "Tv Shows":
+                            Backbone.history.navigate('search/tvshows/'+ searchText, true);
+                            break;
+                    }
+
+                });
+            }
+
+
+        },
+
         showWatchLists: function() {
             Backbone.history.navigate('watchlists', true);
         },
@@ -82,6 +127,21 @@ define(function (require) {
         },
 
         _toggleUserMenu: function(isActive) {
+            if($.cookie(Common.LOGIN_TOKEN_COOKIE) !== undefined) {
+                $('.loginButton').hide();
+                $('.signupButton').hide();
+                $('.signoutButton').show();
+                $('.settingsButton').show();
+                $('.unknownLogo').hide();
+                $('.connectedLogo').show();
+            } else {
+                $('.loginButton').show();
+                $('.signupButton').show();
+                $('.signoutButton').hide();
+                $('.settingsButton').hide();
+                $('.unknownLogo').show();
+                $('.connectedLogo').hide();
+            }
             if (isActive) {
                 this.avatarButtons.removeClass(activeClass);
                 this.userMenu.slideUp(500).addClass(hiddenClass);
