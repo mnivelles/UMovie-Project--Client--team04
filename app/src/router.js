@@ -43,7 +43,7 @@ define(function (require) {
             'actors/:id': 'showActor',
             'movies/:id': 'showMovie',
             'tv-shows/:id': 'showTvShow',
-            'user': 'showUserPage',
+            'user/:id': 'showUserPage',
             'login': 'showLogin',
             'signup': 'showSignup',
             'watchlists': 'indexWatchList',
@@ -54,28 +54,28 @@ define(function (require) {
         },
 
         home: function () {
-            homeView.delegateEvents(); // delegate events when the view is recycled
+            homeView.delegateEvents();
             homeView.render();
         },
 
         showActor: function(id) {
-            actorView.delegateEvents(); // delegate events when the view is recycled
+            actorView.delegateEvents();
             actorView.render(id);
         },
 
         showMovie: function(id) {
-            movieView.delegateEvents(); // delegate events when the view is recycled
+            movieView.delegateEvents();
             movieView.initializeWithId(id);
         },
 
         showTvShow: function(id) {
-            tvShowView.delegateEvents(); // delegate events when the view is recycled
+            tvShowView.delegateEvents();
             tvShowView.render({id:id});
         },
 
-        showUserPage: function() {
+        showUserPage: function(id) {
             userView.delegateEvents();
-            userView.render();
+            userView.initializeWithId(id);
         },
 
         showLogin: function() {

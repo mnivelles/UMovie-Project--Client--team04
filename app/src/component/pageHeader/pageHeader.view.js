@@ -60,7 +60,7 @@ define(function (require) {
 
         showUserPage: function() {
             this._toggleUserMenu(true);
-            Backbone.history.navigate('user', true);
+            Backbone.history.navigate('user/' + $.cookie(Common.CURRENT_USER_ID), true);
         },
 
         showLogin: function() {
@@ -77,7 +77,9 @@ define(function (require) {
             $.removeCookie(Common.LOGIN_TOKEN_COOKIE);
             console.log($.cookie(Common.LOGIN_TOKEN_COOKIE));
             this._toggleUserMenu(true);
+            Backbone.history.navigate('', true);
         },
+
         startSearch: function(e) {
             var key=e.keyCode || e.which;
             if (key==13){//'Enter' key code

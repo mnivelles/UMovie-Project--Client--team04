@@ -1,0 +1,17 @@
+<div class="userPageConatiner">
+
+    {% import "helper.media.nunj.html" as mediaHelper %}
+
+    <div class="userInfoContainer">
+        <h2>User Informations</h2>
+
+    </div>
+
+    <div class="watchlistsContainer">
+
+    </div>
+
+    <div class="friendsListContainer">
+        {{ mediaHelper.wordListSection("Friends", media.friends) }}
+    </div>
+</div>
