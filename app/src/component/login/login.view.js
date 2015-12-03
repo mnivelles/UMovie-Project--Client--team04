@@ -27,7 +27,7 @@ define(function (require) {
             var credentials = {
                 'email' : $('#email').val(),
                 'password': $('#password').val()
-            }
+            };
             $.ajax({
                 url: Common.UMOVIE_API_BASE_URL_SECURED + 'login',
                 type: 'POST',
@@ -35,7 +35,7 @@ define(function (require) {
                 contentType: 'application/json'
             }).done(function(data){
                 $.cookie(Common.LOGIN_TOKEN_COOKIE, data.token);
-                $.cookie(Common.CURRENT_USER_ID, data.id);
+                $.cookie(Common.CURRENT_USER_ID);
                 Backbone.history.navigate('', true);
             }).fail(function(){
                 $('.invalidInfo-card').show();
