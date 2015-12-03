@@ -19,7 +19,7 @@ define(function (require) {
             'click .pageMenu .user--watchListButton': 'showWatchLists',
             'click .search .search--closeButton': 'closeSearch',
             'click .search .filterRow--element': 'toggleFilter',
-            'click .userMenu .settingsButton': 'showSettings',
+            'click .userMenu .settingsButton': 'showUserPage',
             'click .userMenu .loginButton': 'showLogin',
             'click .userMenu .signupButton': 'showSignup',
             'click .userMenu .signoutButton': 'signout',
@@ -58,9 +58,9 @@ define(function (require) {
             $(e.currentTarget).toggleClass(activeClass);
         },
 
-        showSettings: function() {
+        showUserPage: function() {
             this._toggleUserMenu(true);
-            Backbone.history.navigate('settings', true);
+            Backbone.history.navigate('user', true);
         },
 
         showLogin: function() {

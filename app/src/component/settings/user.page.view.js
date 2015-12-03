@@ -4,7 +4,7 @@ define(function (require) {
 
     var Backbone = require('backbone'),
         Nunjucks = require('nunjucks'),
-        template = 'settings.page.nunj.html';
+        template = 'user.page.nunj.html';
 
     return Backbone.View.extend({
 
@@ -12,7 +12,7 @@ define(function (require) {
             var html = Nunjucks.render(template, {});
             this.$el.html(html);
 
-            this.changePageTitleWith('Settings');
+            this.changePageTitleWith('User');
 
             return this;
         }

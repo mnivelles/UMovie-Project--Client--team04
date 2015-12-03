@@ -10,7 +10,7 @@ define(function (require) {
         ActorView  = require('actor.page.view'),
         MovieView  = require('movie.page.view'),
         TvShowView = require('tvShow.page.view'),
-        SettingsView = require('settings.page.view'),
+        UserView = require('user.page.view'),
         LoginView = require('login.view'),
         SignupView = require('signup.page.view'),
         WatchListIndexView= require ('watchList.index.page.view'),
@@ -26,7 +26,7 @@ define(function (require) {
         actorView = new ActorView({el : $content}),
         movieView = new MovieView({el : $content}),
         tvShowView = new TvShowView({el : $content}),
-        settingsView = new SettingsView({el : $content}),
+        userView = new UserView({el : $content}),
         loginView = new LoginView({el: $content}),
         signupView = new SignupView({el:$content}),
         watchListIndexView= new  WatchListIndexView({el : $content}),
@@ -43,7 +43,7 @@ define(function (require) {
             'actors/:id': 'showActor',
             'movies/:id': 'showMovie',
             'tv-shows/:id': 'showTvShow',
-            'settings': 'showSettings',
+            'user': 'showUserPage',
             'login': 'showLogin',
             'signup': 'showSignup',
             'watchlists': 'indexWatchList',
@@ -73,9 +73,9 @@ define(function (require) {
             tvShowView.render({id:id});
         },
 
-        showSettings: function() {
-            settingsView.delegateEvents();
-            settingsView.render();
+        showUserPage: function() {
+            userView.delegateEvents();
+            userView.render();
         },
 
         showLogin: function() {
