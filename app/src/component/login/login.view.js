@@ -35,7 +35,7 @@ define(function (require) {
                 contentType: 'application/json'
             }).done(function(data){
                 $.cookie(Common.LOGIN_TOKEN_COOKIE, data.token);
-                $.cookie(Common.CURRENT_USER_ID);
+                $.cookie(Common.CURRENT_USER_ID, data.id);
                 Backbone.history.navigate('', true);
             }).fail(function(){
                 $('.invalidInfo-card').show();
