@@ -11,7 +11,8 @@ define(function (require) {
     return Backbone.View.extend({
 
         events: {
-            'click .friendsListContainer .unorderedWordList--item a': 'showUserPage'
+            'click .friendsListContainer .unorderedWordList--item a': 'showUserPage',
+            'click .followBtn': 'followUser'
         },
 
         initializeWithId: function(id) {
@@ -22,6 +23,10 @@ define(function (require) {
 
         render: function() {
             var self = this;
+            var isNotCurrentUser = undefined;
+            if(self.model.id != $.cookie(Common.CURRENT_USER_ID)) {
+                isNotCurrentUser = true;
+            }
             var html = Nunjucks.render(template, {
                 media:{
                     title: 'User informations',
@@ -30,6 +35,7 @@ define(function (require) {
                         'Email : ' + self.model.get('email'),
                         'Name : ' + self.model.get('name')
                     ],
+                    isNotCurrentUser: isNotCurrentUser,
                     friends: self.model.get('following') ? _.map(self.model.get('following'), function(friend) {
                         var result = friend.name + ' ( ' + friend.email + ' )';
                         return {
@@ -50,6 +56,10 @@ define(function (require) {
             var button = $(event.currentTarget);
             var query = button.attr('data-info');
             Backbone.history.navigate('/user/'+query, true);
+        },
+
+        followUser: function() {
+            // TODO call api to add following using the token
         }
     });
 });
