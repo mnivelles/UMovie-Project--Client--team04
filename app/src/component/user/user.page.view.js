@@ -10,6 +10,10 @@ define(function (require) {
 
     return Backbone.View.extend({
 
+        events: {
+            'click .friendsListContainer .unorderedWordList--item a': 'showUserPage'
+        },
+
         initializeWithId: function(id) {
             this.model = new UserModel({id: id});
             this.listenTo(this.model, 'change', this.render);
@@ -18,14 +22,21 @@ define(function (require) {
 
         render: function() {
             var self = this;
-            console.log(this.model.toJSON());
             var html = Nunjucks.render(template, {
                 media:{
-                    userInfo:{
-                        email: self.model.get('email'),
-                        name: self.model.get('name')
-                    },
-                    friends: self.model.get('following')
+                    title: 'User informations',
+                    img: '/image/user_icon.png',
+                    mainInformations: [
+                        'Email : ' + self.model.get('email'),
+                        'Name : ' + self.model.get('name')
+                    ],
+                    friends: self.model.get('following') ? _.map(self.model.get('following'), function(friend) {
+                        var result = friend.name + ' ( ' + friend.email + ' )';
+                        return {
+                            name: result,
+                            data: friend._id.slice(0, -1) + 'a'
+                        };
+                    }) : undefined
                 }
             });
             this.$el.html(html);
@@ -33,6 +44,12 @@ define(function (require) {
             this.changePageTitleWith('User');
 
             return this;
+        },
+
+        showUserPage: function(event) {
+            var button = $(event.currentTarget);
+            var query = button.attr('data-info');
+            Backbone.history.navigate('/user/'+query, true);
         }
     });
 });

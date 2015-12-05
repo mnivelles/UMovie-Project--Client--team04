@@ -2,18 +2,18 @@
 
     {% import "helper.media.nunj.html" as mediaHelper %}
 
-    <div class="userInfoContainer">
-        <h2>User Informations</h2>
-        <div class="divider"></div>
-        <div>Name: {{ media.userInfo.name }}</div>
-        <div>Email: {{media.userInfo.email}}</div>
-    </div>
+    {{ mediaHelper.header(media.title, media.img, media.mainInformations, media.tagline) }}
+
+
+    <div class="divider"></div>
 
     <div class="watchlistsContainer">
 
     </div>
 
-    <div class="friendsListContainer">
-        {{ mediaHelper.wordListSection("Friends", media.friends) }}
-    </div>
+    {% if media.friends %}
+        <div class="friendsListContainer">
+            {{ mediaHelper.wordWithDataListSection("Friends", media.friends) }}
+        </div>
+    {% endif %}
 </div>

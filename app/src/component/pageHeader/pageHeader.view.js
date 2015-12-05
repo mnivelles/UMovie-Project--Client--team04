@@ -75,6 +75,7 @@ define(function (require) {
 
         signout: function() {
             $.removeCookie(Common.LOGIN_TOKEN_COOKIE);
+            $.removeCookie(Common.CURRENT_USER_ID);
             this._toggleUserMenu(true);
             Backbone.history.navigate('', true);
         },
