@@ -18,8 +18,6 @@ a {
 
 .modal-content.tv-show{
     background: black;
-    /*background: url("/image/bb.jpg") no-repeat;
-    background-size: cover;*/
 }
 
 .media--quickActions.tv-show{
@@ -39,4 +37,8 @@ a {
 
 #materialize-lean-overlay-1.lean-overlay{
     background:black;
+}
+
+.modal-footer.tv-show{
+    background: rgba(255, 255, 255, 0.15) !important;
 }

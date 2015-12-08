@@ -31,17 +31,15 @@ define(function (require) {
                     return episode.trackNumber===currentEpisode;
                 });
                 if (test.length===0) {
-                    Materialize.toast(error, 4000, 'red rounded');
+                    Materialize.toast(error, 1000, 'red rounded');
                 }
                 _.map(test, function(episodeInfo){
                         return  new episodeView(
                             {
-                                el: $('.modal-content'),
-                                id:parseInt(episodeInfo.collectionId),
+                                el: $('.modal-content'), id:parseInt(episodeInfo.collectionId),
                                 episodeTitle:episodeInfo.trackNumber +'.' +episodeInfo.trackName,
                                 seasonTitle:episodeInfo.collectionName,
-                                image:episodeInfo.artworkUrl100 .replace('100x100', '200x200'),
-                                description:episodeInfo.longDescription,
+                                image:episodeInfo.artworkUrl100 .replace('100x100', '400x400'), description:episodeInfo.longDescription,
                                 duration:getTvShowLengthString(parseInt(episodeInfo.trackTimeMillis))});
                     });
             }
@@ -54,7 +52,7 @@ define(function (require) {
         episodes.fetch({
             success: function (episodes) {
                 self.episodes = episodes.toJSON();
-                youtubeSearch(self.seasonTitle+' '+ self.episodeTitle, function(videoUrl){
+                youtubeSearchModal(self.seasonTitle+' '+ self.episodeTitle, function(videoUrl){
                     var html = Nunjucks.render(template, {media: {
                             title: self.seasonTitle,
                             img: self.image,
@@ -68,6 +66,10 @@ define(function (require) {
                         }
                     });
                     self.$el.html(html);
+
+                    Materialize.toast("You're watching "+ self.seasonTitle, 2000, 'green rounded');
+                    Materialize.toast('Episode '+ self.episodeTitle, 3000, 'green rounded');
+
                     $('.media--quickActions--button.showTrailerButton', self.el).text('Preview');
                     $('.media--quickActions--button.imageButton', self.el).hide();
 
@@ -124,25 +126,26 @@ var episodeView =Backbone.View.extend({
             }
         },
 
-        closeEpisodeModal:function(){
-            $('#ShowEpisodeModal', this.el).closeModal();
-        },
+
 
         showPreviousEpisode:function(){
-            var currentSeason=$('#ShowEpisodeModal').attr('data-currentSeason');
-            var currentEpisode= parseInt($('#ShowEpisodeModal').attr('data-currentEpisode'));
+            var modal=$('#ShowEpisodeModal');
+            var currentSeason=modal.attr('data-currentSeason');
+            var currentEpisode= parseInt(modal.attr('data-currentEpisode'));
             var nextEpisode= currentEpisode-1;
             switchEpisode(nextEpisode, currentSeason, 'No previous episode available');
         },
 
         showNextEpisode:function(){
-            var currentSeason=$('#ShowEpisodeModal').attr('data-currentSeason');
-            var currentEpisode= parseInt($('#ShowEpisodeModal').attr('data-currentEpisode'));
+            var modal=$('#ShowEpisodeModal');
+            var currentSeason=modal.attr('data-currentSeason');
+            var currentEpisode= parseInt(modal.attr('data-currentEpisode'));
             var nextEpisode= currentEpisode+1;
             switchEpisode(nextEpisode, currentSeason, 'No next episode available');
         },
 
         showEpisodeModal:function(event){
+            var modal=$('#ShowEpisodeModal');
             var target = $(event.currentTarget);
             var title = target.text();
             var episode= target.attr('data-episodeId');
@@ -155,19 +158,17 @@ var episodeView =Backbone.View.extend({
             var test=new episodeView({
                 el: $('.modal-content'), id:parseInt(seasonId),
                 episodeTitle:title, seasonTitle:season,
-                image:image .replace('100x100', '200x200'), description:description,
+                image:image .replace('100x100', '400x400'), description:description,
                 duration:getTvShowLengthString(parseInt(duration))
             });
 
-            Materialize.toast("You're watching "+ season, 1500, 'green rounded');
-            Materialize.toast('Episode '+ title, 2500, 'green rounded');
-
             $('.lean-overlay').css({display:'none'});
             $('#ShowEpisodeModal', this.$el).openModal();
-            $('#ShowEpisodeModal').attr('data-currentEpisode', episode);
-            $('#ShowEpisodeModal').attr('data-currentSeason', seasonId);
-        },
+            modal.animate({ scrollTop: 0 }, 4500);
+            modal.attr('data-currentEpisode', episode);
+            modal.attr('data-currentSeason', seasonId);
 
+        },
 
 
         getYoutubeTrailer: function() {
