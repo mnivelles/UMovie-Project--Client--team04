@@ -2,14 +2,14 @@ define(function (require) {
 
     'use strict';
 
-    var Backbone = require('backbone');
+    var Backbone = require('backbone'),
+        Common = require('/js/common.js');
 
     return Backbone.Model.extend({
-        defaults: function() {
-            return {
-                name: 'Nanashi',
-                avatarUrl: '/image/default-square-avatar.png'
-            }
+
+        urlRoot : function () {
+            return Common.UMOVIE_API_BASE_URL_SECURED + 'users/';
         }
+
     });
 });

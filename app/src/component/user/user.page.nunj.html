@@ -1,0 +1,25 @@
+<div class="userPageConatiner">
+
+    {% import "helper.media.nunj.html" as mediaHelper %}
+
+    {{ mediaHelper.header(media.title, media.img, media.mainInformations, media.tagline) }}
+
+    <section class="media--quickActions">
+        {% if media.isNotCurrentUser %}
+            <button class="media--quickActions--button followBtn waves-effect waves-light btn-large red"><i
+                class="mdi-action-perm-identity left"></i> Follow
+            </button>
+        {% endif %}
+    </section>
+
+
+    <div class="watchlistsContainer">
+
+    </div>
+
+    {% if media.friends %}
+        <div class="friendsListContainer">
+            {{ mediaHelper.wordWithDataListSection("Following", media.friends) }}
+        </div>
+    {% endif %}
+</div>

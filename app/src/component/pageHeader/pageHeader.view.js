@@ -19,7 +19,7 @@ define(function (require) {
             'click .pageMenu .user--watchListButton': 'showWatchLists',
             'click .search .search--closeButton': 'closeSearch',
             'click .search .filterRow--element': 'toggleFilter',
-            'click .userMenu .settingsButton': 'showSettings',
+            'click .userMenu .settingsButton': 'showUserPage',
             'click .userMenu .loginButton': 'showLogin',
             'click .userMenu .signupButton': 'showSignup',
             'click .userMenu .signoutButton': 'signout',
@@ -58,9 +58,9 @@ define(function (require) {
             $(e.currentTarget).toggleClass(activeClass);
         },
 
-        showSettings: function() {
+        showUserPage: function() {
             this._toggleUserMenu(true);
-            Backbone.history.navigate('settings', true);
+            Backbone.history.navigate('user/' + $.cookie(Common.CURRENT_USER_ID), true);
         },
 
         showLogin: function() {
@@ -75,9 +75,11 @@ define(function (require) {
 
         signout: function() {
             $.removeCookie(Common.LOGIN_TOKEN_COOKIE);
-            console.log($.cookie(Common.LOGIN_TOKEN_COOKIE));
+            $.removeCookie(Common.CURRENT_USER_ID);
             this._toggleUserMenu(true);
+            Backbone.history.navigate('', true);
         },
+
         startSearch: function(e) {
             var key=e.keyCode || e.which;
             if (key==13){//'Enter' key code
