@@ -102,3 +102,15 @@
     {% endfor %}
 </ul>
 {% endmacro %}
+
+{% macro watchlistsList(watchlists) %}
+<div class="watchListContent">
+    <div class="media">
+        <div class="watchListCollection">
+            {% for watchList in watchlists %}
+            <div class="watchListCollection--item"><a href="/watchlists/{{ watchList.id }}">{{ watchList.name | truncate(22) }}</a><span class="badge">{{ watchList.movies.length }}</span></div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endmacro %}

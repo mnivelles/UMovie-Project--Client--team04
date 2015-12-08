@@ -6,13 +6,15 @@ define(function (require) {
         Nunjucks = require('nunjucks'),
         Common = require('/js/common.js'),
         UserModel = require('user.model'),
+        WatchListsView = require('user.watchlists.view'),
         template = 'user.page.nunj.html';
 
     return Backbone.View.extend({
 
         events: {
             'click .friendsListContainer .unorderedWordList--item a': 'showUserPage',
-            'click .followBtn': 'followUser'
+            'click .followBtn': 'followUser',
+            'click .mediaSection--hideShowButton': 'toggleMediaSection'
         },
 
         initializeWithId: function(id) {
@@ -46,8 +48,10 @@ define(function (require) {
                 }
             });
             this.$el.html(html);
-
             this.changePageTitleWith('User');
+
+            var watchlistsviews = new WatchListsView({el: self.$('.watchlistsContainer')});
+            watchlistsviews.render(self.model.id);
 
             return this;
         },
@@ -59,7 +63,11 @@ define(function (require) {
         },
 
         followUser: function() {
-            // TODO call api to add following using the token
+            this.model.follow();
+        },
+
+        toggleMediaSection: function(event) {
+            this.toggleMediaSectionParentOfElement($(event.currentTarget));
         }
     });
 });
