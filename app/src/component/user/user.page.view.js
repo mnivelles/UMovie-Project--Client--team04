@@ -31,18 +31,17 @@ define(function (require) {
             }
             var html = Nunjucks.render(template, {
                 media:{
-                    title: 'User informations',
+                    title: self.model.get('name'),
                     img: '/image/user_icon.png',
                     mainInformations: [
-                        'Email : ' + self.model.get('email'),
-                        'Name : ' + self.model.get('name')
+                        'Email : ' + self.model.get('email')
                     ],
                     isNotCurrentUser: isNotCurrentUser,
                     friends: self.model.get('following') ? _.map(self.model.get('following'), function(friend) {
                         var result = friend.name + ' ( ' + friend.email + ' )';
                         return {
                             name: result,
-                            data: friend._id.slice(0, -1) + 'a'
+                            data: friend._id
                         };
                     }) : undefined
                 }
