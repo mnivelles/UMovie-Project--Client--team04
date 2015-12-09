@@ -33,6 +33,14 @@ define(function (require) {
 
             this.userMenu = $('.userMenu').eq(0);
             this.avatarButtons = $('.pageMenu--user .user--avatarButton');
+
+            if($.cookie(Common.LOGIN_TOKEN_COOKIE) !== undefined) {
+                $('.connectedImage').show();
+                $('.defaultImage').hide();
+            } else {
+                $('.connectedImage').hide();
+                $('.defaultImage').show();
+            }
         },
 
         render: function () {
@@ -136,6 +144,8 @@ define(function (require) {
                 $('.settingsButton').show();
                 $('.unknownLogo').hide();
                 $('.connectedLogo').show();
+                $('.connectedImage').show();
+                $('.defaultImage').hide();
             } else {
                 $('.loginButton').show();
                 $('.signupButton').show();
@@ -143,6 +153,8 @@ define(function (require) {
                 $('.settingsButton').hide();
                 $('.unknownLogo').show();
                 $('.connectedLogo').hide();
+                $('.connectedImage').hide();
+                $('.defaultImage').show();
             }
             if (isActive) {
                 this.avatarButtons.removeClass(activeClass);
