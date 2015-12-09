@@ -37,6 +37,7 @@ define(function (require) {
             if($.cookie(Common.LOGIN_TOKEN_COOKIE) !== undefined) {
                 $('.connectedImage').show();
                 $('.defaultImage').hide();
+                this._updateUserName();
             } else {
                 $('.connectedImage').hide();
                 $('.defaultImage').show();
@@ -84,6 +85,7 @@ define(function (require) {
         signout: function() {
             $.removeCookie(Common.LOGIN_TOKEN_COOKIE);
             $.removeCookie(Common.CURRENT_USER_ID);
+            $('.userName').text('User Options');
             this._toggleUserMenu(true);
             Backbone.history.navigate('', true);
         },
@@ -163,6 +165,17 @@ define(function (require) {
                 this.avatarButtons.addClass(activeClass);
                 this.userMenu.slideDown(1200).removeClass(hiddenClass);
             }
+        },
+
+        _updateUserName: function() {
+            $.ajax({
+                url: Common.UMOVIE_API_BASE_URL_SECURED + 'users/' + $.cookie(Common.CURRENT_USER_ID) +
+                 '?access_token=' + $.cookie(Common.LOGIN_TOKEN_COOKIE),
+                type: 'GET',
+            })
+                .done(function(data) {
+                    $('.userName').text(data.name);
+                });
         }
     });
 
