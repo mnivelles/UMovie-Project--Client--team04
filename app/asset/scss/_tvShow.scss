@@ -42,3 +42,18 @@ a {
 .modal-footer.tv-show{
     background: rgba(255, 255, 255, 0.15) !important;
 }
+
+.media--quickActions--button.searchBtn{
+    left:8%;
+}
+
+.media--quickActions--button.closeResultSearchBtn{
+    left:8%;
+}
+
+.searchFilter{
+    left:30%;
+    padding-right:10px;
+    color:rgba(255, 255, 255, 0.65);;
+    font-size: 1.25em;
+}
