@@ -78,6 +78,13 @@
     {{ section(title, list.unorderedMoviesList(movies)) }}
 {% endmacro %}
 
+{% macro userWatchlistsSection(title, watchlists) %}
+    {% import "list.nunj.html" as list %}
+
+    {{ section(title, list.watchlistsList(watchlists)) }}
+{% endmacro %}
+
+
 {% macro searchMoviesSection(title, movies) %}
     {% import "list.nunj.html" as list %}
 

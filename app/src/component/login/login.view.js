@@ -37,6 +37,10 @@ define(function (require) {
                 }).done(function(data){
                     $.cookie(Common.LOGIN_TOKEN_COOKIE, data.token);
                     $.cookie(Common.CURRENT_USER_ID, data.id);
+                    $('.connectedImage').show();
+                    $('.defaultImage').hide();
+                    $('.userName').text(data.name);
+                    Materialize.toast('Logged in', 4000, 'success-toast rounded');
                     Backbone.history.navigate('', true);
                 }).fail(function(jqXHR, textStatus, errorThrown){
                     if(jqXHR.status == 401) {

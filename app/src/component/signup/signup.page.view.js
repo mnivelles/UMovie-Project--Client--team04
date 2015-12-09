@@ -35,6 +35,7 @@ define(function (require) {
                     data: JSON.stringify(signUpInfo),
                     contentType: 'application/json'
                 }).done(function(data){
+                    Materialize.toast('Registered', 4000, 'success-toast rounded');
                     Backbone.history.navigate('', true);
                 }).fail(function(){
                     $('.invalidInfo-card').text('Please try again later.');

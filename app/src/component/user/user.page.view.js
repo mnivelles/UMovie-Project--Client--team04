@@ -6,13 +6,15 @@ define(function (require) {
         Nunjucks = require('nunjucks'),
         Common = require('/js/common.js'),
         UserModel = require('user.model'),
+        WatchListsView = require('user.watchlists.view'),
         template = 'user.page.nunj.html';
 
     return Backbone.View.extend({
 
         events: {
             'click .friendsListContainer .unorderedWordList--item a': 'showUserPage',
-            'click .followBtn': 'followUser'
+            'click .followBtn': 'followUser',
+            'click .mediaSection--hideShowButton': 'toggleMediaSection'
         },
 
         initializeWithId: function(id) {
@@ -29,25 +31,26 @@ define(function (require) {
             }
             var html = Nunjucks.render(template, {
                 media:{
-                    title: 'User informations',
+                    title: self.model.get('name'),
                     img: '/image/user_icon.png',
                     mainInformations: [
-                        'Email : ' + self.model.get('email'),
-                        'Name : ' + self.model.get('name')
+                        'Email : ' + self.model.get('email')
                     ],
                     isNotCurrentUser: isNotCurrentUser,
                     friends: self.model.get('following') ? _.map(self.model.get('following'), function(friend) {
                         var result = friend.name + ' ( ' + friend.email + ' )';
                         return {
                             name: result,
-                            data: friend._id.slice(0, -1) + 'a'
+                            data: friend._id
                         };
                     }) : undefined
                 }
             });
             this.$el.html(html);
-
             this.changePageTitleWith('User');
+
+            var watchlistsviews = new WatchListsView({el: self.$('.watchlistsContainer')});
+            watchlistsviews.render(self.model.id);
 
             return this;
         },
@@ -59,7 +62,11 @@ define(function (require) {
         },
 
         followUser: function() {
-            // TODO call api to add following using the token
+            this.model.follow();
+        },
+
+        toggleMediaSection: function(event) {
+            this.toggleMediaSectionParentOfElement($(event.currentTarget));
         }
     });
 });
