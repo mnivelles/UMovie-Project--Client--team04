@@ -35,8 +35,8 @@ define(function (require) {
                     data: JSON.stringify(credentials),
                     contentType: 'application/json'
                 }).done(function(data){
-                    $.cookie(Common.LOGIN_TOKEN_COOKIE, data.token);
-                    $.cookie(Common.CURRENT_USER_ID, data.id);
+                    $.cookie(Common.LOGIN_TOKEN_COOKIE, data.token, { path: '/' });
+                    $.cookie(Common.CURRENT_USER_ID, data.id, { path: '/' });
                     $('.connectedImage').show();
                     $('.defaultImage').hide();
                     $('.userName').text(data.name);

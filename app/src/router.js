@@ -5,6 +5,7 @@ define(function (require) {
     'use strict';
 
     var Backbone = require('backbone'),
+        Common = require('/js/common.js'),
         PageView   = require('page.view'),
         HomeView   = require('home.page.view'),
         ActorView  = require('actor.page.view'),
@@ -54,26 +55,31 @@ define(function (require) {
         },
 
         home: function () {
+            this.verifyUserToken();
             homeView.delegateEvents();
             homeView.render();
         },
 
         showActor: function(id) {
+            this.verifyUserToken();
             actorView.delegateEvents();
             actorView.render(id);
         },
 
         showMovie: function(id) {
+            this.verifyUserToken();
             movieView.delegateEvents();
             movieView.initializeWithId(id);
         },
 
         showTvShow: function(id) {
+            this.verifyUserToken();
             tvShowView.delegateEvents();
             tvShowView.render({id:id});
         },
 
         showUserPage: function(id) {
+            this.verifyUserToken();
             userView.delegateEvents();
             userView.initializeWithId(id);
         },
@@ -89,28 +95,40 @@ define(function (require) {
         },
 
         indexWatchList: function(){
+            this.verifyUserToken();
             watchListIndexView.delegateEvents();
             watchListIndexView.render();
         },
 
         showWatchList: function(id){
+            this.verifyUserToken();
             watchListView.delegateEvents();
             watchListView.render({id:id});
         },
+
         showMovieSearchResults: function(searchString){
+            this.verifyUserToken();
             movieResultView.delegateEvents();
             movieResultView.render({searchString:searchString});
         },
+
         showTvshowSearchResults: function(searchString){
+            this.verifyUserToken();
             tvshowResultView.delegateEvents();
             tvshowResultView.render({searchString:searchString});
         },
+
         showActorsSearchResults:function(searchString){
+            this.verifyUserToken();
             actorsSearchResultView.delegateEvents();
             actorsSearchResultView.render({searchString:searchString});
+        },
+
+        verifyUserToken: function() {
+            if($.cookie(Common.LOGIN_TOKEN_COOKIE) === undefined) {
+                this.showLogin();
+            }
         }
-
-
     });
 
 });
