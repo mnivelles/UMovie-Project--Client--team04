@@ -1,0 +1,13 @@
+{% macro unorderedMovieList(movies) %}
+    <ul class="unorderedEpisodeList">
+        {% for movie in movies %}
+            <li class="unorderedEpisodeList--item">
+                <button data-id="{{ movie.id }}" class="item--deleteButton waves-effect waves-light btn red darken-2"><i class="mdi-action-delete left"></i></button>
+                <div class="item--thumbnail">
+                    <a href="/movies/{{ movie.id }}"><img src="{{ movie.poster }}" alt="{{ movie.title }}"/></a>
+                </div>
+                <div class="item--title"><a href="/movies/{{ movie.id }}">{{ movie.title }}</a></div>
+            </li>
+        {% endfor %}
+    </ul>
+{% endmacro %}

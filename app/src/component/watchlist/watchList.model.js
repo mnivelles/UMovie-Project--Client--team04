@@ -10,7 +10,7 @@ define(function (require) {
     return Backbone.Model.extend({
 
         urlRoot : function () {
-            return Common.UMOVIE_API_BASE_URL + 'watchlists';
+            return Common.getSecuredUrl('watchlists', true);
         },
 
         parse : function(data) {
@@ -29,8 +29,16 @@ define(function (require) {
                 }
             });
 
-            var title = data.name.trim();
-            var title = title || '[Nanashi-SansNom]';
+            var title = '';
+
+            if (!data.name) {
+                title = '';
+            } else {
+                title = data.name.trim();
+            }
+
+            title = title || '[Nanashi-SansNom]';
+
             return {
                 id: data.id,
                 title: title,

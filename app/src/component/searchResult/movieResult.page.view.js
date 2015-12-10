@@ -7,12 +7,9 @@ define(function (require) {
         $ = require('jquery'),
         Nunjucks = require('nunjucks'),
         Moment = require('moment'),
-        moviesTemplate = 'searchResult.page.nunj.html',
+        moviesTemplate = 'movieResult.page.nunj.html',
         _ = require('underscore'),
-        Movies = require('search.movies.model'),
-        Promise = require('bluebird');
-
-
+        Movies = require('search.movies.model');
 
 
     return Backbone.View.extend({
@@ -40,8 +37,6 @@ define(function (require) {
                     $('.mediaSection--hideShowButton', self.el).click(function() {
                         self.toggleMediaSectionParentOfElement($(this));
                     });
-
-                    self.hideMediaSectionForSmallScreen();
                 }
             });
 
@@ -71,7 +66,7 @@ define(function (require) {
         display : function(movies) {
             var self = this;
             var html = Nunjucks.render(moviesTemplate, { movies : movies} );
-            self.$el.append(html);
+            self.$el.html(html);
         }
     });
 

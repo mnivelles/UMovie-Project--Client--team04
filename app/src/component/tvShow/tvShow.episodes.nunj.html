@@ -1,0 +1,32 @@
+{% macro episode(title, image, informations, subtitle) %}
+    <header class="mediaHeader">
+        <div class="mediaHeader--poster">
+            <img src="{{ image }}" alt="{{ title }}"/>
+        </div>
+
+        <div class="mediaHeader--mainInformations">
+            <h2 class="mediaHeader--title">{{ title }}</h2>
+
+            {% if subtitle %}
+                <div class="mediaHeader--subtitle">{{ subtitle }}</div>
+            {% endif %}
+
+            {% for info in informations %}
+                <div class="mainInformations--element">{{ info | safe }}</div>
+            {% endfor %}
+        </div>
+    </header>
+{% endmacro %}
+
+
+
+{% macro trailer(youtubeTrailerUrl) %}
+    <section id="mediaTrailer" class="mediaTrailer hide">
+        <div class="trailerContainer">
+            <!-- a image for ratio -->
+            <img class="ratio" src="http://placehold.it/16x9"/>
+            <iframe src="{{ youtubeTrailerUrl }}"
+                    frameborder="0" allowfullscreen></iframe>
+        </div>
+    </section>
+{% endmacro %}

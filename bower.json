@@ -32,8 +32,8 @@
     "materialize": "~0.97.0",
     "nunjucks": "~2.0.0",
     "requirejs": "~2.1.20",
-    "slick-carousel": "~1.5.8",
-    "moment": "~2.10.6"
+    "moment": "~2.10.6",
+    "slick-carousel": "~1.5.8"
   },
   "devDependencies": {}
 }

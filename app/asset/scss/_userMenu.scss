@@ -111,4 +111,8 @@
             font-size: 1.4em;
         }
     }
+
+    .signoutButton, .settingsButton {
+        display: none;
+    }
 }

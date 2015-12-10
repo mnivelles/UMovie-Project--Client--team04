@@ -21,9 +21,13 @@
         {% for episode in episodes %}
             <li class="unorderedEpisodeList--item">
                 <div class="item--thumbnail">
-                    <img src="{{ episode.artworkUrl100 }}" alt="{{ episode.trackName }}"/>
+                    <a><img src="{{ episode.artworkUrl100 }}". alt="{{ episode.trackName }}"/></a>
                 </div>
-                <div class="item--title"><span class="episode--number">{{ episode.trackNumber }}.</span> {{ episode.trackName }}
+                <div class="item--title"><a id="episodeToWatch" data-episodeId="{{ episode.trackNumber }}"
+                                            data-seasonId="{{  episode.collectionId }}" data-season="{{  episode.collectionName }}"
+                                            data-duration="{{ episode.trackTimeMillis }}" data-picture="{{ episode.artworkUrl100 }}"
+                                            data-title="{{ episode.trackName }} " data-description="{{ episode.longDescription }}"
+                    href="#">{{ episode.trackNumber }}.{{ episode.trackName }}</a>
                     <span class="episode--ratingLogo">
                         {% if episode.contentAdvisoryRating != undefined %}
                             {{ episode.contentAdvisoryRating }}
@@ -31,6 +35,7 @@
                             Unrated
                         {% endif %}
                     </span></div>
+
             </li>
         {% endfor %}
     </ul>
@@ -69,4 +74,48 @@
     </li>
     {% endfor %}
 </ul>
+{% endmacro %}
+
+{% macro searchTvShowsList(tvshows) %}
+<ul class="unorderedMoviesList">
+    {% for tvshow in tvshows %}
+    <li class="unorderedMoviesList--item">
+        <div class="item--thumbnail">
+            <a href="/movies/{{ tvshow.id }}"><img src="{{ tvshow.poster }}" alt="{{ tvshow.title }}"/></a>
+        </div>
+        <div class="item--rightCol">
+            <div class="item--title"><a href="/tv-shows/{{ tvshow.id }}">{{ tvshow.title }}</a></div>
+            <div class="item--informationElement">{{ tvshow.releaseDate }}</div>
+        </div>
+    </li>
+    {% endfor %}
+</ul>
+{% endmacro %}
+
+
+{% macro searchActorsList(actors) %}
+<ul class="unorderedMoviesList">
+    {% for actor in actors %}
+    <li class="unorderedMoviesList--item">
+        <div class="item--thumbnail">
+            <a href="/actors/{{ actor.id }}"><img src="{{ actor.portrait }}" alt="{{ actor.name }}"/></a>
+        </div>
+        <div class="item--rightCol">
+            <div class="item--title"><a href="/actors/{{ actor.id }}">{{ actor.name }}</a></div>
+        </div>
+    </li>
+    {% endfor %}
+</ul>
+{% endmacro %}
+
+{% macro watchlistsList(watchlists) %}
+<div class="watchListContent">
+    <div class="media">
+        <div class="watchListCollection">
+            {% for watchList in watchlists %}
+            <div class="watchListCollection--item"><a href="/watchlists/{{ watchList.id }}">{{ watchList.name | truncate(22) }}</a><span class="badge">{{ watchList.movies.length }}</span></div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
 {% endmacro %}

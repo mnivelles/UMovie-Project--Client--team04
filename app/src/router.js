@@ -5,16 +5,20 @@ define(function (require) {
     'use strict';
 
     var Backbone = require('backbone'),
+        Common = require('/js/common.js'),
         PageView   = require('page.view'),
         HomeView   = require('home.page.view'),
         ActorView  = require('actor.page.view'),
         MovieView  = require('movie.page.view'),
         TvShowView = require('tvShow.page.view'),
-        SettingsView = require('settings.page.view'),
+        UserView = require('user.page.view'),
         LoginView = require('login.view'),
+        SignupView = require('signup.page.view'),
         WatchListIndexView= require ('watchList.index.page.view'),
         WatchListView= require ('watchList.page.view'),
-        SearchResultView= require ('searchResult.page.view'),
+        MovieSearchResultView= require ('movieResult.page.view'),
+        TvShowSearchResultView= require ('tvshowResult.page.view'),
+        ActorsSearchResultView = require('actors.page.view'),
 
         $page = $('#page'),
         pageView = new PageView({el: $page}).render(),
@@ -23,11 +27,14 @@ define(function (require) {
         actorView = new ActorView({el : $content}),
         movieView = new MovieView({el : $content}),
         tvShowView = new TvShowView({el : $content}),
-        settingsView = new SettingsView({el : $content}),
+        userView = new UserView({el : $content}),
         loginView = new LoginView({el: $content}),
+        signupView = new SignupView({el:$content}),
         watchListIndexView= new  WatchListIndexView({el : $content}),
         watchListView= new  WatchListView({el : $content}),
-        searchResultView = new SearchResultView({el : $content});
+        movieResultView = new MovieSearchResultView({el : $content}),
+        tvshowResultView = new TvShowSearchResultView({el : $content}),
+        actorsSearchResultView = new ActorsSearchResultView({el : $content});
 
 
     return Backbone.Router.extend({
@@ -37,36 +44,59 @@ define(function (require) {
             'actors/:id': 'showActor',
             'movies/:id': 'showMovie',
             'tv-shows/:id': 'showTvShow',
-            'settings': 'showSettings',
+            'user/:id': 'showUserPage',
             'login': 'showLogin',
+            'signup': 'showSignup',
             'watchlists': 'indexWatchList',
             'watchlists/:id': 'showWatchList',
-            'search/movies/:searchString':'showSearchResults'
+            'search/movies/:searchString':'showMovieSearchResults',
+            'search/actors/:searchString':'showActorsSearchResults',
+            'search/tvshows/:searchString':'showTvshowSearchResults'
         },
 
         home: function () {
-            homeView.delegateEvents(); // delegate events when the view is recycled
+            if(!this.isUserLoggedIn()) {
+                this.showLogin();
+                return;
+            }
+            homeView.delegateEvents();
             homeView.render();
         },
 
         showActor: function(id) {
-            actorView.delegateEvents(); // delegate events when the view is recycled
+            if(!this.isUserLoggedIn()) {
+                this.showLogin();
+                return;
+            }
+            actorView.delegateEvents();
             actorView.render(id);
         },
 
         showMovie: function(id) {
-            movieView.delegateEvents(); // delegate events when the view is recycled
+            if(!this.isUserLoggedIn()) {
+                this.showLogin();
+                return;
+            }
+            movieView.delegateEvents();
             movieView.initializeWithId(id);
         },
 
         showTvShow: function(id) {
-            tvShowView.delegateEvents(); // delegate events when the view is recycled
+            if(!this.isUserLoggedIn()) {
+                this.showLogin();
+                return;
+            }
+            tvShowView.delegateEvents();
             tvShowView.render({id:id});
         },
 
-        showSettings: function() {
-            settingsView.delegateEvents();
-            settingsView.render();
+        showUserPage: function(id) {
+            if(!this.isUserLoggedIn()) {
+                this.showLogin();
+                return;
+            }
+            userView.delegateEvents();
+            userView.initializeWithId(id);
         },
 
         showLogin: function() {
@@ -74,21 +104,59 @@ define(function (require) {
             loginView.render();
         },
 
+        showSignup: function() {
+            signupView.delegateEvents();
+            signupView.render();
+        },
+
         indexWatchList: function(){
+            if(!this.isUserLoggedIn()) {
+                this.showLogin();
+                return;
+            }
             watchListIndexView.delegateEvents();
             watchListIndexView.render();
         },
 
         showWatchList: function(id){
+            if(!this.isUserLoggedIn()) {
+                this.showLogin();
+                return;
+            }
             watchListView.delegateEvents();
             watchListView.render({id:id});
         },
-        showSearchResults: function(searchString){
-            searchResultView.delegateEvents();
-            searchResultView.render({searchString:searchString});
+
+        showMovieSearchResults: function(searchString){
+            if(!this.isUserLoggedIn()) {
+                this.showLogin();
+                return;
+            }
+            movieResultView.delegateEvents();
+            movieResultView.render({searchString:searchString});
+        },
+
+        showTvshowSearchResults: function(searchString){
+            if(!this.isUserLoggedIn()) {
+                this.showLogin();
+                return;
+            }
+            tvshowResultView.delegateEvents();
+            tvshowResultView.render({searchString:searchString});
+        },
+
+        showActorsSearchResults:function(searchString){
+            if(!this.isUserLoggedIn()) {
+                this.showLogin();
+                return;
+            }
+            actorsSearchResultView.delegateEvents();
+            actorsSearchResultView.render({searchString:searchString});
+        },
+
+        isUserLoggedIn: function() {
+            return $.cookie(Common.LOGIN_TOKEN_COOKIE) !== undefined;
         }
-
-
     });
 
 });

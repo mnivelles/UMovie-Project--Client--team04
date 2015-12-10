@@ -21,7 +21,7 @@
 
 
 {% macro trailer(youtubeTrailerUrl) %}
-<section id="mediaTrailer" class="mediaTrailer hide">
+<section id="mediaTrailer" class="mediaTrailer" >
     <div class="trailerContainer">
         <!-- a image for ratio -->
         <img class="ratio" src="http://placehold.it/16x9"/>
@@ -78,8 +78,27 @@
     {{ section(title, list.unorderedMoviesList(movies)) }}
 {% endmacro %}
 
+{% macro userWatchlistsSection(title, watchlists) %}
+    {% import "list.nunj.html" as list %}
+
+    {{ section(title, list.watchlistsList(watchlists)) }}
+{% endmacro %}
+
+
 {% macro searchMoviesSection(title, movies) %}
     {% import "list.nunj.html" as list %}
 
     {{ section(title, list.searchMoviesList(movies)) }}
+{% endmacro %}
+
+{% macro searchTvshowSection(title, tvshows) %}
+{% import "list.nunj.html" as list %}
+
+{{ section(title, list.searchTvShowsList(tvshows)) }}
+{% endmacro %}
+
+{% macro searchActorsSection(title, actors) %}
+{% import "list.nunj.html" as list %}
+
+{{ section(title, list.searchActorsList(actors)) }}
 {% endmacro %}

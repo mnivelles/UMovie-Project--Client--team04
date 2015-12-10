@@ -5,12 +5,24 @@
         <button class="inputRow--submitButton waves-effect waves-green btn-flat">OK</button>
     </div>
     <div class="search--filterRow">
-        <div class="filterRow--elementWrapper">
-            <button class="is-active filterRow--element waves-effect waves-light btn-flat">Actors</button>
-            <button class="is-active filterRow--element waves-effect waves-light btn-flat">Movies</button>
-            <button class="is-active filterRow--element waves-effect waves-light btn-flat">Tv Shows</button>
-            <button class="is-active filterRow--element waves-effect waves-light btn-flat">Users</button>
-        </div>
+            <form class="filterRow--list">
+                <div class="filterRow--group">
+                    <input class ="filterRow--checkbox"  name="searchType" type="radio" id="radioActors" />
+                    <label  class ="filterRow--element" for="radioActors">Actors</label>
+                </div>
+                <div class="filterRow--group">
+                    <input class ="filterRow--checkbox"  name="searchType" type="radio" id="radioMovies" />
+                    <label class ="filterRow--element" for="radioMovies">Movies</label>
+                </div>
+                <div class="filterRow--group">
+                    <input class ="filterRow--checkbox"  name="searchType" type="radio" id="radioTvshows"  />
+                    <label class ="filterRow--element" for="radioTvshows">Tv Shows</label>
+                </div>
+                <div class="filterRow--group">
+                    <input class ="filterRow--checkbox" name="searchType" type="radio" id="radioUsers" />
+                    <label class ="filterRow--element" for="radioUsers">Users</label>
+                </div>
+
+            </form>
     </div>
-    <div class="search--result">Result...</div>
 </div>

@@ -1,0 +1,59 @@
+#ShowEpisodeModal.modal{
+    width:100%;
+
+}
+
+a {
+    color: inherit;
+
+    &:hover {
+        color: color("red", "lighten-1");
+    }
+}
+
+.modal{
+    max-height: 85%;
+
+}
+
+.modal-content.tv-show{
+    background: black;
+}
+
+.media--quickActions.tv-show{
+    padding:10px 10px;
+    height:90px;
+}
+
+.media--quickActions--button.previousEpisodeBtn{
+    width:170px;
+    float:left;
+}
+
+.media--quickActions--button.nextEpisodeBtn{
+    width:170px;
+    float:right;
+}
+
+#materialize-lean-overlay-1.lean-overlay{
+    background:black;
+}
+
+.modal-footer.tv-show{
+    background: rgba(255, 255, 255, 0.15) !important;
+}
+
+.media--quickActions--button.searchBtn{
+  left:2%;
+}
+
+.media--quickActions--button.closeResultSearchBtn{
+    left:2%;
+}
+
+.searchFilter{
+    left:30%;
+    padding-right:10px;
+    color:rgba(255, 255, 255, 0.65);;
+    font-size: 1.25em;
+}

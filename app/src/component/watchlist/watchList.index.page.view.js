@@ -3,6 +3,7 @@ define(function (require) {
     'use strict';
 
     var Backbone = require('backbone'),
+        Common = require('/js/common.js'),
         Nunjucks = require('nunjucks'),
         $ = require('jquery'),
         _ = require('underscore'),
@@ -56,32 +57,65 @@ define(function (require) {
 
             var newTitle = $('#watchlist_title', this.el).val().trim();
 
-
             if (newTitle.length > 0) {
-                $('#createWatchListModal .input-field .error-message').hide();
-                $('#createWatchListModal .input-field input').removeClass('invalid');
-
-                $('#createWatchListModal', this.el).closeModal();
-
-                this.watchListCollection.create({
-                    name: newTitle,
-                    owner: 'nanashi@sekai-no-owari.umovie'
-                }, {
-                    wait : true,
-
-                    success : function() {
-                        self.render();
-
-                        var message = '"' + newTitle + '" : succesfully created';
-
-                        Materialize.toast(message, 4000, 'success-toast rounded');
-                    }
-                });
+                this._watchListTitleIsValid(newTitle)
             } else {
                 $('#createWatchListModal .input-field .error-message').text('Invalid name. Choose a smarter one.').fadeIn(300);
                 $('#createWatchListModal .input-field input').addClass('invalid');
                 self.shakeForErrorWithElement($('#createWatchListModal'));
             }
+        },
+
+        _watchListTitleIsValid: function(title){
+            var self = this;
+            var isValid = true;
+            var currentUserId = $.cookie(Common.CURRENT_USER_ID);
+            $.ajax({
+                url: Common.getSecuredUrl('watchlists', true),
+                type: 'GET',
+                success: function(data) {
+                    for(var i = 0; i < data.length; i++) {
+                        if(data[i].owner != undefined && data[i].owner.id == currentUserId) {
+                            if(data[i].name == title) {
+                                console.log(data[i]);
+                                isValid = false;
+                                break;
+                            }
+                        }
+                    }
+                    if(isValid) {
+                        self._addWatchList(title);
+                    } else {
+                        $('#createWatchListModal .input-field .error-message').text('WatchList with this title already exists').fadeIn(300);
+                    }
+                },
+                fail: function() {
+                    isValid = false;
+                }
+            })
+        },
+
+        _addWatchList: function(newTitle) {
+            var self = this;
+            $('#createWatchListModal .input-field .error-message').hide();
+            $('#createWatchListModal .input-field input').removeClass('invalid');
+
+            $('#createWatchListModal', this.el).closeModal();
+
+            this.watchListCollection.create({
+                name: newTitle,
+                owner: $.cookie(Common.CURRENT_USER_EMAIL),
+            }, {
+                wait : true,
+
+                success : function() {
+                    self.render();
+
+                    var message = '"' + newTitle + '" : succesfully created';
+
+                    Materialize.toast(message, 4000, 'success-toast rounded');
+                }
+            });
         }
     });
 

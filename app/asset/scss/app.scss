@@ -1,8 +1,8 @@
 @import 'jeet/index';
 @import "materialize";
-@import "slick";
+@import "slick.scss";
 
-@import "animate";
+@import "animate.scss";
 
 @import "breakpoint";
 @import "zIndex";
@@ -155,7 +155,9 @@ p {
 @import "modal";
 @import "watchlist";
 @import "login";
+@import "signup";
 @import "reactions";
+@import "tvShow";
 
 
 a {
