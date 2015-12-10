@@ -42,6 +42,8 @@ define(function (require) {
         },
 
         renderWithId: function(id) {
+            var self = this;
+
             this.mediaId = id;
 
             var reactions = _.find(this.collection.toJSON(), function(element) {
@@ -68,7 +70,7 @@ define(function (require) {
             this.$el.html(html);
 
             var voter = _.find(reactions.voters, function(element) {
-                return element.id == Common.VOTER_ID;
+                return element.id == self._getCurrentUserId();
             });
 
             if (voter) {
@@ -85,7 +87,7 @@ define(function (require) {
 
             self.collection.fetch({
                 success: function(currentReactions) {
-                    currentReactions.setReaction(button.attr('data-content'), Common.VOTER_ID, self.mediaId, function() {
+                    currentReactions.setReaction(button.attr('data-content'), self._getCurrentUserId(), self.mediaId, function() {
                         self.collection.fetch({
                             success: function() {
                                 self.renderWithId(self.mediaId);
@@ -136,8 +138,11 @@ define(function (require) {
             } else {
                 return xlargeSizeClass;
             }
-        }
+        },
 
+        _getCurrentUserId: function() {
+            return $.cookie(Common.CURRENT_USER_ID) || '';
+        }
     });
 
 });
