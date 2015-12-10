@@ -37,6 +37,7 @@ define(function (require) {
                 }).done(function(data){
                     $.cookie(Common.LOGIN_TOKEN_COOKIE, data.token, { path: '/' });
                     $.cookie(Common.CURRENT_USER_ID, data.id, { path: '/' });
+                    $.cookie(Common.CURRENT_USER_EMAIL, data.email, {path: '/'});
                     $('.connectedImage').show();
                     $('.defaultImage').hide();
                     $('.userName').text(data.name);

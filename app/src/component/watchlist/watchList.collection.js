@@ -13,7 +13,7 @@ define(function (require) {
         model: WatchListModel,
 
         url : function () {
-            return Common.UMOVIE_API_BASE_URL + 'watchlists';
+            return Common.getSecuredUrl('watchlists', true);
         },
 
         parse : function(data) {
