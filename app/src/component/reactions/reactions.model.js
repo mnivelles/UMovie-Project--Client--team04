@@ -12,6 +12,7 @@ define(function (require) {
             return {
                 id: undefined,
                 voters: [],
+                reviews: [],
                 happy: 0,
                 cry: 0,
                 shoot: 0,
@@ -48,6 +49,22 @@ define(function (require) {
                 };
                 this._incrementReaction(reaction);
                 this.get('voters').push(tempUser);
+            }
+        },
+
+        addReview: function(userId, review) {
+            var currentUser = _.find(this.get('reviews'), function (element) {
+                return element.id == userId;
+            });
+
+            if (currentUser) {
+                currentUser.review = review;
+            } else {
+                var tempUser = {
+                    id: userId + '',
+                    review: review
+                };
+                this.get('reviews').push(tempUser);
             }
         },
 
