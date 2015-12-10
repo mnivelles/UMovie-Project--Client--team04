@@ -85,6 +85,7 @@ define(function (require) {
         signout: function() {
             $.removeCookie(Common.LOGIN_TOKEN_COOKIE);
             $.removeCookie(Common.CURRENT_USER_ID);
+            $.removeCookie(Common.CURRENT_USER_EMAIL);
             $('.userName').text('User Options');
             this._toggleUserMenu(true);
             Backbone.history.navigate('', true);
