@@ -55,31 +55,46 @@ define(function (require) {
         },
 
         home: function () {
-            this.verifyUserToken();
+            if(!this.isUserLoggedIn()) {
+                this.showLogin();
+                return;
+            }
             homeView.delegateEvents();
             homeView.render();
         },
 
         showActor: function(id) {
-            this.verifyUserToken();
+            if(!this.isUserLoggedIn()) {
+                this.showLogin();
+                return;
+            }
             actorView.delegateEvents();
             actorView.render(id);
         },
 
         showMovie: function(id) {
-            this.verifyUserToken();
+            if(!this.isUserLoggedIn()) {
+                this.showLogin();
+                return;
+            }
             movieView.delegateEvents();
             movieView.initializeWithId(id);
         },
 
         showTvShow: function(id) {
-            this.verifyUserToken();
+            if(!this.isUserLoggedIn()) {
+                this.showLogin();
+                return;
+            }
             tvShowView.delegateEvents();
             tvShowView.render({id:id});
         },
 
         showUserPage: function(id) {
-            this.verifyUserToken();
+            if(!this.isUserLoggedIn()) {
+                this.showLogin();
+                return;
+            }
             userView.delegateEvents();
             userView.initializeWithId(id);
         },
@@ -95,39 +110,52 @@ define(function (require) {
         },
 
         indexWatchList: function(){
-            this.verifyUserToken();
+            if(!this.isUserLoggedIn()) {
+                this.showLogin();
+                return;
+            }
             watchListIndexView.delegateEvents();
             watchListIndexView.render();
         },
 
         showWatchList: function(id){
-            this.verifyUserToken();
+            if(!this.isUserLoggedIn()) {
+                this.showLogin();
+                return;
+            }
             watchListView.delegateEvents();
             watchListView.render({id:id});
         },
 
         showMovieSearchResults: function(searchString){
-            this.verifyUserToken();
+            if(!this.isUserLoggedIn()) {
+                this.showLogin();
+                return;
+            }
             movieResultView.delegateEvents();
             movieResultView.render({searchString:searchString});
         },
 
         showTvshowSearchResults: function(searchString){
-            this.verifyUserToken();
+            if(!this.isUserLoggedIn()) {
+                this.showLogin();
+                return;
+            }
             tvshowResultView.delegateEvents();
             tvshowResultView.render({searchString:searchString});
         },
 
         showActorsSearchResults:function(searchString){
-            this.verifyUserToken();
+            if(!this.isUserLoggedIn()) {
+                this.showLogin();
+                return;
+            }
             actorsSearchResultView.delegateEvents();
             actorsSearchResultView.render({searchString:searchString});
         },
 
-        verifyUserToken: function() {
-            if($.cookie(Common.LOGIN_TOKEN_COOKIE) === undefined) {
-                this.showLogin();
-            }
+        isUserLoggedIn: function() {
+            return $.cookie(Common.LOGIN_TOKEN_COOKIE) !== undefined;
         }
     });
 
