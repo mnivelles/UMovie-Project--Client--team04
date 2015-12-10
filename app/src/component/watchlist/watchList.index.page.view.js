@@ -3,6 +3,7 @@ define(function (require) {
     'use strict';
 
     var Backbone = require('backbone'),
+        Common = require('/js/common.js'),
         Nunjucks = require('nunjucks'),
         $ = require('jquery'),
         _ = require('underscore'),
@@ -56,8 +57,7 @@ define(function (require) {
 
             var newTitle = $('#watchlist_title', this.el).val().trim();
 
-
-            if (newTitle.length > 0) {
+            if (newTitle.length > 0 && this._watchListTitleIsValid(newTitle)) {
                 $('#createWatchListModal .input-field .error-message').hide();
                 $('#createWatchListModal .input-field input').removeClass('invalid');
 
@@ -82,6 +82,30 @@ define(function (require) {
                 $('#createWatchListModal .input-field input').addClass('invalid');
                 self.shakeForErrorWithElement($('#createWatchListModal'));
             }
+        },
+
+        _watchListTitleIsValid: function(title){
+            var isValid = true;
+            var currentUserId = $.cookie(Common.CURRENT_USER_ID);
+            $.ajax({
+                url: Common.getSecuredUrl('watchlists', true),
+                type: 'GET',
+                success: function(data) {
+                    for(var i = 0; i < data.length; i++) {
+                        console.log(data[i]);
+                        if(data[i].owner != undefined && data[i].owner.id == currentUserId) {
+                            if(data[i].name == title) {
+                                isValid = false;
+                                break;
+                            }
+                        }
+                    }
+                },
+                fail: function() {
+                    isValid = false;
+                }
+            })
+            return isValid;
         }
     });
 

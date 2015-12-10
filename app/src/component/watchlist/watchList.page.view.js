@@ -131,7 +131,8 @@ define(function (require) {
             }).fail(function(){
                 console.log('Fail to remove Movie ' + movieId);
             });
-        }
+        },
+
     });
 
 });
