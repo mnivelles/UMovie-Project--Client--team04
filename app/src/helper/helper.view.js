@@ -14,6 +14,10 @@ define(function (require) {
         showTrailer: function () {
             this.showElementWithId('mediaTrailer');
         },
+        showPreview: function () {
+            this.showElementWithId('modalPreview');
+        },
+
 
         toggleSection: function (element) {
             var isHiddenClass = 'is-hidden';
