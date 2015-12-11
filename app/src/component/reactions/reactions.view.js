@@ -7,6 +7,7 @@ define(function (require) {
         slick = require('slick'),
         Nunjucks = require('nunjucks'),
         Common = require('/js/common.js'),
+        ReactionsModel = require('/js/reactions.model.js'),
         template = 'reactions.nunj.html';
 
     var xsmallSizeClass = 'xsmall',
@@ -51,21 +52,12 @@ define(function (require) {
             });
 
             if (!reactions) {
-                reactions = {
-                    happy: 0,
-                    cry: 0,
-                    shoot: 0,
-                    devil: 0,
-                    cheers: 0,
-                    cool: 0,
-                    surprised: 0,
-                    sad: 0,
-                    funny: 0
-                };
+                reactions = new ReactionsModel().toJSON();
             }
 
             var html = Nunjucks.render(template, {
-                reactions: this._percentagesFrom(reactions)
+                reactions: self._percentagesFrom(reactions),
+                reviews: reactions.reviews
             });
             this.$el.html(html);
 
