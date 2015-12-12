@@ -16,7 +16,8 @@ define(function (require) {
 
         events: function() {
             return {
-                'click .mediaSection--hideShowButton': 'toggleMediaSection'
+                'click .mediaSection--hideShowButton': 'toggleMediaSection',
+                'change .movie-genre-select':'filterTvshows'
             }
         },
 
@@ -68,6 +69,13 @@ define(function (require) {
             var self = this;
             var html = Nunjucks.render(tvshowTemplate, { tvshows : tvshows} );
             self.$el.html(html);
+        },
+        filterTvshows:function(){
+            console.log($('.movie-genre-select').val());
+            var url = window.location.href;
+            url = url.split('&')[0];
+            url+='&genre=' + $('.movie-genre-select').val();
+            window.location.href = url;
         }
     });
 

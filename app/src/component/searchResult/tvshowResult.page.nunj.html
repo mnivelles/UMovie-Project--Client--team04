@@ -1,3 +1,23 @@
+<div class ="filter-section">
+    <div class="filter-dropdown">
+        <select class = "movie-genre-select" style="display:inline-block;">
+            <option value="" disabled selected>Filter by Genre</option>
+            <option value="4000">Comedy</option>
+            <option value="4003">Action & Adventure</option>
+            <option value="4008">Sci-Fi & Fantasy</option>
+            <option value="4001">Drama</option>
+            <option value="4002">Animation</option>
+            <option value="4004">Classic</option>
+            <option value="4005">Kids</option>
+            <option value="4006">Nonfiction</option>
+            <option value="4010">Teens</option>
+            <option value="4009">Sports</option>
+
+
+        </select>
+    </div>
+</div>
+
 {% import "helper.media.nunj.html" as mediaHelper %}
 
 {{ mediaHelper.searchTvshowSection("Search Results", tvshows) }}
