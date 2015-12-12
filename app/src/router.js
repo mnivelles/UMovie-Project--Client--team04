@@ -6,35 +6,35 @@ define(function (require) {
 
     var Backbone = require('backbone'),
         Common = require('/js/common.js'),
-        PageView   = require('page.view'),
-        HomeView   = require('home.page.view'),
-        ActorView  = require('actor.page.view'),
-        MovieView  = require('movie.page.view'),
+        PageView = require('page.view'),
+        HomeView = require('home.page.view'),
+        ActorView = require('actor.page.view'),
+        MovieView = require('movie.page.view'),
         TvShowView = require('tvShow.page.view'),
         UserView = require('user.page.view'),
         LoginView = require('login.view'),
         SignupView = require('signup.page.view'),
-        WatchListIndexView= require ('watchList.index.page.view'),
-        WatchListView= require ('watchList.page.view'),
-        MovieSearchResultView= require ('movieResult.page.view'),
-        TvShowSearchResultView= require ('tvshowResult.page.view'),
+        WatchListIndexView = require('watchList.index.page.view'),
+        WatchListView = require('watchList.page.view'),
+        MovieSearchResultView = require('movieResult.page.view'),
+        TvShowSearchResultView = require('tvshowResult.page.view'),
         ActorsSearchResultView = require('actors.page.view'),
 
         $page = $('#page'),
         pageView = new PageView({el: $page}).render(),
         $content = $('#template-pageContent', pageView.el),
         homeView = new HomeView({el: $content}),
-        actorView = new ActorView({el : $content}),
-        movieView = new MovieView({el : $content}),
-        tvShowView = new TvShowView({el : $content}),
-        userView = new UserView({el : $content}),
+        actorView = new ActorView({el: $content}),
+        movieView = new MovieView({el: $content}),
+        tvShowView = new TvShowView({el: $content}),
+        userView = new UserView({el: $content}),
         loginView = new LoginView({el: $content}),
-        signupView = new SignupView({el:$content}),
-        watchListIndexView= new  WatchListIndexView({el : $content}),
-        watchListView= new  WatchListView({el : $content}),
-        movieResultView = new MovieSearchResultView({el : $content}),
-        tvshowResultView = new TvShowSearchResultView({el : $content}),
-        actorsSearchResultView = new ActorsSearchResultView({el : $content});
+        signupView = new SignupView({el: $content}),
+        watchListIndexView = new WatchListIndexView({el: $content}),
+        watchListView = new WatchListView({el: $content}),
+        movieResultView = new MovieSearchResultView({el: $content}),
+        tvshowResultView = new TvShowSearchResultView({el: $content}),
+        actorsSearchResultView = new ActorsSearchResultView({el: $content});
 
 
     return Backbone.Router.extend({
@@ -49,87 +49,100 @@ define(function (require) {
             'signup': 'showSignup',
             'watchlists': 'indexWatchList',
             'watchlists/:id': 'showWatchList',
-            'search/movies/:searchString':'showMovieSearchResults',
-            'search/actors/:searchString':'showActorsSearchResults',
-            'search/tvshows/:searchString':'showTvshowSearchResults'
-        },
-
-        route: function(route, name, callback) {
-            var router = this;
-            if (!callback) callback = this[name];
-
-            var f = function() {
-                var ag = arguments;
-
-                Common.isUserLoggedIn().done(function(data) {
-                    callback.apply(router, ag);
-                }).fail(function(jqXHR, textStatus, errorThrown){
-                    router._showLogin();
-                });
-            };
-            return Backbone.Router.prototype.route.call(this, route, name, f);
+            'search/movies/:searchString': 'showMovieSearchResults',
+            'search/actors/:searchString': 'showActorsSearchResults',
+            'search/tvshows/:searchString': 'showTvshowSearchResults'
         },
 
         home: function () {
-            homeView.delegateEvents();
-            homeView.render();
+            this._doWhenLoggedIn(function () {
+                homeView.delegateEvents();
+                homeView.render();
+            });
         },
 
-        showActor: function(id) {
-            actorView.delegateEvents();
-            actorView.render(id);
+        showActor: function (id) {
+            this._doWhenLoggedIn(function () {
+                actorView.delegateEvents();
+                actorView.render(id);
+            });
         },
 
-        showMovie: function(id) {
-            movieView.delegateEvents();
-            movieView.initializeWithId(id);
+        showMovie: function (id) {
+            this._doWhenLoggedIn(function () {
+                movieView.delegateEvents();
+                movieView.initializeWithId(id);
+            });
         },
 
-        showTvShow: function(id) {
-            tvShowView.delegateEvents();
-            tvShowView.render({id:id});
+        showTvShow: function (id) {
+            this._doWhenLoggedIn(function () {
+                tvShowView.delegateEvents();
+                tvShowView.render({id: id});
+            });
         },
 
-        showUserPage: function(id) {
-            userView.delegateEvents();
-            userView.initializeWithId(id);
+        showUserPage: function (id) {
+            this._doWhenLoggedIn(function () {
+                userView.delegateEvents();
+                userView.initializeWithId(id);
+            });
         },
 
-        showLogin: function() {
+        showLogin: function () {
             this._showLogin();
         },
 
-        showSignup: function() {
+        showSignup: function () {
             signupView.delegateEvents();
             signupView.render();
         },
 
-        indexWatchList: function(){
-            watchListIndexView.delegateEvents();
-            watchListIndexView.render();
+        indexWatchList: function () {
+            this._doWhenLoggedIn(function () {
+                watchListIndexView.delegateEvents();
+                watchListIndexView.render();
+            });
         },
 
-        showWatchList: function(id){
-            watchListView.delegateEvents();
-            watchListView.render({id:id});
+        showWatchList: function (id) {
+            this._doWhenLoggedIn(function () {
+                watchListView.delegateEvents();
+                watchListView.render({id: id});
+            });
         },
 
-        showMovieSearchResults: function(searchString){
-            movieResultView.delegateEvents();
-            movieResultView.render({searchString:searchString});
+        showMovieSearchResults: function (searchString) {
+            this._doWhenLoggedIn(function () {
+                movieResultView.delegateEvents();
+                movieResultView.render({searchString: searchString});
+            });
         },
 
-        showTvshowSearchResults: function(searchString){
-            tvshowResultView.delegateEvents();
-            tvshowResultView.render({searchString:searchString});
+        showTvshowSearchResults: function (searchString) {
+            this._doWhenLoggedIn(function () {
+                tvshowResultView.delegateEvents();
+                tvshowResultView.render({searchString: searchString});
+            });
         },
 
-        showActorsSearchResults:function(searchString){
-            actorsSearchResultView.delegateEvents();
-            actorsSearchResultView.render({searchString:searchString});
+        showActorsSearchResults: function (searchString) {
+            this._doWhenLoggedIn(function () {
+                actorsSearchResultView.delegateEvents();
+                actorsSearchResultView.render({searchString: searchString});
+            });
         },
 
-        _showLogin: function() {
+        _doWhenLoggedIn: function (successCallback) {
+            var self = this;
+            Common.isUserLoggedIn().done(function (data) {
+                successCallback();
+            }).fail(function (jqXHR, textStatus, errorThrown) {
+                self._showLogin();
+            });
+        },
+
+        _showLogin: function () {
             loginView.delegateEvents();
             loginView.render();
         }
@@ -138,11 +151,11 @@ define(function (require) {
 });
 
 /*
-url: autant que possible en minuscule avec des tirets sauf les slug
-de titres qui peuvent avoir des majuscules
+ url: autant que possible en minuscule avec des tirets sauf les slug
+ de titres qui peuvent avoir des majuscules
 
-Ex :
+ Ex :
 
-indexCats : collections
-showCat(id) : collections/id
+ indexCats : collections
+ showCat(id) : collections/id
  */
