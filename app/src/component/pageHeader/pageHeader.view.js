@@ -94,6 +94,7 @@ define(function (require) {
         },
 
         startSearch: function (e) {
+            var self = this;
             var key = e.keyCode || e.which;
             if (key == Common.ENTER_KEY) {
                 var searchText = $('.search--input').val();
@@ -103,23 +104,23 @@ define(function (require) {
                 $(".filterRow--list input[type='radio']:checked").each(function () {
                     var idVal = $(this).attr("id");
                     var selectedSearchType = $("label[for='" + idVal + "']").text();
-                    $('.search--input').val('');
                     switch (selectedSearchType) {
                         case "Actors":
                             Backbone.history.navigate('search/actors/' + searchText, true);
+                            self.closeSearch();
                             break;
                         case "Movies":
                             Backbone.history.navigate('search/movies/' + searchText, true);
+                            self.closeSearch();
                             break;
                         case "Tv Shows":
                             Backbone.history.navigate('search/tvshows/' + searchText, true);
+                            self.closeSearch();
                             break;
                     }
 
                 });
             }
-
-
         },
 
         showWatchLists: function () {
