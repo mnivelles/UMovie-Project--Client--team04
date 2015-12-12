@@ -19,6 +19,7 @@ define(function (require) {
         MovieSearchResultView = require('movieResult.page.view'),
         TvShowSearchResultView = require('tvshowResult.page.view'),
         ActorsSearchResultView = require('actors.page.view'),
+        UsersSearchResultView = require('userResult.page.view'),
 
         $page = $('#page'),
         pageView = new PageView({el: $page}).render(),
@@ -34,6 +35,7 @@ define(function (require) {
         watchListView = new WatchListView({el: $content}),
         movieResultView = new MovieSearchResultView({el: $content}),
         tvshowResultView = new TvShowSearchResultView({el: $content}),
+        usersSearchResultView = new UsersSearchResultView({el: $content}),
         actorsSearchResultView = new ActorsSearchResultView({el: $content});
 
 
@@ -51,7 +53,8 @@ define(function (require) {
             'watchlists/:id': 'showWatchList',
             'search/movies/:searchString': 'showMovieSearchResults',
             'search/actors/:searchString': 'showActorsSearchResults',
-            'search/tvshows/:searchString': 'showTvshowSearchResults'
+            'search/tvshows/:searchString': 'showTvshowSearchResults',
+            'search/users/:searchString':'showUsersSearchResults'
         },
 
         home: function () {
@@ -130,6 +133,12 @@ define(function (require) {
             this._doWhenLoggedIn(function () {
                 actorsSearchResultView.delegateEvents();
                 actorsSearchResultView.render({searchString: searchString});
+            });
+        },
+        showUsersSearchResults: function (searchString) {
+            this._doWhenLoggedIn(function () {
+                usersSearchResultView.delegateEvents();
+                usersSearchResultView.render({searchString: searchString});
             });
         },
 
