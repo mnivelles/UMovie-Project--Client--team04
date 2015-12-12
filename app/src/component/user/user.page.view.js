@@ -26,6 +26,7 @@ define(function (require) {
         render: function() {
             var self = this;
             var isNotCurrentUser = undefined;
+            console.log($.cookie(Common.LOGIN_TOKEN_COOKIE));
             if(self.model.id != $.cookie(Common.CURRENT_USER_ID)) {
                 isNotCurrentUser = true;
             }
@@ -37,20 +38,14 @@ define(function (require) {
                         'Email : ' + self.model.get('email')
                     ],
                     isNotCurrentUser: isNotCurrentUser,
-                    friends: self.model.get('following') ? _.map(self.model.get('following'), function(friend) {
-                        var result = friend.name + ' ( ' + friend.email + ' )';
-                        return {
-                            name: result,
-                            data: friend._id
-                        };
-                    }) : undefined
+                    friends: self.parseFriendsList()
                 }
             });
             this.$el.html(html);
             this.changePageTitleWith('User');
 
-            var watchlistsviews = new WatchListsView({el: self.$('.watchlistsContainer')});
-            watchlistsviews.render(self.model.id);
+            var watchlistsViews = new WatchListsView({el: self.$('.watchlistsContainer')});
+            watchlistsViews.render(self.model.id);
 
             return this;
         },
@@ -67,6 +62,29 @@ define(function (require) {
 
         toggleMediaSection: function(event) {
             this.toggleMediaSectionParentOfElement($(event.currentTarget));
+        },
+
+        parseFriendsList : function() {
+            var self = this;
+            if(self.model.get('following')){
+
+                //to avoid getting old incorrect entries
+                var filterdList = _.filter(self.model.get('following'),function(friend){
+                    return typeof(friend.id) != 'undefined';
+                });
+
+                var friendsList = _.map(filterdList, function(friend){
+                    var result = friend.name + ' ( ' + friend.email + ' )';
+                    return {
+                        name: result,
+                        data: friend.id
+                    };
+                });
+
+                return friendsList;
+            }
+
+            return undefined;
         }
     });
 });
