@@ -7,11 +7,13 @@
         }
 
         .item--leftCol {
-            @include col(2/12);
+            float: left;
+            padding-right: 15px;
+            padding-bottom: 15px;
         }
 
         .item--rightCol {
-            @include col(10/12);
+
         }
 
         .item--thumbnail {
