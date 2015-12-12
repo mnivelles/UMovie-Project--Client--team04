@@ -1,6 +1,20 @@
 {% import "helper.media.nunj.html" as mediaHelper %}
 
-{% macro reviewsList(reviews) %}
+{% macro reviewsList(reviews, isAlreadyReview) %}
+    <div class="reviewsActions">
+        {% if isAlreadyReview %}
+            <button class="reviewsActions--button deleteButton waves-effect waves-light btn-large red darken-2"><i
+                    class="mdi-action-delete left"></i> Delete review
+            </button>
+            <button class="reviewsActions--button editButton waves-effect waves-light btn-large orange"><i
+                    class="mdi-image-edit left"></i> Edit review
+            </button>
+        {% else %}
+            <button class="reviewsActions--button editButton waves-effect waves-light btn-large orange"><i
+                    class="mdi-av-my-library-add left"></i> New review
+            </button>
+        {% endif %}
+    </div>
     <div class="reviewsList">
         {% for element in reviews %}
             <div class="reviewsList--item">
