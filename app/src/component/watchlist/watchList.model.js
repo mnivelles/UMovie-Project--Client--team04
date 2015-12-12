@@ -9,8 +9,8 @@ define(function (require) {
 
     return Backbone.Model.extend({
 
-        urlRoot : function () {
-            return Common.getSecuredUrl('watchlists', true);
+        url : function () {
+            return Common.getSecuredUrl('watchlists/' + this.id, true);
         },
 
         parse : function(data) {

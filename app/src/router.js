@@ -54,54 +54,49 @@ define(function (require) {
             'search/tvshows/:searchString':'showTvshowSearchResults'
         },
 
+        route: function(route, name, callback) {
+            var router = this;
+            if (!callback) callback = this[name];
+
+            var f = function() {
+                var ag = arguments;
+
+                Common.isUserLoggedIn().done(function(data) {
+                    callback.apply(router, ag);
+                }).fail(function(jqXHR, textStatus, errorThrown){
+                    router._showLogin();
+                });
+            };
+            return Backbone.Router.prototype.route.call(this, route, name, f);
+        },
+
         home: function () {
-            if(!this.isUserLoggedIn()) {
-                this.showLogin();
-                return;
-            }
             homeView.delegateEvents();
             homeView.render();
         },
 
         showActor: function(id) {
-            if(!this.isUserLoggedIn()) {
-                this.showLogin();
-                return;
-            }
             actorView.delegateEvents();
             actorView.render(id);
         },
 
         showMovie: function(id) {
-            if(!this.isUserLoggedIn()) {
-                this.showLogin();
-                return;
-            }
             movieView.delegateEvents();
             movieView.initializeWithId(id);
         },
 
         showTvShow: function(id) {
-            if(!this.isUserLoggedIn()) {
-                this.showLogin();
-                return;
-            }
             tvShowView.delegateEvents();
             tvShowView.render({id:id});
         },
 
         showUserPage: function(id) {
-            if(!this.isUserLoggedIn()) {
-                this.showLogin();
-                return;
-            }
             userView.delegateEvents();
             userView.initializeWithId(id);
         },
 
         showLogin: function() {
-            loginView.delegateEvents();
-            loginView.render();
+            this._showLogin();
         },
 
         showSignup: function() {
@@ -110,52 +105,33 @@ define(function (require) {
         },
 
         indexWatchList: function(){
-            if(!this.isUserLoggedIn()) {
-                this.showLogin();
-                return;
-            }
             watchListIndexView.delegateEvents();
             watchListIndexView.render();
         },
 
         showWatchList: function(id){
-            if(!this.isUserLoggedIn()) {
-                this.showLogin();
-                return;
-            }
             watchListView.delegateEvents();
             watchListView.render({id:id});
         },
 
         showMovieSearchResults: function(searchString){
-            if(!this.isUserLoggedIn()) {
-                this.showLogin();
-                return;
-            }
             movieResultView.delegateEvents();
             movieResultView.render({searchString:searchString});
         },
 
         showTvshowSearchResults: function(searchString){
-            if(!this.isUserLoggedIn()) {
-                this.showLogin();
-                return;
-            }
             tvshowResultView.delegateEvents();
             tvshowResultView.render({searchString:searchString});
         },
 
         showActorsSearchResults:function(searchString){
-            if(!this.isUserLoggedIn()) {
-                this.showLogin();
-                return;
-            }
             actorsSearchResultView.delegateEvents();
             actorsSearchResultView.render({searchString:searchString});
         },
 
-        isUserLoggedIn: function() {
-            return $.cookie(Common.LOGIN_TOKEN_COOKIE) !== undefined;
+        _showLogin: function() {
+            loginView.delegateEvents();
+            loginView.render();
         }
     });
 
