@@ -1,24 +1,20 @@
 .reviewsList {
     &--item {
-        .item--leftCol,
-        .item--rightCol {
-            display: inline-block;
-            vertical-align: top;
-        }
+        padding-bottom: 10px;
+        padding-top: 10px;
+        border-top: 1px solid hsla(0,100%,100%,.75);
 
-        .item--leftCol {
-            float: left;
-            padding-right: 15px;
-            padding-bottom: 15px;
-        }
-
-        .item--rightCol {
-
+        &:first-child {
+            padding-top: 0;
+            border-top: none;
         }
 
         .item--thumbnail {
             width: 100px;
             height: 100px;
+            float: left;
+            margin-right: 10px;
+            margin-bottom: 10px;
 
             img {
                 display: inline-block;
@@ -46,10 +42,11 @@
         }
         .item--reviewer {
             color: hsla(0,100%,100%,1);
-            font-size: 1.1em;
+            font-size: 1.4em;
+            line-height: 1em;
         }
         .item--text {
-
+            margin: 0;
         }
     }
 }

@@ -4,23 +4,19 @@
     <div class="reviewsList">
         {% for element in reviews %}
             <div class="reviewsList--item">
-                <div class="item--leftCol">
-                    <div class="item--thumbnail">
-                        {% if element.emotion %}
-                            <div class="reaction--icon"><i class="{{ element.emotion }}"></i></div>
-                        {% else %}
-                            <img src="/image/user_icon.png" alt="User avatar"/>
-                        {% endif %}
-                    </div>
+                <div class="item--thumbnail">
+                    {% if element.emotion %}
+                        <div class="reaction--icon"><i class="{{ element.emotion }}"></i></div>
+                    {% else %}
+                        <img src="/image/user_icon.png" alt="User avatar"/>
+                    {% endif %}
                 </div>
-                <div class="item--rightCol">
-                    <div class="item--reviewer">
-                        {{ element.name }}
-                    </div>
-                    <div class="item--text">
-                        {{ element.text }}
-                    </div>
+                <div class="item--reviewer">
+                    {{ element.name }}
                 </div>
+                <p class="item--text">
+                    {{ element.text }}
+                </p>
             </div>
         {% endfor %}
     </div>
