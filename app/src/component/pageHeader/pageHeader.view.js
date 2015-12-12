@@ -71,7 +71,7 @@ define(function (require) {
 
         showUserPage: function () {
             this._toggleUserMenu(true);
-            Backbone.history.navigate('user/' + $.cookie(Common.CURRENT_USER_ID), true);
+            Backbone.history.navigate('users/' + $.cookie(Common.CURRENT_USER_ID), true);
         },
 
         showLogin: function () {

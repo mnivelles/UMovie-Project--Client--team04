@@ -44,7 +44,7 @@ define(function (require) {
             'actors/:id': 'showActor',
             'movies/:id': 'showMovie',
             'tv-shows/:id': 'showTvShow',
-            'user/:id': 'showUserPage',
+            'users/:id': 'showUserPage',
             'login': 'showLogin',
             'signup': 'showSignup',
             'watchlists': 'indexWatchList',

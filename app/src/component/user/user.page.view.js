@@ -53,7 +53,7 @@ define(function (require) {
         showUserPage: function(event) {
             var button = $(event.currentTarget);
             var query = button.attr('data-info');
-            Backbone.history.navigate('/user/'+query, true);
+            Backbone.history.navigate('/users/'+query, true);
         },
 
         toggleFollowUser: function() {
