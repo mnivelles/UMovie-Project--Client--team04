@@ -11,7 +11,7 @@ define(function(require){
             this.id = id;
         },
         url : function(){
-            return Common.UMOVIE_API_BASE_URL + 'watchlists';
+            return Common.getSecuredUrl('watchlists', true);
         },
         parse : function(watchlists){
             var userID = this.id;

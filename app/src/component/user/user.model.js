@@ -13,9 +13,7 @@ define(function (require) {
 
         follow : function(){
             var user = this.toJSON();
-            var token = $.cookie(Common.LOGIN_TOKEN_COOKIE);
-
-            var data = {access_token : token ,id: user.id};
+            var data = {id: user.id};
 
             $.ajax({
                 url : Common.getSecuredUrl('follow', true),
