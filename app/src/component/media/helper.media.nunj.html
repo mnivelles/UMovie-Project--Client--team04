@@ -97,6 +97,12 @@
 {{ section(title, list.searchTvShowsList(tvshows)) }}
 {% endmacro %}
 
+{% macro searchUserSection(title, users) %}
+{% import "list.nunj.html" as list %}
+
+{{ section(title, list.searchUsersList(users)) }}
+{% endmacro %}
+
 {% macro searchActorsSection(title, actors) %}
 {% import "list.nunj.html" as list %}
 
