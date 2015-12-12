@@ -8,7 +8,8 @@ define(function (require) {
         template = 'actor.page.nunj.html',
         TMDb = require('TMDbSearch'),
         Actor = require('actor.model'),
-        MoviesView = require('actor.movies.view');
+        MoviesView = require('actor.movies.view'),
+        SuggestionsView = require('actor.suggestions.view');
 
     return Backbone.View.extend({
         events: function () {
@@ -41,6 +42,9 @@ define(function (require) {
                         var moviesView = new MoviesView({el: self.$('.actor--movies')});
                         moviesView.render(id);
 
+                        var suggestionsView = new SuggestionsView({el:self.$('.actor--suggestions')});
+                        suggestionsView.initializeWithMovieName(actor.artistName);
+
                         self.hideMediaSectionForSmallScreen();
                     }, function() {
                         self.display({
@@ -55,6 +59,9 @@ define(function (require) {
                         });
                         var moviesView = new MoviesView({el: self.$('.actor--movies')});
                         moviesView.render(id);
+
+                        var suggestionsView = new SuggestionsView({el:self.$('.actor--suggestions')});
+                        suggestionsView.initializeWithMovieName(actor.artistName);
 
                         var message = 'All the information has not been loaded';
 
