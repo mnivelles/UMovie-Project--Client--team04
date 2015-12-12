@@ -13,7 +13,7 @@ define(function (require) {
 
         events: {
             'click .friendsListContainer .unorderedWordList--item a': 'showUserPage',
-            'click .followBtn': 'followUser',
+            'click .followBtn': 'toggleFollowUser',
             'click .mediaSection--hideShowButton': 'toggleMediaSection'
         },
 
@@ -26,7 +26,7 @@ define(function (require) {
         render: function() {
             var self = this;
             var isNotCurrentUser = undefined;
-            console.log($.cookie(Common.LOGIN_TOKEN_COOKIE));
+
             if(self.model.id != $.cookie(Common.CURRENT_USER_ID)) {
                 isNotCurrentUser = true;
             }
@@ -46,7 +46,7 @@ define(function (require) {
 
             var watchlistsViews = new WatchListsView({el: self.$('.watchlistsContainer')});
             watchlistsViews.render(self.model.id);
-
+            this.updateFollowingBtn();
             return this;
         },
 
@@ -56,8 +56,18 @@ define(function (require) {
             Backbone.history.navigate('/user/'+query, true);
         },
 
-        followUser: function() {
-            this.model.follow();
+        toggleFollowUser: function() {
+            var self = this;
+            if(self.$('.followBtn').hasClass('unfollowBtn')){
+                self.model.unFollow(function(){
+                    self.updateFollowingBtn();
+                });
+            }
+            else{
+                this.model.follow(function(){
+                    self.updateFollowingBtn();
+                });
+            }
         },
 
         toggleMediaSection: function(event) {
@@ -67,8 +77,7 @@ define(function (require) {
         parseFriendsList : function() {
             var self = this;
             if(self.model.get('following')){
-
-                //to avoid getting old incorrect entries
+                //to avoid getting old invalid entries
                 var filterdList = _.filter(self.model.get('following'),function(friend){
                     return typeof(friend.id) != 'undefined';
                 });
@@ -80,11 +89,30 @@ define(function (require) {
                         data: friend.id
                     };
                 });
-
                 return friendsList;
             }
-
             return undefined;
+        },
+
+        updateFollowingBtn : function(){
+            var self = this;
+            var visitedUser = self.model.get('id');
+            var loggedUser = $.cookie(Common.CURRENT_USER_ID);
+
+            $.ajax({
+                url : Common.getSecuredUrl('users/' + loggedUser, false),
+                type : 'GET',
+                contentType: 'application/json'
+            }).done(function(user){
+                if(_.findWhere(user.following, {id: visitedUser})){
+                    self.$('.followBtn').removeClass('green').addClass('red').addClass('unfollowBtn');
+                    self.$('.followBtnText').text('UNFOLLOW');
+                }
+                else{
+                    self.$('.followBtn').removeClass('unfollowBtn').removeClass('red').addClass('green');
+                    self.$('.followBtnText').text('FOLLOW');
+                }
+            });
         }
     });
 });
