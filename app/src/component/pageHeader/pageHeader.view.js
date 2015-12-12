@@ -24,7 +24,7 @@ define(function (require) {
             'click .userMenu .signupButton': 'showSignup',
             'click .userMenu .signoutButton': 'signout',
             'keydown': 'startSearch',
-            'click button .inputRow--submitButton': 'startSearch'
+            'click .inputRow--submitButton': 'buttonSearch'
         },
 
         initialize: function () {
@@ -36,11 +36,11 @@ define(function (require) {
             this.userMenu = $('.userMenu').eq(0);
             this.avatarButtons = $('.pageMenu--user .user--avatarButton');
 
-            Common.isUserLoggedIn().done(function(data) {
+            Common.isUserLoggedIn().done(function (data) {
                 $('.connectedImage').show();
                 $('.defaultImage').hide();
                 self._updateUserName();
-            }).fail(function(jqXHR, textStatus, errorThrown){
+            }).fail(function (jqXHR, textStatus, errorThrown) {
                 $('.connectedImage').hide();
                 $('.defaultImage').show();
             });
@@ -94,31 +94,14 @@ define(function (require) {
         },
 
         startSearch: function (e) {
+            var self = this;
             var key = e.keyCode || e.which;
             if (key == Common.ENTER_KEY) {
-                var searchText = $('.search--input').val();
-                if (searchText.length < 1) {
-                    searchText = $('.inputRow--input').val();
-                }
-                $(".filterRow--list input[type='radio']:checked").each(function () {
-                    var idVal = $(this).attr("id");
-                    var selectedSearchType = $("label[for='" + idVal + "']").text();
-                    $('.search--input').val('');
-                    switch (selectedSearchType) {
-                        case "Actors":
-                            Backbone.history.navigate('search/actors/' + searchText, true);
-                            break;
-                        case "Movies":
-                            Backbone.history.navigate('search/movies/' + searchText, true);
-                            break;
-                        case "Tv Shows":
-                            Backbone.history.navigate('search/tvshows/' + searchText, true);
-                            break;
-                    }
-
-                });
+                self._search();
             }
-
+        },
+        buttonSearch: function () {
+            this._search();
 
         },
 
@@ -139,6 +122,32 @@ define(function (require) {
         toggleUserMenu: function () {
             this._toggleSearch(true);
             this._toggleUserMenu(this.avatarButtons.eq(0).hasClass(activeClass));
+        },
+        _search: function(){
+            var self = this;
+            var searchText = $('.search--input').val();
+            if (searchText.length < 1) {
+                searchText = $('.inputRow--input').val();
+            }
+            $(".filterRow--list input[type='radio']:checked").each(function () {
+                var idVal = $(this).attr("id");
+                var selectedSearchType = $("label[for='" + idVal + "']").text();
+                switch (selectedSearchType) {
+                    case "Actors":
+                        Backbone.history.navigate('search/actors/' + searchText, true);
+                        self.closeSearch();
+                        break;
+                    case "Movies":
+                        Backbone.history.navigate('search/movies/' + searchText, true);
+                        self.closeSearch();
+                        break;
+                    case "Tv Shows":
+                        Backbone.history.navigate('search/tvshows/' + searchText, true);
+                        self.closeSearch();
+                        break;
+                }
+
+            });
         },
 
         _toggleUserMenu: function (isActive) {
