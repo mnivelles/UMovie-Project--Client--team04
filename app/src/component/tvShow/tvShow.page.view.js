@@ -9,6 +9,7 @@ define(function (require) {
         Common = require('/js/common.js'),
         //TMDb = require('TMDbSearch'),
         template = 'tvShow.page.nunj.html',
+        templateModal = 'tvShow.modal.nunj.html',
         templateSearch = 'searchResult.nunj.html',
         ReactionsCollection = require('/js/reactions.collection.js'),
         ReactionsView = require('/js/reactions.view.js'),
@@ -83,7 +84,7 @@ define(function (require) {
         episodes.fetch({
             success: function (episodes) {
                 youtubeSearch(self.seasonTitle + ' ' + self.episodeTitle, function(videoUrl){
-                    var html = Nunjucks.render(template, {media: {
+                    var html = Nunjucks.render(templateModal, {media: {
                         img: self.image,
                         title: self.seasonTitle,
                         mainInformations: [
@@ -102,12 +103,11 @@ define(function (require) {
 
 
     function initializeModaContent(self){
-        $('.media--quickActions--button.showTrailerButton', self.el).click(function () {
-            self.showTrailer($(self));
-        }); //--not working
 
-        $('.media--quickActions--button.showTrailerButton', self.el).text('Preview');
-        $('.media--quickActions--button.imageButton', self.el).hide();
+        $('.mediaTrailer', self.el).attr('id','modalPreview');
+        $('.media--quickActions--button.showTrailerButton', self.el).click(function () {
+            self.showPreview($(this));
+        });
         Materialize.toast("You're watching " + self.seasonTitle, 1500, 'green rounded');
         Materialize.toast('Episode ' + self.episodeTitle, 2000, 'green rounded');
         showReactionIcon(self);
@@ -203,7 +203,6 @@ var episodeView =Backbone.View.extend({
                 duration: getTvShowLengthString(parseInt(duration))
             });
 
-            $('.lean-overlay').css({display:'none'});
             $('#ShowEpisodeModal', this.$el).openModal();
             modal.animate({ scrollTop: 0 }, 'slow');
             modal.attr('data-currentEpisode', episode);

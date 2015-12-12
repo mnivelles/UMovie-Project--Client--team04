@@ -1,0 +1,18 @@
+<div class="modalContent">
+        <div class="media">
+        {% import "helper.media.nunj.html" as mediaHelper %}
+            {{ mediaHelper.header(media.title, media.img, media.mainInformations) }}
+            <section class="media--quickActions">
+                <button class="media--quickActions--button showTrailerButton waves-effect waves-light btn-large red"><i class="mdi-av-play-circle-outline left"></i> Preview
+                </button>
+            </section>
+
+        {{ mediaHelper.trailer(media.youtubeTrailerUrl) }}
+
+        <div class="template-reactions"></div>
+           </div>
+
+        {{ mediaHelper.paragraphSection("Synopsis", media.synopsis) }}
+
+</div>
+
