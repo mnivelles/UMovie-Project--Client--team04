@@ -8,6 +8,8 @@ define(function (require) {
         Nunjucks = require('nunjucks'),
         Common = require('/js/common.js'),
         ReactionsModel = require('/js/reactions.model.js'),
+        ReviewsView = require('/js/reviews.view.js'),
+        reviewsElement = '.template-reviews',
         template = 'reactions.nunj.html';
 
     var xsmallSizeClass = 'xsmall',
@@ -25,6 +27,10 @@ define(function (require) {
 
         initialize: function() {
             this.mediaId = undefined;
+
+            this.reviewsView = new ReviewsView({
+                el: $(reviewsElement)
+            });
         },
 
         events: function() {
@@ -55,11 +61,23 @@ define(function (require) {
                 reactions = new ReactionsModel().toJSON();
             }
 
+            var reviews = [
+                {
+                    id: '563d646d9b95510300ec5aac',
+                    review: 'Donec ullamcorper nulla non metus auctor fringilla. Aenean lacinia bibendum nulla sed consectetur. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Aenean lacinia bibendum nulla sed consectetur. Maecenas faucibus mollis interdum. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Nulla vitae elit libero, a pharetra augue. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Cras mattis consectetur purus sit amet fermentum. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.'
+                },{
+                    id: '566626adfb78d703008dd92f',
+                    review: 'Sugoi'
+                }
+            ];
+
             var html = Nunjucks.render(template, {
                 reactions: self._percentagesFrom(reactions),
-                reviews: reactions.reviews
+                reviewsNumber: reviews.length//reactions.reviews.length
             });
             this.$el.html(html);
+
+            this.reviewsView.renderWithReviews(reviews, reactions.voters);//reactions.reviews);
 
             var voter = _.find(reactions.voters, function(element) {
                 return element.id == self._getCurrentUserId();

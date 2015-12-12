@@ -21,7 +21,7 @@
         {% for episode in episodes %}
             <li class="unorderedEpisodeList--item">
                 <div class="item--thumbnail">
-                    <a><img src="{{ episode.artworkUrl100 }}". alt="{{ episode.trackName }}"/></a>
+                    <a><img src="{{ episode.artworkUrl100 }}" alt="{{ episode.trackName }}"/></a>
                 </div>
                 <div class="item--title"><a id="episodeToWatch" data-episodeId="{{ episode.trackNumber }}"
                                             data-seasonId="{{  episode.collectionId }}" data-season="{{  episode.collectionName }}"
