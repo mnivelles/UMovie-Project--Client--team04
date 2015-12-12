@@ -1,23 +1,25 @@
 <div class="userPageConatiner">
+    <div class="media">
 
-    {% import "helper.media.nunj.html" as mediaHelper %}
+        {% import "helper.media.nunj.html" as mediaHelper %}
 
-    {{ mediaHelper.header(media.title, media.img, media.mainInformations, media.tagline) }}
+        {{ mediaHelper.header(media.title, media.img, media.mainInformations, media.tagline) }}
 
-    <section class="media--quickActions">
-        {% if media.isNotCurrentUser %}
-        <a class="media--quickActions--button followBtn waves-effect waves-light btn-large red">
-            <i class="mdi-action-perm-identity left"></i><span class="followBtnText">Follow</span>
-        </a>
+        <section class="media--quickActions">
+            {% if media.isNotCurrentUser %}
+            <a class="media--quickActions--button followBtn waves-effect waves-light btn-large green">
+                <i class="mdi-action-perm-identity left"></i><span class="followBtnText">Follow</span>
+            </a>
+            {% endif %}
+        </section>
+
+        <div class="watchlistsContainer"></div>
+
+        {% if media.friends %}
+        <div class="friendsListContainer">
+            {{ mediaHelper.wordWithDataListSection("Following", media.friends) }}
+        </div>
         {% endif %}
-    </section>
 
-    <div class="watchlistsContainer"></div>
-
-    {% if media.friends %}
-    <div class="friendsListContainer">
-        {{ mediaHelper.wordWithDataListSection("Following", media.friends) }}
     </div>
-    {% endif %}
-
 </div>

@@ -145,6 +145,10 @@ define(function (require) {
                         Backbone.history.navigate('search/tvshows/' + searchText, true);
                         self.closeSearch();
                         break;
+                    case "Users":
+                        Backbone.history.navigate('search/users/' + searchText, true);
+                        self.closeSearch();
+                        break;
                 }
 
             });

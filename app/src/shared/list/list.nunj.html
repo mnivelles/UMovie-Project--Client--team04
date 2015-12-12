@@ -1,33 +1,36 @@
 {# unordered car utilise des ul #}
 
 {% macro unorderedWordList(words) %}
-    <ul class="unorderedWordList">
-        {% for word in words %}
-        <li class="unorderedWordList--item">{{ word }}</li>
-        {% endfor %}
-    </ul>
+<ul class="unorderedWordList">
+    {% for word in words %}
+    <li class="unorderedWordList--item">{{ word }}</li>
+    {% endfor %}
+</ul>
 {% endmacro %}
 
 {% macro unorderedWordWithDataList(elements) %}
-    <ul class="unorderedWordList">
-        {% for element in elements %}
-            <li class="unorderedWordList--item"><a data-info="{{ element.data }}" href="#!">{{ element.name }}</a></li>
-        {% endfor %}
-    </ul>
+<ul class="unorderedWordList">
+    {% for element in elements %}
+    <li class="unorderedWordList--item"><a data-info="{{ element.data }}" href="#!">{{ element.name }}</a></li>
+    {% endfor %}
+</ul>
 {% endmacro %}
 
 {% macro unorderedEpisodeList(episodes) %}
-    <ul class="unorderedEpisodeList">
-        {% for episode in episodes %}
-            <li class="unorderedEpisodeList--item">
-                <div class="item--thumbnail">
-                    <a><img src="{{ episode.artworkUrl100 }}" alt="{{ episode.trackName }}"/></a>
-                </div>
-                <div class="item--title"><a id="episodeToWatch" data-episodeId="{{ episode.trackNumber }}"
-                                            data-seasonId="{{  episode.collectionId }}" data-season="{{  episode.collectionName }}"
-                                            data-duration="{{ episode.trackTimeMillis }}" data-picture="{{ episode.artworkUrl100 }}"
-                                            data-title="{{ episode.trackName }} " data-description="{{ episode.longDescription }}"
-                    href="#">{{ episode.trackNumber }}.{{ episode.trackName }}</a>
+<ul class="unorderedEpisodeList">
+    {% for episode in episodes %}
+    <li class="unorderedEpisodeList--item">
+        <div class="item--thumbnail">
+            <a><img src="{{ episode.artworkUrl100 }}" alt="{{ episode.trackName }}"/></a>
+        </div>
+        <div class="item--title"><a id="episodeToWatch" data-episodeId="{{ episode.trackNumber }}"
+                                    data-seasonId="{{  episode.collectionId }}"
+                                    data-season="{{  episode.collectionName }}"
+                                    data-duration="{{ episode.trackTimeMillis }}"
+                                    data-picture="{{ episode.artworkUrl100 }}"
+                                    data-title="{{ episode.trackName }} "
+                                    data-description="{{ episode.longDescription }}"
+                                    href="#">{{ episode.trackNumber }}.{{ episode.trackName }}</a>
                     <span class="episode--ratingLogo">
                         {% if episode.contentAdvisoryRating != undefined %}
                             {{ episode.contentAdvisoryRating }}
@@ -36,27 +39,29 @@
                         {% endif %}
                     </span></div>
 
-            </li>
-        {% endfor %}
-    </ul>
+    </li>
+    {% endfor %}
+</ul>
 {% endmacro %}
 
 
 {% macro unorderedMoviesList(movies) %}
-    <ul class="unorderedMoviesList">
-        {% for movie in movies %}
-            <li class="unorderedMoviesList--item">
-                <div class="item--thumbnail">
-                    <a href="/movies/{{ movie.id }}"><img src="{{ movie.poster }}" alt="{{ movie.title }}"/></a>
-                </div>
-                <div class="item--rightCol">
-                    <div class="item--title"><a href="/movies/{{ movie.id }}">{{ movie.title }}</a></div>
-                    <div class="item--informationElement">{{ movie.releaseDate }}</div>
-                    <button data-trailer-link="{{ movie.trailerLink }}" class="item--trailerButton waves-effect waves-light btn blue">Trailer</button>
-                </div>
-            </li>
-        {% endfor %}
-    </ul>
+<ul class="unorderedMoviesList">
+    {% for movie in movies %}
+    <li class="unorderedMoviesList--item">
+        <div class="item--thumbnail">
+            <a href="/movies/{{ movie.id }}"><img src="{{ movie.poster }}" alt="{{ movie.title }}"/></a>
+        </div>
+        <div class="item--rightCol">
+            <div class="item--title"><a href="/movies/{{ movie.id }}">{{ movie.title }}</a></div>
+            <div class="item--informationElement">{{ movie.releaseDate }}</div>
+            <button data-trailer-link="{{ movie.trailerLink }}"
+                    class="item--trailerButton waves-effect waves-light btn blue">Trailer
+            </button>
+        </div>
+    </li>
+    {% endfor %}
+</ul>
 {% endmacro %}
 
 
@@ -108,12 +113,31 @@
 </ul>
 {% endmacro %}
 
+{% macro searchUsersList(users) %}
+<ul class="unorderedMoviesList">
+    {% for user in users %}
+    <li class="unorderedMoviesList--item">
+        <div class="item--thumbnail">
+            <a href="/users/{{ user.id }}"><img src="/image/user_icon.png"/></a>
+        </div>
+        <div class="item--rightCol">
+            <div class="item--title"><a href="/users/{{ user.id }}">{{ user.name }}</a></div>
+
+        </div>
+
+
+    </li>
+    {% endfor %}
+</ul>
+{% endmacro %}
+
 {% macro watchlistsList(watchlists) %}
 <div class="watchListContent">
     <div class="media">
         <div class="watchListCollection">
             {% for watchList in watchlists %}
-            <div class="watchListCollection--item"><a href="/watchlists/{{ watchList.id }}">{{ watchList.name | truncate(22) }}</a><span class="badge">{{ watchList.movies.length }}</span></div>
+            <div class="watchListCollection--item"><a href="/watchlists/{{ watchList.id }}">{{ watchList.name |
+                truncate(22) }}</a><span class="badge">{{ watchList.movies.length }}</span></div>
             {% endfor %}
         </div>
     </div>

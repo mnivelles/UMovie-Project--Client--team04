@@ -83,7 +83,7 @@ define(function (require) {
                 });
 
                 var friendsList = _.map(filterdList, function(friend){
-                    var result = friend.name + ' ( ' + friend.email + ' )';
+                    var result = friend.name;
                     return {
                         name: result,
                         data: friend.id
