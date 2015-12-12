@@ -1,16 +1,13 @@
 .tvShowContent {
     #ShowEpisodeModal.modal {
         width: 100%;
-
     }
 
     .modal {
         max-height: 85%;
-
     }
 
     .modal-content.tv-show {
-        background: black;
     }
 
     .media--quickActions.tv-show {
@@ -29,11 +26,10 @@
     }
 
     #materialize-lean-overlay-1.lean-overlay {
-        background: black;
+        background: hsla(0,0%,0%,1);
     }
 
     .modal-footer.tv-show {
-        background: rgba(255, 255, 255, 0.15) !important;
     }
 
     .media--quickActions--button.searchBtn, .media--quickActions--button.closeResultSearchBtn {
@@ -43,7 +39,7 @@
     .searchFilter {
         left: 30%;
         padding-right: 10px;
-        color: rgba(255, 255, 255, 0.65);
+        color: hsla(0,100%,100%,.65);
         font-size: 1.25em;
     }
 
