@@ -108,8 +108,6 @@ define(function (require) {
         $('.media--quickActions--button.showTrailerButton', self.el).click(function () {
             self.showPreview($(this));
         });
-        Materialize.toast("You're watching " + self.seasonTitle, 1500, 'green rounded');
-        Materialize.toast('Episode ' + self.episodeTitle, 2000, 'green rounded');
         showReactionIcon(self);
     }
 

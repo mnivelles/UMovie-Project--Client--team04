@@ -63,12 +63,17 @@
 
 .search--inputRow {
 
-    @include breakpoint(tablet) {
-        display: none;
+
+
+    #search--input{
+        @include breakpoint(tablet) {
+            display: none;
+        }
     }
 
     input.inputRow--input {
-        @include col(9/12);
+
+
 
         border-bottom-color: hsla(0, 100%, 100%, 0.85);
 
@@ -90,6 +95,9 @@
         color: hsla(0, 100%, 100%, 1);
         font-weight: 300;
         font-size: 1.4em;
+        @include breakpoint(tablet) {
+            @include col(1/10,$offset:1/15);
+        }
 
         &:focus {
             background-color: transparent;
