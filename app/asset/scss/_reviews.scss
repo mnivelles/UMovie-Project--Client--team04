@@ -1,8 +1,40 @@
+.reviewsActions {
+    padding: 20px 10px;
+    margin-bottom: 20px;
+
+    text-align: center;
+
+    background-color: hsla(0, 100%, 100%, .15);
+
+    &--button {
+        vertical-align: middle;
+        display: inline-block;
+        margin: 5px 2px;
+    }
+
+    @include breakpoint(tablet) {
+        .media--quickActions--button {
+            vertical-align: middle;
+            display: inline-block;
+            margin: 6px 6px;
+        }
+    }
+
+    @include breakpoint(laptop) {
+        .media--quickActions--button {
+            vertical-align: middle;
+            display: inline-block;
+            margin: 10px;
+        }
+    }
+}
+
 .reviewsList {
     &--item {
         padding-bottom: 10px;
         padding-top: 10px;
         border-top: 1px solid hsla(0,100%,100%,.75);
+        overflow: auto;
 
         &:first-child {
             padding-top: 0;

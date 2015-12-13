@@ -24,22 +24,41 @@ define(function (require) {
 
     return Backbone.View.extend({
 
-        initialize: function() {
+        initialize: function(options) {
+            this.setReviewCallback = options.setReviewCallback;
+
+            this.currentUserReview = '';
         },
 
         events: function() {
             return {
+                'click .reviewsActions--button.createButton': 'createReview',
+                'click .reviewsActions--button.editButton': 'editReview',
+                'click #reviewModal .applyButton': 'submitReview'
             }
         },
 
         renderWithReviews: function(reviews, reactionsVoters) {
             var self = this;
+
             $.ajax({
                 url: Common.getSecuredUrl('users', true),
                 type: 'GET'
             }).done(function(users){
+                var reviewer = _.find(reviews, function(element) {
+                    return element.id == self._getCurrentUserId();
+                });
+
+                self.currentUserReview = '';
+                var isAlreadyReview = false;
+                if (reviewer) {
+                    isAlreadyReview = true;
+                    self.currentUserReview = reviewer.text;
+                }
+
                 var html = Nunjucks.render(template, {
-                    reviews: self._reviewsInformationsFrom(reviews, users, reactionsVoters)
+                    reviews: self._reviewsInformationsFrom(reviews, users, reactionsVoters),
+                    isAlreadyReview: isAlreadyReview
                 });
                 self.$el.html(html);
             }).fail(function(jqXHR, textStatus, errorThrown){
@@ -47,6 +66,41 @@ define(function (require) {
             });
 
             return this;
+        },
+
+        createReview: function() {
+            $('#reviewModal .modal--title').text('Write a New Review');
+            $('#reviewModal').openModal();
+            $('#reviewModal #review_text').focus();
+        },
+
+        editReview: function(event) {
+            var self = this;
+
+            $('#reviewModal .modal--title').text('Edit your Review');
+
+            $('#reviewModal #review_text').val(self.currentUserReview);
+
+            $('#reviewModal').openModal();
+            $('#reviewModal #review_text').focus();
+        },
+
+        submitReview: function() {
+            var self = this;
+
+            var review = $('#reviewModal #review_text').val().trim();
+
+            if (review.length > 0) {
+                $('#reviewModal .input-field .error-message').hide();
+                $('#reviewModal .input-field textarea').removeClass('invalid');
+
+                $('#reviewModal').closeModal();
+                self.setReviewCallback(review);
+            } else {
+                $('#reviewModal .input-field .error-message').text('Invalid review. Choose a smarter one.').fadeIn(300);
+                $('#reviewModal .input-field textarea').addClass('invalid');
+                self.shakeForErrorWithElement($('#reviewModal'));
+            }
         },
 
         _reviewsInformationsFrom: function(reviews, users, reactionsVoters) {
@@ -64,16 +118,20 @@ define(function (require) {
                 if (currentUser) {
                     return {
                         name: currentUser.name || '[Nanashi]',
-                        text: review.review,
+                        text: review.text,
                         emotion: emotion
                     }
                 }
                 return {
                     name: '[Nan]',
-                    text: review.review,
+                    text: review.text,
                     emotion: emotion
                 }
             });
+        },
+
+        _getCurrentUserId: function() {
+            return $.cookie(Common.CURRENT_USER_ID) || '';
         }
     });
 

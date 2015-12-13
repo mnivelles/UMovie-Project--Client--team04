@@ -58,11 +58,11 @@ define(function (require) {
             });
 
             if (currentUser) {
-                currentUser.review = review;
+                currentUser.text = review;
             } else {
                 var tempUser = {
                     id: userId + '',
-                    review: review
+                    text: review
                 };
                 this.get('reviews').push(tempUser);
             }

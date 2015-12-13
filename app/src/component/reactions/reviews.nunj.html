@@ -3,15 +3,12 @@
 {% macro reviewsList(reviews, isAlreadyReview) %}
     <div class="reviewsActions">
         {% if isAlreadyReview %}
-            <button class="reviewsActions--button deleteButton waves-effect waves-light btn-large red darken-2"><i
-                    class="mdi-action-delete left"></i> Delete review
-            </button>
-            <button class="reviewsActions--button editButton waves-effect waves-light btn-large orange"><i
+            <button class="reviewsActions--button editButton waves-effect waves-light btn orange"><i
                     class="mdi-image-edit left"></i> Edit review
             </button>
         {% else %}
-            <button class="reviewsActions--button editButton waves-effect waves-light btn-large orange"><i
-                    class="mdi-av-my-library-add left"></i> New review
+            <button class="reviewsActions--button createButton waves-effect waves-light btn green"><i
+                    class="mdi-content-add-circle left"></i> New review
             </button>
         {% endif %}
     </div>
@@ -36,4 +33,21 @@
     </div>
 {% endmacro %}
 
-{{ mediaHelper.section("Customer Reviews", reviewsList(reviews), "customerReviews") }}
+{{ mediaHelper.section("Customer Reviews", reviewsList(reviews, isAlreadyReview), "customerReviews") }}
+
+<!-- Modal Structure -->
+<div id="reviewModal" class="modal">
+    <div class="modal-content">
+        <h4 class="modal--title">Review</h4>
+        <div>
+            <div class="input-field">
+                <textarea id="review_text" class="validate" rows="3"></textarea>
+                <label for="review_text">Personal Thought</label>
+                <div class="error-message"></div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-action applyButton waves-effect waves-green btn-flat">Apply</a>
+    </div>
+</div>
