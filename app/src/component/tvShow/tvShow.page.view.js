@@ -105,9 +105,6 @@ define(function (require) {
 
 
     function initializeModaContent(self) {
-
-        console.log($('.media--quickActions--button.showPreviewButton'));
-
         $('.mediaTrailer', self.el).attr('id', 'modalPreview');
         $('.media--quickActions--button.showPreviewButton', self.el).click(function () {
             self.showPreview($(this));
