@@ -58,6 +58,12 @@
     {{ section(title, list.unorderedWordList(words)) }}
 {% endmacro %}
 
+{% macro wordWithUrlListSection(title, words) %}
+    {% import "list.nunj.html" as list %}
+
+    {{ section(title, list.unorderedWordWithUrlList(words)) }}
+{% endmacro %}
+
 {% macro wordWithDataListSection(title, words) %}
     {% import "list.nunj.html" as list %}
 
@@ -108,3 +114,4 @@
 
 {{ section(title, list.searchActorsList(actors)) }}
 {% endmacro %}
+

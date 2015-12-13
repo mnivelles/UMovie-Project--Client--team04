@@ -10,7 +10,11 @@ define(function (require) {
     return Backbone.Model.extend({
 
         url : function () {
-            return Common.getSecuredUrl('watchlists/' + this.id, true);
+            if (this.id) {
+                return Common.getSecuredUrl('watchlists/' + this.id, true);
+            } else {
+                return Common.getSecuredUrl('watchlists', true);
+            }
         },
 
         parse : function(data) {
@@ -39,11 +43,21 @@ define(function (require) {
 
             title = title || '[Nanashi-SansNom]';
 
+            var isOwner = false;
+            var owner = null;
+
+            if (data.owner) {
+                isOwner = (data.owner.id == $.cookie(Common.CURRENT_USER_ID));
+                owner = data.owner;
+            }
+
             return {
                 id: data.id,
                 title: title,
                 movies: data.movies,
-                simpleMovies: movies
+                simpleMovies: movies,
+                showIsOwner: isOwner,
+                owner: owner
             };
         }
     });

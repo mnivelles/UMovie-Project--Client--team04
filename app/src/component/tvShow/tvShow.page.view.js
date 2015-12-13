@@ -26,7 +26,7 @@ define(function (require) {
     }
 
     function switchEpisode(changeEpisode) {
-        var modal = $('#ShowEpisodeModal');
+        var modal = $('#showEpisodeModal');
         var currentSeason = modal.attr('data-currentSeason');
         var currentEpisode = parseInt(modal.attr('data-currentEpisode'));
         if (currentEpisode < 1) currentEpisode = 1;
@@ -47,7 +47,7 @@ define(function (require) {
                 _.map(episodesInfo, function (episodeInfo) {
                     return new episodeView(
                         {
-                            el: $('.modal-content'), id: parseInt(episodeInfo.collectionId),
+                            el: $('#showEpisodeModal .modal-content'), id: parseInt(episodeInfo.collectionId),
                             episodeTitle: episodeInfo.trackNumber + '.' + episodeInfo.trackName,
                             seasonTitle: episodeInfo.collectionName,
                             image: episodeInfo.artworkUrl100.replace('100x100', '400x400'),
@@ -57,7 +57,7 @@ define(function (require) {
                 });
             }
         });
-        $('#ShowEpisodeModal').attr('data-currentEpisode', currentEpisode);
+        $('#showEpisodeModal').attr('data-currentEpisode', currentEpisode);
     }
 
     function initializeReactionCollection(self) {
@@ -106,15 +106,16 @@ define(function (require) {
 
     function initializeModaContent(self) {
 
+        console.log($('.media--quickActions--button.showPreviewButton'));
+
         $('.mediaTrailer', self.el).attr('id', 'modalPreview');
-        $('.media--quickActions--button.showTrailerButton', self.el).click(function () {
+        $('.media--quickActions--button.showPreviewButton', self.el).click(function () {
             self.showPreview($(this));
         });
-        showReactionIcon(self);
     }
 
     var episodeView = Backbone.View.extend({
-        el: $('.modal-content'),
+        el: $('#showEpisodeModal .modal-content'),
         initialize: function (options) {
             this.id = options.id;
             this.seasonTitle = options.seasonTitle;
@@ -187,7 +188,7 @@ define(function (require) {
 
 
         showEpisodeModal: function (event) {
-            var modal = $('#ShowEpisodeModal');
+            var modal = $('#showEpisodeModal');
             var target = $(event.currentTarget);
             var title = target.text();
             var episode = target.attr('data-episodeId');
@@ -198,13 +199,13 @@ define(function (require) {
             var season = target.attr('data-season');
 
             var watchEpisode = new episodeView({
-                el: $('.modal-content'), id: parseInt(seasonId),
+                el: $('#showEpisodeModal .modal-content'), id: parseInt(seasonId),
                 episodeTitle: title, seasonTitle: season,
                 image: image.replace('100x100', '400x400'), description: description,
                 duration: getTvShowLengthString(parseInt(duration))
             });
 
-            $('#ShowEpisodeModal', this.$el).openModal();
+            $('#showEpisodeModal', this.$el).openModal();
             modal.animate({scrollTop: 0}, 'slow');
             modal.attr('data-currentEpisode', episode);
             modal.attr('data-currentSeason', seasonId);

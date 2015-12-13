@@ -8,12 +8,20 @@
 </ul>
 {% endmacro %}
 
-{% macro unorderedWordWithDataList(elements) %}
+{% macro unorderedWordWithUrlList(elements) %}
 <ul class="unorderedWordList">
     {% for element in elements %}
-    <li class="unorderedWordList--item"><a data-info="{{ element.data }}" href="#!">{{ element.name }}</a></li>
+    <li class="unorderedWordList--item"><a href="{{ element.url }}">{{ element.title }}</a></li>
     {% endfor %}
 </ul>
+{% endmacro %}
+
+{% macro unorderedWordWithDataList(elements) %}
+    <ul class="unorderedWordList">
+        {% for element in elements %}
+            <li class="unorderedWordList--item"><a data-info="{{ element.data }}" href="#!">{{ element.title }}</a></li>
+        {% endfor %}
+    </ul>
 {% endmacro %}
 
 {% macro unorderedEpisodeList(episodes) %}
@@ -132,14 +140,11 @@
 {% endmacro %}
 
 {% macro watchlistsList(watchlists) %}
-<div class="watchListContent">
-    <div class="media">
-        <div class="watchListCollection">
-            {% for watchList in watchlists %}
-            <div class="watchListCollection--item"><a href="/watchlists/{{ watchList.id }}">{{ watchList.name |
-                truncate(22) }}</a><span class="badge">{{ watchList.movies.length }}</span></div>
-            {% endfor %}
-        </div>
+    <div class="watchListCollection">
+        {% for watchList in watchlists %}
+            <div class="watchListCollection--item">
+                <a href="/watchlists/{{ watchList.id }}">{{ watchList.title | truncate(22) }}
+                </a>{% if watchList.showIsOwner %}<span class="badge owner">YOU</span>{% endif %} <span class="badge number">{{ watchList.movies.length }}</span></div>
+        {% endfor %}
     </div>
-</div>
 {% endmacro %}

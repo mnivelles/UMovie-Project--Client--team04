@@ -12,7 +12,6 @@ define(function (require) {
     return Backbone.View.extend({
 
         events: {
-            'click .friendsListContainer .unorderedWordList--item a': 'showUserPage',
             'click .followBtn': 'toggleFollowUser',
             'click .mediaSection--hideShowButton': 'toggleMediaSection'
         },
@@ -35,7 +34,7 @@ define(function (require) {
                     title: self.model.get('name'),
                     img: '/image/user_icon.png',
                     mainInformations: [
-                        'Email : ' + self.model.get('email')
+                        'Email: ' + self.getEscapedString(self.model.get('email'))
                     ],
                     isNotCurrentUser: isNotCurrentUser,
                     friends: self.parseFriendsList()
@@ -48,12 +47,6 @@ define(function (require) {
             watchlistsViews.render(self.model.id);
             this.updateFollowingBtn();
             return this;
-        },
-
-        showUserPage: function(event) {
-            var button = $(event.currentTarget);
-            var query = button.attr('data-info');
-            Backbone.history.navigate('/users/'+query, true);
         },
 
         toggleFollowUser: function() {
@@ -82,14 +75,13 @@ define(function (require) {
                     return typeof(friend.id) != 'undefined';
                 });
 
-                var friendsList = _.map(filterdList, function(friend){
+                return _.map(filterdList, function(friend){
                     var result = friend.name;
                     return {
-                        name: result,
-                        data: friend.id
+                        title: result,
+                        url: '/users/' + friend.id
                     };
                 });
-                return friendsList;
             }
             return undefined;
         },

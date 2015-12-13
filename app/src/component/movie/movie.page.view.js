@@ -99,7 +99,7 @@ define(function (require) {
                                 var result = actor.name;
                                 result += actor.character ? ' (' + actor.character + ')' : '';
                                 return {
-                                    name: result,
+                                    title: result,
                                     data: actor.name
                                 };
                             }) : undefined,

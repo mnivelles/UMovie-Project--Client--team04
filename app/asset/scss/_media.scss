@@ -42,6 +42,11 @@ $mediaNormalPadding: 3%;
     }
 }
 
+.mediaSection--content .watchListCollection {
+    padding: 0;
+}
+
+
 .mediaHeader, .media--quickActions, .media--remaining {
     @include cf();
 }

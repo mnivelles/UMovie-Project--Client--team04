@@ -10,11 +10,9 @@
             </button>
         </section>
 
-        <div class="watchListCollection">
-            {% for watchList in watchListCollection %}
-                <div class="watchListCollection--item"><a href="/watchlists/{{ watchList.id }}">{{ watchList.title | truncate(22) }}</a><span class="badge">{{ watchList.movies.length }}</span></div>
-            {% endfor %}
-        </div>
+        {% import "list.nunj.html" as listHelper %}
+
+        {{ listHelper.watchlistsList(watchListCollection) }}
 
     </div>
 

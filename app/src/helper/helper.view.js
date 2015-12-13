@@ -3,6 +3,7 @@ define(function (require) {
     'use strict';
 
     var Backbone = require('backbone');
+    var $ = require('jquery');
 
     _.extend(Backbone.View.prototype, {
         showElementWithId: function (id) {
@@ -55,6 +56,10 @@ define(function (require) {
             setTimeout(function() {
                 element.removeClass('is-animation-shake');
             }, 1000);
+        },
+
+        getEscapedString: function(source) {
+            return $("<div>").text(source).html();
         }
     });
 });

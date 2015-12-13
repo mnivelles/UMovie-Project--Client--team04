@@ -8,30 +8,31 @@ define(function (require) {
         $ = require('jquery'),
         _ = require('underscore'),
         WatchListCollection = require('/js/watchList.collection.js'),
+        WatchListModel = require('/js/watchList.model.js'),
         template = 'watchList.index.page.nunj.html';
 
     return Backbone.View.extend({
-        initialize: function() {
+        initialize: function () {
             this.watchListCollection = new WatchListCollection();
         },
 
-        events: function() {
+        events: function () {
             return {
                 'click .media--quickActions--button.createButton': 'createWatchList',
                 'click #createWatchListModal .applyButton': 'submitNewWatchList'
             }
         },
 
-        render: function() {
+        render: function () {
             var self = this;
 
             this.watchListCollection = new WatchListCollection();
 
             this.watchListCollection.fetch({
-                success: function(result) {
+                success: function (result) {
                     var collection = _.map(_.sortBy(result.models, function (watchList) {
                         return watchList.get('title').toLowerCase();
-                    }), function(watchList) {
+                    }), function (watchList) {
                         return watchList.toJSON();
                     });
 
@@ -47,12 +48,12 @@ define(function (require) {
             return this;
         },
 
-        createWatchList: function() {
+        createWatchList: function () {
             $('#createWatchListModal', this.el).openModal();
             $('#createWatchListModal #watchlist_title', this.el).focus();
         },
 
-        submitNewWatchList: function() {
+        submitNewWatchList: function () {
             var self = this;
 
             var newTitle = $('#watchlist_title', this.el).val().trim();
@@ -66,53 +67,52 @@ define(function (require) {
             }
         },
 
-        _watchListTitleIsValid: function(title){
+        _watchListTitleIsValid: function (title) {
             var self = this;
-            var isValid = true;
+
             var currentUserId = $.cookie(Common.CURRENT_USER_ID);
             $.ajax({
                 url: Common.getSecuredUrl('watchlists', true),
                 type: 'GET',
-                success: function(data) {
-                    for(var i = 0; i < data.length; i++) {
-                        if(data[i].owner != undefined && data[i].owner.id == currentUserId) {
-                            if(data[i].name == title) {
-                                console.log(data[i]);
-                                isValid = false;
-                                break;
-                            }
+                success: function (data) {
+
+                    var withSameName = _.find(data, function(element) {
+                        if (element.owner) {
+                            return element.name == title && element.owner.id == currentUserId;
                         }
-                    }
-                    if(isValid) {
+                        return false;
+                    });
+
+                    if (!withSameName) {
                         self._addWatchList(title);
                     } else {
-                        $('#createWatchListModal .input-field .error-message').text('WatchList with this title already exists').fadeIn(300);
+                        $('#createWatchListModal .input-field .error-message').text('A watchlist with this title already exists').fadeIn(300);
+                        self.shakeForErrorWithElement($('#createWatchListModal'));
                     }
                 },
-                fail: function() {
-                    isValid = false;
+                fail: function () {
+                    Materialize.toast('Something unexpected happened', 4000, 'warning-toast rounded');
                 }
             })
         },
 
-        _addWatchList: function(newTitle) {
+        _addWatchList: function (newTitle) {
             var self = this;
             $('#createWatchListModal .input-field .error-message').hide();
             $('#createWatchListModal .input-field input').removeClass('invalid');
 
+
             $('#createWatchListModal', this.el).closeModal();
 
-            this.watchListCollection.create({
-                name: newTitle,
-                owner: $.cookie(Common.CURRENT_USER_EMAIL),
-            }, {
-                wait : true,
+            var watchListModel = new WatchListModel({
+                name: newTitle
+            });
 
-                success : function() {
+            this.watchListCollection.create(watchListModel, {
+                wait: true,
+                success: function () {
                     self.render();
-
                     var message = '"' + newTitle + '" : succesfully created';
-
                     Materialize.toast(message, 4000, 'success-toast rounded');
                 }
             });

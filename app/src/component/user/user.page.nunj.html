@@ -16,9 +16,7 @@
         <div class="watchlistsContainer"></div>
 
         {% if media.friends %}
-        <div class="friendsListContainer">
-            {{ mediaHelper.wordWithDataListSection("Following", media.friends) }}
-        </div>
+        {{ mediaHelper.wordWithUrlListSection("Following", media.friends) }}
         {% endif %}
 
     </div>
