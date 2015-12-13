@@ -21,11 +21,11 @@ define(function (require) {
                 data : JSON.stringify(data),
                 contentType: 'application/json'
             }).done(function(){
-                var message = "now following " + user.name + " !";
+                var message = "Now following " + user.name + " !";
                 Materialize.toast(message, 4000, 'success-toast rounded');
                 if(typeof (callback) == 'function'){ callback();}
             }).fail(function(){
-                var message = "following failed! try again later";
+                var message = "Following failed! try again later";
                 Materialize.toast(message, 4000, 'error-toast rounded');
             });
         },
@@ -38,11 +38,11 @@ define(function (require) {
                 type : 'DELETE',
                 contentType: 'application/json'
             }).done(function(){
-                var message = "unfollow with succes!" + user.name + " !";
-                Materialize.toast(message, 4000, 'success-toast rounded');
+                var message = "Unfollow with succes! " + user.name + " !";
+                Materialize.toast(message, 4000, 'information-toast rounded');
                 if(typeof (callback) == 'function'){ callback();}
             }).fail(function(){
-                var message = "unfollowing failed! try again later";
+                var message = "Unfollowing failed! try again later";
                 Materialize.toast(message, 4000, 'error-toast rounded');
             });
         }

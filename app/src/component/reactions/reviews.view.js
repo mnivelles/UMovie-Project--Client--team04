@@ -61,10 +61,13 @@ define(function (require) {
                     isAlreadyReview: isAlreadyReview
                 });
                 self.$el.html(html);
+
+                $('.mediaSection--hideShowButton', this.el).click(function () {
+                    self.toggleMediaSectionParentOfElement($(this));
+                });
             }).fail(function(jqXHR, textStatus, errorThrown){
                 console.log('Fail to get users');
             });
-
             return this;
         },
 

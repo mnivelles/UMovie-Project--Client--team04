@@ -7,7 +7,7 @@ define(function (require) {
         Nunjucks = require('nunjucks'),
         Moment = require('moment'),
         Common = require('/js/common.js'),
-        //TMDb = require('TMDbSearch'),
+    //TMDb = require('TMDbSearch'),
         template = 'tvShow.page.nunj.html',
         templateModal = 'tvShow.modal.nunj.html',
         templateSearch = 'searchResult.nunj.html',
@@ -22,120 +22,123 @@ define(function (require) {
         var minutes = duration.minutes();
         var secondes = duration.seconds();
         secondes = secondes < 10 ? '0' + secondes : secondes;
-        return minutes+ 'min'+secondes;
+        return minutes + 'min' + secondes;
     }
 
-    function switchEpisode(changeEpisode){
+    function switchEpisode(changeEpisode) {
         var modal = $('#ShowEpisodeModal');
         var currentSeason = modal.attr('data-currentSeason');
         var currentEpisode = parseInt(modal.attr('data-currentEpisode'));
-        if(currentEpisode < 1) currentEpisode = 1;
+        if (currentEpisode < 1) currentEpisode = 1;
         var nextEpisode, error;
-        nextEpisode = (changeEpisode==='previous') ? currentEpisode - 1 : currentEpisode + 1;
+        nextEpisode = (changeEpisode === 'previous') ? currentEpisode - 1 : currentEpisode + 1;
         error = 'The episode ' + nextEpisode + ' is not available';
-        loadEpisode (nextEpisode, currentSeason,error);
+        loadEpisode(nextEpisode, currentSeason, error);
     }
 
-    function loadEpisode(currentEpisode, currentSeason, error){
+    function loadEpisode(currentEpisode, currentSeason, error) {
         var episodes = new Episodes([], {id: parseInt(currentSeason)});
         episodes.fetch({
             success: function (episodes) {
-                var episodesInfo = _.filter(episodes.toJSON(), function(episode){
+                var episodesInfo = _.filter(episodes.toJSON(), function (episode) {
                     return episode.trackNumber === currentEpisode;
                 });
                 if (episodesInfo.length === 0) Materialize.toast(error, 1000, 'red rounded');
-                _.map(episodesInfo, function(episodeInfo){
-                        return  new episodeView(
-                            {
-                                el: $('.modal-content'), id:parseInt(episodeInfo.collectionId),
-                                episodeTitle:episodeInfo.trackNumber +'.' +episodeInfo.trackName,
-                                seasonTitle:episodeInfo.collectionName,
-                                image:episodeInfo.artworkUrl100 .replace('100x100', '400x400'),
-                                description:episodeInfo.longDescription,
-                                duration:getTvShowLengthString(parseInt(episodeInfo.trackTimeMillis))});
-                    });
+                _.map(episodesInfo, function (episodeInfo) {
+                    return new episodeView(
+                        {
+                            el: $('.modal-content'), id: parseInt(episodeInfo.collectionId),
+                            episodeTitle: episodeInfo.trackNumber + '.' + episodeInfo.trackName,
+                            seasonTitle: episodeInfo.collectionName,
+                            image: episodeInfo.artworkUrl100.replace('100x100', '400x400'),
+                            description: episodeInfo.longDescription,
+                            duration: getTvShowLengthString(parseInt(episodeInfo.trackTimeMillis))
+                        });
+                });
             }
         });
-        $('#ShowEpisodeModal').attr('data-currentEpisode',currentEpisode);
+        $('#ShowEpisodeModal').attr('data-currentEpisode', currentEpisode);
     }
 
-    function initializeReactionCollection(self){
+    function initializeReactionCollection(self) {
         self.reactionsCollection = new ReactionsCollection();
         self.reactionsCollection.url = Common.REACTIONS_EMOJI_TVSHOW_URL;
         self.reactionsView = new ReactionsView();
     }
 
-    function showReactionIcon(self){
+    function showReactionIcon(self) {
         self.reactionsView = new ReactionsView({
             el: $('.template-reactions', self.el),
             collection: self.reactionsCollection
         });
         self.reactionsCollection.fetch({
-            success: function() {
+            success: function () {
                 self.reactionsView.renderWithId(self.id);
             }
         });
     }
 
 
-
-    function showEpisodeModalContent(self){
+    function showEpisodeModalContent(self) {
         var episodes = new Episodes([], {id: self.id});
         episodes.fetch({
             success: function (episodes) {
-                youtubeSearch(self.seasonTitle + ' ' + self.episodeTitle, function(videoUrl){
-                    var html = Nunjucks.render(templateModal, {media: {
-                        img: self.image,
-                        title: self.seasonTitle,
-                        mainInformations: [
-                            self.episodeTitle,
-                            'Duration: ' + self.duration],
-                        synopsis: self.description,
-                        youtubeTrailerUrl: videoUrl,
-                        episodes: episodes.toJSON()
-                    }
+                youtubeSearch(self.seasonTitle + ' ' + self.episodeTitle, function (videoUrl) {
+                    var html = Nunjucks.render(templateModal, {
+                        media: {
+                            img: self.image,
+                            title: self.seasonTitle,
+                            mainInformations: [
+                                self.episodeTitle,
+                                'Duration: ' + self.duration],
+                            synopsis: self.description,
+                            youtubeTrailerUrl: videoUrl,
+                            episodes: episodes.toJSON()
+                        }
                     });
                     self.$el.html(html);
                     initializeModaContent(self);
                 });
-            }});
+            }
+        });
     }
 
 
-    function initializeModaContent(self){
+    function initializeModaContent(self) {
 
-        $('.mediaTrailer', self.el).attr('id','modalPreview');
+        $('.mediaTrailer', self.el).attr('id', 'modalPreview');
         $('.media--quickActions--button.showTrailerButton', self.el).click(function () {
             self.showPreview($(this));
         });
         showReactionIcon(self);
     }
 
-var episodeView =Backbone.View.extend({
-    el: $('.modal-content'),
+    var episodeView = Backbone.View.extend({
+        el: $('.modal-content'),
         initialize: function (options) {
-            this.id=options.id;
-            this.seasonTitle=options.seasonTitle;
-            this.episodeTitle=options.episodeTitle;
-            this.duration=options.duration;
-            this.description=options.description;
-            this.image=options.image;
+            this.id = options.id;
+            this.seasonTitle = options.seasonTitle;
+            this.episodeTitle = options.episodeTitle;
+            this.duration = options.duration;
+            this.description = options.description;
+            this.image = options.image;
             initializeReactionCollection(this);
             this.render();
         },
 
-    render:function(){
-        showEpisodeModalContent(this);
-        return this;}
+        render: function () {
+            showEpisodeModalContent(this);
+            return this;
+        }
     });
 
     return Backbone.View.extend({
 
-        initialize: function() {
+        initialize: function () {
             initializeReactionCollection(this);
         },
 
-       events: function() {
+        events: function () {
             return {
                 'click #episodeToWatch': 'showEpisodeModal',
                 'click .media--quickActions--button.nextEpisodeBtn': 'showNextEpisode',
@@ -145,22 +148,22 @@ var episodeView =Backbone.View.extend({
             }
         },
 
-        showPreviousEpisode:function(){
+        showPreviousEpisode: function () {
             switchEpisode('previous');
         },
 
-        showNextEpisode:function(){
+        showNextEpisode: function () {
             switchEpisode('next');
         },
 
-        closeResult:function(){
+        closeResult: function () {
             $('#result').hide();
             $('.media--quickActions--button.closeResultSearchBtn').hide();
         },
 
-        searchEpisode:function(){
-           var search= $('#searchEpisode').val();
-            if(search=="") Materialize.toast(' Search field empty!', 1000, 'red rounded');
+        searchEpisode: function () {
+            var search = $('#searchEpisode').val();
+            if (search == "") Materialize.toast(' Search field empty!', 1000, 'red rounded');
             else {
                 var self = this;
                 var episodes = new Episodes([], {id: self.id});
@@ -183,7 +186,7 @@ var episodeView =Backbone.View.extend({
         },
 
 
-        showEpisodeModal:function(event){
+        showEpisodeModal: function (event) {
             var modal = $('#ShowEpisodeModal');
             var target = $(event.currentTarget);
             var title = target.text();
@@ -195,21 +198,21 @@ var episodeView =Backbone.View.extend({
             var season = target.attr('data-season');
 
             var watchEpisode = new episodeView({
-                el: $('.modal-content'), id:parseInt(seasonId),
-                episodeTitle: title, seasonTitle:season,
-                image: image .replace('100x100', '400x400'), description:description,
+                el: $('.modal-content'), id: parseInt(seasonId),
+                episodeTitle: title, seasonTitle: season,
+                image: image.replace('100x100', '400x400'), description: description,
                 duration: getTvShowLengthString(parseInt(duration))
             });
 
             $('#ShowEpisodeModal', this.$el).openModal();
-            modal.animate({ scrollTop: 0 }, 'slow');
+            modal.animate({scrollTop: 0}, 'slow');
             modal.attr('data-currentEpisode', episode);
             modal.attr('data-currentSeason', seasonId);
         },
 
-        getYoutubeTrailer: function() {
+        getYoutubeTrailer: function () {
             var self = this;
-            youtubeSearch(self.season.collectionName  + ' trailer', function(videoUrl){
+            youtubeSearch(self.season.collectionName + ' trailer', function (videoUrl) {
                 var episodes = new Episodes([], {id: self.id});
                 episodes.fetch({
                     success: function (episodes) {
@@ -228,25 +231,24 @@ var episodeView =Backbone.View.extend({
                                 episodes: self.episodes
                             },
 
-                                episode:{
-                                    title:self.episodes[0].itunesUrl
-                                }
+                            episode: {
+                                title: self.episodes[0].itunesUrl
+                            }
 
                         });
 
                         self.$el.html(html);
                         $('.media--quickActions--button.closeResultSearchBtn').hide();
-                        $('.media--quickActions--button.showTrailerButton', self.$el).click(function () {
+                        $('.media--quickActions--button.showTrailerButton', self.el).click(function () {
                             self.showTrailer($(this));
-
                         });
 
-                        $('.mediaSection--hideShowButton', self.$el).click(function () {
+                        $('.mediaSection--hideShowButton', self.el).click(function () {
                             self.toggleMediaSectionParentOfElement($(this));
                         });
 
                         self.hideMediaSectionForSmallScreen();
-                        $('.input-field.tv-show',self.el).removeClass('hide');
+                        $('.input-field.tv-show', self.el).removeClass('hide');
 
                         self.changePageTitleWith(self.season.collectionName);
                         showReactionIcon(self);

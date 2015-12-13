@@ -78,6 +78,8 @@ define(function (require) {
 
         toggleMediaSection: function(event) {
             this.toggleMediaSectionParentOfElement($(event.currentTarget));
+
+            this.hideMediaSectionForSmallScreen();
         },
 
         display: function (options) {
@@ -99,10 +101,16 @@ define(function (require) {
         },
 
         showTrailerModal: function (event) {
+            var self = this;
+
             var button = $(event.currentTarget);
 
-            $('#showTrailerModal .modal--trailerVideo', this.el).attr('src', button.attr('data-trailer-link'));
-            $('#showTrailerModal', this.el).openModal();
+            var title = button.attr('data-title');
+
+            youtubeSearch(title + ' trailer', function(videoUrl) {
+                $('#showTrailerModal .modal--trailerVideo', self.el).attr('src', videoUrl);
+                $('#showTrailerModal', self.el).openModal();
+            });
         },
 
         closeTrailerModal: function () {

@@ -105,12 +105,14 @@ define(function (require) {
                 contentType: 'application/json'
             }).done(function(user){
                 if(_.findWhere(user.following, {id: visitedUser})){
+                    self.$('.followBtn i').removeClass('mdi-social-person-add').addClass('mdi-social-person-outline');
                     self.$('.followBtn').removeClass('green').addClass('red').addClass('unfollowBtn');
-                    self.$('.followBtnText').text('UNFOLLOW');
+                    self.$('.followBtnText').text('Unfollow');
                 }
                 else{
+                    self.$('.followBtn i').removeClass('mdi-social-person-outline').addClass('mdi-social-person-add');
                     self.$('.followBtn').removeClass('unfollowBtn').removeClass('red').addClass('green');
-                    self.$('.followBtnText').text('FOLLOW');
+                    self.$('.followBtnText').text('Follow');
                 }
             });
         }
