@@ -83,22 +83,7 @@ define(function (require) {
             var newTitle = $('#watchlist_title', this.el).val().trim();
 
             if (newTitle.length > 0) {
-                $('#renameWatchListModal .input-field .error-message').hide();
-                $('#renameWatchListModal .input-field input').removeClass('invalid');
-
-                $('#renameWatchListModal', this.el).closeModal();
-
-                this.watchList.set({
-                    name: newTitle
-                }).save().done(function() {
-                    self.render({
-                        id: self.watchList.id
-                    });
-
-                    var message = 'Rename as "' + newTitle + '"';
-
-                    Materialize.toast(message, 4000, 'success-toast rounded');
-                });
+                self._watchListTitleIsValid(newTitle);
             } else {
                 $('#renameWatchListModal .input-field .error-message').text('Invalid name. Choose a smarter one.').fadeIn(300);
                 $('#renameWatchListModal .input-field input').addClass('invalid');
@@ -132,6 +117,57 @@ define(function (require) {
                 console.log('Fail to remove Movie ' + movieId);
             });
         },
+
+        _watchListTitleIsValid: function (title) {
+            var self = this;
+
+            var currentUserId = $.cookie(Common.CURRENT_USER_ID);
+            $.ajax({
+                url: Common.getSecuredUrl('watchlists', true),
+                type: 'GET',
+                success: function (data) {
+
+                    var withSameName = _.find(data, function(element) {
+                        if (element.owner) {
+                            return element.name == title && element.owner.id == currentUserId;
+                        }
+                        return false;
+                    });
+
+                    if (!withSameName) {
+                        self._updateWatchList(title);
+                    } else {
+                        $('#renameWatchListModal .input-field .error-message').text('A watchlist with this title already exists').fadeIn(300);
+                        $('#renameWatchListModal .input-field input').addClass('invalid');
+                        self.shakeForErrorWithElement($('#renameWatchListModal'));
+                    }
+                },
+                fail: function () {
+                    Materialize.toast('Something unexpected happened', 4000, 'warning-toast rounded');
+                }
+            })
+        },
+
+        _updateWatchList: function(newTitle) {
+            var self = this;
+
+            $('#renameWatchListModal .input-field .error-message').hide();
+            $('#renameWatchListModal .input-field input').removeClass('invalid');
+
+            $('#renameWatchListModal', this.el).closeModal();
+
+            this.watchList.set({
+                name: newTitle
+            }).save().done(function() {
+                self.render({
+                    id: self.watchList.id
+                });
+
+                var message = 'Rename as "' + newTitle + '"';
+
+                Materialize.toast(message, 4000, 'success-toast rounded');
+            });
+        }
 
     });
 
