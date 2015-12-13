@@ -110,7 +110,14 @@ define(function (require) {
                                 return result;
                             }) : undefined
                         },
-                        watchListCollection: _.map(_.sortBy(self.watchListCollection.models, function (watchList) {
+
+                        watchListCollection: _.map(_.sortBy(_.filter(self.watchListCollection.models, function(element) {
+                            var owner = element.get('owner');
+                            if (owner) {
+                                return owner.id == $.cookie(Common.CURRENT_USER_ID);
+                            }
+                            return false;
+                        }), function (watchList) {
                             return watchList.get('title').toUpperCase();
                         }), function (watchList) {
                             return {

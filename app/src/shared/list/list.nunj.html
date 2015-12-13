@@ -38,8 +38,7 @@
                                     data-picture="{{ episode.artworkUrl100 }}"
                                     data-title="{{ episode.trackName }} "
                                     data-description="{{ episode.longDescription }}"
-                                    href="#">{{ episode.trackNumber }}.{{ episode.trackName }}</a>
-                    <span class="episode--ratingLogo">
+                                    href="#">{{ episode.trackNumber }}. {{ episode.trackName }}</a> <span class="episode--ratingLogo">
                         {% if episode.contentAdvisoryRating != undefined %}
                             {{ episode.contentAdvisoryRating }}
                         {% else %}

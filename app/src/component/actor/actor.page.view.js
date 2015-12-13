@@ -115,6 +115,7 @@ define(function (require) {
 
         closeTrailerModal: function () {
             $('#showTrailerModal', this.el).closeModal();
+            $('#showTrailerModal .modal--trailerVideo', this.el).attr('src', '');
         },
 
         _formatBirth: function (date, place) {
