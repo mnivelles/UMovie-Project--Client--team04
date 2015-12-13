@@ -90,7 +90,7 @@ define(function (require) {
             $.removeCookie(Common.CURRENT_USER_EMAIL);
             $('.userName').text('User Options');
             this._toggleUserMenu(true);
-            Backbone.history.navigate('', true);
+            Backbone.history.navigate('login', true);
         },
 
         startSearch: function (e) {

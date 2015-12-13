@@ -147,6 +147,7 @@ define(function (require) {
             Common.isUserLoggedIn().done(function (data) {
                 successCallback();
             }).fail(function (jqXHR, textStatus, errorThrown) {
+                Backbone.history.navigate('login', true);
                 self._showLogin();
             });
         },
