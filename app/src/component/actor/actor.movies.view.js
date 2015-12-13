@@ -6,10 +6,9 @@ define(function(require){
         Moment = require('moment'),
         moviesTemplate = 'actor.movies.nunj.html',
         _ = require('underscore'),
-        Movies = require('actor.movies.model'),
-        Promise = require('bluebird');
+        Movies = require('actor.movies.model');
 
-    var maxDisplayCount = 10;
+    var maxDisplayCount = 12;
 
     return Backbone.View.extend({
         events: function() {
@@ -25,20 +24,8 @@ define(function(require){
                 success : function(result) {
                     var movies = self.format(result);
                     var displayCount = movies.length > maxDisplayCount ? maxDisplayCount : movies.length;
-                    var moviesList = [];
-                    for(var i= 0; i < displayCount; i++){
-                        moviesList.push(movies[i]);
-                    }
 
-                    self.getTrailers(moviesList, function() {
-                        self.display(moviesList);
-
-                        $('.mediaSection--hideShowButton', self.el).click(function() {
-                            self.toggleMediaSectionParentOfElement($(this));
-                        });
-
-                        self.hideMediaSectionForSmallScreen();
-                    });
+                    self.display(_.slice(movies, 0, displayCount));
                 }
             });
 
@@ -47,6 +34,8 @@ define(function(require){
 
         toggleMediaSection: function(event) {
             this.toggleMediaSectionParentOfElement($(event.currentTarget));
+
+            this.hideMediaSectionForSmallScreen();
         },
 
         format : function(rawMovieList) {
@@ -57,40 +46,11 @@ define(function(require){
                         id: movie.trackId,
                         title : movie.trackName,
                         poster : movie.artworkUrl100.replace('100x100','400x400'),
-                        trailerLink: 'https://www.youtube.com/embed/2m9IFlz2iYo',
                         releaseDate : Moment(movie.releaseDate).format('ll')
                     }
                 );
             });
             return movieList;
-        },
-
-        getYoutubeTrailer: function(movieTitle, index) {
-            return new Promise(function(resolve){
-                youtubeSearch(movieTitle, function(link){
-                    resolve({
-                        index : index,
-                        link : link
-                    });
-                });
-            });
-        },
-
-        getTrailers: function(movieList, callback) {
-            var self = this;
-            var promises = [];
-
-            for(var i=0; i< movieList.length; i++){
-                var promise = self.getYoutubeTrailer(movieList[i].title, i);
-                promise.then(function(result){
-                    movieList[result.index].trailerLink = result.link;
-                });
-                promises.push(promise);
-            }
-
-            Promise.all(promises).then(function(){
-                callback();
-            });
         },
 
         display : function(movies) {

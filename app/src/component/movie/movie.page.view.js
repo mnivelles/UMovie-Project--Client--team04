@@ -31,9 +31,16 @@ define(function (require) {
 
         events: function() {
             return {
+                'click .mediaSection--hideShowButton': 'toggleMediaSection',
                 'click #watchListSelectionDropDown .watchListSelection--item': 'addToWatchList',
                 'click .castingWrapper .unorderedWordList--item a': 'showActorPage'
             }
+        },
+
+        toggleMediaSection: function(event) {
+            this.toggleMediaSectionParentOfElement($(event.currentTarget));
+
+            this.hideMediaSectionForSmallScreen();
         },
 
         initializeWithId: function (id) {
@@ -129,12 +136,6 @@ define(function (require) {
             $('.media--quickActions--button.showTrailerButton', this.el).click(function () {
                 self.showTrailer();
             });
-
-            $('.mediaSection--hideShowButton', this.el).click(function () {
-                self.toggleMediaSectionParentOfElement($(this));
-            });
-
-            self.hideMediaSectionForSmallScreen();
 
             self.changePageTitleWith(self.model.get('trackName'));
 
