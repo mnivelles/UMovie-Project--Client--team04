@@ -15,7 +15,8 @@ define(function (require) {
         TMDb = require('TMDbSearch'),
         iTunes = require('iTunesSearch'),
         MovieModel = require('movie.model'),
-        WatchListCollection = require('/js/watchList.collection.js');
+        WatchListCollection = require('/js/watchList.collection.js'),
+        SuggestionsView = require('movie.suggestions.view');
 
     require('https://apis.google.com/js/client.js?onload=googleApiClientReady');
 
@@ -121,6 +122,9 @@ define(function (require) {
                 );
 
             self.$el.html(html);
+
+            var suggestionView = new SuggestionsView({el: self.$('.template-suggestions')});
+            suggestionView.initializeWithMovieTitle(self.model.get('trackName'));
 
             $('.watchListButton.dropdown-button').dropdown({
                     inDuration: 300,
