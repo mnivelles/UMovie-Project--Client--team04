@@ -26,10 +26,14 @@ define(function (require) {
     return Backbone.View.extend({
 
         initialize: function() {
+            var self = this;
             this.mediaId = undefined;
 
             this.reviewsView = new ReviewsView({
-                el: $(reviewsElement)
+                el: $(reviewsElement),
+                setReviewCallback: function(review) {
+                    self.setReview(review);
+                }
             });
         },
 
@@ -61,25 +65,18 @@ define(function (require) {
                 reactions = new ReactionsModel().toJSON();
             }
 
-            var reviews = [
-                {
-                    id: '563d646d9b95510300ec5aac',
-                    review: 'Donec ullamcorper nulla non metus auctor fringilla. Aenean lacinia bibendum nulla sed consectetur. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Aenean lacinia bibendum nulla sed consectetur. Maecenas faucibus mollis interdum. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Nulla vitae elit libero, a pharetra augue. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Cras mattis consectetur purus sit amet fermentum. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.'
-                },{
-                    id: '566626adfb78d703008dd92f',
-                    review: 'Sugoi'
-                }
-            ];
+            var voters = reactions.voters;
+            var reviews = reactions.reviews;
 
             var html = Nunjucks.render(template, {
                 reactions: self._percentagesFrom(reactions),
-                reviewsNumber: reviews.length//reactions.reviews.length
+                reviewsNumber: reviews.length
             });
             this.$el.html(html);
 
-            this.reviewsView.renderWithReviews(reviews, reactions.voters);//reactions.reviews);
+            this.reviewsView.renderWithReviews(reviews, voters);
 
-            var voter = _.find(reactions.voters, function(element) {
+            var voter = _.find(voters, function(element) {
                 return element.id == self._getCurrentUserId();
             });
 
@@ -98,6 +95,22 @@ define(function (require) {
             self.collection.fetch({
                 success: function(currentReactions) {
                     currentReactions.setReaction(button.attr('data-content'), self._getCurrentUserId(), self.mediaId, function() {
+                        self.collection.fetch({
+                            success: function() {
+                                self.renderWithId(self.mediaId);
+                            }
+                        });
+                    });
+                }
+            });
+        },
+
+        setReview: function(review) {
+            var self = this;
+
+            self.collection.fetch({
+                success: function(currentReactions) {
+                    currentReactions.setReview(review, self._getCurrentUserId(), self.mediaId, function() {
                         self.collection.fetch({
                             success: function() {
                                 self.renderWithId(self.mediaId);

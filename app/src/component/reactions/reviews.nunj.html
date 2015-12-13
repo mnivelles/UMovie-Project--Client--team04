@@ -1,29 +1,53 @@
 {% import "helper.media.nunj.html" as mediaHelper %}
 
-{% macro reviewsList(reviews) %}
+{% macro reviewsList(reviews, isAlreadyReview) %}
+    <div class="reviewsActions">
+        {% if isAlreadyReview %}
+            <button class="reviewsActions--button editButton waves-effect waves-light btn orange"><i
+                    class="mdi-image-edit left"></i> Edit review
+            </button>
+        {% else %}
+            <button class="reviewsActions--button createButton waves-effect waves-light btn green"><i
+                    class="mdi-content-add-circle left"></i> New review
+            </button>
+        {% endif %}
+    </div>
     <div class="reviewsList">
         {% for element in reviews %}
             <div class="reviewsList--item">
-                <div class="item--leftCol">
-                    <div class="item--thumbnail">
-                        {% if element.emotion %}
-                            <div class="reaction--icon"><i class="{{ element.emotion }}"></i></div>
-                        {% else %}
-                            <img src="/image/user_icon.png" alt="User avatar"/>
-                        {% endif %}
-                    </div>
+                <div class="item--thumbnail">
+                    {% if element.emotion %}
+                        <div class="reaction--icon"><i class="{{ element.emotion }}"></i></div>
+                    {% else %}
+                        <img src="/image/user_icon.png" alt="User avatar"/>
+                    {% endif %}
                 </div>
-                <div class="item--rightCol">
-                    <div class="item--reviewer">
-                        {{ element.name }}
-                    </div>
-                    <div class="item--text">
-                        {{ element.text }}
-                    </div>
+                <div class="item--reviewer">
+                    {{ element.name }}
                 </div>
+                <p class="item--text">
+                    {{ element.text }}
+                </p>
             </div>
         {% endfor %}
     </div>
 {% endmacro %}
 
-{{ mediaHelper.section("Customer Reviews", reviewsList(reviews), "customerReviews") }}
+{{ mediaHelper.section("Customer Reviews", reviewsList(reviews, isAlreadyReview), "customerReviews") }}
+
+<!-- Modal Structure -->
+<div id="reviewModal" class="modal">
+    <div class="modal-content">
+        <h4 class="modal--title">Review</h4>
+        <div>
+            <div class="input-field">
+                <textarea id="review_text" class="validate" rows="3"></textarea>
+                <label for="review_text">Personal Thought</label>
+                <div class="error-message"></div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-action applyButton waves-effect waves-green btn-flat">Apply</a>
+    </div>
+</div>
