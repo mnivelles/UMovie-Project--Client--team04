@@ -45,12 +45,16 @@ define(function (require) {
         },
 
         _signupFormIsValid: function() {
-            if($('#name').val() == '') {
+            if ($('#name').val() == '') {
                 $('.invalidInfo-card').text('Please fill the name field.');
                 $('.invalidInfo-card').show();
                 return false;
-            } else if($('#email').val() == '') {
+            } else if ($('#email').val() == '') {
                 $('.invalidInfo-card').text('Please fill the email field.');
+                $('.invalidInfo-card').show();
+                return false;
+            } else if (!this._emailIsValid($('#email').val())) {
+                $('.invalidInfo-card').text('Please fill the email field with a valid email address.');
                 $('.invalidInfo-card').show();
                 return false;
             } else if($('#password').val() == '') {
@@ -68,6 +72,13 @@ define(function (require) {
                 return false;
             }
             return true;
+        },
+
+        _emailIsValid : function (email) {
+            // regex prise sur stackoverflow : http://stackoverflow.com/questions/46155/validate-email-address-in-javascript
+            var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            console.log(re.test(email));
+            return re.test(email);
         }
     });
 });
