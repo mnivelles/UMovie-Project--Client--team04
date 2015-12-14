@@ -10,7 +10,7 @@ define(function (require) {
             this.id = options.id;
         },
         url: function () {
-            return Common.UMOVIE_API_BASE_URL + 'tvshows/season/' + this.id;
+            return Common.getSecuredUrl('tvshows/season/' + this.id, true);
         },
 
         parse: function (response) {

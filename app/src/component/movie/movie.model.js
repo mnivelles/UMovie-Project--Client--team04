@@ -9,8 +9,8 @@ define(function (require) {
 
         idAttribute: 'trackId',
 
-        urlRoot : function () {
-            return Common.UMOVIE_API_BASE_URL + 'movies';
+        url : function () {
+            return Common.getSecuredUrl('movies/' + this.id, true);
         },
 
         parse : function(data) {
@@ -19,7 +19,7 @@ define(function (require) {
 
         addToWatchList: function(watchlistId) {
             $.ajax({
-                url: Common.UMOVIE_API_BASE_URL + 'watchlists/' + watchlistId + '/movies',
+                url: Common.getSecuredUrl('watchlists/' + watchlistId + '/movies', true),
                 type: 'POST',
                 data: JSON.stringify(this.toJSON()),
                 contentType: 'application/json'

@@ -10,7 +10,7 @@ define(function (require) {
             this.searchString = searchString;
         },
         url : function() {
-            return Common.UMOVIE_API_BASE_URL + 'search/movies?q=' + this.searchString + '&limit=99';
+            return Common.getSecuredUrl('search/movies?q=' + this.searchString + '&limit=99');
         },
         parse : function(result){
             return result.results;

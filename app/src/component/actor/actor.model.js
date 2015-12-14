@@ -9,8 +9,8 @@ define(function (require) {
 
         idAttribute: 'artistId',
 
-        urlRoot : function () {
-            return Common.UMOVIE_API_BASE_URL + 'actors';
+        url : function () {
+            return Common.getSecuredUrl('actors/' + this.id, true);
         },
 
         parse : function(data) {
