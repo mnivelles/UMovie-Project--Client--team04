@@ -11,7 +11,6 @@ define(function (require) {
         topMovieCollection = new TopMovieCollection(),
         TopTvShowCollection = require('/js/topTvShow.collection.js'),
         topTvShowCollection = new TopTvShowCollection(),
-        TopListModel = require('/js/topList.model.js'),
         template = 'home.page.nunj.html';
 
     var featuredMedia = [
@@ -115,61 +114,6 @@ define(function (require) {
                 collection: topActorCollection
             });
             topActorCarouselView.render();
-
-            var topList1 = new TopListModel({
-                query: 'pixar',
-                minItemCount: 3,
-                minFavoriteCount: 2
-            });
-            var topList2 = new TopListModel({
-                query: 'oscar',
-                minItemCount: 3,
-                minFavoriteCount: 2
-            });
-            var topList3 = new TopListModel({
-                query: 'collection',
-                minItemCount: 3,
-                minFavoriteCount: 1
-            });
-            var topList4 = new TopListModel({
-                query: 'science',
-                minItemCount: 3,
-                minFavoriteCount: 1
-            });
-            var topList5 = new TopListModel({
-                query: 'water',
-                minItemCount: 3,
-                minFavoriteCount: 1
-            });
-            var topList6 = new TopListModel({
-                query: 'light',
-                minItemCount: 3,
-                minFavoriteCount: 1
-            });
-            var topList7 = new TopListModel({
-                query: 'earth',
-                minItemCount: 3,
-                minFavoriteCount: 1
-            });
-            var topList8 = new TopListModel({
-                query: 'dead',
-                minItemCount: 3,
-                minFavoriteCount: 1
-            });
-
-            var topListCollection = [topList1, topList2, topList3, topList4,
-                topList5, topList6, topList7, topList8];
-            var listSelectionCarouselView = new MediaCarouselView({
-                el: $('.template-listSelectionCarousel', this.el),
-                collection: topListCollection
-            });
-
-            topListCollection.forEach(function(movieList) {
-                movieList.fetch().done(function() {
-                    listSelectionCarouselView.render();
-                });
-            });
-
 
             this.changePageTitleWith();
 
