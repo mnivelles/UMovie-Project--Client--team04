@@ -88,7 +88,7 @@ La commande suivante permet de «builder» le projet tout en le mettant à jour 
 gulp watch
 ```
 
-Le fichier à ouvrir dans le navigateur est : ``nom-du-projet/build/index.html```.
+Dans le navigateur. il faut aller à : `http://localhost:8042/`.
 
 > Important : Quand vous voulez travailler, effectuer un `npm install` juste après le **pull** sur Git. Ainsi, les dépendances seront à jour.
 
@@ -100,7 +100,44 @@ La commande suivante permet d'installer toutes les dépendances et de lancer `gu
 npm start
 ```
 
-### Mise à jour des Emoji-reactions et des revues
+### Enregistrement, authentification et profile utilisateur
+* En arrivant sur notre application, vous serez redirigés vers la page de login. Si vous avez déjà créé un compte utilisateur, vous pouvez entrez vos informations pour vous connecter. Sinon vous pouvez cliquer sur le bouton `sign up` pour vous créer un compte utilisateur.
+* Une fois connecté, vous aurez accès à toutes les pages de l’application.
+* Si vous cliquez sur l’icône d’hippocampe dans la barre de menu, vous pourrez voir votre profile ou vous déconnecter de votre compte (vous serez alors redirigés vers la page de login).
+
+### Page d’une série télévisée
+* Sur la page d’accueil, vous pouvez cliquer sur un des posters dans la section «Top Tv Show» pour afficher la page d’une série télévisée.
+* Une fois sur la page, vous pouvez cliquer sur le titre d’un épisode dans le bas de la page pour ouvrir la fenêtre modale associée à cet épisode.
+* Vous pouvez aussi faire une recherche parmi les épisodes de la série en utilisant le champ Search au centre de la page.
+
+### Recherche
+* Dans la barre de menu, vous pouvez faire une recherche en écrivant une requête dans le champ Search.
+* En cliquant sur la loupe, vous pourrez choisir de faire une recherche par film, acteur, utilisateur ou série télévisée.
+* En appuyant sur la touche `Entrée`, vous serez redirigés vers la page des résultat.
+
+### Page d’un utilisateur
+* Vous pouvez voir la page d’un utilisateur en faisant une recherche et en cliquant sur l’un des résultats.
+* La page affichera toutes les informations demandées. Si vous ne suivez pas l’utilisateur afficher, un bouton au centre de la page vous permettra de le suivre. Sinon, si vous le suivez déjà, un bouton vous permettant d’arrêter de le suivre sera affiché.
+* La section Following, affiche le nom des utilisateurs suivis par l’utilisateur courant. Vous pouvez cliquer sur ceux-ci pour voir la page associé à cet utilisateur.
+
+## Fonctionnalités avancées
+
+### Première fonctionnalité avancée : Obtenir des suggestions d’acteurs similaires à un acteurs ou de films similaires à un film
+Pour voir cette fonctionnalité en action, vous devez vous rendre sur la page d’un film et naviguer jusqu’à la section intitulée “Movies suggestion”. Vous trouverez alors, lorsque disponible, une sélection de films similaires au film courant. En ce qui concerne les suggestions d’acteurs similaires à un acteur, vous devez vous rendre sur la page d’un acteur et naviguer jusqu’à la section intitulée “Actors suggestion”. Vous trouverez alors, lorsque disponible, une sélection d’acteurs similaires à l’acteur courant.
+
+### Seconde fonctionnalité avancée : emoji-réactions et revues
+Cette fonctionnalité permet à l’utilisateur d’exprimer son opinion au sujet d’un film (movie), d’une saison de série télévisée (tv show) ou d’une liste de lecture (watchlist). Elle consiste en deux éléments :  des emoji-réactions et des revues.
+
+#### Emoji-réactions
+Sur les pages des films, des saisons de série tv et des listes de lecture, sous l’entête et la barre d’actions (boutons) se trouve un bandeau contenant des emojis. Il est possible d’en choisir un. Il devient alors bleu. Sous les emojis est inscrit le pourcentage qu’a obtenu chacun d’entre eux grâce aux votes des utilisateurs de l’application.
+
+#### Revues
+Au bas des pages de films, de saisons de séries tv et de listes de lectures se trouvent les revues laissées par les utilisateurs. Les utilisateurs de l’application peuvent dire ce qu’ils pensent en un court ou long discours. Un bouton vert permet d’ajouter une revue. Il est ensuite possible de la modifier avec le bouton d’édition.
+
+#### Commun aux deux
+Il est possible à tout moment de modifier son choix ou de modifier sa revue. En revanche, il n’est possible de supprimer ni le choix d’emoji, ni sa revue. C’est un choix de conception volontaire.
+
+#### Mise à jour des Emoji-reactions et des revues
 Les Emoji-réactions et les revues des utilisateurs sont stockés sur JSON Blob. Elles restent disponibles 60 jours après la dernière consultation. Il peut donc être nécessaire de recréer le stockage de ces éléments. Pour ce faire, il faut suivre les étapes qui suivent. Ces étapes suivantes sont valables pour les films (movie). Il faut faire de même pour les séries télévisées (tvshow) et les listes de lectures (watchlist).
 
 1. Aller sur [JSON Blob](https://jsonblob.com/)
