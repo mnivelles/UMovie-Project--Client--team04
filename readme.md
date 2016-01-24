@@ -181,19 +181,8 @@ app/
 Source : [https://scotch.io/tutorials/angularjs-best-practices-directory-structure](https://scotch.io/tutorials/angularjs-best-practices-directory-structure)
 
 
-##Futur
-###Technologies possibles
-* [Immutable par Facebook](http://facebook.github.io/immutable-js/) : Si vous voulez des éléments qui ne changent pas; y compris des `Object`(Cf. `Record`).
-
 ##Attribution de contenus
 * Logo baleine [Fish in circle shape](http://www.flaticon.com/free-icon/fish-in-circle-shape_32631) par [freepik](http://www.freepik.com) de [www.flaticon.com](www.flaticon.com)  
 * [Flux RSS de iTunes](https://rss.itunes.apple.com/us/?urlDesc=) pour le top des films et des saisons de séries télévisées
 * [TheMovieDb](https://www.themoviedb.org/) pour les listes de films populaires
 
-
-{
-email: "nanashi@sekai-no-owari.umovie",
-name: "Nanashi",
-following: [ ],
-id: "563d646d9b95510300ec5aac"
-}
