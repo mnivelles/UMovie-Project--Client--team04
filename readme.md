@@ -257,7 +257,9 @@ Source : [https://scotch.io/tutorials/angularjs-best-practices-directory-structu
 
 
 ## Attribution de contenus
-* Logo baleine [Fish in circle shape](http://www.flaticon.com/free-icon/fish-in-circle-shape_32631) par [freepik](http://www.freepik.com) de [www.flaticon.com](www.flaticon.com)  
+* Logo baleine [Fish in circle shape](http://www.flaticon.com/free-icon/fish-in-circle-shape_32631) par [freepik](http://www.freepik.com) de [www.flaticon.com](www.flaticon.com)
+* Avatar hippocampe [Sea horse](http://www.flaticon.com/free-icon/sea-horse_65881) par [freepik](http://www.freepik.com) de [www.flaticon.com](www.flaticon.com)
+* Fontelico de [Crowdsourced, for Fontello project](http://fontello.com) en [SIL](http://scripts.sil.org/OFL)
 * [Flux RSS de iTunes](https://rss.itunes.apple.com/us/?urlDesc=) pour le top des films et des saisons de séries télévisées
 * [TheMovieDb](https://www.themoviedb.org/) pour les listes de films populaires
 
