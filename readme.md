@@ -42,6 +42,10 @@ npm cache clean
 bower cache clean
 ```
 
+### Clés d'API
+Il faut ajouter votre clef d'API pour TMDB et Tastekid dans le fichier `app/src/helper/common.js` et pour YouTube dans `app/src/helper/youtubeSearch.js`.
+Aussi, dans la section « Mise à jour des Emoji-reactions et des revues », il est indiqué comment mettre à jour le JSON Blob.
+
 ## Installation
 
 Clonner le dépôt Git suivant en effectuant la commande suivante. Un nom optionnel peut être optionnellement ajouté à la fin.
